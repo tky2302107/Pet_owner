@@ -73,3 +73,22 @@ djangoの実行方法　ターミナルに
 
 Chat実装(Websocket使用)の関係上、django-adminページ(localhost:8000/admin/)
 はCssが読み込まれず、見づらいファイルとなっています。ご了承ください。
+
+
+
+
+
+
+
+
+
+初回起動時：
+pip install pipenv
+pipenv install
+pipenv install django channels daphne
+pip install -U 'Twisted[tls,http2]'
+
+
+https://chigusa-web.com/blog/django-github/
+https://qiita.com/mtitg/items/3aa5e5c6d1c1cf6fd3c2
+https://qiita.com/propella/items/ea29d6a62fdf75f1b421
