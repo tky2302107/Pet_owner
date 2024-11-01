@@ -63,3 +63,10 @@ Conflictを防ぐための対策(競合が起こると解消までに時間を�
 
     自宅で操作する場合も特に変わりませんが、意思疎通が取れなくなる事が想定されるので、
     2番は確実に守ってください。
+
+djangoの実行方法　ターミナルに
+    pipenv run daphne -b 0.0.0.0 -p 8000 config.asgi:application
+    と入力。localhost:8000/login/で閲覧可能。
+
+Chat実装(Websocket使用)の関係上、django-adminページ(localhost:8000/admin/)
+はCssが読み込まれず、見づらいファイルとなっています。ご了承ください。
