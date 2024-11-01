@@ -88,7 +88,15 @@ pipenv install
 pipenv install django channels daphne
 pip install -U 'Twisted[tls,http2]'
 
-
+ChatAppクローン元
 https://chigusa-web.com/blog/django-github/
+
+pipenv install
 https://qiita.com/mtitg/items/3aa5e5c6d1c1cf6fd3c2
 https://qiita.com/propella/items/ea29d6a62fdf75f1b421
+
+
+Git連携
+https://chigusa-web.com/blog/django-github/
+SECRET_KEY
+https://chigusa-web.com/blog/django-secret/
