@@ -40,7 +40,7 @@
                 </li>
             {% endif %} {% endcomment %}
             {% if user.is_authenticated %}
-                こんにちは {{user.username}} さん
+                {% comment %} こんにちは {{user.username}} さん {% endcomment %}
                 {% comment %} <form method="post" action="{% url 'accounts:logout' %}">
                     <a class="nav-item nav-link" type="submit">
                         {% csrf_token %}
