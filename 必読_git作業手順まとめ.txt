@@ -89,7 +89,8 @@ pipenv install django channels daphne
 pip install -U 'Twisted[tls,http2]'
 
 ChatAppクローン元
-https://chigusa-web.com/blog/django-github/
+https://yururi-do.com/django-channels-memberonly-chat-room/
+
 
 pipenv install
 https://qiita.com/mtitg/items/3aa5e5c6d1c1cf6fd3c2
