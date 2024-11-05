@@ -8,4 +8,4 @@ class LoginPage(LoginView):
     template_name = 'accounts/login.html'
 
 class LogoutPage(LogoutView):
-    template_name = 'accounts/index.html'
+    template_name = 'accounts/logout.html'
