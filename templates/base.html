@@ -41,16 +41,22 @@
             {% endif %} {% endcomment %}
             {% if user.is_authenticated %}
                 こんにちは {{user.username}} さん
+                {% comment %} <form method="post" action="{% url 'accounts:logout' %}">
+                    <a class="nav-item nav-link" type="submit">
+                        {% csrf_token %}
+                        <label>Logout</label>
+                    </a>
+                </form> {% endcomment %}
                 <form method="post" action="{% url 'accounts:logout' %}">
                     {% csrf_token %}
                     <button type="submit">ログアウト</button>
                 </form>
-                <a class="nav-item nav-link" method="post" action="{% url 'accounts:logout' %}">
-                    {% csrf_token %}
-                    Logout 
-                </a>
             {% else %}
-                <a href="{% url 'accounts:login' %}">ログイン</a>
+                <form method="post" action="{% url 'accounts:login' %}">
+                    {% csrf_token %}
+                    <button type="submit">ログイン</button>
+                </form>
+                {% comment %} <a href="{% url 'accounts:login' %}">ログイン</a> {% endcomment %}
             {% endif %}
             </ul>
         </div>
