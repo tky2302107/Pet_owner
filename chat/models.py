@@ -32,7 +32,7 @@ class Room(models.Model):
     host = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(gettext_lazy('ルーム名'), max_length=64)
     description = models.TextField(gettext_lazy('説明文'), max_length=128)
-    participants = models.ManyToManyField(User, related_name='rooms', verbose_name=gettext_lazy('参加者'), blank=True)
+    participants = models.ManyToManyField(User, related_name='rooms', verbose_name=gettext_lazy('参加者(Ctrl キーを押しながらマウスで選択)'), blank=True)
     created_at = models.DateTimeField(gettext_lazy('Created time'), default=timezone.now)
 
     objects = RoomQueryset.as_manager()
