@@ -13,6 +13,7 @@
     {% block header %}
     {% endblock %}
 </head>
+{% comment %} <!-- {% extends "header/画面/base.html" %} --> {% endcomment %}
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -25,7 +26,7 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-            {% if user.is_authenticated %}
+            {% comment %} {% if user.is_authenticated %}
                 <li>
                     <a class="nav-item nav-link" href="{% url 'accounts:logout' %}">
                         Logout
@@ -37,6 +38,25 @@
                         Login
                     </a>
                 </li>
+            {% endif %} {% endcomment %}
+            {% if user.is_authenticated %}
+                {% comment %} こんにちは {{user.username}} さん {% endcomment %}
+                {% comment %} <form method="post" action="{% url 'accounts:logout' %}">
+                    <a class="nav-item nav-link" type="submit">
+                        {% csrf_token %}
+                        <label>Logout</label>
+                    </a>
+                </form> {% endcomment %}
+                <form method="post" action="{% url 'accounts:logout' %}">
+                    {% csrf_token %}
+                    <button type="submit">ログアウト</button>
+                </form>
+            {% else %}
+                <form method="post" action="{% url 'accounts:login' %}">
+                    {% csrf_token %}
+                    <button type="submit">ログイン</button>
+                </form>
+                {% comment %} <a href="{% url 'accounts:login' %}">ログイン</a> {% endcomment %}
             {% endif %}
             </ul>
         </div>
