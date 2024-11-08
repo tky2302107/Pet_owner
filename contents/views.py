@@ -6,3 +6,15 @@ from django.views.generic import TemplateView
 
 class Index(TemplateView):
     template_name = 'contents/my_account.html'
+
+class Notice(TemplateView):
+    template_name = 'contents/notice_list.html'
+    
+class Points(TemplateView):
+    template_name = 'contents/exchange_Point.html'
+    
+class AccessError(TemplateView):
+    template_name = 'Access Denied.html'
+    
+class ServerError(TemplateView):
+    template_name = 'error.html'
