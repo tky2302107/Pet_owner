@@ -5,8 +5,9 @@
     {% if user.is_authenticated  %}
     <div class="col-12">
         <div class="row">
-            <h2 class="h2">{{ user|stringformat:"s" }}さん, ようこそ!</h2>
+            <h2 class="h2">{{ user|stringformat:"s" }}さん, ようこそ! (仮ページ・今後、このページはmain_menu.htmlに置き換えられます。)</h2>
         </div>
+        <br>
         <div class="row">
             <div class="col-12">
                 <div class="card-columns">
@@ -15,6 +16,26 @@
                         <div class="card-body">
                             <a href="{% url 'chat:index' %}" class="btn btn-link btn-block" target="_self">
                                 チャットをする
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-columns">
+                    <div class="card">
+                        <div class="card-header">Mypage</div>
+                        <div class="card-body">
+                            <a href="{% url 'contents:index' %}" class="btn btn-link btn-block" target="_self">
+                                マイページへ
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-columns">
+                    <div class="card">
+                        <div class="card-header">MainPage</div>
+                        <div class="card-body">
+                            <a href="{% url 'accounts:menu' %}" class="btn btn-link btn-block" target="_self">
+                                メインページへ(今後置き換えします。)
                             </a>
                         </div>
                     </div>
