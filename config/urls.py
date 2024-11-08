@@ -23,4 +23,6 @@ urlpatterns = [
     path('', include('accounts.urls', namespace='accounts')),
     # chatアプリを追加
     path('chat/', include('chat.urls', namespace='chat')),
+    # contentsアプリを追加
+    path('contents/', include('contents.urls', namespace='contents')),
 ]

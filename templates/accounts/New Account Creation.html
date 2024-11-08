@@ -1,0 +1,110 @@
+<!-- アカウント新規作成画面 -->
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>フォーム作成</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .form-container {
+            width: 400px;
+            border: 2px solid black;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: #ffffff;
+        }
+
+        .form-container h2 {
+            position: relative;
+            text-align: center;
+            border: 2px solid black;
+            margin-bottom: 20px;
+            padding: 10px;
+        }
+
+        .form-container h2 span {
+            position: absolute;
+            top: -20px;
+            left: -40px;
+            color: white;
+            padding: 5px;
+        }
+
+        .form-group {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+            color: gray;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 2px solid black;
+        }
+
+        .form-group .number {
+            position: absolute;
+            right: -40px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            padding: 5px;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            background-color: blue;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>タイトル<span class="number"></span></h2>
+        <form action="#" method="post">
+            <div class="form-group">
+                <label for="username">ユーザー名</label>
+                <input type="text" id="username" name="username">
+            </div>
+            <div class="form-group">
+                <label for="login-id">ログインID</label>
+                <input type="text" id="login-id" name="login-id">
+            </div>
+            <div class="form-group">
+                <label for="password">パスワード</label>
+                <input type="password" id="password" name="password">
+            </div>
+            <div class="form-group">
+                <label for="confirm-password">パスワード（確認用）</label>
+                <input type="password" id="confirm-password" name="confirm-password">
+            </div>
+            <button type="button" class="submit-btn" onclick="window.location.href='main_menu.html'">
+                新規作成
+            </button>
+        </form>
+    </div>
+</body>
+</html>
+
