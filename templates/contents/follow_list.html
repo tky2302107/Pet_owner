@@ -1,0 +1,163 @@
+<!--　フォローアカウント一覧　-->
+
+
+<head>
+
+    <title>フォローアカウント一覧</title>
+    <style>
+        /* 全体レイアウト */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        /* メインコンテナ */
+        .follow-list-container {
+            width: 600px;
+            max-height: 80vh;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+        }
+
+        /* タイトル */
+        .follow-title {
+            font-size: 1.5em;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* 各アカウント */
+        .account {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        /* アカウント情報 */
+        .account-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* アイコン */
+        .account-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #ddd;
+            object-fit: cover;
+        }
+
+        /* ユーザー名・自己紹介 */
+        .account-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .account-name {
+            font-size: 1em;
+            font-weight: bold;
+            color: #333;
+            margin: 0;
+        }
+
+        .account-bio {
+            font-size: 0.9em;
+            color: #666;
+            margin: 5px 0 0;
+        }
+
+        /* フォロー解除ボタン */
+        .unfollow-btn {
+            background-color: #ff4d4d;
+            color: #fff;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9em;
+            text-align: center;
+        }
+
+        .unfollow-btn:hover {
+            background-color: #ff1a1a;
+        }
+
+        /* スクロールバーのスタイル（ブラウザによる） */
+        .follow-list-container::-webkit-scrollbar {
+            width: 8px;
+        }
+        .follow-list-container::-webkit-scrollbar-thumb {
+            background-color: #bbb;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="follow-list-container">
+        <h2 class="follow-title">フォロー一覧</h2>
+
+        <!-- アカウント1 -->
+        <div class="account">
+            <div class="account-info">
+                <img src="https://via.placeholder.com/50" alt="アイコン" class="account-icon">
+                <div class="account-details">
+                    <p class="account-name">name</p>
+                    <p class="account-bio">プロフィール文</p>
+                </div>
+            </div>
+            <button class="unfollow-btn">フォロー解除</button>
+        </div>
+
+        <!-- アカウント2 -->
+        <div class="account">
+            <div class="account-info">
+                <img src="https://via.placeholder.com/50" alt="アイコン" class="account-icon">
+                <div class="account-details">
+                    <p class="account-name">name</p>
+                    <p class="account-bio">プロフィール文</p>
+                </div>
+            </div>
+            <button class="unfollow-btn">フォロー解除</button>
+        </div>
+
+        <!-- アカウント3 -->
+        <div class="account">
+            <div class="account-info">
+                <img src="https://via.placeholder.com/50" alt="アイコン" class="account-icon">
+                <div class="account-details">
+                    <p class="account-name">name</p>
+                    <p class="account-bio">プロフィール文</p>
+                </div>
+            </div>
+            <button class="unfollow-btn">フォロー解除</button>
+        </div>
+
+        <!-- アカウント4 -->
+        <div class="account">
+            <div class="account-info">
+                <img src="https://via.placeholder.com/50" alt="アイコン" class="account-icon">
+                <div class="account-details">
+                    <p class="account-name">name</p>
+                    <p class="account-bio">プロフィール文</p>
+                </div>
+            </div>
+            <button class="unfollow-btn">フォロー解除</button>
+        </div>
+    </div>
+
+</body>
+</html>

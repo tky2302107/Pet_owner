@@ -1,0 +1,160 @@
+<!--　マイアカウント画面　-->
+
+<head>
+
+    <title>マイページ</title>
+    <style>
+        /* 全体レイアウト */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        
+        /* メインコンテナ */
+        .profile-container {
+            width: 800px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        /* アイコンと編集ボタンのレイアウト */
+        .icon-edit-container {
+            width: 30%;
+            text-align: center;
+            position: relative;
+        }
+
+        /* アイコン */
+        .profile-icon {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-color: #ddd;
+            margin-bottom: 15px;
+        }
+
+        /* 編集ボタン */
+        .edit-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #bb00ff;
+            color: #fff;
+            padding: 8px 16px;
+            font-size: 0.8em;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* 戻るボタン */
+        .return-btn {
+            position: absolute;
+            top: 10px;
+            right: 90px;
+            background-color: #056119;
+            color: #fff;
+            padding: 8px 16px;
+            font-size: 0.8em;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* プロフィール情報 */
+        .profile-info {
+            width: 70%;
+            padding-left: 20px;
+            text-align: left;
+        }
+        
+        .profile-name {
+            font-size: 1.5em;
+            margin: 10px 0;
+        }
+
+        .profile-bio {
+            font-size: 1em;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        /* ボタン共通 */
+        .btn-container {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 10px;
+            font-size: 0.9em;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* 各ボタンのスタイル */
+        .follower-btn {
+            background-color: #28a745;
+        }
+        .follow-btn {
+            background-color: #007bff;
+        }
+        .point-btn {
+            background-color: #ffa500;
+        }
+        .history-btn {
+            background-color: #6c757d;
+        }
+
+        /* ボタンのホバーエフェクト */
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        .edit-btn:hover, .return-btn:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="profile-container">
+        <!-- 戻るボタン -->
+        <a href="javascript:history.back()" class="return-btn">戻る</a>
+
+        <!-- アイコンと編集ボタン -->
+        <div class="icon-edit-container">
+            <div class="profile-icon"></div>
+            <a href="profile_edit.html" class="edit-btn">編集</a>
+        </div>
+        
+        <!-- プロフィール情報とボタン -->
+        <div class="profile-info">
+            <div class="profile-name">ユーザー名</div>
+            <div class="profile-bio">こちらにプロフィール情報が表示されます。</div>
+            
+            <div class="btn-container">
+                <a href="#" class="btn follower-btn">フォロワー</a>
+                <a href="#" class="btn follow-btn">フォロー中</a>
+                <a href="exchange_point.html" class="btn point-btn">ポイント</a>
+                <a href="" class="btn history-btn">投稿履歴</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

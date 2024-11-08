@@ -1,0 +1,116 @@
+<!--　ポイント交換画面　-->
+
+<head>
+    <title>ポイント交換画面</title>
+    <style>
+        /* 全体のスタイル */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        
+        /* コンテナのスタイル */
+        .exchange-container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        /* タイトル */
+        h2 {
+            font-size: 1.5em;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        /* ポイント数の表示 */
+        .points {
+            font-size: 1.2em;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+        
+        /* ラベルのスタイル */
+        label {
+            font-size: 1em;
+            color: #333;
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        /* 入力フィールド */
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0 20px 0;
+            font-size: 1em;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        
+        /* ボタン */
+        .exchange-btn {
+            background-color: #28a745;
+            color: #fff;
+            font-size: 1em;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .return-btn {
+            position: relative;
+            right: 120px;
+
+            background-color: #056119;
+            color: #fff;
+            padding: 8px 16px;
+            font-size: 0.8em;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
+        /* ボタンのホバー */
+        .exchange-btn:hover {
+            background-color: #218838;
+        }
+
+        .AfterPoints {
+            font-size: 1.2em;
+            color: #ff0000;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="exchange-container">
+        <a href="main_menu.html" class="return-btn">戻る</a>
+        <h2>ポイント交換</h2>
+        <p class="points">保有ポイント: <span>0</span>pt</p>
+        
+        <!-- フォーム部分 -->
+        <form action="/exchange" method="post">
+            <label for="pointsToExchange">交換するポイント数:</label>
+            <input type="number" id="pointsToExchange" name="pointsToExchange" min="1" required>
+            <p class="AfterPoints">交換後ポイント: <span>0</span>pt</p>
+            <label>◯ポイント = ◯円寄付</label>
+            <button type="submit" class="exchange-btn">ポイントを交換</button>
+        </form>
+    </div>
+</body>
+</html>

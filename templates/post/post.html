@@ -1,1 +1,127 @@
-このファイルが不要な場合、消すか上書きしてください。
+<!--　投稿画面　-->
+
+<head>
+
+    <title>投稿画面</title>
+    <style>
+        /* 全体レイアウト */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        /* メインコンテナ */
+        .post-container {
+            width: 800px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            gap: 20px;
+        }
+
+        /* アップロード */
+        .upload-section {
+            width: 40%;
+        }
+
+        label {
+            font-weight: bold;
+            font-size: 0.9em;
+            color: #333;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="file"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+
+
+        /* テキスト入力フォームとボタン */
+        .form-section {
+            width: 60%;
+        }
+
+        textarea {
+            width: 95%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 0.9em;
+            resize: vertical;
+            height: 150px;
+            margin-bottom: 15px;
+        }
+
+        /* ボタン配置 */
+        .button-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 10px;
+            font-size: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+            color: #fff;
+            border: none;
+        }
+
+        .post-btn {
+            
+            background-color: #4e7bcc;
+        }
+
+        .back-btn {
+            
+            background-color: #056119;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+
+    </style>
+</head>
+<body>
+
+    <div class="post-container">
+        <!-- 動画・画像アップロード -->
+        <div class="upload-section">
+            <label for="image-upload">画像📷</label>
+            <input type="file" id="image-upload" name="image-upload" accept="image/*">
+
+            <label for="video-upload">動画🎞️</label>
+            <input type="file" id="video-upload" name="video-upload" accept="video/*">
+        </div>
+
+        <!-- 文字入力フォームとボタン -->
+        <div class="form-section">
+            <label for="post-text">文字入力</label>
+            <textarea id="post-text" name="post-text" placeholder="ここにテキストを入力してください"></textarea>
+
+            <div class="button-group">
+                <button class="btn back-btn" type="button" onclick="window.history.back()">戻る</button>
+                <button class="btn post-btn" type="submit">投稿</button>
+                
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

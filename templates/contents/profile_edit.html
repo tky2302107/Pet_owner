@@ -1,0 +1,189 @@
+<!--　プロフィール画面　-->
+
+<head>
+
+    <title>プロフィール編集</title>
+    <style>
+        /* 全体レイアウト */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        
+        /* メインコンテナ */
+        .edit-container {
+            width: 720px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        /* プロフィール画像とアップロードボタン */
+        .profile-section {
+            text-align: center;
+            width: 30%;
+        }
+
+        /* プロフィール画像 */
+        .profile-pic {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-color: #ddd;
+            margin-bottom: 15px;
+        }
+
+        /* 画像アップロードボタン */
+        .upload-btn-wrapper {
+            position: relative;
+            right: 8px;
+            overflow: hidden;
+            display: block;
+            cursor: pointer;
+            color: #007bff;
+        }
+        
+        .upload-btn-wrapper input[type="file"] {
+            font-size: 100px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+        }
+
+        
+
+        /* フォーム全体 */
+        .form-section {
+            width: 70%;
+        }
+
+        /* タイトル */
+        .edit-title {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            color: #333;
+            text-align: left;
+        }
+
+        /* 入力フィールドとラベル */
+        .form-group {
+            text-align: left;
+            margin-bottom: 15px;
+            width: 450px;
+            padding-right: 10px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            color: #333;
+        }
+
+        input[type="text"], input[type="email"], textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 0.9em;
+        }
+
+        textarea {
+            resize: vertical;
+            height: 80px;
+        }
+
+        /* 保存ボタン */
+        .save-btn {
+            background-color: #4e7bcc;
+            color: #fff;
+            font-size: 1em;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 102%;
+            margin-top: 15px;
+        }
+
+        .save-btn:hover {
+            background-color: #3d5a99;
+        }
+        /* 戻るボタン */
+        .return-btn {
+            background-color: #056119;
+            color: #fff;
+            font-size: 15px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 13%;
+            height: 43px;
+
+            position:relative ;
+            top: 290px;
+            right: 140px
+            
+           
+        }
+
+        .return-btn:hover {
+            background-color: #bec9c6;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="edit-container">
+        
+        <!-- プロフィール画像 -->
+        <div class="profile-section">
+            <div class="profile-pic"></div>
+            <div class="upload-btn-wrapper">
+                <button class="btn">画像をアップロード</button>
+                <input type="file" name="profile-pic">
+                
+            </div>
+        </div>
+
+              <!-- プロフィール画像 -->
+              
+        <button type="submit" class="return-btn" onclick="window.history.back()">戻る</button>
+            
+
+
+        
+        <!-- 編集フォーム -->
+        <div class="form-section">
+            <h2 class="edit-title">プロフィール編集</h2>
+            <form>
+                <div class="form-group">
+                    <label for="name">名前</label>
+                    <input type="text" id="name" name="name" placeholder="名前を入力">
+                </div>
+
+                <div class="form-group">
+                    <label for="bio">自己紹介</label>
+                    <textarea id="bio" name="bio" placeholder="自己紹介を入力"></textarea>
+                </div>
+                <button type="submit" class="save-btn">保存</button>
+                
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+
+
