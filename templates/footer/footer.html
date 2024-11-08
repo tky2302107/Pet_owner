@@ -1,62 +1,121 @@
 <!--　フッター　-->
-
-<footer>
-    
-    <head>
-        <h3>システム名</h3>
-     <div class="footer-menu">
-        
-      <ul class="footer-menu-list">
-        
-       <li><a href="#">ホーム画面へ</a></li>
-       <li><a href="#">利用規約</a></li>
-       <li><a href="#">プライバシーポリシー</a></li>
-      </ul>
-     </div>
-     <div class="contact">
-        <p>お問い合せ先住所<b>〒000-0000</b>     電話番号📳<b>000-0000-0000</b></p>
-    </div>
-     <div class="copyright">
-      <p>© 2024 システム名 Inc. All Rights Reserved.</p>
-     </div>
-
-    </head>
-    </footer>
+<head>
 
 
-<style>/* フッター */
-    footer {
-        position: absolute;/*←絶対位置*/
-        bottom: 0; /*下に固定*/
-         background-color: rgb(195, 254, 187);
-         color: rgb(27, 29, 28);
-         width: 99%;
-         height: 204px;
+    <style>
+        /* 全体レイアウト */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
         }
-        
+
+        /* フッター */
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: nowrap;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2);
+            font-size: 0.9em;
+        }
+
+        /* システム名 */
+        footer h3 {
+            color: #ffcc00;
+            margin: 0;
+            font-size: 1.2em;
+            flex-shrink: 0;
+        }
+
+        /* メニュー */
         .footer-menu {
-         height: 60px;
-        }
-        
-        .footer-menu-list {
-         list-style: none;
-         text-align: center;
-         line-height: 60px;
-        }
-        
-        .footer-menu-list li {
-         margin: 10px;
-         display: inline;
-        }
-    
-        .contact {
+            flex: 1;
             text-align: center;
         }
-        
-        .copyright {
-         text-align: right;
+
+        .footer-menu-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
         }
 
+        .footer-menu-list li a {
+            color: #ccc;
+            text-decoration: none;
+            font-size: 0.9em;
+        }
 
+        .footer-menu-list li a:hover {
+            color: #ffcc00;
+        }
 
-</style>
+        /* お問い合わせ情報 */
+        .contact {
+            font-size: 0.9em;
+            color: #bbb;
+            text-align: center;
+            white-space: nowrap;
+            margin: 0 10px;
+            flex-shrink: 0;
+        }
+
+        .contact b {
+            color: #ffcc00;
+        }
+
+        /* 著作権表示 */
+        .copyright {
+            font-size: 0.8em;
+            color: #888;
+            text-align: right;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+<body>
+
+   
+
+    
+    <footer>
+       
+        <h3>システム名</h3>
+
+        <!-- メニューリスト -->
+        <div class="footer-menu">
+            <ul class="footer-menu-list">
+                <li><a href="#">ホーム画面へ</a></li>
+                <li><a href="#">利用規約</a></li>
+                <li><a href="#">プライバシーポリシー</a></li>
+            </ul>
+        </div>
+
+        <!-- お問い合わせ情報 -->
+        <div class="contact">
+            <p>お問い合せ先<b>〒000-0000</b> 電話📳<b>000-0000-0000</b></p>
+        </div>
+        
+        <!-- 著作権表示 -->
+        <div class="copyright">
+            <p>© 2024 システム名 Inc. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
