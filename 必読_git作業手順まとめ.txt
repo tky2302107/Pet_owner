@@ -108,3 +108,7 @@ Git連携
 https://chigusa-web.com/blog/django-github/
 SECRET_KEY
 https://chigusa-web.com/blog/django-secret/
+
+
+GitリポジトリURL
+https://github.com/tky2302107/Pet_owner.git
