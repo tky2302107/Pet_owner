@@ -19,6 +19,22 @@
                             </a>
                         </div>
                     </div>
+                    <div class="card">
+                        <div class="card-header">NoticeList</div>
+                        <div class="card-body">
+                            <a href="{% url 'contents:notice' %}" class="btn btn-link btn-block" target="_self">
+                                通知一覧
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">Points</div>
+                        <div class="card-body">
+                            <a href="{% url 'contents:points' %}" class="btn btn-link btn-block" target="_self">
+                                ポイント交換
+                            </a>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-columns">
                     <div class="card">
@@ -26,6 +42,22 @@
                         <div class="card-body">
                             <a href="{% url 'contents:index' %}" class="btn btn-link btn-block" target="_self">
                                 マイページへ
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">Error1 404</div>
+                        <div class="card-body">
+                            <a href="{% url 'contents:accesserror' %}" class="btn btn-link btn-block" target="_self">
+                                アクセス不可
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">Error2 500</div>
+                        <div class="card-body">
+                            <a href="{% url 'contents:servererror' %}" class="btn btn-link btn-block" target="_self">
+                                サーバーエラー
                             </a>
                         </div>
                     </div>
