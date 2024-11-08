@@ -1,0 +1,185 @@
+<!--　メインメニュー画面　-->
+
+<head>
+
+    <title>メインメニュー</title>
+    <style>
+        /* 全体レイアウト */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            margin: 0;
+        }
+
+        /* メインコンテナ */
+        .main-container {
+            display: flex;
+            width: 900px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        /* 最新投稿エリア */
+        .post-section {
+            flex: 3;
+            padding: 20px;
+            border-right: 1px solid #ddd;
+            height: 400px; /* 高さを設定 */
+            overflow-y: auto; /* 縦スクロールを有効にする */
+        }
+
+        .post-title {
+            font-size: 1.2em;
+            color: #333;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .post {
+            display: flex;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .post img {
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
+            object-fit: cover;
+            margin-right: 15px;
+        }
+
+        .post-content {
+            flex: 1;
+        }
+
+        .post-content h4 {
+            margin: 0;
+            font-size: 1em;
+            color: #007bff;
+        }
+
+        .post-content p {
+            font-size: 0.9em;
+            color: #555;
+            margin: 5px 0 0;
+        }
+
+        /* 投稿者アイコン */
+        .user-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #ddd;
+            margin-right: 10px;
+        }
+
+        /* 投稿ボタンエリア */
+        .button-section {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .post-btn {
+            display: flex;
+            justify-content: center; 
+            align-items: center; 
+            background-color: #128f10;
+            color: #fff;
+            font-size: 2em;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+            text-decoration: none;
+            height: 200px;
+        }
+
+        .post-btn:hover {
+            background-color: #025715;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        <!-- 最新の投稿エリア -->
+        <div class="post-section">
+            <div class="post-title">最新の投稿</div>
+
+            <!-- 投稿1 -->
+            <div class="post">
+                <img src="https://via.placeholder.com/80" alt="投稿画像">
+                <div class="post-content">
+                    <div style="display: flex; align-items: center;">
+                        <div class="user-icon"></div>
+                        <h4>ユーザー名1</h4>
+                    </div>
+                    <p>この投稿の説明や内容がここに表示されます。</p>
+                </div>
+            </div>
+
+            <!-- 投稿2 -->
+            <div class="post">
+                <img src="https://via.placeholder.com/80" alt="投稿画像">
+                <div class="post-content">
+                    <div style="display: flex; align-items: center;">
+                        <div class="user-icon"></div>
+                        <h4>ユーザー名2</h4>
+                    </div>
+                    <p>他の投稿内容がここに表示されます。</p>
+                </div>
+            </div>
+
+            <!-- 投稿3 -->
+            <div class="post">
+                <img src="https://via.placeholder.com/80" alt="投稿画像">
+                <div class="post-content">
+                    <div style="display: flex; align-items: center;">
+                        <div class="user-icon"></div>
+                        <h4>ユーザー名3</h4>
+                    </div>
+                    <p>別の投稿内容がここに表示されます。</p>
+                </div>
+            </div>
+
+            <!-- 投稿4 -->
+            <div class="post">
+                <img src="https://via.placeholder.com/80" alt="投稿画像">
+                <div class="post-content">
+                    <div style="display: flex; align-items: center;">
+                        <div class="user-icon"></div>
+                        <h4>ユーザー名4</h4>
+                    </div>
+                    <p>さらに別の投稿内容がここに表示されます。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 投稿ボタンエリア -->
+        <div class="button-section">
+            <a href="post.html" class="post-btn">投稿する</a>
+        </div>
+    </div>
+
+</body>
+</html>
+
+
+<html>
+    <style>
+
+    </style>
+</html>
+

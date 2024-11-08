@@ -7,4 +7,7 @@ urlpatterns = [
     path('', views.Index.as_view(), name='index'),
     path('login/', views.LoginPage.as_view(), name='login'),
     path('logout/', views.LogoutPage.as_view(), name='logout'),
+    
+    # メインメニュー仮リンク
+    path('menu/', views.MainPage.as_view(), name='menu'),
 ]
