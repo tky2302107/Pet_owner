@@ -85,6 +85,27 @@
             color: #888;
             text-align: right;
         }
+
+        /* 戻るボタン */
+        .return-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: #056119;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 0.9em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .return-btn:hover {
+            background-color: #3d5a99;
+        }
+
     </style>
 </head>
 <body>
@@ -152,6 +173,9 @@
             <div class="notice-time">2024/10/27 13:00</div>
         </div>
     </div>
+
+            <!-- 戻るボタン -->
+            <a href="javascript:history.back()" class="return-btn">戻る</a>
 
 </body>
 </html>

@@ -103,6 +103,29 @@
             background-color: #bbb;
             border-radius: 4px;
         }
+
+
+        /* 戻るボタン */
+        .return-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: #056119;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 0.9em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .return-btn:hover {
+            background-color: #3d5a99;
+        }
+
+        
     </style>
 </head>
 <body>
@@ -158,6 +181,8 @@
             <button class="unfollow-btn">フォロー解除</button>
         </div>
     </div>
+        <!-- 戻るボタン -->
+        <a href="javascript:history.back()" class="return-btn">戻る</a>
 
 </body>
 </html>
