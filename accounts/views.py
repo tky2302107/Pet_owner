@@ -9,3 +9,6 @@ class LoginPage(LoginView):
 
 class LogoutPage(LogoutView):
     template_name = 'accounts/logout.html'
+    
+class MainPage(TemplateView):
+    template_name = 'main_menu.html'
