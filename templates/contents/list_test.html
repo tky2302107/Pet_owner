@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="ja">
+<ul>
+    ↓
+    {% for data in object_list %}
+    <h3>{{ data.id }} : {{ data.posted_at }} : {{ data.title }}</h3>
+    <p>{{ data.posted_at }}</p>
+    {% endfor %}
+    ↑
+</ul>
