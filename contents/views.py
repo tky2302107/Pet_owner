@@ -11,10 +11,10 @@ class Notice(TemplateView):
     template_name = 'contents/notice_list.html'
     
 class Points(TemplateView):
-    template_name = 'contents/exchange_Point.html'
+    template_name = 'contents/exchange_point.html'
     
 class AccessError(TemplateView):
-    template_name = 'Access Denied.html'
+    template_name = '403.html'
     
 class ServerError(TemplateView):
-    template_name = 'error.html'
+    template_name = '404.html'

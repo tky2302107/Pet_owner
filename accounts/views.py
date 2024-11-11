@@ -11,4 +11,4 @@ class LogoutPage(LogoutView):
     template_name = 'accounts/logout.html'
     
 class MainPage(TemplateView):
-    template_name = 'main_menu.html'
+    template_name = 'main.html'
