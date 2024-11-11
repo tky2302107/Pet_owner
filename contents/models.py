@@ -15,6 +15,11 @@ class NoticeList(models.Model):
         verbose_name="日時",
         auto_now_add=True
     )
+    title = models.CharField(
+        verbose_name="タイトル",
+        max_length=30,
+        default=""
+    )
     
     NoticeList = models.TextField(
         verbose_name="本文"
