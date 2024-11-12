@@ -8,3 +8,4 @@ post/__pycache__/
 account/__pycache__/
 __pycache__/
 contents/__pycache__/
+.vscode/
