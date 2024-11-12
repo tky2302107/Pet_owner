@@ -13,23 +13,28 @@
             box-sizing: border-box;
         }
 
+        /* Base styling */
         body {
             font-family: Arial, sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
             padding: 20px;
+            background-color: #f0f4f8;
+            color: #333;
             min-height: 100vh;
         }
 
-
-         /* Sidebar */
-         .sidebar {
+        /* Sidebar styling */
+        .sidebar {
             position: absolute;
             top: 20px;
             left: 20px;
+            background-color: #ffffff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
         }
-
 
         .account-section {
             display: flex;
@@ -38,32 +43,36 @@
             gap: 10px;
         }
 
-
-
         .circle, .points {
             display: flex;
             align-items: center;
             justify-content: center;
             width: 100px;
             height: 100px;
-            border: 2px solid black;
             border-radius: 50%;
             font-size: 14px;
-            text-align: center;
             cursor: pointer;
             text-decoration: none;
-            color: black;
+            color: #fff;
+            transition: 0.3s;
+        }
+
+        .circle {
+            background-color: #3498db;
         }
 
         .points {
+            background-color: #f39c12;
             width: auto;
-            padding: 5px 10px;
+            padding: 10px 20px;
+            border-radius: 30px;
         }
 
+        .circle:hover, .points:hover {
+            opacity: 0.8;
+        }
 
-
-
-        /* Header */
+        /* Header styling */
         header {
             width: 100%;
             max-width: 800px;
@@ -75,19 +84,23 @@
         }
 
         .title {
-            border: 2px solid black;
+            border: 2px solid #3498db;
             padding: 10px;
             text-align: center;
             font-size: 18px;
             cursor: pointer;
             text-decoration: none;
-            color: black;
+            color: #3498db;
             width: 100%;
+            background-color: #ffffff;
+            border-radius: 5px;
+            transition: 0.3s;
         }
 
-
-
-        
+        .title:hover {
+            background-color: #3498db;
+            color: #ffffff;
+        }
 
         .search-container {
             display: flex;
@@ -97,37 +110,50 @@
         }
 
         .search-bar {
-            flex: 3; /* 検索バーを他のボタンの2倍の幅に */
-            border: 2px solid black;
+            flex: 3;
+            border: 2px solid #3498db;
             padding: 10px;
-            text-align: center;
             font-size: 16px;
-            cursor: pointer;
-            color: black;
-            text-decoration: none;
+            color: #333;
+            border-radius: 5px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        
+
+        .search-submit:hover {
+            background-color: #3498db;
+            color: #ffffff;
         }
 
         .navigation {
             display: flex;
             gap: 5px;
-            
         }
 
         .nav-btn {
             padding: 10px;
             font-size: 14px;
-            border: 2px solid black;
+            border: 2px solid #3498db;
             cursor: pointer;
             text-decoration: none;
-            color: black;
-            
-            
+            color: #3498db;
+            background-color: #ffffff;
+            border-radius: 5px;
+            transition: 0.3s;
+            width: 80px; /
         }
 
+        .nav-btn:hover {
+            background-color: #3498db;
+            color: #ffffff;
+        }
 
+        /* Main section styling */
         main {
             margin-top: 20px;
-            width: 200%;
+            width: 100%;
             max-width: 600px;
             display: flex;
             flex-direction: column;
@@ -135,34 +161,39 @@
             gap: 10px;
             flex-grow: 1;
             justify-content: flex-end;
-            margin-bottom: 200px; /* 数値を調整 */
+            margin-bottom: 200px;
         }
 
         .message-box {
-            border: 2px solid black;
+            border: 2px solid #e74c3c;
             padding: 20px;
             width: 100%;
             text-align: center;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
         }
 
         .message, .back-btn {
             font-size: 18px;
-            cursor: pointer;
             text-decoration: none;
-            color: black;
+            color: #e74c3c;
             display: inline-block;
+            transition: 0.3s;
+        }
+
+        .message:hover, .back-btn:hover {
+            color: #ffffff;
+            background-color: #e74c3c;
         }
 
         .back-btn {
             padding: 10px 20px;
             font-size: 16px;
-            border: 2px solid black;
+            border: 2px solid #e74c3c;
             margin-top: 10px;
+            border-radius: 5px;
         }
-
-
-
-
     </style>
 </head>
 <body>
@@ -181,10 +212,14 @@
         <a href="title.html" class="title">タイトル</a>
         
         <div class="search-container">
-            <a href="search.html" class="search-bar">検索バー</a>
+            <form action="Post Search Results.html" method="get" style="display: flex; gap: 10px; width: 100%;">
+                <input type="text" name="query" class="search-bar" placeholder="検索キーワードを入力" />
+                <button type="submit" class="search-submit">検索</button>
+            </form>
+            
             <div class="navigation">
                 <a href="category.html" class="nav-btn">カテゴリ</a>
-                <a href="search.html" class="nav-btn">検索</a>
+                
                 <a href="login.html" class="nav-btn">ログイン</a>
                 <a href="register.html" class="nav-btn">新規</a>
             </div>
