@@ -1,6 +1,6 @@
 from django.views.generic import TemplateView
 from django.contrib.auth.views import LoginView, LogoutView
-from .models import GetPointInfo
+from .models import User
 
 class Index(TemplateView):
     template_name = 'accounts/index.html'
@@ -16,7 +16,10 @@ class MainPage(TemplateView):
     
 class ExchangePoint(TemplateView):
     template_name = 'accounts/p1.html'
-    model = GetPointInfo
+    model = User
+    def get_queryset(self):
+        return super().get_queryset()
+    
     
     
 class ExchangePointComplete(TemplateView):
