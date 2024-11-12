@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="ja">
+<ul>
+    ↓
+    {% for data in object_list %}
+    <h3>No.{{ data.id }} Date:{{ data.posted_at }}
+        <a href={% url 'contents:notice' data.id %}>{{ data.title }}</a>
+    </h3>
+    {% endfor %}
+    ↑
+</ul>
