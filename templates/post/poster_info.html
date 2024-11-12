@@ -116,12 +116,14 @@
         .nav-btn {
             padding: 10px;
             font-size: 14px;
-            border: 2px solid black;
+            border: 2px solid #3498db;
             cursor: pointer;
             text-decoration: none;
-            color: black;
-            
-            
+            color: #3498db;
+            background-color: #ffffff;
+            border-radius: 5px;
+            transition: 0.3s;
+            width: 80px; /
         }
 
 
@@ -230,10 +232,14 @@
     <header>
         <a href="title.html" class="title">タイトル</a>
         <div class="search-container">
-            <a href="search.html" class="search-bar">検索バー</a>
+            <form action="Post Search Results.html" method="get" style="display: flex; gap: 10px; width: 100%;">
+                <input type="text" name="query" class="search-bar" placeholder="検索キーワードを入力" />
+                <button type="submit" class="search-submit">検索</button>
+            </form>
+            
             <div class="navigation">
                 <a href="category.html" class="nav-btn">カテゴリ</a>
-                <a href="search.html" class="nav-btn">検索</a>
+                
                 <a href="login.html" class="nav-btn">ログイン</a>
                 <a href="register.html" class="nav-btn">新規</a>
             </div>
