@@ -1,94 +1,44 @@
-<!--　投稿履歴　-->
-
+<!DOCTYPE html>
+<html lang="ja">
+    <link rel="stylesheet" href="../../static/admin/css/common.css">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>投稿履歴</title>
-    <style>
-        /* 全体レイアウト */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #ffffff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-        }
 
-        /* メインコンテナ */
-        .history-container {
-            width: 700px;
-            max-height: 80vh;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            overflow-y: auto;
-        }
-
-        /* タイトル */
-        .history-title {
-            font-size: 1.5em;
-            color: #333;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        /* 各投稿 */
-        .post {
-            display: flex;
-            padding: 15px 0;
-            border-bottom: 1px solid #ddd;
-            gap: 15px;
-        }
-
-        .post img {
-            width: 100px;
-            height: 100px;
-            border-radius: 5px;
-            object-fit: cover;
-        }
-
-        /* 投稿内容 */
-        .post-content {
-            flex: 1;
-        }
-
-        .post-title {
-            font-size: 1.1em;
-            color: #007bff;
-            margin: 0;
-            font-weight: bold;
-        }
-
-        .post-text {
-            font-size: 0.9em;
-            color: #555;
-            margin: 8px 0 0;
-        }
-
-        /* 戻るボタン */
-        .return-btn {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            background-color: #056119;
-            color: #fff;
-            padding: 10px 20px;
-            font-size: 0.9em;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none;
-            text-align: center;
-        }
-
-        .return-btn:hover {
-            background-color: #3d5a99;
-        }
-    </style>
 </head>
 <body>
 
+    <div class="sidebar">
+        <div class="account-section">
+            <a href="account.html" class="circle">マイアカウント</a>
+            <a href="points.html" class="points">ポイント</a>
+        </div>
+    </div>
+
+    <!-- ヘッダー -->
+    <header class="post_history-header">
+        <a href="#" class="title">タイトル</a>
+        
+        <div class="search-container">
+            <!-- 検索バー -->
+            <form action="search.html" method="get" style="display: flex; gap: 10px; width: 50%;">
+                <input type="text" name="query" class="search-bar" placeholder="検索キーワードを入力" />
+                <button type="submit" class="search-submit">検索</button>
+            </form>
+            <div class="navigation">
+                <a href="category.html" class="nav-btn">カテゴリ</a>
+                <a href="login.html" class="nav-btn">ログイン</a>
+                <a href="register.html" class="nav-btn">新規</a>
+            </div>
+        </div>
+    </header>
+
+</body>
+
+<body>
+
+    <!-- 投稿履歴コンテナ -->
     <div class="history-container">
         <h2 class="history-title">投稿履歴</h2>
 
@@ -132,5 +82,28 @@
     <!-- 戻るボタン -->
     <a href="javascript:history.back()" class="return-btn">戻る</a>
 
+<!-- フッター -->
+<footer class="post_history-footer">
+    <h3>システム名</h3>  
+
+    <!-- メニューリスト -->
+    <div class="footer-menu">
+        <ul class="footer-menu-list">
+            <li><a href="#">ホーム画面へ</a></li>
+            <li><a href="#">利用規約</a></li>
+            <li><a href="#">プライバシーポリシー</a></li>
+        </ul>
+    </div>
+
+    <!-- お問い合わせ情報 -->
+    <div class="contact">
+        <p>お問い合せ先<b>〒000-0000</b> 電話📳<b>000-0000-0000</b></p>
+    </div>
+    
+    <!-- 著作権表示 -->
+    <div class="copyright">
+        <p>© 2024 システム名 Inc. All Rights Reserved.</p>
+    </div>
+</footer>
 </body>
 </html>

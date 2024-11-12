@@ -1,6 +1,6 @@
 
 
-<!-- 投稿詳細画面 -->
+<!-- 投稿詳細画面????? -->
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -100,18 +100,17 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            width: 100%;
+            width: 80px ;
         }
 
         .search-bar {
-            flex: 3;
+            flex: 1;
             border: 2px solid #3498db;
             padding: 10px;
-            text-align: center;
             font-size: 16px;
             color: #333;
             border-radius: 5px;
-            width: 100%;
+            width: 80px ; 
             box-sizing: border-box;
         }
 
@@ -130,6 +129,7 @@
             background-color: #ffffff;
             border-radius: 5px;
             transition: 0.3s;
+            width: 100px; /
         }
 
         .nav-btn:hover {
@@ -217,12 +217,16 @@
     <!-- Header Section -->
     <header>
         <a href="title.html" class="title">タイトル</a>
+        <form action="search.html" method="get" style="display: flex; gap: 10px; width: 70%;">
+            <input type="text" name="query" class="search-bar" placeholder="検索キーワードを入力" />
+            <button type="submit" class="search-submit">検索</button>
+        </form>
         
         <div class="search-container">
-            <input type="text" class="search-bar" placeholder="検索キーワードを入力" />
+        
             <div class="navigation">
                 <a href="category.html" class="nav-btn">カテゴリ</a>
-                <a href="Post Search Results.html" class="nav-btn">検索</a>
+                
                 <a href="login.html" class="nav-btn">ログイン</a>
                 <a href="post.html" class="nav-btn">新規</a>
             </div>

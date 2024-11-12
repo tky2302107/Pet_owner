@@ -60,6 +60,8 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     objects = CustomUserManager()
 
+    # points = 
+    
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
 
@@ -72,3 +74,4 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __unicode__(self):
         return self.screen_name or self.email
+    
