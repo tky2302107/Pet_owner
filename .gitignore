@@ -3,3 +3,8 @@ config/__pycache__/
 Pipfile
 Pipfile.lock
 db.sqlite3
+chat/__pycache__/
+post/__pycache__/
+account/__pycache__/
+__pycache__/
+contents/__pycache__/
