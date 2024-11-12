@@ -5,7 +5,8 @@ app_name = 'contents'
 
 urlpatterns = [
     path('', views.Index.as_view(), name='index'),
-    path('/notice', views.NoticeList.as_view(), name='notice'),
+    path('/notice_list', views.NoticeList.as_view(), name='notice_list'),
+    path('/notice/<int:idid>',views.Notice.as_view(),name='notice'),
     path('/points', views.Points.as_view(), name='points'),
     
     path('/error403', views.AccessError.as_view(), name='accesserror'),

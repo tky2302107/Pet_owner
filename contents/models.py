@@ -26,3 +26,20 @@ class NoticeList(models.Model):
     )
     def __str__(self):
         return self.title
+    
+# class Notice(models.Model):
+#     posted_at = models.DateTimeField(
+#         verbose_name="日時",
+#         auto_now_add=True
+#     )
+#     title = models.CharField(
+#         verbose_name="タイトル",
+#         max_length=30,
+#         default=""
+#     )
+    
+#     NoticeList = models.TextField(
+#         verbose_name="本文"
+#     )
+#     def __str__(self):
+#         return self.title
