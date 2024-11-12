@@ -1,4 +1,4 @@
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView,ListView
 from django.contrib.auth.views import LoginView, LogoutView
 from .models import User
 
@@ -14,13 +14,15 @@ class LogoutPage(LogoutView):
 class MainPage(TemplateView):
     template_name = 'main.html'
     
-class ExchangePoint(TemplateView):
+class ExchangePoint(ListView):
     template_name = 'accounts/p1.html'
     model = User
     def get_queryset(self):
         return super().get_queryset()
-    
+    nl = User.objects.filter(id=1)
+        
     
     
 class ExchangePointComplete(TemplateView):
     template_name = 'accounts/p2.html'
+    
