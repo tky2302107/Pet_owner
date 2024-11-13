@@ -14,14 +14,21 @@ class LogoutPage(LogoutView):
 class MainPage(TemplateView):
     template_name = 'main.html'
     
-class ExchangePoint(ListView):
+class ExchangePoint(TemplateView):
     template_name = 'accounts/p1.html'
     model = User
-    def get_queryset(self):
-        return super().get_queryset()
-    nl = User.objects.filter(id=1)
-        
-    
+    # def get_queryset(self):
+    #     return super().get_queryset()
+    # nl = User.objects.filter(id=1)
+
+
+    def get(self, request, **kwargs):
+        global ctx
+        ctx = {
+            'points': self.request.user.points
+        }
+        print("ctx"+str(ctx))
+        return self.render_to_response(ctx)
     
 class ExchangePointComplete(TemplateView):
     template_name = 'accounts/p2.html'
