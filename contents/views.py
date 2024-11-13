@@ -36,7 +36,7 @@ class NoticeList(ListView):
     # """
 class Notice_(TemplateView):
     template_name = "contents/n_test.html"# template_name = 'contents/notice.html'
-    # model = NoticeList
+    model = NoticeList
 
     # def get_queryset(self):
     #     idid = self.kwargs['idid']
@@ -61,6 +61,8 @@ class Notice_(TemplateView):
         print("b")
         return queryset
     print("c")
+
+    # queryset = 
 
     
 class AccessError(TemplateView):

@@ -23,7 +23,6 @@ class ExchangePoint(TemplateView):
 
 
     def get(self, request, **kwargs):
-        global ctx
         ctx = {
             'points': self.request.user.points
         }
@@ -32,4 +31,20 @@ class ExchangePoint(TemplateView):
     
 class ExchangePointComplete(TemplateView):
     template_name = 'accounts/p2.html'
+    # model = User
+    
+    # def get(self, request, **kwargs):
+    #     global ctxii
+    #     ctxii = {
+    #         'points': self.request.user.points
+    #     }
+    #     print("ctx"+str(ctxii))
+    #     return ctxii
+    # if ctxii == 0:
+    #     pass
+    # else:
+    #     ctxii+=1
+    #     User.points = 0
+    #     User.save()
+
     
