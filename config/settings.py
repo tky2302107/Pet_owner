@@ -131,6 +131,9 @@ USE_TZ = True
 
 STATIC_URL = 'static/' # cssの一括まとめここをコメント解除すると　loadstatic　が使えるようになるがtemplates以下のcssは無効化される
 
+# 画像アップロード先フォルダの設定
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
