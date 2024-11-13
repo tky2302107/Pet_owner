@@ -197,14 +197,44 @@
             font-size: 16px;
             color: #333;
         }
+
+         /* アカウント情報 */
+         .account-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+
+
+        .account-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #ddd;
+            object-fit: cover;
+        }
+
+
+        .account-main {
+            width: 100px;
+            height: 100px;
+            border-radius: 100%;
+            background-color: #ddd;
+            object-fit: cover;
+        }
+
+
+
     </style>
 </head>
 <body>
 
     <div class="sidebar">
         <div class="account-section">
-            <a href="my_account.html" class="circle">マイアカウント</a>
-            <a href="exchange_point.html" class="points">ポイント</a>
+            <!-- <a href="account.html" class="circle">マイアカウント</a> -->
+            <img src="https://via.placeholder.com/50" alt="アイコン" class="account-main">
+            <a href="points.html" class="points">ポイント</a>
         </div>
     </div>
 
@@ -219,9 +249,9 @@
             </form>
             <div class="navigation">
                 <a href="category.html" class="nav-btn">カテゴリ</a>
-                
+            
                 <a href="login.html" class="nav-btn">ログイン</a>
-                <a href="post.html" class="nav-btn">新規</a>
+                <a href="register.html" class="nav-btn">新規</a>
             </div>
         </div>
     </header>
@@ -230,23 +260,24 @@
         <div class="container">
             <!-- レイアウトアイテム -->
             <div class="item">
+                
                 <div class="numbers">1</div>
-                <div class="icon">アイコン</div>
+                <img src="https://via.placeholder.com/50" alt="アイコン" class="account-icon">
                 <div class="account-name">アカウント名</div>
             </div>
             <div class="item">
                 <div class="numbers">2</div>
-                <div class="icon">アイコン</div>
+                <img src="https://via.placeholder.com/50" alt="アイコン" class="account-icon">
                 <div class="account-name">アカウント名</div>
             </div>
             <div class="item">
                 <div class="numbers">3</div>
-                <div class="icon">アイコン</div>
+                <img src="https://via.placeholder.com/50" alt="アイコン" class="account-icon">
                 <div class="account-name">アカウント名</div>
             </div>
             <div class="item">
                 <div class="numbers">4</div>
-                <div class="icon">アイコン</div>
+                <img src="https://via.placeholder.com/50" alt="アイコン" class="account-icon">
                 <div class="account-name">アカウント名</div>
             </div>
         </div>
