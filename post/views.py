@@ -25,3 +25,7 @@ class PostPageView(LoginRequiredMixin, View):
             return redirect('post_completed', post_data.pk)
         
         return render(request, 'template/post/post.html', {'form': form})
+    
+# 投稿検索画面表示
+class PostSearchPageView(View):
+    ''
