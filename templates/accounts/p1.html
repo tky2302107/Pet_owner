@@ -2,13 +2,11 @@
 <html lang="ja">
 <ul>
     ↓
-    {% for data in object_list %}
-    <h3>No.{{ data.id }} Date: {{ data.screen_name }}</h3>
-
-    <a href= "{% url "contents:notice"  data.id %}">{{data.email}}</a>
     
-    {{ data.date_joined }}
-    {% endfor %}
+    <div><h3>{{ points }} Ptあります</h3></div>
+
+    <a href= "{% url "accounts:points_fin"  %}">交換する</a>
+    
     <br>
     ↑
 </ul>

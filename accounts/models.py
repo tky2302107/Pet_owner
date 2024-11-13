@@ -60,8 +60,12 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     objects = CustomUserManager()
 
-    # points = 
-    
+    points = models.IntegerField(
+        default=0,
+        blank=True,
+        null=True,
+            
+    )
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
 
