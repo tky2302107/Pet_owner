@@ -27,7 +27,10 @@ urlpatterns = [
     path('chat/', include('chat.urls', namespace='chat')),
     # contentsアプリを追加
     path('contents/', include('contents.urls', namespace='contents')),
+    # postアプリを追加
+    path('post/', include('post.urls', namespace='post'))
 ]
 
+# 画像アップロード
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
