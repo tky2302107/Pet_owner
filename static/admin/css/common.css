@@ -133,9 +133,9 @@
         .search-submit {
             padding: 10px;
             font-size: 14px;
-            border: 2px solid #3498db;
+            border: 2px solid #1b1c1d;
             cursor: pointer;
-            color: #3498db;
+            color: #212325;
             background-color: #ffffff;
             border-radius: 5px;
             transition: 0.3s;
@@ -172,7 +172,15 @@
             color: #ffffff;
         }
 
-/* Main section styling */
+        .account-main {
+            width: 100px;
+            height: 100px;
+            border-radius: 100%;
+            background-color: #ddd;
+            object-fit: cover;
+        }
+
+        /* Main section styling */
         main {
             margin-top: 20px;
             width: 100%;

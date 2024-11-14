@@ -4,12 +4,8 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+django = "*"
 daphne = "*"
 channels = "*"
-django = "*"
-tzdata = "*"
 
 [dev-packages]
-
-[requires]
-python_version = "3.12"
