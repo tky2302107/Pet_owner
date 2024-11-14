@@ -1,16 +1,16 @@
 from django.shortcuts import redirect, render
-from django.views.generic import View
+from django.views.generic import TemplateView, View
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from post.forms import PostForm
 from post.models import PostInfo
 
-# 投稿画面表示
+# 投稿画面表示、投稿情報保存
 class PostPageView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         form = PostForm(request.POST or None)
         
-        return render(request, 'template/post/post.html', {'form': form})
+        return render(request, '../templates/post/test.html', {'form': form})
     
     def post(self, request, *args, **kwargs):
         form = PostForm(request.POST or None)
@@ -19,13 +19,18 @@ class PostPageView(LoginRequiredMixin, View):
             post_data = PostInfo()
             post_data.account_id = request.user
             post_data.post = form.cleaned_data['post']
-            if request.FILES:
+            if request.FILES: # 画像アップロード判定
                 post_data.image = request.FILES.get('image')
+                post_data.video = request.FILES.get('video')
             post_data.save()
-            return redirect('post_completed', post_data.pk)
+            return redirect('post:posts_completed')
         
-        return render(request, 'template/post/post.html', {'form': form})
+        return render(request, '../templates/post/test.html', {'form': form})
     
+# 投稿完了画面表示
+class PostCompletePageView(TemplateView):
+    template_name = '../templates/post/test_completed.html'
+
 # 投稿検索画面表示
 class PostSearchPageView(View):
     ''
