@@ -1,6 +1,8 @@
 from django.views.generic import TemplateView,ListView
 from django.contrib.auth.views import LoginView, LogoutView
-from .models import User
+from .models import User , fund
+from django.db.models.query import QuerySet
+from django.shortcuts import render
 
 class Index(TemplateView):
     template_name = 'accounts/index.html'
@@ -17,34 +19,29 @@ class MainPage(TemplateView):
 class ExchangePoint(TemplateView):
     template_name = 'accounts/p1.html'
     model = User
-    # def get_queryset(self):
-    #     return super().get_queryset()
-    # nl = User.objects.filter(id=1)
-
 
     def get(self, request, **kwargs):
         ctx = {
-            'points': self.request.user.points
+            'points': self.request.user.points,
         }
         print("ctx"+str(ctx))
         return self.render_to_response(ctx)
     
 class ExchangePointComplete(TemplateView):
     template_name = 'accounts/p2.html'
-    # model = User
+    model = fund,User
+    def get_queryset(self):
+        return super().get_queryset()
     
-    # def get(self, request, **kwargs):
-    #     global ctxii
-    #     ctxii = {
-    #         'points': self.request.user.points
-    #     }
-    #     print("ctx"+str(ctxii))
-    #     return ctxii
-    # if ctxii == 0:
-    #     pass
-    # else:
-    #     ctxii+=1
-    #     User.points = 0
-    #     User.save()
+    # def get_context_data(self, **kwargs):
+        # 既存のget_context_dataをコール
+    nl = fund.objects.all()
+    nlint = fund.objects.filter(id=1)
+    print(type(nl))
+    print(type(nlint))
 
+    # savedata = fund(id=1,points_sum=nllist+int(ExchangePoint.points))
+    # savedata.save()
+        
+    
     

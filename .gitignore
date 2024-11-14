@@ -9,3 +9,8 @@ account/__pycache__/
 __pycache__/
 contents/__pycache__/
 .vscode/
+contents/migrations/
+accounts/__pycache__/
+post/__pycache__/
+chat/__pycache__/
+config/__pycache__/

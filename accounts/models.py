@@ -66,6 +66,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         null=True,
             
     )
+
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
 
@@ -79,3 +80,10 @@ class User(AbstractBaseUser, PermissionsMixin):
     def __unicode__(self):
         return self.screen_name or self.email
     
+class fund(models.Model):
+    points_sum = models.IntegerField(
+        default=0,
+    )
+
+    def __str__(self):
+        return self.__unicode__()

@@ -4,14 +4,7 @@
     ↓
     {% for data in object_list %}
     <h3>No.{{ data.id }} Date: {{ data.posted_at }}</h3>
-    
-    {% comment %} <label>{{ data.title }}</label> {% endcomment %}
-
-    <a href= "{% url "contents:notice"  data.id %}">{{data.title}}</a>
-    {% comment %} <a action="{% url 'contents:notice' %}" idid=data.id >
-        {% csrf_token %}
-        {{ form }}
-    </a> {% endcomment %}
+    <a href= "{% url 'contents:notice' data.id %}">{{data.title}}</a>
     {{ data.NoticeList }}
     {% endfor %}
     <br>
