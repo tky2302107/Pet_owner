@@ -1,43 +1,69 @@
 <!--　フォローアカウント一覧　-->
-<html lang="ja">
-    <link rel="stylesheet" href="../../static/admin/css/common.css">
 
-<head>
+<!DOCTYPE html>
+<html lang="ja">
+    
+<link rel="stylesheet" href="../../static/admin/css/common.css"> 
+<link rel="stylesheet" href="../../static/admin/css/follow_list.css"> 
+
+<link href="../header/画面/css/headers.css" rel="stylesheet">
+<link href="../header/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+    
+<head>  
+
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="author" content="Koki Yoshida">
+    <title>xxxxxxxxxxx</title>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>フォローアカウント一覧</title>
-    
+    <title>Layout Design</title>
+
+
 </head>
-
-
 <body>
 
-    <div class="sidebar">
-        <div class="account-section">
-            <a href="account.html" class="circle">マイアカウント</a>
-            <a href="points.html" class="points">ポイント</a>
-        </div>
-    </div>
-
-
-
-<!-- Header Section -->
-<header class="header">
-    <a href="title.html" class="title">タイトル</a>
     
-    <div class="search-container">
-        <!-- Search form with input field -->
-        <form action="search.html" method="get" style="display: flex; gap: 10px; width: 50%;">
-            <input type="text" name="query" class="search-bar" placeholder="検索キーワードを入力" />
-            <button type="submit" class="search-submit">検索</button>
-        </form>
-        <div class="navigation">
-            <a href="category.html" class="nav-btn">カテゴリ</a>
-            <a href="login.html" class="nav-btn">ログイン</a>
-            <a href="register.html" class="nav-btn">新規</a>
+    <!-- Custom styles for this template -->
+    
+
+  <header class="headers">
+    <div class="px-3 py-2 text-bg-dark border-bottom">
+      <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+          <a href="#" class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <!-- <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg> -->
+            <img src="C:\Users\yoshida\Pictures\画像\medium_20221121_isobo_94783d724b_3ac2c5597d.jpg" alt="mdo" width="80" height="64" class="rounded-circle">
+          </a>
+          <h3 class="fs-4 text-white" style="width: 85%; text-align: center;">xxxxxxxxxxx</h3>
         </div>
+      </div>
     </div>
-</header>
+    <div class="px-3 py-2 border-bottom mb-3">
+      <div class="container d-flex flex-wrap justify-content-center">
+        <input type="button" value="ポイント"  style="margin-right: 30%;" class="btn btn-light text-dark">
+        <form class="col-12 col-lg-auto mb-2 mb-lg-0" role="search" style="display: flex;">
+          <input type="search" class="form-control" placeholder="検索..." aria-label="Search">
+          <select class="btn btn-light">
+            <option value="カテゴリ">カテゴリ</option>
+            <option value="犬">犬</option>
+            <option value="猫">猫</option>
+            <option value="鳥">鳥</option>
+          </select>
+          <input type="submit" value="検索" class="btn btn-light text-dark me-2">
+        </form>
+
+        <div class="text-end" style="margin-left: auto;">
+          <button type="button" class="btn btn-light text-dark me-2">ログイン</button>
+          <button type="button" class="btn btn-primary">新規作成</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
 </body>
 
 <body>

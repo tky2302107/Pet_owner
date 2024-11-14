@@ -1,0 +1,77 @@
+
+/* 通知一覧 */
+
+    /* メインコンテナ */
+    .notice-container {
+        width: 700px;
+        max-height: 80vh;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        overflow-y: auto;
+
+        position: relative;
+        top: 150px;
+    }
+
+    /* タイトル */
+    .notice-title {
+        font-size: 1.5em;
+        color: #333;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    /* 各通知 */
+    .notice {
+        padding: 15px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    /* 通知内容 */
+    .notice-content {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-bottom: 8px;
+    }
+
+    /* アイコン */
+    .notice-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: #ddd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2em;
+        color: #333;
+    }
+
+    /* メッセージと返信 */
+    .notice-details {
+        flex: 1;
+    }
+
+    /* 発信者 */
+    .notice-sender {
+        font-size: 0.95em;
+        font-weight: bold;
+        color: #007bff;
+    }
+
+    /* メッセージ内容 */
+    .notice-message {
+        font-size: 0.9em;
+        color: #555;
+        margin: 4px 0;
+    }
+
+    /* 日時 */
+    .notice-time {
+        font-size: 0.8em;
+        color: #888;
+        text-align: right;
+    }

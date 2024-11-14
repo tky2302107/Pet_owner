@@ -1,140 +1,74 @@
 <!--　マイアカウント画面　-->
 
-<head>
+<!DOCTYPE html>
+<html lang="ja">
+    
+<link rel="stylesheet" href="../../static/admin/css/common.css"> 
+<link rel="stylesheet" href="../../static/admin/css/my_account.css"> 
 
-    <title>マイページ</title>
-    <style>
-        /* 全体レイアウト */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #ffffff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-        }
-        
-        /* メインコンテナ */
-        .profile-container {
-            width: 800px;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            display: flex;
-            align-items: center;
-            position: relative;
-        }
+<link href="../header/画面/css/headers.css" rel="stylesheet">
+<link href="../header/assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
-        /* アイコンと編集ボタンのレイアウト */
-        .icon-edit-container {
-            width: 30%;
-            text-align: center;
-            position: relative;
-        }
 
-        /* アイコン */
-        .profile-icon {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background-color: #ddd;
-            margin-bottom: 15px;
-        }
+    
+<head>  
 
-        /* 編集ボタン */
-        .edit-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: #bb00ff;
-            color: #fff;
-            padding: 8px 16px;
-            font-size: 0.8em;
-            border-radius: 5px;
-            text-decoration: none;
-            cursor: pointer;
-        }
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="author" content="Koki Yoshida">
+    <title>xxxxxxxxxxx</title>
 
-        /* 戻るボタン */
-        .return-btn {
-            position: absolute;
-            top: 10px;
-            right: 90px;
-            background-color: #056119;
-            color: #fff;
-            padding: 8px 16px;
-            font-size: 0.8em;
-            border-radius: 5px;
-            text-decoration: none;
-            cursor: pointer;
-        }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layout Design</title>
 
-        /* プロフィール情報 */
-        .profile-info {
-            width: 70%;
-            padding-left: 20px;
-            text-align: left;
-        }
-        
-        .profile-name {
-            font-size: 1.5em;
-            margin: 10px 0;
-        }
 
-        .profile-bio {
-            font-size: 1em;
-            color: #666;
-            margin-bottom: 20px;
-        }
-
-        /* ボタン共通 */
-        .btn-container {
-            display: flex;
-            gap: 10px;
-        }
-
-        .btn {
-            flex: 1;
-            padding: 10px;
-            font-size: 0.9em;
-            color: #fff;
-            text-align: center;
-            text-decoration: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        /* 各ボタンのスタイル */
-        .follower-btn {
-            background-color: #28a745;
-        }
-        .follow-btn {
-            background-color: #007bff;
-        }
-        .point-btn {
-            background-color: #ffa500;
-        }
-        .history-btn {
-            background-color: #6c757d;
-        }
-
-        /* ボタンのホバーエフェクト */
-        .btn:hover {
-            opacity: 0.9;
-        }
-
-        .edit-btn:hover, .return-btn:hover {
-            opacity: 0.9;
-        }
-    </style>
 </head>
 <body>
 
+    
+    <!-- Custom styles for this template -->
+    
+
+  <header class="headers">
+    <div class="px-3 py-2 text-bg-dark border-bottom">
+      <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+          <a href="#" class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <!-- <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg> -->
+            <img src="C:\Users\yoshida\Pictures\画像\medium_20221121_isobo_94783d724b_3ac2c5597d.jpg" alt="mdo" width="80" height="64" class="rounded-circle">
+          </a>
+          <h3 class="fs-4 text-white" style="width: 85%; text-align: center;">xxxxxxxxxxx</h3>
+        </div>
+      </div>
+    </div>
+    <div class="px-3 py-2 border-bottom mb-3">
+      <div class="container d-flex flex-wrap justify-content-center">
+        <input type="button" value="ポイント"  style="margin-right: 30%;" class="btn btn-light text-dark">
+        <form class="col-12 col-lg-auto mb-2 mb-lg-0" role="search" style="display: flex;">
+          <input type="search" class="form-control" placeholder="検索..." aria-label="Search">
+          <select class="btn btn-light">
+            <option value="カテゴリ">カテゴリ</option>
+            <option value="犬">犬</option>
+            <option value="猫">猫</option>
+            <option value="鳥">鳥</option>
+          </select>
+          <input type="submit" value="検索" class="btn btn-light text-dark me-2">
+        </form>
+
+        <div class="text-end" style="margin-left: auto;">
+          <button type="button" class="btn btn-light text-dark me-2">ログイン</button>
+          <button type="button" class="btn btn-primary">新規作成</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+</body>
+<body>
+
     <div class="profile-container">
-        <!-- 戻るボタン -->
-        <a href="javascript:history.back()" class="return-btn">戻る</a>
+ 
 
         <!-- アイコンと編集ボタン -->
         <div class="icon-edit-container">
@@ -156,5 +90,32 @@
         </div>
     </div>
 
+<!-- 戻るボタン -->
+<a href="javascript:history.back()" class="return-btn">戻る</a>
+
+
+<!-- フッター -->
+<footer class = "follow_list-footer">
+    <h3>システム名</h3>  
+
+    <!-- メニューリスト -->
+    <div class="footer-menu">
+        <ul class="footer-menu-list">
+            <li><a href="#">ホーム画面へ</a></li>
+            <li><a href="#">利用規約</a></li>
+            <li><a href="#">プライバシーポリシー</a></li>
+        </ul>
+    </div>
+
+    <!-- お問い合わせ情報 -->
+    <div class="contact">
+        <p>お問い合せ先<b>〒000-0000</b> 電話📳<b>000-0000-0000</b></p>
+    </div>
+    
+    <!-- 著作権表示 -->
+    <div class="copyright">
+        <p>© 2024 システム名 Inc. All Rights Reserved.</p>
+    </div>
+</footer>
 </body>
 </html>
