@@ -1,331 +1,11 @@
 <!--　通知画面　-->
-
+<html lang="ja">
+    <link rel="stylesheet" href="../../static/admin/css/common.css">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>通知一覧</title>
-    <style>
-
-        /* Reset CSS */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        /* Base styling */
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-            background-color: #f0f4f8;
-            color: #333;
-            min-height: 100vh;
-        }
-
-        /* Sidebar styling */
-        .sidebar {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background-color: #ffffff;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .account-section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .circle, .points {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            font-size: 14px;
-            cursor: pointer;
-            text-decoration: none;
-            color: #fff;
-            transition: 0.3s;
-        }
-
-        .circle {
-            background-color: #3498db;
-        }
-
-        .points {
-            background-color: #f39c12;
-            width: auto;
-            padding: 10px 20px;
-            border-radius: 30px;
-        }
-
-        .circle:hover, .points:hover {
-            opacity: 0.8;
-        }
-
-        /* Header styling */
-        header {
-            width: 100%;
-            max-width: 800px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        .title {
-            border: 2px solid #3498db;
-            padding: 10px;
-            text-align: center;
-            font-size: 18px;
-            cursor: pointer;
-            text-decoration: none;
-            color: #3498db;
-            width: 100%;
-            background-color: #ffffff;
-            border-radius: 5px;
-            transition: 0.3s;
-        }
-
-        .title:hover {
-            background-color: #3498db;
-            color: #ffffff;
-        }
-
-        .search-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            width: 100%;
-        }
-
-        .search-bar {
-            flex: 3;
-            border: 2px solid #3498db;
-            padding: 10px;
-            font-size: 16px;
-            color: #333;
-            border-radius: 5px;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-     
-
-        .search-submit:hover {
-            background-color: #3498db;
-            color: #ffffff;
-        }
-
-        .navigation {
-            display: flex;
-            gap: 5px;
-        }
-
-        .nav-btn {
-            padding: 10px;
-            font-size: 14px;
-            border: 2px solid #3498db;
-            cursor: pointer;
-            text-decoration: none;
-            color: #3498db;
-            background-color: #ffffff;
-            border-radius: 5px;
-            transition: 0.3s;
-            width: 80px; /
-        }
-
-        .nav-btn:hover {
-            background-color: #3498db;
-            color: #ffffff;
-        }
-        /* 全体レイアウト */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #ffffff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-        }
-
-        /* メインコンテナ */
-        .notice-container {
-            width: 600px;
-            max-height: 80vh;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            overflow-y: auto;
-
-            position: relative;
-            top: 70px;
-        }
-
-        /* タイトル */
-        .notice-title {
-            font-size: 1.5em;
-            color: #333;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        /* 各通知 */
-        .notice {
-            padding: 15px;
-            border-bottom: 1px solid #ddd;
-        }
-
-        /* 通知内容 */
-        .notice-content {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 8px;
-        }
-
-        /* アイコン */
-        .notice-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: #ddd;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2em;
-            color: #333;
-        }
-
-        /* メッセージと返信 */
-        .notice-details {
-            flex: 1;
-        }
-
-        /* 発信者 */
-        .notice-sender {
-            font-size: 0.95em;
-            font-weight: bold;
-            color: #007bff;
-        }
-
-        /* メッセージ内容 */
-        .notice-message {
-            font-size: 0.9em;
-            color: #555;
-            margin: 4px 0;
-        }
-
-        /* 日時 */
-        .notice-time {
-            font-size: 0.8em;
-            color: #888;
-            text-align: right;
-        }
-
-        /* 戻るボタン */
-        .return-btn {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            background-color: #056119;
-            color: #fff;
-            padding: 10px 20px;
-            font-size: 0.9em;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none;
-            text-align: center;
-        }
-
-        .return-btn:hover {
-            background-color: #3d5a99;
-        }
-
-        /* フッター */
-        footer {
-            width: 100%;
-            background-color: #333;
-            color: #fff;
-            padding: 10px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2);
-            font-size: 0.9em;
-            position: relative;
-            top: 145px;
-        }
-
-        /* システム名 */
-        footer h3 {
-            color: #ffcc00;
-            margin: 0;
-            font-size: 1.2em;
-            flex-shrink: 0;
-        }
-
-        /* メニュー */
-        .footer-menu {
-            flex: 1;
-            text-align: center;
-        }
-
-        .footer-menu-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        .footer-menu-list li a {
-            color: #ccc;
-            text-decoration: none;
-            font-size: 0.9em;
-        }
-
-        .footer-menu-list li a:hover {
-            color: #ffcc00;
-        }
-
-        /* お問い合わせ情報 */
-        .contact {
-            font-size: 0.9em;
-            color: #bbb;
-            text-align: center;
-            white-space: nowrap;
-            margin: 0 10px;
-            flex-shrink: 0;
-        }
-
-        .contact b {
-            color: #ffcc00;
-        }
-
-        /* 著作権表示 */
-        .copyright {
-            font-size: 0.8em;
-            color: #888;
-            text-align: right;
-            white-space: nowrap;
-            flex-shrink: 0;
-        }
-
-
-    </style>
+    
 </head>
 
 <body>
@@ -338,12 +18,12 @@
     </div>
 
 <!-- Header Section -->
-<header>
+<header class="header">
     <a href="title.html" class="title">タイトル</a>
     
     <div class="search-container">
         <!-- Search form with input field -->
-        <form action="search.html" method="get" style="display: flex; gap: 10px; width: 100%;">
+        <form action="search.html" method="get" style="display: flex; gap: 10px; width: 50%;">
             <input type="text" name="query" class="search-bar" placeholder="検索キーワードを入力" />
             <button type="submit" class="search-submit">検索</button>
         </form>
@@ -355,12 +35,10 @@
     </div>
 </header>
 
-<main>
 
-</main>
 
 </body>
-</html>
+
 <body>
 
     <div class="notice-container">
@@ -430,11 +108,9 @@
             <!-- 戻るボタン -->
             <a href="javascript:history.back()" class="return-btn">戻る</a>
 
-</body>
-</html>
 
 <!-- フッター -->
-<footer>
+<footer class="notice_list-footer">
     <h3>システム名</h3>  
 
     <!-- メニューリスト -->
@@ -458,3 +134,4 @@
 </footer>
 </body>
 </html>
+

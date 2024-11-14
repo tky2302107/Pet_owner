@@ -1,103 +1,48 @@
 <!--　投稿画面　-->
-
+<html lang="ja">
+    <link rel="stylesheet" href="../../static/admin/css/common.css">
 <head>
 
     <title>投稿画面</title>
-    <style>
-        /* 全体レイアウト */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #ffffff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-        }
 
-        /* メインコンテナ */
-        .post-container {
-            width: 800px;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            display: flex;
-            gap: 20px;
-        }
-
-        /* アップロード */
-        .upload-section {
-            width: 40%;
-        }
-
-        label {
-            font-weight: bold;
-            font-size: 0.9em;
-            color: #333;
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        input[type="file"] {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 0.9em;
-            margin-bottom: 15px;
-        }
-
-
-        /* テキスト入力フォームとボタン */
-        .form-section {
-            width: 60%;
-        }
-
-        textarea {
-            width: 95%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 0.9em;
-            resize: vertical;
-            height: 150px;
-            margin-bottom: 15px;
-        }
-
-        /* ボタン配置 */
-        .button-group {
-            display: flex;
-            gap: 10px;
-        }
-
-        .btn {
-            flex: 1;
-            padding: 10px;
-            font-size: 1em;
-            border-radius: 5px;
-            cursor: pointer;
-            color: #fff;
-            border: none;
-        }
-
-        .post-btn {
-            
-            background-color: #4e7bcc;
-        }
-
-        .back-btn {
-            
-            background-color: #056119;
-        }
-
-        .btn:hover {
-            opacity: 0.9;
-        }
-
-
-    </style>
 </head>
+
+
+<body>
+
+    <div class="sidebar">
+        <div class="account-section">
+            <a href="account.html" class="circle">マイアカウント</a>
+            <a href="points.html" class="points">ポイント</a>
+        </div>
+    </div>
+
+<!-- Header Section -->
+<header class="header">
+    <a href="title.html" class="title">タイトル</a>
+    
+    <div class="search-container">
+        <!-- Search form with input field -->
+        <form action="search.html" method="get" style="display: flex; gap: 10px; width: 50%;">
+            <input type="text" name="query" class="search-bar" placeholder="検索キーワードを入力" />
+            <button type="submit" class="search-submit">検索</button>
+        </form>
+        <div class="navigation">
+            <a href="category.html" class="nav-btn">カテゴリ</a>
+            <a href="login.html" class="nav-btn">ログイン</a>
+            <a href="register.html" class="nav-btn">新規</a>
+        </div>
+    </div>
+</header>
+
+
+
+</body>
+
+
+
+
+
 <body>
 
     <div class="post-container">
@@ -115,13 +60,39 @@
             <label for="post-text">文字入力</label>
             <textarea id="post-text" name="post-text" placeholder="ここにテキストを入力してください"></textarea>
 
-            <div class="button-group">
-                <button class="btn back-btn" type="button" onclick="window.history.back()">戻る</button>
-                <button class="btn post-btn" type="submit">投稿</button>
+            <div class="post-button-group">
+                <button class="post2-btn post2-back-btn" type="button" onclick="window.history.back()">戻る</button>
+                <button class="post2-btn post2-post-btn" type="submit">投稿</button>
                 
             </div>
         </div>
     </div>
 
+
+
+    
+<!-- フッター -->
+<footer class="post-footer">
+    <h3>システム名</h3>  
+
+    <!-- メニューリスト -->
+    <div class="footer-menu">
+        <ul class="footer-menu-list">
+            <li><a href="#">ホーム画面へ</a></li>
+            <li><a href="#">利用規約</a></li>
+            <li><a href="#">プライバシーポリシー</a></li>
+        </ul>
+    </div>
+
+    <!-- お問い合わせ情報 -->
+    <div class="contact">
+        <p>お問い合せ先<b>〒000-0000</b> 電話📳<b>000-0000-0000</b></p>
+    </div>
+    
+    <!-- 著作権表示 -->
+    <div class="copyright">
+        <p>© 2024 システム名 Inc. All Rights Reserved.</p>
+    </div>
+</footer>
 </body>
 </html>
