@@ -1,0 +1,91 @@
+
+
+/*フォロー一覧画面*/
+.follow-list-container {
+    width: 600px;
+    max-height: 80vh;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+    position: relative;
+    top: 150px;
+}
+
+/* タイトル */
+.follow-title {
+    font-size: 1.5em;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* 各アカウント */
+.account {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+/* アカウント情報 */
+.account-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* アイコン */
+.account-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #ddd;
+    object-fit: cover;
+}
+
+/* ユーザー名・自己紹介 */
+.account-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.account-name {
+    font-size: 1em;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+}
+
+.account-bio {
+    font-size: 0.9em;
+    color: #666;
+    margin: 5px 0 0;
+}
+
+/* フォロー解除ボタン */
+.unfollow-btn {
+    background-color: #ff4d4d;
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    text-align: center;
+}
+
+.unfollow-btn:hover {
+    background-color: #ff1a1a;
+}
+
+/* スクロールバーのスタイル（ブラウザによる） */
+.follow-list-container::-webkit-scrollbar {
+    width: 8px;
+}
+.follow-list-container::-webkit-scrollbar-thumb {
+    background-color: #bbb;
+    border-radius: 4px;
+}
