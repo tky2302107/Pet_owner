@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="ja">
+<ul>
+    ↓
+    
+    <div><h3>アカウント情報</h3></div>
+    アカウントID:{{ user.id }}※ 変更不可
+    <br>
+    アカウント名:{{user.screen_name}}
+    <br>
+    電子メール:{{user.email}}
+    <br>
+
+    <a href= "{% url "accounts:myedit" %}">変更する</a>
+    
+    <br>
+    ↑
+</ul>

@@ -12,4 +12,7 @@ urlpatterns = [
     
     # メインメニュー仮リンク
     path('menu/', views.MainPage.as_view(), name='menu'),
+    path('mypage/', views.MyPage.as_view(), name='mypage'),
+    path('mypage/edit/', views.MyEdit.as_view(), name='myedit'),
+
 ]

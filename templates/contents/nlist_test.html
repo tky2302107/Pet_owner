@@ -4,7 +4,7 @@
     ↓
     {% for data in object_list %}
     <h3>No.{{ data.id }} Date: {{ data.posted_at }}</h3>
-    <a href= "{% url 'contents:notice' data.id %}">{{data.title}}</a>
+    <a href= "{% url 'contents:notice_d' data.id %}">{{data.title}}</a>
     {{ data.NoticeList }}
     {% endfor %}
     <br>

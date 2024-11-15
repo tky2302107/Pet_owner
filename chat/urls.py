@@ -14,4 +14,5 @@ urlpatterns = [
     path('delete/room/<int:pk>', views.DeleteRoom.as_view(), name='delete_room'),
     # チャットルームへの入室
     path('enter/room/<int:pk>', views.EnterRoom.as_view(), name='enter_room'),
+
 ]
