@@ -2,3 +2,7 @@
 # UserA       usera@local.jp  userapassword
 # UserB       userb@local.jp  userbpassword
 # UserC       userc@local.jp  usercpassword
+
+
+# テスト用アカウント xは数字
+# testx       testx@local.jp  testpassword
