@@ -2,7 +2,7 @@ from typing import Any
 from django.db.models.base import Model as Model
 from django.db.models.query import QuerySet
 from django.shortcuts import render
-from .models import NoticeList
+from .models import NoticeList 
 from django.views.generic import ListView,DetailView,TemplateView
 from .forms import NoticeListForm
 from django.shortcuts import render, get_object_or_404
@@ -24,7 +24,7 @@ class NoticeList(ListView):
         id_page = get_object_or_404(NoticeList, pk=idid)
         return render(request, 'contents/n_test.html', {'post': id_page})
 
-class NoticeDetail(DetailView):
+class NoticeDetailView(DetailView):
     template_name = "contents/n_test.html"# template_name = 'contents/notice.html'
     model = NoticeList
 
