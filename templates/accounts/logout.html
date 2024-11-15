@@ -71,6 +71,7 @@
         <p>ログアウトすると、再度ログインが必要になります。</p>
         <button class="logout-button" onclick="logout()">ログアウト</button>
         <button class="cancel-button" onclick="cancel()">キャンセル</button>
+        <p>※すでにログアウト済み<a href="{% url "accounts:login" %}">ログインページへ<p>
     </div>
     <script>
         function logout() {
