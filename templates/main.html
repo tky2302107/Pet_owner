@@ -15,7 +15,7 @@
     <meta charset="utf-8">
     <meta name="description" content="">
     <meta name="author" content="Koki Yoshida">
-    <title>xxxxxxxxxxx</title>
+    <title>アニマルチャット</title>
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,15 +37,15 @@
             <!-- <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg> -->
             <img src="C:\Users\yoshida\Pictures\画像\medium_20221121_isobo_94783d724b_3ac2c5597d.jpg" alt="mdo" width="80" height="64" class="rounded-circle">
           </a>
-          <h3 class="fs-4 text-white" style="width: 85%; text-align: center;">xxxxxxxxxxx</h3>
+          <h3 class="fs-4 text-white" style="width: 85%; text-align: center;">アニマルチャット</h3>
         </div>
       </div>
     </div>
     <div class="px-3 py-2 border-bottom mb-3">
       <div class="container d-flex flex-wrap justify-content-center">
         <input type="button" value="ポイント"  style="margin-right: 30%;" class="btn btn-light text-dark">
-        <form class="col-12 col-lg-auto mb-2 mb-lg-0" role="search" style="display: flex;">
-          <input type="search" class="form-control" placeholder="検索..." aria-label="Search">
+        <form action={% url 'post:posts_search' %} method='get' class="col-12 col-lg-auto mb-2 mb-lg-0" role="search" style="display: flex;">
+          <input type="search" class="form-control" placeholder="検索..." aria-label="Search" name='keyword'>
           <select class="btn btn-light">
             <option value="カテゴリ">カテゴリ</option>
             <option value="犬">犬</option>

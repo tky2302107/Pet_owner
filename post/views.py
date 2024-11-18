@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-from django.views.generic import TemplateView, View
+from django.views.generic import TemplateView, View, ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from post.forms import PostForm
@@ -31,5 +31,19 @@ class PostCompletePageView(TemplateView):
     template_name = '../templates/post/test_completed.html'
 
 # 投稿検索画面表示
-class PostSearchPageView(View):
-    ''
+class PostSearchPageView(ListView):
+    template_name = '../templates/post/test_s.html'
+    model = PostInfo # 投稿情報モデル
+    context_object_name = 'posts' # コンテキスト名
+    
+    def get_queryset(self, **kwargs): # モデルから情報を取得
+        queryset = super().get_queryset(**kwargs) # 全取得
+        
+        keyword = self.request.GET.get('keyword') # 検索ワード取得
+        if keyword is not None:
+            queryset = queryset.filter(post__icontains=keyword) # 部分一致で検索
+            
+        queryset = queryset.order_by('-post_date') # 投稿降順で並び替え
+        
+        return queryset
+        
