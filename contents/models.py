@@ -22,7 +22,7 @@ class NoticeList(models.Model):
         default=""
     )
     
-    NoticeList = models.TextField(
+    text = models.TextField(
         verbose_name="本文"
     )
     # def __str__(self):
