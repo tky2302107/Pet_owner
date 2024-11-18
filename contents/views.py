@@ -1,12 +1,12 @@
-from typing import Any
+# from typing import Any
+# from django.db.models.query import QuerySet
 from django.db.models.base import Model as Model
-from django.db.models.query import QuerySet
-from django.shortcuts import render
-from django.urls import reverse
+# from django.shortcuts import render
+# from django.urls import reverse
 from .models import NoticeList 
 from django.views.generic import ListView,DetailView,TemplateView
-from .forms import NoticeListForm
-from django.shortcuts import render, get_object_or_404
+# from .forms import NoticeListForm
+# from django.shortcuts import render, get_object_or_404
 # from django.contrib.auth.views import LoginView, LogoutView
 
 class Index(TemplateView):
