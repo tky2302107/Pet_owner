@@ -2,7 +2,7 @@
 <html lang="ja">
 <ul>
     ↓
-    {% for data in object_list %}
+    {% for data in obj_data %}
     <h3>No.{{ data.id }} Date: {{ data.posted_at }}</h3>
     <a href= "{% url 'contents:notice_d' data.pk %}">{{data.title}}</a>
     {% if post.edit_url %}
