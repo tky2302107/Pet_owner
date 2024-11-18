@@ -8,11 +8,15 @@ urlpatterns = [
     path('login/', views.LoginPage.as_view(), name='login'),
     path('logout/', views.LogoutPage.as_view(), name='logout'),
     path('point/', views.ExchangePoint.as_view(), name='points'),
-    path('point_fin/<int:points>', views.ExchangePointComplete.as_view(), name='points_fin'),
+    path('point_done/<int:points>', views.ExchangePointComplete.as_view(), name='points_fin'),
     
     # メインメニュー仮リンク
     path('menu/', views.MainPage.as_view(), name='menu'),
     path('mypage/', views.MyPage.as_view(), name='mypage'),
-    path('mypage/edit/', views.MyEdit.as_view(), name='myedit'),
-
+    path('mypage/edit/', views.NameChnge.as_view(), name='namechange'),
+    path("mypage/pwchange/",views.PasswordChange.as_view(),name="pwchange"),
+    path("mypage/pwchange/done/",views.PasswordChangeDone.as_view(),name="pwdone"),
+    path('mypage/emchange/', views.EmailChange.as_view(), name='email_change'),
+    path('mypage/emchange/done/', views.EmailChangeDone.as_view(), name='email_change_done'),
+    path('mypage/emchange/complete/<str:token>/', views.EmailChangeComplete.as_view(), name='email_change_complete'),
 ]

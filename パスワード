@@ -4,5 +4,5 @@
 # UserC       userc@local.jp  usercpassword
 
 
-# テスト用アカウント xは数字
-# testx       testx@local.jp  testpassword
+# テスト用アカウント xは一桁の数字 
+# testx       testx@local.jp or tky2302107@stu.o-haara.ac.jp  testpassword

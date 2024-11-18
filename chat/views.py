@@ -74,3 +74,4 @@ class EnterRoom(LoginRequiredMixin, OnlyAssignedUserMixin, DetailView):
     model = models.Room
     template_name = 'chat/chat_room.html'
     context_object_name = 'room'
+

@@ -129,7 +129,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/' # cssの一括まとめここをコメント解除すると　loadstatic　が使えるようになるがtemplates以下のcssは無効化される
+STATIC_URL = '/static/' # cssの一括まとめここをコメント解除すると　loadstatic　が使えるようになるがtemplates以下のcssは無効化される
+STATICFILES_DIRS = (
+    [
+        os.path.join(BASE_DIR, "static"), 
+    ]
+)
+
 
 # 画像アップロード先フォルダの設定
 MEDIA_URL = '/media/'

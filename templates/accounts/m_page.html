@@ -11,8 +11,11 @@
     電子メール:{{user.email}}
     <br>
 
-    <a href= "{% url "accounts:myedit" %}">変更する</a>
-    
+    <a href= '{% url "accounts:namechange" %}'>アカウント名の変更はこちら</a>
+    <br>
+    <a href= '{% url "accounts:pwchange" %}'>パスワード変更はこちら</a>
+    <br>
+    <a class="nav-item nav-link" href="{% url 'accounts:email_change' %}">メールアドレスの変更はこちら</a>
     <br>
     ↑
 </ul>

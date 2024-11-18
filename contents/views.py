@@ -2,6 +2,7 @@ from typing import Any
 from django.db.models.base import Model as Model
 from django.db.models.query import QuerySet
 from django.shortcuts import render
+from django.urls import reverse
 from .models import NoticeList 
 from django.views.generic import ListView,DetailView,TemplateView
 from .forms import NoticeListForm
@@ -15,19 +16,21 @@ class Index(TemplateView):
 class NoticeList(ListView):
     template_name = "contents/nlist_test.html"# template_name = 'contents/notice_list.html'
     model = NoticeList
-    def get_queryset(self):
-        return super().get_queryset()
+    # def get_queryset(self):
+    #     return super().get_queryset()
     
-    nl = NoticeList.objects.all().order_by('-id')#models.pyより、通知を全権取得＆日付順に整列
+    # nl = NoticeList.objects.all().order_by('-id')#models.pyより、通知を全権取得＆日付順に整列
     
-    def page_move(request, idid):# ページ遷移用
-        id_page = get_object_or_404(NoticeList, pk=idid)
-        return render(request, 'contents/n_test.html', {'post': id_page})
+    # def page_move(request, idid):# ページ遷移用
+    #     id_page = get_object_or_404(NoticeList, pk=idid)
+    #     return render(request, 'contents/n_test.html', {'post': id_page})
+    
+
 
 class NoticeDetailView(DetailView):
     template_name = "contents/n_test.html"# template_name = 'contents/notice.html'
     model = NoticeList
-
+    context_object_name = "data"
 
 class AccessError(TemplateView):
     template_name = '403.html'
