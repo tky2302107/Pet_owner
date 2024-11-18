@@ -1,7 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.utils import timezone
-from django.core.validators import FileExtensionValidator
 
 User = get_user_model()
 
@@ -11,9 +10,9 @@ class PostInfo(models.Model): # 投稿IDは自動でつく
     post = models.CharField('post', max_length=300) # 投稿文　文字数300文字
     post_date = models.DateTimeField('post_date', max_length=12, default=timezone.now) # 投稿日時
     # 画像　保存先は、media/img/post
-    image = models.ImageField(upload_to='img/post', validators=[FileExtensionValidator(['png'])], verbose_name='画像', null=True, blank=True)
+    image = models.ImageField(upload_to='img/post', verbose_name='画像', null=True, blank=True)
     # 動画　保存先は、media/video/post
-    video = models.FileField(upload_to='video/post', validators=[FileExtensionValidator(['png'])],  verbose_name='動画', null=True, blank=True)
+    video = models.FileField(upload_to='video/post',  verbose_name='動画', null=True, blank=True)
     
     def __str__(self):
         return self.post
