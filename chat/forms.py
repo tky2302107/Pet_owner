@@ -52,3 +52,4 @@ class RoomForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['participants'].queryset = User.objects.filter(is_staff=False)
+

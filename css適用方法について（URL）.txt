@@ -1,0 +1,2 @@
+DjangoでCSSを反映させる方法
+https://qiita.com/chisaki0606/items/8e46f7c0052d6d3c6040
