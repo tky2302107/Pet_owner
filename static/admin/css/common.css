@@ -128,6 +128,20 @@
                     top: 200px;
                 }
 
+                .my_account-footer{
+                    width: 103%;
+                    background-color: #333;
+                    color: #fff;
+                    padding: 10px 20px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2);
+                    font-size: 0.9em;
+                    position: relative;
+                    top: 330px;
+                }
+
 
         
  /* システム名 */
