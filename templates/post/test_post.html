@@ -9,4 +9,5 @@
             {{form.post}}
         </div>
         <button type=submit>投稿する</button>
+        <button type="button" onclick="location.href='{{ request.META.HTTP_REFERER }}'">戻る</button>
     </form>
