@@ -46,12 +46,6 @@
         <input type="button" value="ポイント"  style="margin-right: 30%;" class="btn btn-light text-dark">
         <form action={% url 'post:posts_search' %} method='get' class="col-12 col-lg-auto mb-2 mb-lg-0" role="search" style="display: flex;">
           <input type="search" class="form-control" placeholder="検索..." aria-label="Search" name='keyword'>
-          <select class="btn btn-light">
-            <option value="カテゴリ">カテゴリ</option>
-            <option value="犬">犬</option>
-            <option value="猫">猫</option>
-            <option value="鳥">鳥</option>
-          </select>
           <input type="submit" value="検索" class="btn btn-light text-dark me-2">
         </form>
 
