@@ -1,5 +1,6 @@
 from django.shortcuts import redirect, render
-from django.views.generic import TemplateView, View, ListView
+from django.urls import reverse, reverse_lazy
+from django.views.generic import TemplateView, View, ListView, DetailView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from post.forms import PostForm
@@ -10,7 +11,7 @@ class PostPageView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         form = PostForm(request.POST or None)
         
-        return render(request, '../templates/post/test.html', {'form': form})
+        return render(request, '../templates/post/test_post.html', {'form': form})
     
     def post(self, request, *args, **kwargs):
         form = PostForm(request.POST or None)
@@ -32,7 +33,7 @@ class PostCompletePageView(TemplateView):
 
 # 投稿検索画面表示
 class PostSearchPageView(ListView):
-    template_name = '../templates/post/test_s.html'
+    template_name = '../templates/post/test_search.html'
     model = PostInfo # 投稿情報モデル
     context_object_name = 'posts' # コンテキスト名
     
@@ -47,16 +48,28 @@ class PostSearchPageView(ListView):
         
         return queryset
 
-class PostDetailPageView(ListView):
-    template_name = '../templates/post/test_d.html'
-    model = PostInfo
-    context_object_name = 'post_detail' # コンテキスト名
+# 投稿詳細画面表示
+class PostDetailPageView(DetailView):
+    model = PostInfo # 投稿情報モデル
+    template_name = '../templates/post/test_detail.html' # テンプレート
+    context_object_name = 'post'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        if self.request.user.is_authenticated and context[self.context_object_name]:
+            post = context[self.context_object_name]
+            post.delete_url = reverse('post:posts_delete', args=[post.id])
+            
+        return context
 
-    def get_queryset(self, **kwargs):
-        queryset = super().get_queryset(**kwargs)
-        
-        # id = self.request.GET.get('id')
-        id = self.kwargs.get('id')
-        queryset = queryset.filter(id=id)
-        
-        return queryset
+# 投稿削除画面表示
+class PostDeletePageView(LoginRequiredMixin, DeleteView):
+    model = PostInfo
+    template_name = '../templates/post/test_confirm_delete.html'
+    context_object_name = 'post'
+    success_url = reverse_lazy('post:posts_delete_completed')
+
+# 投稿削除完了画面表示
+class PostDeleteCompletePageView(TemplateView):
+    template_name = '../templates/post/test_delete_complete.html'

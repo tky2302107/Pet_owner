@@ -6,7 +6,7 @@
         <!-- 投稿表示 -->
         {% for post in posts %}
             <!-- 投稿文 -->
-            <li><a href='{% url 'post:posts_detail' post.id %}'>{{ post.post }}</a></li>
+            <li><a href='{% url 'post:posts_detail' post.pk %}'>{{ post.post }}</a></li>
             <!-- 投稿者id -->
             {{ post.account_id }}
             <!-- 画像 -->
@@ -15,11 +15,12 @@
             {% endif %}
             <!-- 動画 -->
             {% if post.video %}
-                <video src="/media/{{ post.video }}">
+                <img src="/media/{{ post.video }}">
             {% endif %}
         {% endfor %}
     <!-- 検索した投稿がない場合 -->
     {% else %}
         <!-- メッセージ -->
         そのワードを含む投稿はありません。
+        <button onclick="location.href='{% url 'accounts:menu' %}'">戻る</button>
     {% endif %}

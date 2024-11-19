@@ -11,5 +11,9 @@ urlpatterns = [
     # 投稿検索
     path('posts_search/', views.PostSearchPageView.as_view(), name='posts_search'),
     # 投稿詳細閲覧
-    path('posts/detail/<int:id>/', views.PostDetailPageView.as_view(), name='posts_detail'),
+    path('posts/detail/<int:pk>/', views.PostDetailPageView.as_view(), name='posts_detail'),
+    # 投稿削除
+    path('posts/<int:pk>/delete/', views.PostDeletePageView.as_view(), name='posts_delete'),
+    # 投稿削除完了
+    path('posts/delete_complete', views.PostDeleteCompletePageView.as_view(), name='posts_delete_completed'),
 ]

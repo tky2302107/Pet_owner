@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="ja" data-bs-theme="auto">
+    <h2>投稿削除</h2>
+    <form method="post">
+        {% csrf_token %}
+        <!-- 投稿詳細 -->
+        <!-- 投稿文 -->
+        {{ post.post }}
+        <!-- 画像 -->
+        {% if post.image %}
+            <img src="/media/{{ post.image }}">
+        {% endif %}
+        <!-- 動画 -->
+        {% if post.video %}
+            <img src="/media/{{ post.video }}">
+        {% endif %}
+        <!-- 投稿者ID -->
+        {{ post.account_id }}
+        <!-- 投稿日 -->
+        {{ post.post_date }}
+        削除しますか？
+        <button>はい</button>
+        <button type="button" onclick="location.href='{{ request.META.HTTP_REFERER }}'">いいえ</button>
+    </form>
