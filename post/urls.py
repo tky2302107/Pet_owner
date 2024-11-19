@@ -16,4 +16,6 @@ urlpatterns = [
     path('posts/<int:pk>/delete/', views.PostDeletePageView.as_view(), name='posts_delete'),
     # 投稿削除完了
     path('posts/delete_complete', views.PostDeleteCompletePageView.as_view(), name='posts_delete_completed'),
+    # 投稿履歴
+    path('mypage/post_history', views.PostHistoryPageView.as_view(), name='posts_history'),
 ]

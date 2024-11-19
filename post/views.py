@@ -73,3 +73,7 @@ class PostDeletePageView(LoginRequiredMixin, DeleteView):
 # 投稿削除完了画面表示
 class PostDeleteCompletePageView(TemplateView):
     template_name = '../templates/post/test_delete_complete.html'
+
+# 投稿履歴画面表示
+class PostHistoryPageView(LoginRequiredMixin, ListView):
+    ''
