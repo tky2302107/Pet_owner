@@ -1,0 +1,42 @@
+/* Main Section with variable box sizes */
+main {
+    margin-top: 20px;
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+    margin-bottom: 200px;
+
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr; /* 1列に変更 */
+    gap: 10px; /* ボックス間の余白 */
+    width: 600px;
+    position: relative;
+    top: 100px;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Box styling */
+.box {
+    border: 2px solid black;
+    padding: 20px;
+    text-align: center;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+/* Individual box sizes */
+.box1 {
+    height: 50px; /* 高さを個別に指定 */
+    width: 100%;
+}
+
+.box3 {
+    height: 350px; /* 高さを個別に指定 */
+    width: 100%;
+}
