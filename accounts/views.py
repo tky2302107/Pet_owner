@@ -89,7 +89,7 @@ class NameChnge(LoginRequiredMixin,FormView):
         kwargs = super().get_form_kwargs()
         # 更新前のユーザー情報をkwargsとして渡す
         kwargs.update({
-            'email' : self.request.user.email,
+            # 'email' : self.request.user.email,
             'screen_name' : self.request.user.screen_name,
         })
         return kwargs
