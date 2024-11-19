@@ -10,4 +10,6 @@ urlpatterns = [
     path('posts/complete/', views.PostCompletePageView.as_view(), name='posts_completed'),
     # 投稿検索
     path('posts_search/', views.PostSearchPageView.as_view(), name='posts_search'),
+    # 投稿詳細閲覧
+    path('posts/detail/<int:id>/', views.PostDetailPageView.as_view(), name='posts_detail'),
 ]

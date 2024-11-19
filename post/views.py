@@ -46,4 +46,17 @@ class PostSearchPageView(ListView):
         queryset = queryset.order_by('-post_date') # 投稿降順で並び替え
         
         return queryset
+
+class PostDetailPageView(ListView):
+    template_name = '../templates/post/test_d.html'
+    model = PostInfo
+    context_object_name = 'post_detail' # コンテキスト名
+
+    def get_queryset(self, **kwargs):
+        queryset = super().get_queryset(**kwargs)
         
+        # id = self.request.GET.get('id')
+        id = self.kwargs.get('id')
+        queryset = queryset.filter(id=id)
+        
+        return queryset

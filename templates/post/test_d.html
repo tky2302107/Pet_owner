@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="ja" data-bs-theme="auto">
+    <h2>投稿詳細</h2>
+    <!-- 投稿詳細 -->
+    {% for post in post_detail %}
+        <!-- 投稿文 -->
+        {{ post.post }}
+        <!-- 投稿者id -->
+        {{ post.account_id }}
+        <!-- 画像 -->
+        {% if post.image %}
+            <img src="/media/{{ post.image }}">
+        {% endif %}
+        <!-- 動画 -->
+        {% if post.video %}
+            <video src="/media/{{ post.video }}">
+        {% endif %}
+    {% endfor %}

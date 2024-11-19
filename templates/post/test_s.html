@@ -6,7 +6,7 @@
         <!-- 投稿表示 -->
         {% for post in posts %}
             <!-- 投稿文 -->
-            <li>{{ post.post }}</li>
+            <li><a href='{% url 'post:posts_detail' post.id %}'>{{ post.post }}</a></li>
             <!-- 投稿者id -->
             {{ post.account_id }}
             <!-- 画像 -->
