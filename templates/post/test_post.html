@@ -8,5 +8,6 @@
         <div>
             {{form.post}}
         </div>
-        <button type=submit>投稿する</button>
+        <button type=submit>投稿する</button> <!-- 画像と動画のバリデーションチェック未実装（JavaScriptで書く予定） -->
+        <button type="button" onclick="location.href='{{ request.META.HTTP_REFERER }}'">戻る</button>
     </form>
