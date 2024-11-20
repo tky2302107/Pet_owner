@@ -37,13 +37,13 @@ class CustomUserManager(UserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
     screen_name = models.CharField(
-        gettext_lazy('screen name'),
+        gettext_lazy('アカウント名'),
         max_length=128,
         default='',
         blank=True,
         help_text=gettext_lazy('Option. 128 characters or fewer.'),
     )
-    email = models.EmailField(gettext_lazy('E-mail address'), unique=True)
+    email = models.EmailField(gettext_lazy('メールアドレス'), unique=True)
     is_staff = models.BooleanField(
         gettext_lazy('staff status'),
         default=False,

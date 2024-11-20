@@ -6,7 +6,7 @@ from django.core.signing import BadSignature,SignatureExpired
 from typing import Generic
 from django.http import HttpResponse, HttpResponseBadRequest
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView,ListView,FormView,UpdateView
+from django.views.generic import TemplateView,ListView,FormView,UpdateView,CreateView
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.sites.shortcuts import get_current_site
 from config import settings
@@ -14,7 +14,7 @@ from .models import fund, User
 from django.db.models.query import QuerySet
 from django.shortcuts import redirect, render
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .forms import  EmailChangeForm, UserChangeForm
+from .forms import  EmailChangeForm, SetUpForm, UserChangeForm
 from django.contrib.auth.views import (
     LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView
 )
@@ -22,6 +22,7 @@ from .forms import (
     PasswordChangeForm
 )
 from django.core.mail import send_mail
+from django.contrib.auth import login, authenticate
 # from django.contrib.auth import get_user_model
 # User = get_user_model() 
 
@@ -193,3 +194,25 @@ class EmailChangeComplete(LoginRequiredMixin, TemplateView):
             request.user.save()
             return super().get(request, **kwargs)
     
+class Follow(ListView):
+    template_name = "accounts/test_f.html"
+
+class Follow_er(ListView):
+    template_name = "accounts/test_er.html"
+
+
+class SetUpView(CreateView):
+    """ ユーザー登録用ビュー """
+    form_class = SetUpForm # 作成した登録用フォームを設定
+    template_name = "accounts/test_sig.html" 
+    success_url = reverse_lazy("accounts:index") # ユーザー作成後のリダイレクト先ページ
+
+    def form_valid(self, form):
+        # ユーザー作成後にそのままログイン状態にする設定
+        response = super().form_valid(form)
+        email = form.cleaned_data.get("email")
+        password = form.cleaned_data.get("password1")
+        print(email,password)
+        user = authenticate(email=email, password=password)
+        login(self.request, user)
+        return response
