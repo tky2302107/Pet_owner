@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
 from django.urls import reverse, reverse_lazy
-from django.views.generic import TemplateView, View, ListView, DetailView, DeleteView
+from django.views.generic import TemplateView, View, ListView, DetailView, DeleteView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from post.forms import PostForm
@@ -25,7 +25,7 @@ class PostPageView(LoginRequiredMixin, View):
                 post_data.video = request.FILES.get('video')               
             post_data.save()
             return redirect('post:posts_completed')
-        return render(request, '../templates/post/test.html', {'form': form})
+        return render(request, '../templates/post/test_post.html', {'form': form})
     
 # 投稿完了画面表示
 class PostCompletePageView(TemplateView):
@@ -78,3 +78,13 @@ class PostHistoryPageView(LoginRequiredMixin, ListView):
         queryset = queryset.filter(account_id=user_id).order_by('-post_date') # 完全一致検索、投稿降順で並び替え
         
         return queryset
+    
+    
+# 投稿編集画面表示
+class PostUpdatePageView(LoginRequiredMixin, UpdateView):
+    model = PostInfo
+    form_class = PostForm
+    template_name = '../templates/post/test_update.html'
+    
+    def get_success_url(self):
+        return reverse('post:posts_detail', kwargs={'pk': self.object.id})

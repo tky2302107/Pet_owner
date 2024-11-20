@@ -18,4 +18,6 @@ urlpatterns = [
     path('posts/delete_complete', views.PostDeleteCompletePageView.as_view(), name='posts_delete_completed'),
     # 投稿履歴
     path('mypage/post_history', views.PostHistoryPageView.as_view(), name='posts_history'),
+    # 投稿編集
+    path('posts/<int:pk>/update', views.PostUpdatePageView.as_view(), name='posts_update'),
 ]
