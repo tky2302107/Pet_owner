@@ -65,3 +65,12 @@ class PointForm(forms.ModelForm):
     #     # labels = {'point': 'ポイント'}
     #     labels = {"":"","":""}
     pass
+
+class SetUpForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = (
+            "screen_name",
+            "email",
+            # "password",
+        )

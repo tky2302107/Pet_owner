@@ -1,6 +1,8 @@
 # from typing import Any
 # from django.db.models.query import QuerySet
 from django.db.models.base import Model as Model
+from django.urls import reverse_lazy
+from accounts.forms import SetUpForm
 # from django.shortcuts import render
 # from django.urls import reverse
 from .models import NoticeList 
@@ -13,7 +15,7 @@ class Index(TemplateView):
     # model = models.Index
     template_name = 'contents/my_account.html'
 
-class NoticeList(ListView):
+class NoticeListView(ListView):
     template_name = "contents/nlist_test.html"# template_name = 'contents/notice_list.html'
     model = NoticeList
     paginate_by = 10
