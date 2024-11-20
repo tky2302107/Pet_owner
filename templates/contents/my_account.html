@@ -85,7 +85,7 @@
                 <a href="#" class="btn follower-btn">フォロワー</a>
                 <a href="#" class="btn follow-btn">フォロー中</a>
                 <a href="exchange_point.html" class="btn point-btn">ポイント</a>
-                <a href="" class="btn history-btn">投稿履歴</a>
+                <a href="{% url 'post:posts_history' %}" class="btn history-btn">投稿履歴</a>
             </div>
         </div>
     </div>
@@ -101,7 +101,7 @@
     <!-- メニューリスト -->
     <div class="footer-menu">
         <ul class="footer-menu-list">
-            <li><a href="#">ホーム画面へ</a></li>
+            <li><a href="../">ホーム画面へ</a></li>
             <li><a href="#">利用規約</a></li>
             <li><a href="#">プライバシーポリシー</a></li>
         </ul>

@@ -16,7 +16,7 @@
     {{ post.account_id }}
     <!-- 投稿日 -->
     {{ post.post_date }}
-    {% if post.delete_url %}
-        <button onclick="location.href='{{ post.delete_url }}'">削除</button>
+    {% if request.user.id == post.account_id.id %}
+        <button onclick="location.href='{% url 'post:posts_delete' post.id %}'">削除</button>
     {% endif %}
-    <button onclick="location.href='{% url 'accounts:menu' %}'">戻る</button>
+    <button onclick="location.href='{{ request.META.HTTP_REFERER }}'">戻る</button>

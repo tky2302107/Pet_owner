@@ -53,15 +53,6 @@ class PostDetailPageView(DetailView):
     model = PostInfo # 投稿情報モデル
     template_name = '../templates/post/test_detail.html' # テンプレート
     context_object_name = 'post'
-    
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        
-        if self.request.user.is_authenticated and context[self.context_object_name]:
-            post = context[self.context_object_name]
-            post.delete_url = reverse('post:posts_delete', args=[post.id])
-            
-        return context
 
 # 投稿削除画面表示
 class PostDeletePageView(LoginRequiredMixin, DeleteView):
@@ -76,4 +67,14 @@ class PostDeleteCompletePageView(TemplateView):
 
 # 投稿履歴画面表示
 class PostHistoryPageView(LoginRequiredMixin, ListView):
-    ''
+    template_name = '../templates/post/test_history.html'
+    model = PostInfo # 投稿情報モデル
+    context_object_name = 'posts' # コンテキスト名
+    
+    def get_queryset(self, **kwargs): # モデルから情報を取得
+        queryset = super().get_queryset(**kwargs) # 全取得
+        
+        user_id = self.request.user.id # ログイン中のユーザーのIDを取得
+        queryset = queryset.filter(account_id=user_id).order_by('-post_date') # 完全一致検索、投稿降順で並び替え
+        
+        return queryset
