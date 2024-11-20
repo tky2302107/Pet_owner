@@ -88,6 +88,33 @@
                         </div>
                     </div>
                 </div>
+                <div class="card-columns">
+                    <div class="card">
+                        <div class="card-header">アカウント削除（無効化）</div>
+                        <div class="card-body">
+                            {% if user.is_authenticated %}
+                                {% comment %} <li><a href="{% url 'user_auth:delete' user.username %}">退会</a></li> {% endcomment %}
+                                <li><a href="{% url 'accounts:cleanup' %}">退会</a></li>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">-</div>
+                        <div class="card-body">
+                            {% comment %} <a href="{% url 'post:posts' %}" class="btn btn-link btn-block" target="_self">
+                                投稿する
+                            </a> {% endcomment %}
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">-</div>
+                        <div class="card-body">
+                            {% comment %} <a href="{% url 'accounts:mypage' %}" class="btn btn-link btn-block" target="_self">
+                                マイページテスト用
+                            </a> {% endcomment %}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

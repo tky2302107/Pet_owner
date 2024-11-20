@@ -8,6 +8,8 @@ urlpatterns = [
     path('login/', views.LoginPage.as_view(), name='login'),
     path('logout/', views.LogoutPage.as_view(), name='logout'),
     path('setup/', views.SetUpView.as_view(), name='setup'),
+    # path('exit/', views.UserDeleteView.as_view(), name='user_del'),
+    path("cleanup/", views.CleanUpView.as_view(),name="cleanup"),
     path('mypage/point/', views.ExchangePoint.as_view(), name='points'),
     path('mypage/point/done/', views.ExchangePointComplete.as_view(), name='points_fin'),
     

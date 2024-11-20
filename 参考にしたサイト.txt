@@ -9,3 +9,6 @@ https://yururi-do.com/django-channels-memberonly-chat-room/
 
 全般
 https://docs.djangoproject.com/ja/5.1/topics/
+
+アカウント作成
+https://qiita.com/ryo-keima/items/e6ce42bb4c11432ea829
