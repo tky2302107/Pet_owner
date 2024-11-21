@@ -106,7 +106,7 @@ class MyPage(TemplateView):
         }
         return self.render_to_response(ctx)
 
-class NameChnge(LoginRequiredMixin,FormView):
+class NameChange(LoginRequiredMixin,FormView):
     models = User
     template_name = "accounts/e_page.html"
     form_class = UserChangeForm

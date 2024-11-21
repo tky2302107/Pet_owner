@@ -1,11 +1,14 @@
 # from typing import Any
 # from django.db.models.query import QuerySet
+# from urllib import request
+from urllib import request
+from django import forms
 from django.db.models.base import Model as Model
 from django.urls import reverse_lazy
 # from django.db.models.query import QuerySet
 # from django.urls import reverse_lazy
-
-# from .forms import ClickFollowForm
+from django.shortcuts import render
+from .forms import ClickFollowForm
 # from django.shortcuts import render
 # from django.urls import reverse
 from .models import NoticeList ,FollowList
@@ -60,8 +63,31 @@ class Follow_erView(ListView):
             queryset = FollowList.objects.filter(follow_er=user.id)
             return queryset    
     
-class ClickFollowView(TemplateView):#CreateView):
-    template_name= "accounts/index.html"
-    # template_name = "contents/test_cf.html"
-    # form_class = ClickFollowForm
-    # success_url = reverse_lazy("accounts:index")
+class ClickFollowView(FormView):#CreateView):
+    # template_name= "accounts/index.html"
+    template_name = "contents/test_cf.html"
+    form_class = ClickFollowForm
+    success_url = reverse_lazy("accounts:index")
+
+    # form = ClickFollowForm()
+    # if request.method == 'POST': # POSTの時だけ処理する
+    #     form = forms.FormSample(request.POST) # POSTで送信した値をform変数に格納
+    #     if form.is_valid(): # formの値が正当な時(バリデーションチェックを走らせる)
+    #         print(type(form)) # <class 'basicapp.forms.FormSample'>
+    #         print(type(form.data['follow_name'])) # 名前に入力した値を取得できる(str)
+
+    # if request.method == "POST":
+    #     form = ClickFollowForm(request.POST)
+    #     # form_validをオーバーライドする
+    #     if form.is_valid():
+    #         introduction = f"私の名前は{form.cleaned_data['name']}です。年齢は{form.cleaned_data['age']}歳です。"
+    #         context = {'form': form, 'intro': introduction}
+    #         return render(request, template_name, context)
+    # else:
+    #     form = ClickFollowForm()
+    #     return render(request, template_name, {"form": form})
+    def form_valid(self, form):
+        # This method is called when valid form data has been POSTed.
+        # It should return an HttpResponse.
+        # form.send_email()
+        return super().form_valid(form)
