@@ -16,7 +16,7 @@ urlpatterns = [
     # メインメニュー仮リンク
     path('menu/', views.MainPage.as_view(), name='menu'),
     path('mypage/', views.MyPage.as_view(), name='mypage'),
-    path('mypage/edit/', views.NameChnge.as_view(), name='namechange'),
+    path('mypage/edit/', views.NameChange.as_view(), name='namechange'),
     path("mypage/pwchange/",views.PasswordChange.as_view(),name="pwchange"),
     path("mypage/pwchange/done/",views.PasswordChangeDone.as_view(),name="pwdone"),
     path('mypage/emchange/', views.EmailChange.as_view(), name='email_change'),
