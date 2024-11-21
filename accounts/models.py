@@ -41,7 +41,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         max_length=128,
         default='',
         blank=True,
-        help_text=gettext_lazy('Option. 128 characters or fewer.'),
+        help_text=gettext_lazy('128文字以内で入力してください'),
     )
     email = models.EmailField(gettext_lazy('メールアドレス'), unique=True)
     is_staff = models.BooleanField(
