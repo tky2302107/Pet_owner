@@ -5,8 +5,9 @@ name = "pypi"
 
 [packages]
 channels = "*"
-pillow = "*"
 daphne = "*"
 django = "*"
+pillow = "*"
+django-cleanup = "*"
 
 [dev-packages]

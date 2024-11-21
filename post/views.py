@@ -1,32 +1,42 @@
-from django.shortcuts import redirect, render
 from django.urls import reverse, reverse_lazy
-from django.views.generic import TemplateView, View, ListView, DetailView, DeleteView, UpdateView
+from django.views.generic import TemplateView, CreateView, ListView, DetailView, DeleteView, UpdateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from post.forms import PostForm
 from post.models import PostInfo
 
+# 投稿画面表示、投稿情報保存(旧)
+# class PostPageView(LoginRequiredMixin, View):
+#     def get(self, request, *args, **kwargs):
+#         form = PostForm(request.POST or None)
+        
+#         return render(request, '../templates/post/test_post.html', {'form': form})
+    
+#     def post(self, request, *args, **kwargs):
+#         form = PostForm(request.POST or None)
+        
+#         if form.is_valid():
+#             post_data = PostInfo()
+#             post_data.account_id = request.user
+#             post_data.post = form.cleaned_data['post']
+#             if request.FILES: # 画像アップロード判定
+#                 post_data.image = request.FILES.get('image')
+#                 post_data.video = request.FILES.get('video')               
+#             post_data.save()
+#             return redirect('post:posts_completed')
+#         return render(request, '../templates/post/test_post.html', {'form': form})
+  
 # 投稿画面表示、投稿情報保存
-class PostPageView(LoginRequiredMixin, View):
-    def get(self, request, *args, **kwargs):
-        form = PostForm(request.POST or None)
-        
-        return render(request, '../templates/post/test_post.html', {'form': form})
-    
-    def post(self, request, *args, **kwargs):
-        form = PostForm(request.POST or None)
-        
-        if form.is_valid():
-            post_data = PostInfo()
-            post_data.account_id = request.user
-            post_data.post = form.cleaned_data['post']
-            if request.FILES: # 画像アップロード判定
-                post_data.image = request.FILES.get('image')
-                post_data.video = request.FILES.get('video')               
-            post_data.save()
-            return redirect('post:posts_completed')
-        return render(request, '../templates/post/test_post.html', {'form': form})
-    
+class PostPageView(LoginRequiredMixin, CreateView):
+      template_name = '../templates/post/test_post.html'
+      model = PostInfo
+      form_class = PostForm
+      success_url = reverse_lazy('post:posts_completed')
+      
+      def form_valid(self, form):
+          form.instance.account_id = self.request.user
+          return super().form_valid(form)
+
 # 投稿完了画面表示
 class PostCompletePageView(TemplateView):
     template_name = '../templates/post/test_completed.html'
@@ -88,3 +98,7 @@ class PostUpdatePageView(LoginRequiredMixin, UpdateView):
     
     def get_success_url(self):
         return reverse('post:posts_detail', kwargs={'pk': self.object.id})
+
+    def form_valid(self, form):
+        form.instance.account_id = self.request.user
+        return super().form_valid(form)

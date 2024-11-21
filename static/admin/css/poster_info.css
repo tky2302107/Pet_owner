@@ -27,12 +27,12 @@
     margin-bottom: 15px;
 }
 
-/* 編集ボタン */
-.edit-btn {
+/* フォローボタン */
+.info_follow-btn {
     position: absolute;
     top: 10px;
     right: 10px;
-    background-color: #bb00ff;
+    background-color: #44e84c;
     color: #fff;
     padding: 8px 16px;
     font-size: 0.8em;
