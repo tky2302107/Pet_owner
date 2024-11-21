@@ -6,7 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from post.forms import PostForm
 from post.models import PostInfo
 
-# 投稿画面表示、投稿情報保存
+# 投稿画面表示、投稿情報保存(旧)
 # class PostPageView(LoginRequiredMixin, View):
 #     def get(self, request, *args, **kwargs):
 #         form = PostForm(request.POST or None)
@@ -27,6 +27,7 @@ from post.models import PostInfo
 #             return redirect('post:posts_completed')
 #         return render(request, '../templates/post/test_post.html', {'form': form})
   
+# 投稿画面表示、投稿情報保存
 class PostPageView(LoginRequiredMixin, CreateView):
       template_name = '../templates/post/test_post.html'
       model = PostInfo
