@@ -4,10 +4,9 @@ from .models import fund
 from django.contrib.auth.forms import (
     AuthenticationForm, UserCreationForm, PasswordChangeForm
 )
-from django.contrib.auth import get_user_model
+from django.contrib.auth import get_user_model 
 from django.forms import ModelForm
 # from django.contrib.auth.models import User
-from django.contrib.auth import get_user_model 
 User = get_user_model() 
 
 
@@ -71,6 +70,5 @@ class SetUpForm(UserCreationForm):
         model = User
         fields = (
             "screen_name",
-            "email",
-            # "password",
+            "email",#パスワードの項目は自動的に作られるため記述しない
         )

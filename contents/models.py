@@ -31,3 +31,29 @@ class NoticeList(models.Model):
     def __str__(self) -> str:
         return f"{self.title}"
     
+class FollowList(models.Model):
+    id = models.AutoField(primary_key=True)
+    ## フォローした人 ##
+    follow = models.IntegerField(
+        gettext_lazy("アカウントID"),
+        null=False,
+    )
+    follow_name = models.CharField(
+        gettext_lazy("アカウント名"),
+        null=False,
+        max_length=128,
+        default='',
+        blank=True,
+    )
+    ## フォローされた人 ##
+    follow_er = models.IntegerField(
+        gettext_lazy("アカウントID"),
+        null=False,
+    )
+    follow_er_name = models.CharField(
+        gettext_lazy("アカウント名"),
+        null=False,
+        max_length=128,
+        default='',
+        blank=True,
+    )

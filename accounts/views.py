@@ -194,11 +194,7 @@ class EmailChangeComplete(LoginRequiredMixin, TemplateView):
             request.user.save()
             return super().get(request, **kwargs)
     
-class Follow(ListView):
-    template_name = "accounts/test_f.html"
 
-class Follow_er(ListView):
-    template_name = "accounts/test_er.html"
 
 
 class SetUpView(CreateView):
@@ -242,3 +238,5 @@ class CleanUpView(DeleteView):
        user = request.user
        user.delete()
        return redirect('accounts:login')
+
+
