@@ -1,3 +1,5 @@
+from django import forms
+from .models import fund
 
 from django.contrib.auth.forms import (
     AuthenticationForm, UserCreationForm, PasswordChangeForm
@@ -55,3 +57,20 @@ class EmailChangeForm(ModelForm):
         email = self.cleaned_data['email']
         User.objects.filter(email=email, is_active=False).delete()
         return email
+    
+class PointForm(forms.ModelForm):
+    # class Meta:
+    #     model = User,fund
+    #     fields = '__all__'
+    #     # labels = {'point': 'ポイント'}
+    #     labels = {"":"","":""}
+    pass
+
+class SetUpForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = (
+            "screen_name",
+            "email",
+            # "password",
+        )

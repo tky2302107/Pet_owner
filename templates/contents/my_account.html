@@ -85,7 +85,11 @@
                 <a href="follower_list.html" class="btn follower-btn">フォロワー</a>
                 <a href="follow_list.html" class="btn follow-btn">フォロー中</a>
                 <a href="exchange_point.html" class="btn point-btn">ポイント</a>
+<<<<<<< HEAD
                 <a href="../post/post_history.html" class="btn history-btn">投稿履歴</a>
+=======
+                <a href="{% url 'post:posts_history' %}" class="btn history-btn">投稿履歴</a>
+>>>>>>> 146bd302f78438c7a7ec5c8fb5fc7955d0499dd9
             </div>
         </div>
     </div>
@@ -101,7 +105,7 @@
     <!-- メニューリスト -->
     <div class="footer-menu">
         <ul class="footer-menu-list">
-            <li><a href="#">ホーム画面へ</a></li>
+            <li><a href="../">ホーム画面へ</a></li>
             <li><a href="#">利用規約</a></li>
             <li><a href="#">プライバシーポリシー</a></li>
         </ul>

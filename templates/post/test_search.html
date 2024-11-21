@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="ja" data-bs-theme="auto">
+    <h2>投稿検索</h2>
+    <!-- 検索した投稿がある場合 -->
+    {% if posts %}
+        <!-- 投稿表示 -->
+        {% for post in posts %}
+            <!-- 投稿文 -->
+            <li><a href='{% url 'post:posts_detail' post.pk %}'>{{ post.post }}</a></li>
+            <!-- 投稿者id -->
+            {{ post.account_id }}
+            <!-- 画像 -->
+            {% if post.image %}
+                <img src="/media/{{ post.image }}">
+            {% endif %}
+            <!-- 動画 -->
+            {% if post.video %}
+                <img src="/media/{{ post.video }}">
+            {% endif %}
+            <!-- 投稿日 -->
+            {{ post.post_date }}
+        {% endfor %}
+    <!-- 検索した投稿がない場合 -->
+    {% else %}
+        <!-- メッセージ -->
+        そのワードを含む投稿はありません。
+        <button onclick="location.href='{% url 'accounts:menu' %}'">戻る</button>
+    {% endif %}

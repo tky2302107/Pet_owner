@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="ja" data-bs-theme="auto">
+    <h2>投稿履歴</h2>
+    <!-- 投稿履歴がある場合 -->
+    {% if posts %}
+        <!-- 投稿表示 -->
+        {% for post in posts %}
+            <!-- 投稿文 -->
+            <li><a href='{% url 'post:posts_detail' post.pk %}'>{{ post.post }}</a></li>
+            <!-- 画像 -->
+            {% if post.image %}
+                <img src="/media/{{ post.image }}">
+            {% endif %}
+            <!-- 動画 -->
+            {% if post.video %}
+                <img src="/media/{{ post.video }}">
+            {% endif %}
+            {{ post.post_date }}
+        {% endfor %}
+    <!-- 投稿履歴がない場合 -->
+    {% else %}
+        <!-- メッセージ -->
+        投稿はありません。
+    {% endif %}
+    <button onclick="location.href='{% url 'contents:index' %}'">戻る</button>
