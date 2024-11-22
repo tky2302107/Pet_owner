@@ -7,7 +7,7 @@ from post.models import PostInfo
   
 # 投稿画面表示、投稿情報保存
 class PostPageView(LoginRequiredMixin, CreateView):
-    template_name = '../templates/post/test_post.html'
+    template_name = 'test_post.html'
     model = PostInfo
     form_class = PostForm
     success_url = reverse_lazy('post:posts_completed')

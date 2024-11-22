@@ -1,6 +1,8 @@
+{% load static %}
 <!doctype html>
 <html lang="ja" data-bs-theme="auto">
-    <h2>投稿</h2>
+    <link href="{% static 'post/css/test_post.css' %}" rel="stylesheet">
+    <h2 class="a">投稿</h2>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div>画像{{ form.image }}</div>
