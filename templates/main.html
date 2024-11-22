@@ -43,21 +43,9 @@
     </div>
     <div class="px-3 py-2 border-bottom mb-3">
       <div class="container d-flex flex-wrap justify-content-center">
-<<<<<<< HEAD
-        <input type="button" value="ポイント"  style="margin-right: 30%;" class="btn btn-light text-dark" onclick="location.href='./contents/exchange_point.html'">
-        <form class="col-12 col-lg-auto mb-2 mb-lg-0" role="search" style="display: flex;">
-          <input type="search" class="form-control" placeholder="検索..." aria-label="Search">
-          <select class="btn btn-light">
-            <option value="カテゴリ">カテゴリ</option>
-            <option value="犬">犬</option>
-            <option value="猫">猫</option>
-            <option value="鳥">鳥</option>
-          </select>
-=======
         <input type="button" value="ポイント"  style="margin-right: 30%;" class="btn btn-light text-dark">
         <form action={% url 'post:posts_search' %} method='get' class="col-12 col-lg-auto mb-2 mb-lg-0" role="search" style="display: flex;">
           <input type="search" class="form-control" placeholder="検索..." aria-label="Search" name='keyword'>
->>>>>>> 146bd302f78438c7a7ec5c8fb5fc7955d0499dd9
           <input type="submit" value="検索" class="btn btn-light text-dark me-2">
         </form>
 
@@ -137,11 +125,7 @@
 
         <!-- 投稿ボタンエリア -->
         <div class="button-section">
-<<<<<<< HEAD
-            <a href="./post/post.html" class="post-btn">投稿する</a>
-=======
             <a href="{% url 'post:posts' %}" class="post-btn">投稿する</a>
->>>>>>> 146bd302f78438c7a7ec5c8fb5fc7955d0499dd9
         </div>
     </div>
 
@@ -156,11 +140,7 @@
     <!-- メニューリスト -->
     <div class="footer-menu">
         <ul class="footer-menu-list">
-<<<<<<< HEAD
-            <li><a href="main.html">ホーム画面へ</a></li>
-=======
             <li><a href="../">ホーム画面へ</a></li>
->>>>>>> 146bd302f78438c7a7ec5c8fb5fc7955d0499dd9
             <li><a href="#">利用規約</a></li>
             <li><a href="#">プライバシーポリシー</a></li>
         </ul>
