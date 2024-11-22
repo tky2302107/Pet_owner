@@ -7,14 +7,14 @@ from post.models import PostInfo
   
 # 投稿画面表示、投稿情報保存
 class PostPageView(LoginRequiredMixin, CreateView):
-      template_name = '../templates/post/test_post.html'
-      model = PostInfo
-      form_class = PostForm
-      success_url = reverse_lazy('post:posts_completed')
+    template_name = '../templates/post/test_post.html'
+    model = PostInfo
+    form_class = PostForm
+    success_url = reverse_lazy('post:posts_completed')
       
-      def form_valid(self, form):
-          form.instance.account_id = self.request.user
-          return super().form_valid(form)
+    def form_valid(self, form):
+        form.instance.account_id = self.request.user
+        return super().form_valid(form)
 
 # 投稿完了画面表示
 class PostCompletePageView(TemplateView):
