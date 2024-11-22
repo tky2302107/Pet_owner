@@ -3,6 +3,7 @@
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
+        {% comment %}　　　　 {{post.account_id}} = ページのアカウントid 　既に登録していた場合はボタンを隠す必要があるため、formsを使う，　　　{% endcomment %}
         <button type="submit">送信</button>
     </form>
 </body>
