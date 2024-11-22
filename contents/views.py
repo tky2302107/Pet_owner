@@ -3,7 +3,7 @@ from django import forms
 from django.db.models.base import Model as Model
 from django.urls import reverse, reverse_lazy
 from django.shortcuts import redirect, render
-from .forms import ClickFollowForm ,FollowDisableForm
+from .forms import ClickFollowForm
 from .models import NoticeList ,FollowList
 from django.views.generic import ListView,DetailView,TemplateView,FormView,CreateView
 
@@ -31,7 +31,7 @@ class FollowView(ListView):
     template_name = "contents/test_f.html"
     model = FollowList
     paginate_by = 10
-    form_class = FollowDisableForm
+    # form_class = FollowDisableForm
     context_object_name = "flist"
     
     def get_queryset(self):
