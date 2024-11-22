@@ -1,69 +1,75 @@
 <!-- ログアウト画面 -->
 
+
+
+<!--　メインメニュー画面　-->
 <!DOCTYPE html>
 <html lang="ja">
-<head>
+    
+<link rel="stylesheet" href="../../static/admin/css/common.css"> 
+<link rel="stylesheet" href="../../static/admin/css/logout.css"> 
+
+<link href="../../header/画面/css/headers.css" rel="stylesheet">
+<link href="../header/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+    
+<head>  
+
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="author" content="Koki Yoshida">
+    <title>アニマルチャット</title>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ログアウト</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f0f0f0;
-        }
+    <title>Layout Design</title>
 
-        .logout-container {
-            text-align: center;
-            background-color: #fff;
-            padding: 20px 40px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
 
-        .logout-container h1 {
-            font-size: 24px;
-            margin-bottom: 10px;
-            color: #333;
-        }
+</head>
+<body>
 
-        .logout-container p {
-            font-size: 16px;
-            color: #666;
-            margin-bottom: 20px;
-        }
+    
+    <!-- Custom styles for this template -->
+    
 
-        .logout-button, .cancel-button {
-            padding: 10px 20px;
-            font-size: 16px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            margin: 5px;
-        }
+  <header class="headers">
+    <div class="px-3 py-2 text-bg-dark border-bottom">
+      <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+          <a href="./contents/my_account.html" class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <!-- <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg> -->
+            <img src="C:\Users\yoshida\Pictures\画像\medium_20221121_isobo_94783d724b_3ac2c5597d.jpg" alt="mdo" width="80" height="64" class="rounded-circle">
+          </a>
+          <h3 class="fs-4 text-white" style="width: 85%; text-align: center;">アニマルチャット</h3>
+        </div>
+      </div>
+    </div>
+    <div class="px-3 py-2 border-bottom mb-3">
+      <div class="container d-flex flex-wrap justify-content-center">
+        <input type="button" value="ポイント"  style="margin-right: 30%;" class="btn btn-light text-dark">
+        <form action={% url 'post:posts_search' %} method='get' class="col-12 col-lg-auto mb-2 mb-lg-0" role="search" style="display: flex;">
+          <input type="search" class="form-control" placeholder="検索..." aria-label="Search" name='keyword'>
+          <input type="submit" value="検索" class="btn btn-light text-dark me-2">
+        </form>
 
-        .logout-button {
-            background-color: #d9534f;
-            color: #fff;
-        }
+        <div class="text-end" style="margin-left: auto;">
+            
+          <button  onclick="location.href='./accounts/login.html'" type="button" class="btn btn-light text-dark me-2" >ログイン</button>
+          <button onclick="location.href='./accounts/signup.html'" type="button" class="btn btn-primary">新規作成</button>
+        </div>
+      </div>
+    </div>
+  </header>
 
-        .cancel-button {
-            background-color: #5bc0de;
-            color: #fff;
-        }
+</body>
 
-        .logout-button:hover {
-            background-color: #c9302c;
-        }
 
-        .cancel-button:hover {
-            background-color: #31b0d5;
-        }
-    </style>
+
+<head>
+
+    <title>ログアウト画面</title>
+  
 </head>
 <body>
     <div class="logout-container">
@@ -75,12 +81,66 @@
     <script>
         function logout() {
             // ログアウト処理を実行 (バックエンドのログアウト処理を呼び出すなど)
-            window.location.href = "/logout"; // 例: ログアウト処理後のリダイレクト先
+            window.location.href = "logouted.html"; // 例: ログアウト処理後のリダイレクト先
         }
 
         function cancel() {
-            window.location.href = "/home"; // 例: キャンセル時に戻るページ
+            window.location.href = "main.html"; // 例: キャンセル時に戻るページ
         }
     </script>
+
+
+
+
+
+
+<!-- フッター -->
+<footer class="main-footer">
+    <h3>システム名</h3>  
+
+    <!-- メニューリスト -->
+    <div class="footer-menu">
+        <ul class="footer-menu-list">
+            <li><a href="../">ホーム画面へ</a></li>
+            <li><a href="#">利用規約</a></li>
+            <li><a href="#">プライバシーポリシー</a></li>
+        </ul>
+    </div>
+
+    <!-- お問い合わせ情報 -->
+    <div class="contact">
+        <p>お問い合せ先<b>〒000-0000</b> 電話📳<b>000-0000-0000</b></p>
+    </div>
+    
+    <!-- 著作権表示 -->
+    <div class="copyright">
+        <p>© 2024 システム名 Inc. All Rights Reserved.</p>
+    </div>
+</footer>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
