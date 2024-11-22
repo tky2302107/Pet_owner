@@ -13,8 +13,9 @@
             {% endif %}
             <!-- 動画 -->
             {% if post.video %}
-                <img src="/media/{{ post.video }}">
+                <video src="/media/{{ post.video }}" controls></video>
             {% endif %}
+            <!-- 投稿日 -->
             {{ post.post_date }}
         {% endfor %}
     <!-- 投稿履歴がない場合 -->

@@ -5,7 +5,7 @@ from .models import PostInfo
 class PostForm(forms.ModelForm):
     post = forms.CharField(widget=forms.Textarea) # 投稿文
     image = forms.ImageField(required=False) # 画像
-    video = forms.FileField(required=False) # 動画
+    video = forms.FileField(required=False, widget=forms.FileInput(attrs={'accept':'video/*'})) # 動画
 
     # メタクラス
     class Meta:

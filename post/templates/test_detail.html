@@ -10,7 +10,7 @@
     {% endif %}
     <!-- 動画 -->
     {% if post.video %}
-        <img src="/media/{{ post.video }}">
+        <video src="/media/{{ post.video }}" controls></video>
     {% endif %}
     <!-- 投稿者ID -->
     {{ post.account_id }}
