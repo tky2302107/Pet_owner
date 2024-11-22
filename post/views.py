@@ -18,11 +18,11 @@ class PostPageView(LoginRequiredMixin, CreateView):
 
 # 投稿完了画面表示
 class PostCompletePageView(TemplateView):
-    template_name = '../templates/post/test_completed.html'
+    template_name = 'test_completed.html'
 
 # 投稿検索画面表示
 class PostSearchPageView(ListView):
-    template_name = '../templates/post/test_search.html'
+    template_name = 'test_search.html'
     model = PostInfo # 投稿情報モデル
     context_object_name = 'posts' # コンテキスト名
     
@@ -40,23 +40,23 @@ class PostSearchPageView(ListView):
 # 投稿詳細画面表示
 class PostDetailPageView(DetailView):
     model = PostInfo # 投稿情報モデル
-    template_name = '../templates/post/test_detail.html' # テンプレート
+    template_name = 'test_detail.html' # テンプレート
     context_object_name = 'post'
 
 # 投稿削除画面表示
 class PostDeletePageView(LoginRequiredMixin, DeleteView):
     model = PostInfo
-    template_name = '../templates/post/test_confirm_delete.html'
+    template_name = 'test_confirm_delete.html'
     context_object_name = 'post'
     success_url = reverse_lazy('post:posts_delete_completed')
 
 # 投稿削除完了画面表示
 class PostDeleteCompletePageView(TemplateView):
-    template_name = '../templates/post/test_delete_complete.html'
+    template_name = 'test_delete_complete.html'
 
 # 投稿履歴画面表示
 class PostHistoryPageView(LoginRequiredMixin, ListView):
-    template_name = '../templates/post/test_history.html'
+    template_name = 'test_history.html'
     model = PostInfo # 投稿情報モデル
     context_object_name = 'posts' # コンテキスト名
     
@@ -73,7 +73,7 @@ class PostHistoryPageView(LoginRequiredMixin, ListView):
 class PostUpdatePageView(LoginRequiredMixin, UpdateView):
     model = PostInfo
     form_class = PostForm
-    template_name = '../templates/post/test_update.html'
+    template_name = 'test_update.html'
     
     def get_success_url(self):
         return reverse('post:posts_detail', kwargs={'pk': self.object.id})
