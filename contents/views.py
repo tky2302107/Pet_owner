@@ -1,26 +1,13 @@
-# from typing import Any
-# from django.db.models.query import QuerySet
-# from urllib import request
 from urllib import request
 from django import forms
 from django.db.models.base import Model as Model
 from django.urls import reverse, reverse_lazy
-# from django.db.models.query import QuerySet
-# from django.urls import reverse_lazy
 from django.shortcuts import redirect, render
-
-# from Pet_owner.accounts.models import User
 from .forms import ClickFollowForm ,FollowDisableForm
-# from django.shortcuts import render
-# from django.urls import reverse
 from .models import NoticeList ,FollowList
 from django.views.generic import ListView,DetailView,TemplateView,FormView,CreateView
-# from .forms import NoticeListForm
-# from django.shortcuts import render, get_object_or_404
-# from django.contrib.auth.views import LoginView, LogoutView
 
 class Index(TemplateView):
-    # model = models.Index
     template_name = 'contents/my_account.html'
 
 class AccessError(TemplateView):
@@ -71,7 +58,6 @@ class Follow_erView(ListView):
     context_object_name = "erlist"
 
     def get_queryset(self):
-            #  super().get_queryset(),
             user = self.request.user
             queryset = FollowList.objects.filter(follow_er=user.id)
             return queryset    
@@ -104,13 +90,3 @@ class ClickFollowView(FormView):#CreateView):
                  return redirect('contents:test_f.html')
             
 
-# class FollowDisableForm():
-#     def followlist_new(request ,self):
-#         form = FollowDisableForm(request.POST or None)
-#         # user = User()
-#         if form.is_valid():
-#             # followlist = FollowList()
-#             # followlist.title = 
-
-#             return redirect('followlist:followlist_list')
-#         return render(request, 'followlist/followlist_new.html', {'form': form})
