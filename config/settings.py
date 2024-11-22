@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     'django.contrib.humanize',
+    # 画像自動削除
+    'django_cleanup.apps.CleanupConfig',
     'channels',
     'accounts',
     'chat',
