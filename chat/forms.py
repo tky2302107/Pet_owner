@@ -1,7 +1,8 @@
 from django import forms
 from django.utils.translation import gettext_lazy
 from . import models
-
+from contents.models import FollowList
+import urllib.request
 User = models.User
 
 # チャットルーム検索用のフォーム
@@ -51,5 +52,6 @@ class RoomForm(forms.ModelForm):
         }
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['participants'].queryset = User.objects.filter(is_staff=False)
+        # idlist = FollowList.objects.get()
+        self.fields['participants'].queryset = User.objects.filter(is_staff=False)#,created_by__username__contains=idlist)
 
