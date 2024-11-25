@@ -1,4 +1,4 @@
-.complete {
+.complete { /* cssを適用するタグを変えました */
     display: flex;
     justify-content: center;
     align-items: center;
