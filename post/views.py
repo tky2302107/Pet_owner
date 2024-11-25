@@ -18,7 +18,7 @@ class PostPageView(LoginRequiredMixin, CreateView):
 
 # 投稿完了画面表示
 class PostCompletePageView(TemplateView):
-    template_name = '../templates/post/test_completed.html'
+    template_name = '../templates/post/post_completed.html'
 
 # 投稿検索画面表示
 class PostSearchPageView(ListView):
