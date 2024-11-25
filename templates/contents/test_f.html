@@ -9,7 +9,7 @@
            {% comment %} href= "{% url 'contents:notice_d' data.follow %}"> {% endcomment %}
            {{data.follow_er_name}}</a>
            <label>フォロー解除：</label>
-           <form  method="post">
+        <form  method="post">
            {% csrf_token %}
            <input id="uid" name="uid" value={{ data.follow_er }} type="hidden"></input>
            <input type="submit" value="↑解除する">

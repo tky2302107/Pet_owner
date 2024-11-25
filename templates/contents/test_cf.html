@@ -1,9 +1,22 @@
 <body>
     <h3>ユーザーフォーム</h3>
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        {% comment %}　　　　 {{post.account_id}} = ページのアカウントid 　既に登録していた場合はボタンを隠す必要があるため、formsを使う，　　　{% endcomment %}
-        <button type="submit">送信</button>
-    </form>
+    
+        <form  method="post">
+            {% csrf_token %}
+            <input id="uid" name="uid" type="hidden" value=1 ></input>
+            <input type="submit" value="↑フォローする">
+        </form>
 </body>
+<script type="text/javascript">
+    function f0(){
+        let data = {{data_key | safe }};
+        {% comment %} radio = document.getElementsByName('●●●')  {% endcomment %}
+        if (1 in data == true) {
+            document.getElementById('firstBox').style.display = "";
+        } else {
+            document.getElementById('firstBox').style.display = "none";
+        }
+    }
+
+
+</script>

@@ -4,7 +4,8 @@ from django.db.models.base import Model as Model
 from django.urls import reverse, reverse_lazy
 from django.shortcuts import redirect, render
 from .forms import ClickFollowForm
-from .models import NoticeList ,FollowList
+from .models import NoticeList ,FollowList 
+from accounts.models import User
 from django.views.generic import ListView,DetailView,TemplateView,FormView,CreateView
 
 class Index(TemplateView):
@@ -36,7 +37,7 @@ class FollowView(ListView):
     
     def get_queryset(self):
         user = self.request.user
-        queryset = FollowList.objects.filter(follow=user.id)
+        queryset = FollowList.objects.filter(follow=user.id)#.values_list("follow_name").order_by("follow_name").distinct()
         return queryset
     
     def post(self, request, *args, **kwargs):
@@ -58,35 +59,57 @@ class Follow_erView(ListView):
     context_object_name = "erlist"
 
     def get_queryset(self):
-            user = self.request.user
-            queryset = FollowList.objects.filter(follow_er=user.id)
-            return queryset    
+        user = self.request.user
+        queryset = FollowList.objects.filter(follow_er=user.id)#.values_list("follow_er_name").order_by("follow_er_name").distinct()
+        return queryset    
     
-class ClickFollowView(FormView):#CreateView):
+class ClickFollowView(TemplateView):#CreateView):
     template_name = "contents/test_cf.html"
-    form_class = ClickFollowForm
+    # form_class = ClickFollowForm
     success_url = reverse_lazy("accounts:index")
+    model = FollowList,User
 
     def form_valid(self, form):
-        # This method is called when valid form data has been POSTed.
-        # It should return an HttpResponse.
-        # form.send_email()
         return super().form_valid(form)
-    # def get(self, request, *args, **kwargs):
-    #     context = {
-    #         'message': "Hello World! from View!!",
+    
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add in a QuerySet of all the books
+        user = self.request.user
+        context["follow_list"] = FollowList.objects.filter(follow_er=user.id).values("follow_er")
+        return context
+
+    # def index(request):
+    #     a = []
+    #     user = self.request.user
+    #     dataset = FollowList.objects.get(follow_er=user.id)
+    #     print(type(dataset))
+    #     dataset = list(dataset)
+    #     print(type(dataset))
+    #     print(dataset)
+    #     for i in range(len(dataset)):
+    #         a.append()
+    #     data = {
+    #         "idlist":a
     #     }
-        # return render(request, 'contents:test_f.html', context)
+    #     return render(request, 'app/index.html', {'data_json': json.dumps(data)})
+    
     
     def post(self, request, *args, **kwargs):
-            context = {
-                'message': "POST method OK!!",
-            }
-            print("uid:"+str(request.POST["uid"]))
-            
-            try:
-                return render(request, 'contents:test_f.html', context)
-            except:
-                 return redirect('contents:test_f.html')
-            
-
+        id= request.POST["uid"]
+        uuser=User.objects.get(id=id)#get(id=id)
+        print("u:id"+str(id))
+        print("u:name"+str(uuser.screen_name))
+        print("m:id"+str(self.request.user.id))
+        print("m:name"+str(self.request.user.screen_name))
+        a = FollowList(
+            follow_er=int(id),
+            follow_er_name=str(uuser.screen_name),
+            follow=int(self.request.user.id),
+            follow_name=str(self.request.user.screen_name)
+            )
+        print("db:"+str(a))
+        a.save()
+        return redirect(reverse('contents:test_follow'))
+    
