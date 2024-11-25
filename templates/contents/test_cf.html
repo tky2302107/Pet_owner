@@ -1,11 +1,13 @@
 <body>
-    <h3>ユーザーフォーム</h3>
+    <h3>ユーザー詳細、投稿詳細等に機能として追加</h3>
     
         <form  method="post">
             {% csrf_token %}
             <input id="uid" name="uid" type="hidden" value=1 ></input>
             <input type="submit" value="↑フォローする">
         </form>
+        <a href="{% url 'contents:follow' %}" class="btn btn-link btn-block" target="_self">フォローリストへ</a>
+        <a href="{% url 'accounts:index' %}" class="btn btn-link btn-block" target="_self">メインページへ戻る</a>
 </body>
 <script type="text/javascript">
     function f0(){
