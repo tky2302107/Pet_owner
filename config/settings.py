@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'accounts',
     'chat',
     'post',
-    'contents'
+    'contents',
 ]
 
 MIDDLEWARE = [

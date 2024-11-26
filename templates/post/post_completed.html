@@ -1,23 +1,19 @@
 <!--　削除完了画面　-->
-<html lang="ja">
-    <link rel="stylesheet" href="../../static/admin/css/completed.css">
-<head>
- 
-    <title>投稿完了画面</title>
-   
-
-</head>
+{% extends "all_base.html" %}
 
 
-<body>
+{%block title%}投稿完了{% endblock %}
 
-    <div class="box">
-        <p>投稿が完了しました</p>
+{% block style %}{% load static %}<link rel="stylesheet" href="{% static 'admin/css/completed.css' %}">{% endblock %}
+
+{% block contents %}
+    <div class="complete">
+        <div class="box">
+            <p>投稿が完了しました</p>
+        </div>
+
+        <button onclick="location.href='{% url 'accounts:menu'%}'" class="box2" type="button" >
+            メイン画面へ戻る
+        </button>
     </div>
-
-    <button onclick="location.href='main.html'" class="box2" type="button" >
-        メイン画面へ戻る
-    </button>
-
-</body>
-</html>
+{% endblock %}
