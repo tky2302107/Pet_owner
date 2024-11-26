@@ -7,12 +7,20 @@
 
 {% block contents %}
 
-    <div class="box">
+    {% comment %} <div class="box">
         <p>ポイントの交換が完了しました</p>
     </div>
 
     <button onclick="location.href='exchange_point.html'" class="box2" type="button" >
         ポイント交換画面へ戻る
-    </button>
+    </button> {% endcomment %}
 
+    <div class="box"><h3>Thank you!</h3></div>
+    <div>{{ your_points }}&nbsp;ポイント募金しました。
+    サイト全体の募金総額は&nbsp;{{ fund_sum }}&nbsp;ポイントです。</div>
+    <div>月末に保護団体〇〇に送金され、動物保護活動に活用されます。</div>
+    <p style="font-size: 12px;">※ポイントは&nbsp;◯ポイント&nbsp;=&nbsp;◯円&nbsp;換算です。</p>
+    <button onclick="location.href='{% url 'contents:index' %}'" class="box2" type="button" >
+        ホーム画面へ戻る
+    </button>
 {% endblock %}

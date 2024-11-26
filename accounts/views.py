@@ -41,7 +41,8 @@ class MainPage(TemplateView):
     template_name = 'main.html'
     
 class ExchangePoint(UpdateView):
-    template_name = 'accounts/p1.html'
+    # template_name = 'accounts/p1.html'
+    template_name = "contents/exchange_point.html"
     model = User,fund
 
     def get(self, request, **kwargs):
@@ -63,7 +64,8 @@ class ExchangePoint(UpdateView):
     
     
 class ExchangePointComplete(UpdateView):
-    template_name = 'accounts/p2.html'
+    # template_name = 'accounts/p2.html'
+    template_name = "contents/exchange_point_complete.html"
     model = fund
     def get_queryset(self):
         return super().get_queryset()
@@ -104,7 +106,8 @@ class ExchangePointComplete(UpdateView):
 
 class MyPage(TemplateView):
     model = User
-    template_name = "accounts/m_page.html"
+    # template_name = "accounts/m_page.html"
+    template_name = "contents/my_account.html"
     def get(self, request, **kwargs):
         ctx = {
             'user': self.request.user
