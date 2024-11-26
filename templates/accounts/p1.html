@@ -2,16 +2,25 @@
 <html lang="ja">
 <ul>
     ↓
-    
     <div><h3>{{ points }} Pt{{gobi}}</h3></div>
     
-        <a href="{% url 'accounts:index' %}">メインページへ戻る</a>
-        <a href="{% url 'accounts:points_fin' %}">交換する</a>
+    <div><button id="container" onclick="location.href='{% url "accounts:points_fin" %}'" id="js">交換する</a></div>
+    <a href="{% url 'accounts:index' %}">メインページへ戻る</a>    
     
     <br>
     ↑
 </ul>
 
-
+<script >
+{% comment %} function dasable_a(){ {% endcomment %}
+var data_of_django = "{{ points }}";
+const num = parseInt(document.getElementById("{{ points }}"), 10); 
+alert(num);
+const button = document.querySelector("container");
+if（num == 0 or num == "0"）{
+    button.disabled = true
+}
+{% comment %} } {% endcomment %}
+</script>
 
 
