@@ -1,12 +1,10 @@
 <!--　ポイント交換完了画面　-->
-<html lang="ja">
-    <link rel="stylesheet" href="../../static/admin/css/completed.css">
+
+{% load static %}
 
 
-<head>
-    <title>ポイント交換完了画面</title>
-</head>
-
+{% block style %}{% load static %}<link rel="stylesheet" href="{% static 'admin/css/common.css' %}">{% endblock %}
+{% block style %}{% load static %}<link rel="stylesheet" href="{% static 'admin/css/completed.css' %}">{% endblock %}
 
 <body>
     <div class="box">
