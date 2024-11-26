@@ -1,11 +1,10 @@
 <!--　マイアカウント画面　-->
-{% load static %}
 {% extends "all_base.html" %}
+{% load static %}
 
-{% block style %}{% load static %}<link rel="stylesheet" href="{% static 'admin/css/common.css' %}">{% endblock %}   
-{% block style %}{% load static %}<link rel="stylesheet" href="{% static 'admin/css/my_account.css' %}">{% endblock %}   
+{% block style %}<link rel="stylesheet" href="{% static 'admin/css/my_account.css' %}">{% endblock %}   
 
-<body>
+{% block contents %}
 
     <div class="profile-container">
 
@@ -32,7 +31,4 @@
 
 <!-- 戻るボタン -->
 <a href="javascript:history.back()" class="return-btn">戻る</a>
-
-
-</body>
-</html>
+{% endblock %}

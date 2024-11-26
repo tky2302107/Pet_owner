@@ -5,7 +5,7 @@
     <head>
 
         <meta charset="utf-8">
-        <title>{% block title %}{% endblock %}</title>
+        <title>{% block title %}アニマルチャット{% endblock %}</title>
 
         {% comment %} <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet"> {% endcomment %}
         <link href="{% static "assets/dist/css/bootstrap.min.css" %}" rel="stylesheet">
@@ -17,17 +17,18 @@
 
         <!-- フッター -->
         <style>
-            {% comment %} /* 全体レイアウト */
-            body {
+            /* 全体レイアウト */
+            main {
                 font-family: Arial, sans-serif;
                 margin: 0;
                 padding: 0;
-                background-color: #f4f4f4;
+                background-color: white;
                 min-height: 100vh;
                 display: flex;
                 flex-direction: column;
                 box-sizing: border-box;
-            } {% endcomment %}
+                align-items: center;
+            }
 
             /* フッター */
             footer {
@@ -111,7 +112,7 @@
                         <a href="#" class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                             <!-- ユーザーアイコン -->
                             <!-- <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg> -->
-                            <img src="C:\Users\yoshida\Pictures\画像\medium_20221121_isobo_94783d724b_3ac2c5597d.jpg" alt="mdo" width="80" height="64" class="rounded-circle">
+                            <img src="https://assets.st-note.com/img/1676155437876-5NNUYKTjTE.png" alt="mdo" width="80" height="64" class="rounded-circle">
                         </a>
                     <h3 class="fs-4 text-white" style="width: 85%; text-align: center;">アニマルチャット</h3>
                     </div>
@@ -120,8 +121,8 @@
             <div class="px-3 py-2 border-bottom mb-3">
                 <div class="container d-flex flex-wrap justify-content-center">
                     <input type="button" value="ポイント"  style="margin-right: 30%;" class="btn btn-light text-dark">
-                    <form class="col-12 col-lg-auto mb-2 mb-lg-0" role="search" style="display: flex;">
-                        <input type="search" class="form-control" placeholder="検索..." aria-label="Search">
+                    <form method="get" action="{% url "post:posts_search" %}" class="col-12 col-lg-auto mb-2 mb-lg-0" role="search" style="display: flex;">
+                        <input type="search" class="form-control" placeholder="検索..." aria-label="Search" name="keyword">
                         <input type="submit" value="検索" class="btn btn-light text-dark me-2">
                     </form>
 
@@ -132,9 +133,12 @@
                 </div>
             </div>
         </header>
+
+        <!-- メインコンテンツ -->
         <main>
         {% block contents %}{% endblock %}
         </main>
+
         <!--　フッター　-->
         <footer>
         
@@ -143,7 +147,7 @@
             <!-- メニューリスト -->
             <div class="footer-menu">
                 <ul class="footer-menu-list">
-                    <li><a href="#">ホーム画面へ</a></li>
+                    <li><a href="/">ホーム画面へ</a></li>
                     <li><a href="#">利用規約</a></li>
                     <li><a href="#">プライバシーポリシー</a></li>
                 </ul>
