@@ -1,23 +1,14 @@
 <!--　削除完了画面　-->
-<html lang="ja">
-    <link rel="stylesheet" href="../../static/admin/css/completed.css">
-<head>
- 
-    <title>削除完了画面</title>
-   
+{% extends "all_base.html" %}
 
-</head>
+{% block title %}削除完了{% endblock %}
 
-
-<body>
-
+{% block contents %}
     <div class="box">
         <p>削除が完了しました</p>
     </div>
 
-    <button onclick="location.href='post_history.html'" class="box2" type="button" >
+    <button onclick="location.href='{% url 'post:posts_history' %}'" class="box2">
         投稿履歴へ戻る
     </button>
-
-</body>
-</html>
+{% endblock %}

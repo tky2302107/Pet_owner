@@ -17,17 +17,18 @@
 
         <!-- フッター -->
         <style>
-            {% comment %} /* 全体レイアウト */
-            body {
+            /* 全体レイアウト */
+            main {
                 font-family: Arial, sans-serif;
                 margin: 0;
                 padding: 0;
-                background-color: #f4f4f4;
+                background-color: white;
                 min-height: 100vh;
                 display: flex;
                 flex-direction: column;
                 box-sizing: border-box;
-            } {% endcomment %}
+                align-items: center;
+            }
 
             /* フッター */
             footer {
@@ -132,9 +133,12 @@
                 </div>
             </div>
         </header>
+
+        <!-- メインコンテンツ -->
         <main>
         {% block contents %}{% endblock %}
         </main>
+
         <!--　フッター　-->
         <footer>
         
@@ -143,7 +147,7 @@
             <!-- メニューリスト -->
             <div class="footer-menu">
                 <ul class="footer-menu-list">
-                    <li><a href="#">ホーム画面へ</a></li>
+                    <li><a href="/">ホーム画面へ</a></li>
                     <li><a href="#">利用規約</a></li>
                     <li><a href="#">プライバシーポリシー</a></li>
                 </ul>

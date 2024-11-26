@@ -1,137 +1,45 @@
-<!--　メインメニュー画面　-->
-<!DOCTYPE html>
-<html lang="ja">
-    
-<link rel="stylesheet" href="../../static/admin/css/common.css">
-<link rel="stylesheet" href="../../static/admin/css/post_history.css">
-<link href="../header/画面/css/headers.css" rel="stylesheet">
-<link href="../header/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+<!--　投稿履歴画面　-->
+{% extends "all_base.html" %}
+{% load static %}
 
+{% block title %}投稿履歴{% endblock %}
 
-    
-<head>  
+{% block sytle %}<link href="{% static "post/css/post_history.css" %}" rel="stylesheet">{% endblock %}
 
-    <meta charset="utf-8">
-    <meta name="description" content="">
-    <meta name="author" content="Koki Yoshida">
-    <title>xxxxxxxxxxx</title>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Layout Design</title>
-
-
-</head>
-<body>
-
-    
-    <!-- Custom styles for this template -->
-    
-
-  <header class="headers">
-    <div class="px-3 py-2 text-bg-dark border-bottom">
-      <div class="container">
-        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-          <a href="../contents/my_account.html" class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-            <!-- <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg> -->
-            <img src="C:\Users\yoshida\Pictures\画像\medium_20221121_isobo_94783d724b_3ac2c5597d.jpg" alt="mdo" width="80" height="64" class="rounded-circle">
-          </a>
-          <h3 class="fs-4 text-white" style="width: 85%; text-align: center;">xxxxxxxxxxx</h3>
-        </div>
-      </div>
-    </div>
-    <div class="px-3 py-2 border-bottom mb-3">
-      <div class="container d-flex flex-wrap justify-content-center">
-        <input type="button" value="ポイント"  style="margin-right: 30%;" class="btn btn-light text-dark">
-        <form class="col-12 col-lg-auto mb-2 mb-lg-0" role="search" style="display: flex;">
-          <input type="search" class="form-control" placeholder="検索..." aria-label="Search">
-          <select class="btn btn-light">
-            <option value="カテゴリ">カテゴリ</option>
-            <option value="犬">犬</option>
-            <option value="猫">猫</option>
-            <option value="鳥">鳥</option>
-          </select>
-          <input type="submit" value="検索" class="btn btn-light text-dark me-2">
-        </form>
-
-        <div class="text-end" style="margin-left: auto;">
-          <button onclick="location.href='../accounts/login.html'" type="button" class="btn btn-light text-dark me-2">ログイン</button>
-          <button onclick="location.href='../accounts/signup.html'" type="button" class="btn btn-primary">新規作成</button>
-        </div>
-      </div>
-    </div>
-  </header>
-
-</body>
-
-<body>
-
+{% block contents %}
     <!-- 投稿履歴コンテナ -->
     <div class="history-container">
         <h2 class="history-title">投稿履歴</h2>
 
-        <!-- 投稿1 -->
-        <div class="post">
-            <img src="https://via.placeholder.com/100" alt="投稿画像">
-            <div class="post-content">
-                <p class="post-title">過去の投稿タイトル1</p>
-                <p class="post-text">投稿内容</p>
+        <!-- 投稿履歴がある場合 -->
+        {% if posts %}
+          <!-- 投稿表示 -->
+          {% for post in posts %}
+            <!-- 投稿 -->
+            <div class="post">
+                <!-- 画像 -->
+                {% if post.image %}
+                    <img src="/media/{{ post.image }}">
+                {% endif %}
+                <!-- 動画 -->
+                {% if post.video %}
+                    <video src="/media/{{ post.video }}" controls></video>
+                {% endif %}
+                <div class="post-content">
+                    <!-- 投稿日 -->
+                    <p class="post-title">{{ post.post_date }}</p>
+                    <!-- 投稿文 -->
+                    <a class="post-text" href="{% url 'post:posts_detail' post.pk %}">{{ post.post }}</a>
+                </div>
             </div>
-        </div>
-
-        <!-- 投稿2 -->
-        <div class="post">
-            <img src="https://via.placeholder.com/100" alt="投稿画像">
-            <div class="post-content">
-                <p class="post-title">過去の投稿タイトル2</p>
-                <p class="post-text">投稿内容2</p>
-            </div>
-        </div>
-
-        <!-- 投稿3 -->
-        <div class="post">
-            <img src="https://via.placeholder.com/100" alt="投稿画像">
-            <div class="post-content">
-                <p class="post-title">過去の投稿タイトル3</p>
-                <p class="post-text">投稿内容3</p>
-            </div>
-        </div>
-
-        <!-- 投稿4 -->
-        <div class="post">
-            <img src="https://via.placeholder.com/100" alt="投稿画像">
-            <div class="post-content">
-                <p class="post-title">過去の投稿タイトル4</p>
-                <p class="post-text">投稿内容4</p>
-            </div>
-        </div>
+          {% endfor %}
+        <!-- 投稿履歴がない場合 -->
+        {% else %}
+          <!-- メッセージ -->
+          投稿はありません。
+        {% endif %}
     </div>
 
     <!-- 戻るボタン -->
-    <a href="javascript:history.back()" class="return-btn">戻る</a>
-
-<!-- フッター -->
-<footer class="post_history-footer">
-    <h3>システム名</h3>  
-
-    <!-- メニューリスト -->
-    <div class="footer-menu">
-        <ul class="footer-menu-list">
-            <li><a href="#">ホーム画面へ</a></li>
-            <li><a href="#">利用規約</a></li>
-            <li><a href="#">プライバシーポリシー</a></li>
-        </ul>
-    </div>
-
-    <!-- お問い合わせ情報 -->
-    <div class="contact">
-        <p>お問い合せ先<b>〒000-0000</b> 電話📳<b>000-0000-0000</b></p>
-    </div>
-    
-    <!-- 著作権表示 -->
-    <div class="copyright">
-        <p>© 2024 システム名 Inc. All Rights Reserved.</p>
-    </div>
-</footer>
-</body>
-</html>
+    <button onclick="location.href='{% url 'contents:index' %}'">戻る</button>
+{% endblock %}
