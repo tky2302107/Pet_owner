@@ -44,14 +44,14 @@
 }
 
 /* 全体レイアウト */
- body {
+ /* body {
     font-family: Arial, sans-serif;
     background-color: #ffffff;
     display: flex;
     justify-content: center;
     padding: 20px;
     margin: 0;
-}
+} */
 
 /* メインコンテナ */
 .main-container {
