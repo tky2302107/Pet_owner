@@ -12,18 +12,22 @@
         <!-- アイコンと編集ボタン -->
         <div class="icon-edit-container">
             <div class="profile-icon"></div>
-            <a href="edit_profile.html" class="edit-btn">編集</a>
+            {% comment %} <a href="edit_profile.html" class="edit-btn">編集</a> {% endcomment %}
         </div>
         
         <!-- プロフィール情報とボタン -->
         <div class="profile-info">
-            <div class="profile-name">ユーザー名</div>
+            <div class="profile-name">{{user.screen_name}}</div>
             <div class="profile-bio">こちらにプロフィール情報が表示されます。</div>
             
             <div class="btn-container">
-                <a href="follower_list.html" class="btn follower-btn">フォロワー</a>
+                {% comment %} <a href="follower_list.html" class="btn follower-btn">フォロワー</a>
                 <a href="follow_list.html" class="btn follow-btn">フォロー中</a>
                 <a href="exchange_point.html" class="btn point-btn">ポイント</a>
+                <a href="{% url 'post:posts_history' %}" class="btn history-btn">投稿履歴</a> {% endcomment %}
+                <a href= '{% url "contents:follow_er" %}' class="btn follower-btn">フォロワー</a>
+                <a href= '{% url "contents:follow" %}' class="btn follow-btn">フォロー中</a>
+                <a href= '{% url "accounts:points"%}' class="btn point-btn">ポイント</a>
                 <a href="{% url 'post:posts_history' %}" class="btn history-btn">投稿履歴</a>
             </div>
         </div>
