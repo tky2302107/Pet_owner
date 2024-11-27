@@ -25,10 +25,10 @@
                 <a href="follow_list.html" class="btn follow-btn">フォロー中</a>
                 <a href="exchange_point.html" class="btn point-btn">ポイント</a>
                 <a href="{% url 'post:posts_history' %}" class="btn history-btn">投稿履歴</a> {% endcomment %}
-                <a href= '{% url "contents:follow_er" %}' class="btn follower-btn">フォロワー</a>
-                <a href= '{% url "contents:follow" %}' class="btn follow-btn">フォロー中</a>
-                <a href= '{% url "accounts:points"%}' class="btn point-btn">ポイント</a>
-                <a href="{% url 'post:posts_history' %}" class="btn history-btn">投稿履歴</a>
+                <a href="{% url "contents:follow_er" %}" class="btn btnn follower-btn">フォロワー</a>
+                <a href="{% url "contents:follow" %}" class="btn btnn follow-btn">フォロー中</a>
+                <a href="{% url "accounts:points" %}" class="btn btnn point-btn">ポイント</a>
+                <a href="{% url 'post:posts_history' %}" class="btn btnn history-btn">投稿履歴</a>
             </div>
         </div>
     </div>
