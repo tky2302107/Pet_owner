@@ -23,6 +23,7 @@ from .forms import (
 )
 from django.core.mail import send_mail
 from django.contrib.auth import login, authenticate
+import time
 # from django.contrib.auth import get_user_model
 # User = get_user_model() 
 
@@ -76,7 +77,11 @@ class ExchangePointComplete(UpdateView):
         cursor.execute('''SELECT points_sum from accounts_fund where id=1''')
         row = list(cursor.fetchall())
         # 取得したタプルから数値だけ抽出し、intに変換する
+        print("\n!!!!!!!!!!!!!!!!!!!!!\nDB内が一部のデータがNullの場合、\nエラーが発生する場合があります。\nその場合は、DB「accounts_fund」テーブルに \nid=1, points_sum=0 \nを登録してページのリロードを行ってください。\n!!!!!!!!!!!!!!!!!!!!!\n")
+        print(row[0])
         old_num = int(row[0][0])
+        
+        
         # 合計ポイントに新たなポイントを加算する
         new_num = int(old_num)+int(ctx_points)
         # if box is None:

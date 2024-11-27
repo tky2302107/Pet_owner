@@ -47,7 +47,7 @@ class FollowView(ListView):
         a = FollowList.objects.filter(
             follow_er=int(id),
             follow=int(self.request.user.id)
-            ).delete()  
+            ).delete()
         print("db:"+str(a))
         return redirect(reverse('contents:follow'))
 

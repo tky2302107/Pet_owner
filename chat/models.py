@@ -32,7 +32,7 @@ class Room(models.Model):
     host = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(gettext_lazy('ルーム名'), max_length=64)
     description = models.TextField(gettext_lazy('説明文'), max_length=128)
-    participants = models.ManyToManyField(User, related_name='rooms', verbose_name=gettext_lazy('参加者(Ctrl キーを押しながらマウスで選択)'), blank=True)
+    participants = models.ManyToManyField(User, related_name='rooms', verbose_name=gettext_lazy('参加者を選択'), blank=True)
     created_at = models.DateTimeField(gettext_lazy('Created time'), default=timezone.now)
 
     objects = RoomQueryset.as_manager()
@@ -52,10 +52,13 @@ class Room(models.Model):
     def is_assigned(self, user=None):
         try:
             _ = self.participants.all().get(pk=user.pk)
+            print(self.participants.all().get(pk=user.pk))
             return True
         except User.DoesNotExist:
+            print(user)
             return self.host == user
         except Exception:
+            print("false")
             return False
 
 class MessageManager(models.Manager):

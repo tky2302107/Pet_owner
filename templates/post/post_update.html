@@ -8,6 +8,7 @@
 
 {% block contents %}
 <form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
   <div class="post-container">
     <!-- 動画・画像アップロード -->
       {% csrf_token %}
@@ -26,7 +27,7 @@
 
         <div class="post-button-group">
           <button class="post2-btn post2-back-btn" type="button" onclick="window.history.back()">戻る</button>
-          <button class="post2-btn post2-post-btn" type="submit">投稿する</button>    
+          <button class="post2-btn post2-post-btn" type="submit">更新する</button>    
         </div>
       </div>
   </div>

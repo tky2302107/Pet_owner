@@ -1,12 +1,12 @@
 <!--　ポイント交換完了画面　-->
-
+{% extends "all_base.html" %}
 {% load static %}
 
 
-{% block style %}{% load static %}<link rel="stylesheet" href="{% static 'admin/css/common.css' %}">{% endblock %}
-{% block style %}{% load static %}<link rel="stylesheet" href="{% static 'admin/css/completed.css' %}">{% endblock %}
+{% block style %}<link rel="stylesheet" href="{% static 'admin/css/completed.css' %}">{% endblock %}
 
-<body>
+{% block contents %}
+
     <div class="box">
         <p>ポイントの交換が完了しました</p>
     </div>
@@ -15,5 +15,4 @@
         ポイント交換画面へ戻る
     </button>
 
-</body>
-</html>
+{% endblock %}
