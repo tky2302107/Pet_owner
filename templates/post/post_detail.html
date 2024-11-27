@@ -13,12 +13,16 @@
       <div class="box box2">{{ post.account_id }}</div>
       <div class="box box3">
         <!-- 画像 -->
-        {% if post.image %}
-          <img src="/media/{{ post.image }}">
-        {% endif %}
-        <!-- 動画 -->
-        {% if post.video %}
-          <video src="/media/{{ post.video }}" controls></video>
+        {% if post.image or post.video %}
+          {% if post.image %}
+            <img src="/media/{{ post.image }}">
+          {% endif %}
+          <!-- 動画 -->
+          {% if post.video %}
+            <video src="/media/{{ post.video }}" controls></video>
+          {% endif %}
+        {% else %}
+          Not image
         {% endif %}
       </div>
     </div>
