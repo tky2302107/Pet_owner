@@ -65,11 +65,11 @@
     gap: 10px;
 }
 
-.btn {
+.btnn {
     flex: 1;
     padding: 10px;
     font-size: 0.9em;
-    
+    color: black;
     text-align: center;
     text-decoration: none;
     border-radius: 5px;
