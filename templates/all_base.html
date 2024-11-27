@@ -142,7 +142,7 @@
         <!--　フッター　-->
         <footer>
         
-            <h3>アニマルチャット</h3>
+            <a style="text-decoration:none;" href="{% url 'accounts:menu' %}" class="btn btn-link btn-block" target="_self"><h3>アニマルチャット</h3></a>
 
             <!-- メニューリスト -->
             <div class="footer-menu">
@@ -161,6 +161,9 @@
             <!-- 著作権表示 -->
             <div class="copyright">
                 <p>© 2024 システム名 Inc. All Rights Reserved.</p>
+            </div>
+            <div>
+                <a style="text-decoration:none;" href="{% url 'accounts:index' %}" class="btn btn-link btn-block" target="_self"><p style="font-size:8px">仮ホーム</p></a>
             </div>
         </footer>
     </body>
