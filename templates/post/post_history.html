@@ -15,6 +15,12 @@
           {% for post in posts %}
             <!-- 投稿 -->
             <div class="post">
+                <div class="post-content">
+                  <!-- 投稿文 -->
+                  <a class="post-text" href="{% url 'post:posts_detail' post.pk %}">{{ post.post }}</a>
+                  <!-- 投稿日 -->
+                  <p class="post-title">{{ post.post_date }}</p>
+                </div>
                 <!-- 画像 -->
                 {% if post.image %}
                     <img src="/media/{{ post.image }}">
@@ -23,12 +29,13 @@
                 {% if post.video %}
                     <video src="/media/{{ post.video }}" controls></video>
                 {% endif %}
-                <div class="post-content">
+                <!-- フッターで見えなかったので今だけ移動しました -->
+                {% comment %} <div class="post-content">
                     <!-- 投稿日 -->
                     <p class="post-title">{{ post.post_date }}</p>
                     <!-- 投稿文 -->
                     <a class="post-text" href="{% url 'post:posts_detail' post.pk %}">{{ post.post }}</a>
-                </div>
+                </div> {% endcomment %}
             </div>
           {% endfor %}
         <!-- 投稿履歴がない場合 -->

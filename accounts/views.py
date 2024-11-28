@@ -78,6 +78,7 @@ class ExchangePointComplete(UpdateView):
         cursor = sqlite3.connect("db.sqlite3").cursor()
         cursor.execute('''SELECT points_sum from accounts_fund where id=1''')
         row = list(cursor.fetchall())
+        cursor.close()
         # 取得したタプルから数値だけ抽出し、intに変換する
         print("\n!!!!!!!!!!!!!!!!!!!!!\nDB内が一部のデータがNullの場合、\nエラーが発生する場合があります。\nその場合は、DB「accounts_fund」テーブルに \nid=1, points_sum=0 \nを登録してページのリロードを行ってください。\n!!!!!!!!!!!!!!!!!!!!!\n")
         print(row[0])
@@ -240,11 +241,20 @@ class SetUpView(CreateView):
 
 class CleanUpView(DeleteView):
    template_name = "accounts/login.html"
-   def get(self, request, *args, **kwargs):
-       if not request.user.is_authenticated:
-           return redirect('accounts:login')
-       user = request.user
-       user.delete()
-       return redirect('accounts:login')
+   success_url = reverse_lazy("accounts:points_fin")
+   def get(self, request, **kwargs):
+        cursor = sqlite3.connect("db.sqlite3").cursor()
+        id = str(self.request.user.id)
+        print("del_user: "+str(id))
+        cursor.execute('UPDATE accounts_user SET is_active=0 WHERE email=?;',id)
+        cursor.fetchall()        
+        cursor.close()
+        
+        return redirect('accounts:index')
 
+#    def get(self, request, *args, **kwargs):
+#        if not request.user.is_authenticated:
+#            return redirect('accounts:login')
+#        user = request.user
+#        user.delete()
 

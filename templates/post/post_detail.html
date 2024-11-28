@@ -13,12 +13,16 @@
       <div class="box box2">{{ post.account_id }}</div>
       <div class="box box3">
         <!-- 画像 -->
-        {% if post.image %}
-          <img src="/media/{{ post.image }}">
-        {% endif %}
-        <!-- 動画 -->
-        {% if post.video %}
-          <video src="/media/{{ post.video }}" controls></video>
+        {% if post.image or post.video %}
+          {% if post.image %}
+            <img src="/media/{{ post.image }}">
+          {% endif %}
+          <!-- 動画 -->
+          {% if post.video %}
+            <video src="/media/{{ post.video }}" controls></video>
+          {% endif %}
+        {% else %}
+          Not image
         {% endif %}
       </div>
     </div>
@@ -32,5 +36,5 @@
   {% if request.user.id == post.account_id.id %}
     <button onclick="location.href='{% url 'post:posts_delete' post.id %}'">削除</button>
   {% endif %}
-  <button onclick="location.href='{% url 'post:posts_history' %}'">戻る</button>
+  <button onclick="location.href='{{ request.META.HTTP_REFERER }}'">戻る</button>
 {% endblock %}
