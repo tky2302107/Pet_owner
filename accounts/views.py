@@ -98,8 +98,8 @@ class ExchangePointComplete(UpdateView):
         data = {"points_sum":new_num}
         fund.objects.filter(pk=1).update(**data)
         uid = self.request.user.id
-        data2 = {"points":0}
-        User.objects.filter(pk=uid).update(**data2)
+        points = {"points":0}
+        User.objects.filter(pk=uid).update(**points)
         return self.render_to_response(ctx)
     
 
