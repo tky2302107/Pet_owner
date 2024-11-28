@@ -63,9 +63,8 @@ class Follow_erView(ListView):
         queryset = FollowList.objects.filter(follow_er=user.id)#.values_list("follow_er_name").order_by("follow_er_name").distinct()
         return queryset    
     
-class ClickFollowView(TemplateView):#CreateView):
+class ClickFollowView(TemplateView):
     template_name = "contents/test_cf.html"
-    # form_class = ClickFollowForm
     success_url = reverse_lazy("accounts:index")
     model = FollowList,User
 
@@ -86,13 +85,13 @@ class ClickFollowView(TemplateView):#CreateView):
         print("u:name"+str(uuser.screen_name))
         print("m:id"+str(self.request.user.id))
         print("m:name"+str(self.request.user.screen_name))
-        a = FollowList(
+        fl = FollowList(
             follow_er=int(id),
             follow_er_name=str(uuser.screen_name),
             follow=int(self.request.user.id),
             follow_name=str(self.request.user.screen_name)
             )
-        print("db:"+str(a))
-        a.save()
+        print("db:"+str(fl))
+        fl.save()
         return redirect(reverse('contents:test_follow'))
     
