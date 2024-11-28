@@ -24,8 +24,6 @@ from .forms import (
 from django.core.mail import send_mail
 from django.contrib.auth import login, authenticate
 import time
-# from django.contrib.auth import get_user_model
-# User = get_user_model() 
 
 
 class Index(TemplateView):
@@ -204,8 +202,6 @@ class EmailChangeComplete(LoginRequiredMixin, TemplateView):
             return super().get(request, **kwargs)
     
 
-
-
 class SetUpView(CreateView):
     """ ユーザー登録用ビュー """
     form_class = SetUpForm # 作成した登録用フォームを設定
@@ -222,39 +218,9 @@ class SetUpView(CreateView):
         login(self.request, user)
         return response
     
-
-# from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-
-# class OnlyYouMixin(UserPassesTestMixin):
-#     raise_exception = True
-
-#     def test_func(self):
-#         user = self.request.user
-#         return user.screen_name == self.kwargs['screen_name'] or user.is_superuser
-
-# class UserDeleteView(OnlyYouMixin, DeleteView):
-    # template_name = "accounts/u_delete.html"
-    # success_url = reverse_lazy("accounts:login")
-    # model = User
-    # slug_field = 'screen_name'
-    # slug_url_kwarg = 'screen_name'
-
-class CleanUpView(DeleteView):
-   template_name = "accounts/login.html"
-   success_url = reverse_lazy("accounts:points_fin")
-   def get(self, request, **kwargs):
-        cursor = sqlite3.connect("db.sqlite3").cursor()
-        id = str(self.request.user.id)
-        print("del_user: "+str(id))
-        cursor.execute('UPDATE accounts_user SET is_active=0 WHERE email=?;',id)
-        cursor.fetchall()        
-        cursor.close()
-        
-        return redirect('accounts:index')
-
-#    def get(self, request, *args, **kwargs):
-#        if not request.user.is_authenticated:
-#            return redirect('accounts:login')
-#        user = request.user
-#        user.delete()
-
+class UserDeleteView(TemplateView):#ユーザー退会
+    model = User        
+    def get(self, request, **kwargs):
+        data = {"is_active":0}
+        User.objects.filter(id=self.request.user.id).update(**data)
+        return redirect("accounts:logout")
