@@ -36,5 +36,5 @@
   {% if request.user.id == post.account_id.id %}
     <button onclick="location.href='{% url 'post:posts_delete' post.id %}'">削除</button>
   {% endif %}
-  <button onclick="location.href='{% url 'post:posts_history' %}'">戻る</button>
+  <button onclick="location.href='{{ request.META.HTTP_REFERER }}'">戻る</button>
 {% endblock %}
