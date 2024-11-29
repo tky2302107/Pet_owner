@@ -8,7 +8,8 @@ import datetime
 
 def notice():#https://techis.jp/guide/django/django_insert_data
     pass
-""" #チャットの投稿を通知に反映する部分
+""" 
+    #チャットの投稿を通知に反映する部分
     model = User,Message,NoticeList
     dt_now = datetime.datetime.now()
     
