@@ -66,6 +66,12 @@ class User(AbstractBaseUser, PermissionsMixin):
         null=True,
             
     )
+    pt_give = models.IntegerField(
+        default=0,
+        blank=True,
+        null=True,
+            
+    )
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []

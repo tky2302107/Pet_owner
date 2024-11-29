@@ -9,6 +9,7 @@ daphne = "*"
 django = "*"
 pillow = "*"
 django-cleanup = "*"
+apscheduler = "*"
 
 [dev-packages]
 

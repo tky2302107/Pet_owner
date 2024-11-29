@@ -23,11 +23,28 @@ from .forms import (
 )
 from django.core.mail import send_mail
 from django.contrib.auth import login, authenticate
-import time
-
+import datetime
 
 class Index(TemplateView):
     template_name = 'accounts/index.html'
+    model = User
+    def get_queryset(self):
+        return super().get_queryset()
+
+    def get(self, request, **kwargs):
+        id = self.request.user.id
+        if User.objects.get(id=id).pt_give == 1:
+            pt = {
+                "points":(3+int(self.request.user.points)),
+                "pt_give":0
+                }
+            User.objects.filter(id=self.request.user.id).update(**pt)
+            print("point_plus")
+        else:
+            print("point_pass")
+    
+        ctx={"id":id}
+        return self.render_to_response(ctx)    
 
 class LoginPage(LoginView):
     template_name = 'accounts/login.html'
@@ -81,8 +98,6 @@ class ExchangePointComplete(UpdateView):
         print("\n!!!!!!!!!!!!!!!!!!!!!\nDB内が一部のデータがNullの場合、\nエラーが発生する場合があります。\nその場合は、DB「accounts_fund」テーブルに \nid=1, points_sum=0 \nを登録してページのリロードを行ってください。\n!!!!!!!!!!!!!!!!!!!!!\n")
         print(row[0])
         old_num = int(row[0][0])
-        
-        
         # 合計ポイントに新たなポイントを加算する
         new_num = int(old_num)+int(ctx_points)
         # if box is None:
