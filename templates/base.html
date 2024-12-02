@@ -16,55 +16,98 @@
 </head>
 {% comment %} <!-- {% extends "header/画面/base.html" %} --> {% endcomment %}
 
-<body>
+<header>
+    <style>
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #ffffff; /* ヘッダーの背景色を指定する */
+            {% comment %} padding: 10px 20px; {% endcomment %}
+            z-index:1;
+            {% comment %} background-color: #333; {% endcomment %}
+            color: #fff;
+            {% comment %} display: flex; {% endcomment %}
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: nowrap;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2);
+            font-size: 0.9em;
+        }
+    </style>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="{% url 'accounts:index' %}">Animal Chat Demo</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse"
-                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        {% if user.is_authenticated %}
+            <a class="navbar-brand" href="{% url 'accounts:index' %}">Animal Chat Demo</a>
+        {% else %}
+            <a class="navbar-brand" href="{% url 'accounts:login' %}">Animal Chat Demo</a>
+        {% endif %}
+        <div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-            {% comment %} {% if user.is_authenticated %}
-                <li>
-                    <a class="nav-item nav-link" href="{% url 'accounts:logout' %}">
-                        Logout
-                    </a>
-                </li>
-            {% else %}
-                <li class="nav-item">
-                    <a class="nav-item nav-link" href="{% url 'accounts:login' %}">
-                        Login
-                    </a>
-                </li>
-            {% endif %} {% endcomment %}
-            {% if user.is_authenticated %}
-                {% comment %} こんにちは {{user.username}} さん {% endcomment %}
-                {% comment %} <form method="post" action="{% url 'accounts:logout' %}">
-                    <a class="nav-item nav-link" type="submit">
+                <br>
+                <form method="get" action="{% url "post:posts_search" %}" class="col-12 col-lg-auto mb-2 mb-lg-0" role="search" style="display: flex;">
+                    <input type="search" class="form-control" placeholder="検索..." aria-label="Search" name="keyword" style="width:100%;">
+                    <input type="submit" value="検索" class="btn btn-light text-dark me-2">
+                </form>
+
+                {% if user.is_authenticated %}
+
+                    <form method="post" action="{% url 'post:posts' %}" >
                         {% csrf_token %}
-                        <label>Logout</label>
-                    </a>
-                </form> {% endcomment %}
-                <form method="post" action="{% url 'accounts:logout' %}">
-                    {% csrf_token %}
-                    <button type="submit">ログアウト</button>
-                </form>
-            {% else %}
-                <form method="post" action="{% url 'accounts:login' %}">
-                    {% csrf_token %}
-                    <button type="submit">ログイン</button>
-                </form>
-                {% comment %} <a href="{% url 'accounts:login' %}">ログイン</a> {% endcomment %}
-            {% endif %}
+                        <button type="submit" class="btn btn-light text-dark me-2">投稿する</button>
+                    </form>
+                    <form method="post" action="{% url 'accounts:index' %}" >
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-light text-dark me-2">里親探し</button>
+                    </form>
+                    <form method="get" action="{% url 'accounts:mypage' %}" >
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-light text-dark me-2">マイページ</button>
+                    </form>
+                    <form method="get" action="{% url 'contents:notice_l' %}" >
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-light text-dark me-2">通知一覧</button>
+                    </form>
+                    <form method="get" action="{% url 'accounts:points' %}" >
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-light text-dark me-2">ポイント</button>
+                    </form>
+                    <form method="post" action="{% url 'accounts:login' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-light text-dark me-2">ログアウト</button>
+                    </form>
+                {% else %}
+                    <form method="post" action="{% url 'accounts:login' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-light text-dark me-2">ログイン</button>
+                    </form>
+                {% endif %}
             </ul>
         </div>
     </nav>
+</header>
+    <body>
     {# main contents #}
     <div class="container mt-3">
+        <style>
+            margin: 20px; /* bodyの外側の余白を指定する */
+            padding: 50px 10px 50px 10px; /* bodyの内側余白を指定する(上:右:下:左) */
+        </style>
+        <br>
+        <br>
         {% block content %}{% endblock %}
+        <br>
+        <br>
+        <br>
     </div>
     {# Optional JavaScript #}
     {# jQuery first, then Bootstrap JS (Bundle version) #}
@@ -75,5 +118,54 @@
     <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
     {% block bodyjs %}
     {% endblock %}
-</body>
+
+
+    <!--　フッター　-->
+    <footer>
+        <style>
+            footer {
+                position: fixed;
+                bottom: 0;
+                width: 100%;
+                height: 70px;
+                background-color: #333;
+                color: #fff;
+                padding: 10px 20px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: nowrap;
+                box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2);
+                font-size: 0.9em;
+            }
+        </style>
+            
+        {% comment %} <a style="text-decoration:none;" href="{% url 'accounts:menu' %}" class="btn btn-link btn-block" target="_self" style="left:0px;"><h3>アニマルチャット</h3></a> {% endcomment %}
+
+        <!-- メニューリスト -->
+        {% comment %} <div class="footer-menu"> {% endcomment %}
+            <ul class="footer-menu-list" style="size:10px;">
+                <li><a href="{% url 'accounts:menu' %}">ホーム画面へ</a></li>
+                <li><a href="#">利用規約</a></li>
+                <li><a href="#">プライバシーポリシー</a></li>
+            </ul>
+        {% comment %} </div> {% endcomment %}
+
+        <div>
+            <li>
+                <!-- お問い合わせ情報 -->
+                <div class="contact">
+                    <p>お問い合せ先<b>〒000-0000</b> 電話📳<b>000-0000-0000</b></p>
+                </div>
+                </li>
+            <li>
+                <!-- 著作権表示 -->
+                <div class="copyright" style="right:0px;">
+                    <p>© 2024 システム名 Inc. All Rights Reserved.</p>
+                </div>
+            </li>
+        </div>
+    </footer>
+
+
 </html>
