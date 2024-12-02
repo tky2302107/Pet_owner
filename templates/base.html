@@ -56,7 +56,7 @@
                 <br>
                 <form method="get" action="{% url "post:posts_search" %}" class="col-12 col-lg-auto mb-2 mb-lg-0" role="search" style="display: flex;">
                     <input type="search" class="form-control" placeholder="検索..." aria-label="Search" name="keyword" style="width:100%;">
-                    <input type="submit" value="検索" class="btn btn-light text-dark me-2">
+                    <input type="submit" value="検索" class="btn btn-primary ">
                 </form>
 
                 {% if user.is_authenticated %}
@@ -64,6 +64,10 @@
                     <form method="post" action="{% url 'post:posts' %}" >
                         {% csrf_token %}
                         <button type="submit" class="btn btn-light text-dark me-2">投稿する</button>
+                    </form>
+                    <form method="get" action="{% url 'chat:index' %}" >
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-light text-dark me-2">チャットをする</button>
                     </form>
                     <form method="post" action="{% url 'accounts:index' %}" >
                         {% csrf_token %}

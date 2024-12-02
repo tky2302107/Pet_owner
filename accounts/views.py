@@ -11,6 +11,7 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.sites.shortcuts import get_current_site
 from config import settings
 from .models import fund, User
+from post.models import PostInfo
 from django.db.models.query import QuerySet
 from django.shortcuts import redirect, render
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -25,13 +26,39 @@ from django.core.mail import send_mail
 from django.contrib.auth import login, authenticate
 import datetime
 
-class Index(TemplateView):
+class Index(ListView):
     template_name = 'accounts/index.html'
     model = User
     def get_queryset(self):
         return super().get_queryset()
 
-    def get(self, request, **kwargs):
+    # def get(self, request, **kwargs):
+    #     id = self.request.user.id
+    #     if User.objects.get(id=id).pt_give == 1:
+    #         pt = {
+    #             "points":(3+int(self.request.user.points)),
+    #             "pt_give":0
+    #             }
+    #         User.objects.filter(id=self.request.user.id).update(**pt)
+    #         print("point_plus")
+    #     else:
+    #         print("point_pass")
+    
+    #     ctx={"id":id}
+    #     return self.render_to_response(ctx)    
+
+    model = PostInfo # 投稿情報モデル
+    context_object_name = 'posts' # コンテキスト名
+    def get_queryset(self, **kwargs): # モデルから情報を取得
+        queryset = super().get_queryset(**kwargs) # 全取得
+        
+        # keyword = self.request.GET.get('') # 検索ワード取得
+        # if keyword is not None:
+        queryset = queryset.all() # 部分一致で検索
+        print(queryset)
+        queryset = queryset.order_by('-post_date')[0:5] # 投稿降順で並び替え&5件まで表示
+        
+        # login ボーナス
         id = self.request.user.id
         if User.objects.get(id=id).pt_give == 1:
             pt = {
@@ -43,9 +70,10 @@ class Index(TemplateView):
         else:
             print("point_pass")
     
-        ctx={"id":id}
-        return self.render_to_response(ctx)    
-
+        
+        return queryset
+    
+    
 class LoginPage(LoginView):
     template_name = 'accounts/login.html'
 

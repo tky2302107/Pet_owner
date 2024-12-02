@@ -5,7 +5,7 @@
     {% if user.is_authenticated  %}
     <div class="col-12">
         <div class="row">
-            <h3 class="h4">{{ user|stringformat:"s" }}さん, ようこそ! </h3>
+            <h3 style="text-align:center;">{{ user|stringformat:"s" }}さん, ようこそ! </h3>
         </div>
         <br>
         <div class="row">
@@ -19,28 +19,44 @@
 
                     <!-- 最新の投稿エリア -->
                     <div class="post-section">
-                        <div class="post-title">最新の投稿</div>
+                        <br>
+                        <div class="card-columns">
+                            <div class="h4">最新の投稿</div>
+                        </div>
+                        <br>
             
                         <!-- 投稿1 -->
-                        {% for data in obj_data %}
+                        
+                        {% for post in posts %}
                         <div class="post">
-                            <img src="https://via.placeholder.com/80" alt="投稿画像">
-                            {% if post.image %}
-                                <img src="/media/{{ post.image }}">
-                            {% endif %}
-                            <!-- 動画 -->
-                            {% if post.video %}
-                                <video src="/media/{{ post.video }}" controls></video>
-                            {% endif %}
-                            <div class="post-content">
-                                <div style="display: flex; align-items: center;">
-                                    <div class="user-icon"></div>
-                                    <h4>data.user</h4>
+                        <div class="card-columns">
+                            <div class="card">
+                                <div class="card-header" style="height:50px;width:auto;">
+                                        <h4>{{ post.account_id }}</h4>
                                 </div>
-                                <p>{{post.post}}この投稿の説明や内容がここに表示されます。</p>
+                                <div class="card-body" style="height:195px;">
+                                    
+                                    <div class="post-content">
+                                        <p>{{post.post}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-body">
+                                    {% if post.image %}
+                                        <img src="/media/{{ post.image }}" style="object-fit: fill; width: 300px; height: 200px;">
+                                    {% endif %}
+                                    <!-- 動画 -->
+                                    {% if post.video %}
+                                        <video src="/media/{{ post.video }}" controls></video>
+                                    {% endif %}
+                                </div>
                             </div>
                         </div>
+                        
                         {% endfor %}
+                        <br>
+                    
                     <!-- 投稿ボタンエリア -->
                     {% comment %} <div class="button-section">
                         <a href="{% url 'post:posts' %}" class="post-btn">投稿する</a>
@@ -59,32 +75,9 @@
                             </a>
                         </div>
                     </div>
-                    <div class="card">
-                        <div class="card-header">NoticeList</div>
-                        <div class="card-body">
-                            <a href="{% url 'contents:notice_l' %}" class="btn btn-link btn-block" target="_self">
-                                通知一覧
-                            </a>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-header">Points</div>
-                        <div class="card-body">
-                            <a href="{% url 'accounts:points' %}" class="btn btn-link btn-block" target="_self">
-                                ポイント交換
-                            </a>
-                        </div>
-                    </div>
+                    
                 </div>
                 <div class="card-columns">
-                    <div class="card">
-                        <div class="card-header">Mypage</div>
-                        <div class="card-body">
-                            <a href="{% url 'contents:index' %}" class="btn btn-link btn-block" target="_self">
-                                マイページへ
-                            </a>
-                        </div>
-                    </div>
                     <div class="card">
                         <div class="card-header">Error1 404</div>
                         <div class="card-body">
@@ -111,14 +104,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="card">
-                        <div class="card-header">Post</div>
-                        <div class="card-body">
-                            <a href="{% url 'post:posts' %}" class="btn btn-link btn-block" target="_self">
-                                投稿する
-                            </a>
-                        </div>
-                    </div>
+                    
                     <div class="card">
                         <div class="card-header">Mypage</div>
                         <div class="card-body">
