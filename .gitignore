@@ -17,3 +17,4 @@ config/__pycache__/
 *.sqlite3
 custom_templatetags/__pycache__/
 .vscode/
+*__pycache__/
