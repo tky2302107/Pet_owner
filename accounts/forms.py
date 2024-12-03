@@ -14,7 +14,7 @@ class UserChangeForm(ModelForm):
     class Meta:
         model = User
         fields = (
-            # 'email',
+            'icon',
             'screen_name',
         )
 
@@ -29,7 +29,7 @@ class UserChangeForm(ModelForm):
         
 
     def update(self, user):
-        # user.email = self.cleaned_data['email']
+        user.icon = self.cleaned_data['icon']
         user.screen_name = self.cleaned_data['screen_name']
         user.save()
 
@@ -57,13 +57,11 @@ class EmailChangeForm(ModelForm):
         User.objects.filter(email=email, is_active=False).delete()
         return email
     
-class PointForm(forms.ModelForm):
-    # class Meta:
-    #     model = User,fund
-    #     fields = '__all__'
-    #     # labels = {'point': 'ポイント'}
-    #     labels = {"":"","":""}
-    pass
+# class IconForm(forms.Form):
+#     icon = forms.ImageField(required=False )
+#     class Meta:
+#         model = PostInfo # 投稿情報モデル
+#         fields = ['icon']
 
 class SetUpForm(UserCreationForm):
     class Meta:
@@ -72,3 +70,4 @@ class SetUpForm(UserCreationForm):
             "screen_name",
             "email",#パスワードの項目は自動的に作られるため記述しない
         )
+

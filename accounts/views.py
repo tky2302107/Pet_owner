@@ -15,7 +15,7 @@ from post.models import PostInfo
 from django.db.models.query import QuerySet
 from django.shortcuts import redirect, render
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .forms import  EmailChangeForm, SetUpForm, UserChangeForm
+from .forms import  EmailChangeForm, SetUpForm, UserChangeForm 
 from django.contrib.auth.views import (
     LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView
 )
@@ -267,3 +267,21 @@ class UserDeleteView(TemplateView):#ユーザー退会
         data = {"is_active":0}
         User.objects.filter(id=self.request.user.id).update(**data)
         return redirect("accounts:logout")
+
+
+# class IconChangeView(UpdateView):
+#     template_name=""
+#     model = User
+#     form_class = IconForm
+#     success_url = reverse_lazy('accounts:index')
+      
+#     def form_valid(self, form):
+#         form.instance.account_id = self.request.user
+#         return super().form_valid(form)
+
+#     def get(self, request, **kwargs):
+#         icon = User.objects.filter(id=self.request.user.id).icon
+#         if icon is null:
+#             pass
+#         else:
+#             pass

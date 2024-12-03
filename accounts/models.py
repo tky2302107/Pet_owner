@@ -64,13 +64,19 @@ class User(AbstractBaseUser, PermissionsMixin):
         default=0,
         blank=True,
         null=True,
-            
     )
+
     pt_give = models.IntegerField(
         default=0,
         blank=True,
+        null=True,        
+    )
+
+    icon = models.ImageField(
+        upload_to='icon/post',
+        verbose_name='画像',
         null=True,
-            
+        blank=True
     )
 
     USERNAME_FIELD = 'email'
