@@ -48,7 +48,7 @@ class Index(ListView):
     #     return self.render_to_response(ctx)    
 
     model = PostInfo # 投稿情報モデル
-    context_object_name = 'posts' # コンテキスト名
+    context_object_name = 'ctx' # コンテキスト名
     def get_queryset(self, **kwargs): # モデルから情報を取得
         queryset = super().get_queryset(**kwargs) # 全取得
         
@@ -70,8 +70,20 @@ class Index(ListView):
         else:
             print("point_pass")
     
-        
+        # 元コンテキスト
+        # context = User.objects.filter(id=self.request.user.id).values("icon")
+            
+        # print(context)
+        # queryset = queryset.union(context,all=True)
         return queryset
+
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     context = {
+    #         "icon":str(self.request.user.icon)
+    #     }
+    #     return context
+    
     
     
 class LoginPage(LoginView):

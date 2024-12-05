@@ -23,10 +23,10 @@
             top: 0;
             left: 0;
             width: 100%;
-            background-color: #ffffff; /* ヘッダーの背景色を指定する */
             {% comment %} padding: 10px 20px; {% endcomment %}
             z-index:1;
             {% comment %} background-color: #333; {% endcomment %}
+            background-color: #333;
             color: #fff;
             {% comment %} display: flex; {% endcomment %}
             justify-content: space-between;
@@ -108,34 +108,42 @@
         </style>
         <br>
         <br>
+        {% comment %} <p style="height:50px;"></p> {% endcomment %}
         {% block content %}{% endblock %}
+        {% comment %} <p style="height:150px;"></p> {% endcomment %}
+        <br>
+        <br>
         <br>
         <br>
         <br>
     </div>
-    {# Optional JavaScript #}
-    {# jQuery first, then Bootstrap JS (Bundle version) #}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
-            integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
-    {% block bodyjs %}
-    {% endblock %}
+        {# Optional JavaScript #}
+        {# jQuery first, then Bootstrap JS (Bundle version) #}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+                integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+        {% block bodyjs %}
+        {% endblock %}
+    </body>
+</body>
 
 
     <!--　フッター　-->
     <footer>
         <style>
+            /* フッター */
             footer {
                 position: fixed;
                 bottom: 0;
+                left:0;
                 width: 100%;
-                height: 70px;
-                background-color: #333;
-                color: #fff;
-                padding: 10px 20px;
-                display: flex;
+                z-index:1;
+                {% comment %} background-color: #333; {% endcomment %}
+                color: #808080;
+                {% comment %} padding: 10px 20px; {% endcomment %}
+                {% comment %} display: flex; {% endcomment %}
                 justify-content: space-between;
                 align-items: center;
                 flex-wrap: nowrap;
@@ -147,28 +155,28 @@
         {% comment %} <a style="text-decoration:none;" href="{% url 'accounts:menu' %}" class="btn btn-link btn-block" target="_self" style="left:0px;"><h3>アニマルチャット</h3></a> {% endcomment %}
 
         <!-- メニューリスト -->
-        {% comment %} <div class="footer-menu"> {% endcomment %}
-            <ul class="footer-menu-list" style="size:10px;">
-                <li><a href="{% url 'accounts:menu' %}">ホーム画面へ</a></li>
-                <li><a href="#">利用規約</a></li>
-                <li><a href="#">プライバシーポリシー</a></li>
-            </ul>
-        {% comment %} </div> {% endcomment %}
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class=" navbar-collapse" id="navbarSupportedContent" style="text-align:center;">
 
-        <div>
-            <li>
-                <!-- お問い合わせ情報 -->
-                <div class="contact">
-                    <p>お問い合せ先<b>〒000-0000</b> 電話📳<b>000-0000-0000</b></p>
-                </div>
-                </li>
-            <li>
-                <!-- 著作権表示 -->
-                <div class="copyright" style="right:0px;">
-                    <p>© 2024 システム名 Inc. All Rights Reserved.</p>
-                </div>
-            </li>
-        </div>
+                <ul class="navbar-nav mr-auto" style="margin: auto;">
+                    {% comment %} <li><a href="{% url 'accounts:menu' %}" style="font-size:20px;">ホーム画面へ</a></li> {% endcomment %}
+                    <li><a href="#">利用規約</a></li>
+                    <li><a href="#">プライバシーポリシー</a></li>
+                    <li>
+                        <!-- お問い合わせ情報 -->
+                        <div class="contact">
+                            <p>お問い合せ先<b>〒000-0000</b> 電話📳<b>000-0000-0000</b></p>
+                        </div>
+                    </li>
+                    <li>
+                        <!-- 著作権表示 -->
+                        <div class="copyright" style="right:0px;">
+                            <p>© 2024 システム名 Inc. All Rights Reserved.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
     </footer>
 
 

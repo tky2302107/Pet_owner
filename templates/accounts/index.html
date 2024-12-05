@@ -3,159 +3,154 @@
 {% block content %}
 <div class="row justify-content-center">
     {% if user.is_authenticated  %}
-    <div class="col-12">
-        <div class="row">
-            <h3 style="text-align:center;">{{ user|stringformat:"s" }}さん, ようこそ! </h3>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-12">
-                {% comment %} <button type="submit" class="btn btn-primary btn-block" action="">投稿する</button> {% endcomment %}
-                <a href="{% url 'post:posts' %}" class="btn btn-primary btn-block">投稿する</a>
+        <div class="col-12">
+            <div class="row">&nbsp&nbsp&nbsp
+                {% comment %} {% if ctx.icon %} {% endcomment %}
+                
+                    <img src="/media/icon/post/ブランク.png" style="object-fit: fill; width: 30px; height: 30px;border-radius:50%;">
+                    {% comment %} <img src="/media/{{ ctx.icon }}" style="object-fit: fill; width: 30px; height: 30px;"> {% endcomment %}
+                {% comment %} {% endif %} {% endcomment %}
+                <h3 style="text-align:center;">&nbsp{{ user|stringformat:"s" }}さん, ようこそ! </h3>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-12">
+                    {% comment %} <button type="submit" class="btn btn-primary btn-block" action="">投稿する</button> {% endcomment %}
+                    <a href="{% url 'post:posts' %}" class="btn btn-primary btn-block">投稿する</a>
 
 
-                <div class="main-container">
-                    
-
-                    <!-- 最新の投稿エリア -->
-                    <div class="post-section">
-                        <br>
-                        <div class="card-columns">
-                            <div class="h4">最新の投稿</div>
-                        </div>
-                        <br>
-            
-                        <!-- 投稿1 -->
+                    <div class="main-container">
                         
-                        {% for post in posts %}
-                        <div class="post">
-                        <div class="card-columns">
-                            <div class="card">
-                                <div class="card-header" style="height:50px;width:auto;">
-                                        <h4>{{ post.account_id }}</h4>
-                                </div>
-                                <div class="card-body" style="height:195px;">
-                                    
-                                    <div class="post-content">
-                                        <p>{{post.post}}</p>
+
+                        <!-- 最新の投稿エリア -->
+                        <div class="post-section">
+                            <br>
+                            <div class="card-columns">
+                                <div class="h4">最新の投稿</div>
+                            </div>
+                            <br>
+                
+                            <!-- 投稿1 -->
+                            
+                            {% for post in ctx %}
+                            <div class="post">
+                            <div class="card-columns" style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 5px;">
+                                <div class="card">
+                                    <div class="card-header" style="height:50px;width:auto;">
+                                            <h4>{{ post.account_id }}</h4>
+                                    </div>
+                                    <div class="card-body" style="height:195px;">
+                                        
+                                        <div class="post-content">
+                                            <p>{{post.post}}</p>
+                                        </div>
                                     </div>
                                 </div>
+                                {% if post.image %}
+                                    <div class="card">
+                                        <div class="card-body">                                        
+                                                <img src="/media/{{ post.image }}" style="object-fit: fill; width: 300px; height: 205px;">
+                                        </div>
+                                    </div>
+                                {% endif %}
+                                <!-- 動画 -->
+                                {% if post.video %}
+                                    <div class="card">
+                                        <div class="card-body">
+                                                <video src="/media/{{ post.video }}" controls style="object-fit: fill; width: 300px; height: 200px;"></video>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                            </div>                        
+                            {% endfor %}
+                            <br>                    
+                    </div>
+
+                    <div class="card-columns">
+                        <div class="card">
+                            <div class="card-header">Chat</div>
+                            <div class="card-body">
+                                <a href="{% url 'chat:index' %}" class="btn btn-link btn-block" target="_self">
+                                    チャットをする
+                                </a>
                             </div>
-                            <div class="card">
-                                <div class="card-body">
-                                    {% if post.image %}
-                                        <img src="/media/{{ post.image }}" style="object-fit: fill; width: 300px; height: 200px;">
-                                    {% endif %}
-                                </div>
+                        </div>
+                    </div>
+                    <div class="card-columns">
+                        <div class="card">
+                            <div class="card-header">Error1 404</div>
+                            <div class="card-body">
+                                <a href="{% url 'contents:accesserror' %}" class="btn btn-link btn-block" target="_self">
+                                    アクセス不可
+                                </a>
                             </div>
-                            <div class="card">
-                                <div class="card-body">
-                                    <!-- 動画 -->
-                                    {% if post.video %}
-                                        <video src="/media/{{ post.video }}" controls></video>
-                                    {% endif %}
-                                </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">Error2 500</div>
+                            <div class="card-body">
+                                <a href="{% url 'contents:servererror' %}" class="btn btn-link btn-block" target="_self">
+                                    サーバーエラー
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-columns">
+                        <div class="card">
+                            <div class="card-header">MainPage</div>
+                            <div class="card-body">
+                                <a href="{% url 'accounts:menu' %}" class="btn btn-link btn-block" target="_self">
+                                    メインページへ(今後置き換えします。)
+                                </a>
                             </div>
                         </div>
                         
-                        {% endfor %}
-                        <br>
-                    
-                    <!-- 投稿ボタンエリア -->
-                    {% comment %} <div class="button-section">
-                        <a href="{% url 'post:posts' %}" class="post-btn">投稿する</a>
-                    </div> {% endcomment %}
-                </div>
-
-
-
-
-                <div class="card-columns">
-                    <div class="card">
-                        <div class="card-header">Chat</div>
-                        <div class="card-body">
-                            <a href="{% url 'chat:index' %}" class="btn btn-link btn-block" target="_self">
-                                チャットをする
-                            </a>
+                        <div class="card">
+                            <div class="card-header">Mypage</div>
+                            <div class="card-body">
+                                <a href="{% url 'accounts:mypage' %}" class="btn btn-link btn-block" target="_self">
+                                    マイページテスト用
+                                </a>
+                            </div>
                         </div>
                     </div>
-                    
-                </div>
-                <div class="card-columns">
-                    <div class="card">
-                        <div class="card-header">Error1 404</div>
-                        <div class="card-body">
-                            <a href="{% url 'contents:accesserror' %}" class="btn btn-link btn-block" target="_self">
-                                アクセス不可
-                            </a>
+                    <div class="card-columns">
+                        <div class="card">
+                            <div class="card-header">アカウント削除（無効化）</div>
+                            <div class="card-body">
+                                {% if user.is_authenticated %}
+                                    {% comment %} <li><a href="{% url 'user_auth:delete' user.username %}">退会</a></li> {% endcomment %}
+                                    <li><a href="{% url 'accounts:cleanup' %}">退会</a></li>
+                                {% endif %}
+                            </div>
                         </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-header">Error2 500</div>
-                        <div class="card-body">
-                            <a href="{% url 'contents:servererror' %}" class="btn btn-link btn-block" target="_self">
-                                サーバーエラー
-                            </a>
+                        <div class="card">
+                            <div class="card-header">-</div>
+                            <div class="card-body">
+                                <a href="{% url 'accounts:namechange' %}" class="btn btn-link btn-block" target="_self">
+                                    名称変更
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="card-columns">
-                    <div class="card">
-                        <div class="card-header">MainPage</div>
-                        <div class="card-body">
-                            <a href="{% url 'accounts:menu' %}" class="btn btn-link btn-block" target="_self">
-                                メインページへ(今後置き換えします。)
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <div class="card">
-                        <div class="card-header">Mypage</div>
-                        <div class="card-body">
-                            <a href="{% url 'accounts:mypage' %}" class="btn btn-link btn-block" target="_self">
-                                マイページテスト用
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-columns">
-                    <div class="card">
-                        <div class="card-header">アカウント削除（無効化）</div>
-                        <div class="card-body">
-                            {% if user.is_authenticated %}
-                                {% comment %} <li><a href="{% url 'user_auth:delete' user.username %}">退会</a></li> {% endcomment %}
-                                <li><a href="{% url 'accounts:cleanup' %}">退会</a></li>
-                            {% endif %}
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-header">-</div>
-                        <div class="card-body">
-                            {% comment %} <a href="{% url 'post:posts' %}" class="btn btn-link btn-block" target="_self">
-                                投稿する
-                            </a> {% endcomment %}
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-header">-</div>
-                        <div class="card-body">
-                            {% comment %} <a href="{% url 'accounts:mypage' %}" class="btn btn-link btn-block" target="_self">
-                                マイページテスト用
-                            </a> {% endcomment %}
+                        <div class="card">
+                            <div class="card-header">-</div>
+                            <div class="card-body">
+                                {% comment %} <a href="{% url 'accounts:mypage' %}" class="btn btn-link btn-block" target="_self">
+                                    マイページテスト用
+                                </a> {% endcomment %}
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     {% else %}
-    <div class="col-12">
-        <div class="row">
-            <div class="col-12">
-                <h5 class="h5">再度ログインしてください。(Plese login from the link above.)</h5>
+        <div class="col-12">
+            <div class="row">
+                <div class="col-12">
+                    <h5 class="h5">再度ログインしてください。(Plese login from the link above.)</h5>
+                </div>
             </div>
         </div>
-    </div>
     {% endif %}
 </div>
 {% endblock %}
