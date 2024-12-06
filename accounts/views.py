@@ -93,8 +93,11 @@ class Index(ListView):
 class LoginPage(LoginView):
     template_name = 'accounts/login.html'
 
-class LogoutPage(LogoutView):
+class LogoutChk(TemplateView):
     template_name = 'accounts/logout.html'
+
+class LogoutPage(LogoutView):
+    template_name = 'accounts/logouted.html'
     
 class MainPage(TemplateView):
     template_name = 'main.html'

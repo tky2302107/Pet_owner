@@ -18,13 +18,15 @@ class ServerError(TemplateView):
     template_name = '404.html'
 
 class NoticeListView(ListView):
-    template_name = "contents/nlist_test.html"# template_name = 'contents/notice_list.html'
+    # template_name = "contents/nlist_test.html" 
+    template_name = 'contents/notice_list.html'
     model = NoticeList
     paginate_by = 10
     context_object_name = "obj_data"
 
 class NoticeDetailView(DetailView):
-    template_name = "contents/n_test.html"# template_name = 'contents/notice.html'
+    # template_name = "contents/n_test.html"# template_name = 'contents/notice.html'
+    template_name = 'contents/notice.html'
     model = NoticeList
     context_object_name = "obj_data"
     

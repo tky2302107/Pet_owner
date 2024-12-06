@@ -42,6 +42,12 @@
         {% else %}
             <a class="navbar-brand" href="{% url 'accounts:login' %}">Animal Chat Demo</a>
         {% endif %}
+        {% if user.is_authenticated %}
+            <img src="/media/icon/post/ブランク.png" style="object-fit: fill; width: 30px; height: 30px;border-radius:50%;">
+            <h4 style="color:#000000;vertical-align:-30%;margin: 0 20px;">{{ user|stringformat:"s" }}</h4>
+        {% else %}
+
+        {% endif %}
         <div>
             <button class="navbar-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -65,6 +71,10 @@
                         {% csrf_token %}
                         <button type="submit" class="btn btn-light text-dark me-2">投稿する</button>
                     </form>
+                    <form method="get" action="{% url 'post:posts_search' %}" >
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-light text-dark me-2">投稿を見る</button>
+                    </form>
                     <form method="get" action="{% url 'chat:index' %}" >
                         {% csrf_token %}
                         <button type="submit" class="btn btn-light text-dark me-2">チャットをする</button>
@@ -85,7 +95,7 @@
                         {% csrf_token %}
                         <button type="submit" class="btn btn-light text-dark me-2">ポイント</button>
                     </form>
-                    <form method="post" action="{% url 'accounts:login' %}">
+                    <form method="get" action="{% url 'accounts:logoutchk' %}">
                         {% csrf_token %}
                         <button type="submit" class="btn btn-light text-dark me-2">ログアウト</button>
                     </form>
@@ -139,6 +149,7 @@
                 bottom: 0;
                 left:0;
                 width: 100%;
+                {% comment %} height:115px; {% endcomment %}
                 z-index:1;
                 {% comment %} background-color: #333; {% endcomment %}
                 color: #808080;
@@ -151,15 +162,12 @@
                 font-size: 0.9em;
             }
         </style>
-            
-        {% comment %} <a style="text-decoration:none;" href="{% url 'accounts:menu' %}" class="btn btn-link btn-block" target="_self" style="left:0px;"><h3>アニマルチャット</h3></a> {% endcomment %}
 
         <!-- メニューリスト -->
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class=" navbar-collapse" id="navbarSupportedContent" style="text-align:center;">
 
                 <ul class="navbar-nav mr-auto" style="margin: auto;">
-                    {% comment %} <li><a href="{% url 'accounts:menu' %}" style="font-size:20px;">ホーム画面へ</a></li> {% endcomment %}
                     <li><a href="#">利用規約</a></li>
                     <li><a href="#">プライバシーポリシー</a></li>
                     <li>
@@ -170,7 +178,7 @@
                     </li>
                     <li>
                         <!-- 著作権表示 -->
-                        <div class="copyright" style="right:0px;">
+                        <div class="copyright" >
                             <p>© 2024 システム名 Inc. All Rights Reserved.</p>
                         </div>
                     </li>

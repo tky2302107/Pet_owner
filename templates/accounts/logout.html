@@ -1,4 +1,38 @@
-<!-- ログアウト画面 -->
+
+{% extends "base.html" %}
+{% load static %}
+{% block style %}<link rel="stylesheet" href="{% static 'admin/css/logout.css' %}">{% endblock %}
+
+{% block content %}
+<body>
+    <div class="logout-container">
+        <h1>ログアウトしますか？</h1>
+        <p>ログアウトすると、再度ログインが必要になります。</p>
+        
+        {% comment %} <a class="logout-button" href="{% url 'accounts:logout'%}">ログアウト</a> {% endcomment %}
+        <form method="post" action="{% url 'accounts:logout' %}">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-light text-dark me-2">ログアウト</button>
+        </form>
+        {% comment %} <button class="logout-button" onclick="logout()">ログアウト</button> {% endcomment %}
+        <button class="cancel-button" onclick="cancel()">キャンセル</button>
+    </div>
+    <script>
+        function logout() {
+            // ログアウト処理を実行 (バックエンドのログアウト処理を呼び出すなど)
+            window.location.href = "logouted.html"; // 例: ログアウト処理後のリダイレクト先
+        }
+
+        function cancel() {
+            window.location.href = "main.html"; // 例: キャンセル時に戻るページ
+        }
+    </script>
+</body>
+{% endblock %}
+
+
+
+{% comment %} <!-- ログアウト画面 -->
 
 
 
@@ -70,60 +104,7 @@
 
     <title>ログアウト画面</title>
   
-</head>
-<body>
-    <div class="logout-container">
-        <h1>ログアウトしますか？</h1>
-        <p>ログアウトすると、再度ログインが必要になります。</p>
-        <button class="logout-button" onclick="logout()">ログアウト</button>
-        <button class="cancel-button" onclick="cancel()">キャンセル</button>
-    </div>
-    <script>
-        function logout() {
-            // ログアウト処理を実行 (バックエンドのログアウト処理を呼び出すなど)
-            window.location.href = "logouted.html"; // 例: ログアウト処理後のリダイレクト先
-        }
-
-        function cancel() {
-            window.location.href = "main.html"; // 例: キャンセル時に戻るページ
-        }
-    </script>
-
-
-
-
-
-
-<!-- フッター -->
-<footer class="main-footer">
-    <h3>システム名</h3>  
-
-    <!-- メニューリスト -->
-    <div class="footer-menu">
-        <ul class="footer-menu-list">
-            <li><a href="../">ホーム画面へ</a></li>
-            <li><a href="#">利用規約</a></li>
-            <li><a href="#">プライバシーポリシー</a></li>
-        </ul>
-    </div>
-
-    <!-- お問い合わせ情報 -->
-    <div class="contact">
-        <p>お問い合せ先<b>〒000-0000</b> 電話📳<b>000-0000-0000</b></p>
-    </div>
-    
-    <!-- 著作権表示 -->
-    <div class="copyright">
-        <p>© 2024 システム名 Inc. All Rights Reserved.</p>
-    </div>
-</footer>
-</body>
-</html>
-
-
-
-
-
+</head> {% endcomment %}
 
 
 
