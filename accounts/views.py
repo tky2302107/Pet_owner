@@ -59,16 +59,20 @@ class Index(ListView):
         queryset = queryset.order_by('-post_date')[0:5] # 投稿降順で並び替え&5件まで表示
         
         # login ボーナス
-        id = self.request.user.id
-        if User.objects.get(id=id).pt_give == 1:
-            pt = {
-                "points":(3+int(self.request.user.points)),
-                "pt_give":0
-                }
-            User.objects.filter(id=self.request.user.id).update(**pt)
-            print("point_plus")
-        else:
-            print("point_pass")
+        try:
+            id = self.request.user.id
+            if User.objects.get(id=id).pt_give == 1:
+                pt = {
+                    "points":(3+int(self.request.user.points)),
+                    "pt_give":0
+                    }
+                User.objects.filter(id=self.request.user.id).update(**pt)
+                print("point_plus")
+            else:
+                print("point_pass")
+        except:
+            print("not_login")
+            
     
         # 元コンテキスト
         # context = User.objects.filter(id=self.request.user.id).values("icon")
