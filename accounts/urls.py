@@ -23,4 +23,5 @@ urlpatterns = [
     path('mypage/emchange/', views.EmailChange.as_view(), name='email_change'),
     path('mypage/emchange/done/', views.EmailChangeDone.as_view(), name='email_change_done'),
     path('mypage/emchange/complete/<str:token>/', views.EmailChangeComplete.as_view(), name='email_change_complete'),
+    path('adopt', views.AdoptView.as_view(), name='adopt'),
 ]

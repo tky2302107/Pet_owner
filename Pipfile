@@ -4,12 +4,12 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-channels = "*"
-daphne = "*"
-django = "*"
 pillow = "*"
 django-cleanup = "*"
 apscheduler = "*"
+django = "*"
+channels = "*"
+daphne = "*"
 
 [dev-packages]
 

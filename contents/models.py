@@ -57,3 +57,34 @@ class FollowList(models.Model):
         default='',
         blank=True,
     )
+
+class HospitalList(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(
+        gettext_lazy("病院名"),
+        null=False,
+        max_length=30,
+        default='',
+        blank=False,
+    )
+    address = models.CharField(
+        gettext_lazy("住所"),
+        null=False,
+        max_length=50,
+        default='',
+        blank=False,
+    )
+    detail = models.CharField(
+        gettext_lazy("詳細"),
+        null=False,
+        max_length=128,
+        default='',
+        blank=False,
+    )
+    hp = models.CharField(
+        gettext_lazy("ホームページ"),
+        null=False,
+        max_length=300,
+        default='',
+        blank=True,
+    )

@@ -97,3 +97,7 @@ class ClickFollowView(TemplateView):
         fl.save()
         return redirect(reverse('contents:test_follow'))
     
+
+class HospitalListView(TemplateView):
+    template_name = "contents/hospital_list.html"
+    
