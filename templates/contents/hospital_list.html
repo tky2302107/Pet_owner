@@ -5,7 +5,35 @@
 {% comment %} {% block style %}<link rel="stylesheet" href="{% static 'admin/css/follower_list.css' %}">{% endblock %}    {% endcomment %}
 
 {% block content %}
-
+<div>
+    {% if ctx %}
+        {% for hospital in ctx %}
+            <div class="post">
+                <div class="card-columns" style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 5px;">
+                    <div class="card">
+                        <div class="card-header" style="height: 150px; margin: 0; top: 50%; display: grid;">
+                            {% if hospital.hp %}<a href="{{hospital.hp}}">{% endif %}
+                            {{ hospital.name }}
+                            {% if hospital.hp %}<a>{% endif %}
+                        {% comment %} <div>
+                        <div class="card-body" > {% endcomment %}
+                            {% if hospital.hp %}
+                            <br>
+                            <a href="{{hospital.address}}">{{ hospital.hp }}<a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="card" style="height: 150px;">{{hospital.address}}</div>
+                    <div class="card" style="height: 150px;">{{hospital.detail}}</div>
+                </div>
+            </div>                        
+        {% endfor %}
+    {% endif %}
+    <br>         
+</div>
         <!-- 戻るボタン -->
-        <a href="history.back()" class="return-btn">戻る</a>
+    <a href="history.back()" class="return-btn">戻る</a>
+<div style="diaplay:flex;">
+    <a href="{% url 'contents:hospital_contact' %}">掲載依頼はこちら</a>
+</div>
 {% endblock %}

@@ -83,7 +83,7 @@ class HospitalList(models.Model):
     )
     hp = models.CharField(
         gettext_lazy("ホームページ"),
-        null=False,
+        null=True,
         max_length=300,
         default='',
         blank=True,

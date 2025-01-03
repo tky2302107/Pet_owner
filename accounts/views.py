@@ -306,3 +306,4 @@ class UserDeleteView(TemplateView):#ユーザー退会
 #             pass
 class AdoptView(TemplateView):
     template_name = "accounts/adopt.html"
+    

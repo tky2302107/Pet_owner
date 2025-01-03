@@ -1,14 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
 <div class="row justify-content-center">
     {% if user.is_authenticated  %}
         <div class="col-12">
             <div class="row">&nbsp&nbsp&nbsp
                 {% comment %} {% if ctx.icon %} {% endcomment %}
                 
-                    <img src="/media/icon/post/ブランク.png" style="object-fit: fill; width: 30px; height: 30px;border-radius:50%;">
-                    {% comment %} <img src="/media/{{ ctx.icon }}" style="object-fit: fill; width: 30px; height: 30px;"> {% endcomment %}
+                    <img src="/media/icon/post/ブランク.png" style="object-fit: contain; width: 30px; height: 30px;border-radius:50%;">
+                    {% comment %} <img src="/media/{{ ctx.icon }}" style="object-fit: contain; width: 30px; height: 30px;"> {% endcomment %}
                 {% comment %} {% endif %} {% endcomment %}
                 <h3 style="text-align:center;">&nbsp{{ user|stringformat:"s" }}さん, ようこそ! </h3>
             </div>
@@ -29,7 +30,200 @@
                                 <div class="h4">最新の投稿</div>
                             </div>
                             <br>
-                
+
+
+
+
+<style>
+    /*タブ切り替え全体のスタイル*/
+.tabs {
+  margin-top: 50px;
+  {% comment %} padding-bottom: 40px; {% endcomment %}
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  margin: 0 auto;
+}
+
+/*タブのスタイル*/
+.tab_item {
+  width: calc(100%/2);
+  height: 50px;
+  border-bottom: 3px solid #5ab4bd;
+  background-color: #f9f9f9;
+  line-height: 50px;
+  font-size: 16px;
+  text-align: center;
+  color: #565656;
+  display: block;
+  float: left;
+  text-align: center;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+.tab_item2 {
+    width: calc(100%);
+    height: 50px;
+    border-bottom: 3px solid #5ab4bd;
+    background-color: #f9f9f9;
+    line-height: 50px;
+    font-size: 20px;
+    text-align: center;
+    color: #565656;
+    display: block;
+    float: left;
+    text-align: center;
+    font-weight: bold;
+    transition: all 0.2s ease;
+  }
+.tab_item:hover {
+  opacity: 0.75;
+}
+
+/*ラジオボタンを全て消す*/
+input[name="tab_item"] {
+  display: none;
+}
+
+/*タブ切り替えの中身のスタイル*/
+.tab_content {
+  display: none;
+  padding: 40px 40px 0;
+  clear: both;
+  overflow: hidden;
+}
+
+/*選択されているタブのコンテンツのみを表示*/
+#all:checked ~ #all_content,
+#programming:checked ~ #programming_content,
+#design:checked ~ #design_content {
+  display: block;
+}
+
+/*選択されているタブのスタイルを変える*/
+.tabs input:checked + .tab_item {
+  background-color: #5ab4bd;
+  color: #fff;
+}
+</style>
+
+                <!-- 投稿1 -->
+                {% if ctx %}
+                {% for post in ctx %}
+                <div class="post">
+                    {% if post.image and post.video %}
+                        <div style="padding: 10px; margin-bottom: 10px; border: 3px solid #333333; border-radius: 5px; height:auto;">
+                            <div class="tabs">
+                                <div>
+                                    <div class="card">
+                                        <div class="card-header" style="height:50px;width:auto;">
+                                                <h4>{{ post.account_id }}</h4>
+                                        </div>
+                                        <div class="card-body" style="height:195px;">
+                                            
+                                            <div class="post-content">
+                                                <p>{{post.post}}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    {% comment %} <input id="all" type="radio" name="tab_item" checked>
+                                    <label class="tab_item" for="all">詳細</label> {% endcomment %}
+                                    <input id="programming" type="radio" name="tab_item" checked>
+                                    <label class="tab_item" for="programming">画像</label>
+                                    <input id="design" type="radio" name="tab_item">
+                                    <label class="tab_item" for="design">動画</label>
+                                    {% comment %} <div class="tab_content" id="all_content">
+                                        デザインの内容がここに入ります
+                                    </div> {% endcomment %}
+                                    <div class="tab_content" id="programming_content" style="margin-left: auto;margin-right: auto;width:100%;">
+                                        <div style=" display: flex;justify-content: center;">
+                                            <img src="/media/{{ post.image }}" style="object-fit: contain; width: 70%; height: 70%;">
+                                        </div>
+                                    </div>
+                                    <div class="tab_content" id="design_content">
+                                        <div style=" display: flex;justify-content: center;">
+                                            <video src="/media/{{ post.video }}" controls style="object-fit: contain; width: 50%; height: 50%;"></video>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>    
+                        <br>
+                        <br>
+                        <br>  
+                    {% endif %}
+                    {% if post.image %}
+                    {% if not post.video %}
+                    <div style="padding: 10px; margin-bottom: 10px; border: 3px solid #333333; border-radius: 5px; height:auto;">
+                        <div class="tabs">
+                            <div>
+                                <div class="card">
+                                    <div class="card-header" style="height:50px;width:auto;">
+                                            <h4>{{ post.account_id }}</h4>
+                                    </div>
+                                    <div class="card-body" style="height:195px;">
+                                        
+                                        <div class="post-content">
+                                            <p>{{post.post}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="tab_item2" for="programming">画像</label>
+                                <div style="text-align:center;">
+                                    <img src="/media/{{ post.image }}" style="object-fit: contain; width: 70%; height: 70%;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>   
+                    <br>
+                    <br>
+                    <br>
+                    {% endif %}
+                    {% endif %}
+                    {% if post.video %}
+                    {% if not post.image %}
+                    <div style="padding: 10px; margin-bottom: 10px; border: 3px solid #333333; border-radius: 5px; height:auto;">
+                        <div class="tabs">
+                            <div>
+                                <div class="card">
+                                    <div class="card-header" style="height:50px;width:auto;">
+                                            <h4>{{ post.account_id }}</h4>
+                                    </div>
+                                    <div class="card-body" style="height:195px;">
+                                        
+                                        <div class="post-content">
+                                            <p>{{post.post}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="tab_item2" for="programming">動画</label>
+                                <div style="text-align:center;">
+                                    <video src="/media/{{ post.video }}" controls style="object-fit: contain; width: 70%; height: 70%;"></video>
+                                </div>
+                            </div>
+                        </div>
+                    </div>   
+                    <br>
+                    <br>
+                    <br>
+                    {% endif %}
+                    {% endif %}
+                </div>                        
+                {% endfor %}
+                {% endif %}
+                <br>
+
+
+
+
+
+{% comment %} 
                             <!-- 投稿1 -->
                             {% if ctx %}
                             {% for post in ctx %}
@@ -49,7 +243,7 @@
                                 {% if post.image %}
                                     <div class="card">
                                         <div class="card-body">                                        
-                                                <img src="/media/{{ post.image }}" style="object-fit: fill; width: 100%; height: 105%;">
+                                                <img src="/media/{{ post.image }}" style="object-fit: contain; width: 100%; height: 105%;">
                                         </div>
                                     </div>
                                 {% endif %}
@@ -57,14 +251,14 @@
                                 {% if post.video %}
                                     <div class="card">
                                         <div class="card-body" >
-                                                <video src="/media/{{ post.video }}" controls style="object-fit: fill; width: 50%; height: 50%;"></video>
+                                                <video src="/media/{{ post.video }}" controls style="object-fit: contain; width: 50%; height: 50%;"></video>
                                         </div>
                                     </div>
                                 {% endif %}
                             </div>                        
                             {% endfor %}
                             {% endif %}
-                            <br>                    
+                            <br>                     {% endcomment %}
                     </div>
 
                     <div class="card-columns">
@@ -156,3 +350,4 @@
     {% endif %}
 </div>
 {% endblock %}
+

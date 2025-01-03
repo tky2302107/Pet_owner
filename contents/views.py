@@ -4,7 +4,7 @@ from django.db.models.base import Model as Model
 from django.urls import reverse, reverse_lazy
 from django.shortcuts import redirect, render
 from .forms import ClickFollowForm
-from .models import NoticeList ,FollowList 
+from .models import NoticeList ,FollowList,HospitalList
 from accounts.models import User
 from django.views.generic import ListView,DetailView,TemplateView,FormView,CreateView
 
@@ -98,6 +98,15 @@ class ClickFollowView(TemplateView):
         return redirect(reverse('contents:test_follow'))
     
 
-class HospitalListView(TemplateView):
+class HospitalListView(ListView):
     template_name = "contents/hospital_list.html"
-    
+    model = HospitalList
+    paginate_by = 10
+    context_object_name = "ctx"
+
+    def get_queryset(self):
+        queryset = HospitalList.objects.filter()
+        return queryset    
+
+class HospitalContactView(TemplateView):
+    template_name = "contents/hospital_contact.html"
