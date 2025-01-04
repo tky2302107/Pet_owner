@@ -5,30 +5,118 @@
 {% block style %}<link rel="stylesheet" href="{% static 'admin/css/my_account.css' %}">{% endblock %}   
 
 {% block content %}
+<style>
+    /*タブ切り替え全体のスタイル*/
+.tabs {
+  margin-top: 50px;
+  {% comment %} padding-bottom: 40px; {% endcomment %}
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  margin: 0 auto;
+}
+
+/*タブのスタイル*/
+.tab_item {
+  width: calc(100%/2);
+  height: 50px;
+  border-bottom: 3px solid #5ab4bd;
+  background-color: #f9f9f9;
+  line-height: 50px;
+  font-size: 16px;
+  text-align: center;
+  color: #565656;
+  display: block;
+  float: left;
+  text-align: center;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+.tab_item2 {
+    width: calc(100%);
+    height: 50px;
+    border-bottom: 3px solid #5ab4bd;
+    background-color: #f9f9f9;
+    line-height: 50px;
+    font-size: 20px;
+    text-align: center;
+    color: #565656;
+    display: block;
+    float: left;
+    text-align: center;
+    font-weight: bold;
+    transition: all 0.2s ease;
+  }
+.tab_item:hover {
+  opacity: 0.75;
+}
+
+/*ラジオボタンを全て消す*/
+input[name="tab_item"] {
+  display: none;
+}
+
+/*タブ切り替えの中身のスタイル*/
+.tab_content {
+  display: none;
+  padding: 0px 40px 10px;
+  clear: both;
+  overflow: hidden;
+  
+}
+
+/*選択されているタブのコンテンツのみを表示*/
+#all:checked ~ #all_content,
+#programming:checked ~ #programming_content,
+#design:checked ~ #design_content {
+  display: block;
+}
+
+/*選択されているタブのスタイルを変える*/
+.tabs input:checked + .tab_item {
+  background-color: #5ab4bd;
+  color: #fff;
+}
+
+.font20 {
+    font-size:20px;
+}
+</style>
 
     <div class="profile-container">
-
-
+        <!-- プロフィール情報とボタン -->
+        <div class="profile-info">
+            <div class="profile-name"style="font-size:25px;">{{user.screen_name}}</div>
+            <div class="profile-bio">こちらにプロフィール情報が表示されます。</div>
+            
+        </div>
+        <br>
+        <label class="tab_item2" for="programming">マイページ</label>
+        <div style="text-align:center;vertical-align: middle;padding: 0 0 10px;">
+            <a href="{% url "contents:follow_er" %}" class="btn btnn follower-btn font20">フォロワー</a>
+            <a href="{% url "contents:follow" %}" class="btn btnn follow-btn font20">フォロー中</a>
+            <a href="{% url "accounts:points" %}" class="btn btnn point-btn font20">ポイント</a>
+            <a href="{% url 'post:posts_history' %}" class="btn btnn history-btn font20">投稿履歴</a>
+        </div>
+        <br>
+        <label class="tab_item2" for="programming">各種設定</label>
+        <div style="text-align:center;vertical-align: middle;padding: 0 0 10px;">
+            <a href="{%url 'accounts:edit_profile'%}" class="btn btnn follower-btn font20">アカウント名編集</a>
+            <a href="{%url 'accounts:pwchange'%}" class="btn btnn follower-btn font20">パスワード変更</a>
+            <a href="{%url 'accounts:email_change'%}" class="btn btnn follower-btn font20">メールアドレス変更</a>
+        </div>
+        <br>
+        {% comment %} <label class="tab_item2" for="programming">その他</label>
+        <div style="text-align:center;vertical-align: middle;padding: 0 0 10px;">
+            
+        </div> {% endcomment %}
         <!-- アイコンと編集ボタン -->
         <div class="icon-edit-container">
             <div class="profile-icon"></div>
-            <a href="{%url 'accounts:edit_profile'%}" class="edit-btn">アカウント名編集</a>
-            <a href="{%url 'accounts:pwchange'%}" class="edit-btn">パスワード変更</a>
-            <a href="{%url 'accounts:email_change'%}" class="edit-btn">メールアドレス変更</a>
+            
         </div>
         
-        <!-- プロフィール情報とボタン -->
-        <div class="profile-info">
-            <div class="profile-name">{{user.screen_name}}</div>
-            <div class="profile-bio">こちらにプロフィール情報が表示されます。</div>
-            
-            <div class="btn-container">
-                <a href="{% url "contents:follow_er" %}" class="btn btnn follower-btn">フォロワー</a>
-                <a href="{% url "contents:follow" %}" class="btn btnn follow-btn">フォロー中</a>
-                <a href="{% url "accounts:points" %}" class="btn btnn point-btn">ポイント</a>
-                <a href="{% url 'post:posts_history' %}" class="btn btnn history-btn">投稿履歴</a>
-            </div>
-        </div>
+        
     </div>
 
 <!-- 戻るボタン -->

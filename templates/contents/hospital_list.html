@@ -1,39 +1,105 @@
 <!--　フォローアカウント一覧　-->
 {% extends "base.html" %}
 {% load static %}
-
-{% comment %} {% block style %}<link rel="stylesheet" href="{% static 'admin/css/follower_list.css' %}">{% endblock %}    {% endcomment %}
-
 {% block content %}
+<style>
+    /*タブ切り替え全体のスタイル*/
+.tabs {
+  margin-top: 50px;
+  {% comment %} padding-bottom: 40px; {% endcomment %}
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  margin: 0 auto;
+}
+
+/*タブのスタイル*/
+.tab_item {
+  width: calc(100%/2);
+  height: 50px;
+  border-bottom: 3px solid #5ab4bd;
+  background-color: #f9f9f9;
+  line-height: 50px;
+  font-size: 16px;
+  text-align: center;
+  color: #565656;
+  display: block;
+  float: left;
+  text-align: center;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+.tab_item2 {
+    width: calc(100%);
+    height: 50px;
+    border-bottom: 3px solid #5ab4bd;
+    background-color: #f9f9f9;
+    line-height: 50px;
+    font-size: 20px;
+    text-align: center;
+    color: #565656;
+    display: block;
+    float: left;
+    text-align: center;
+    font-weight: bold;
+    transition: all 0.2s ease;
+  }
+.tab_item:hover {
+  opacity: 0.75;
+}
+
+/*ラジオボタンを全て消す*/
+input[name="tab_item"] {
+  display: none;
+}
+
+/*タブ切り替えの中身のスタイル*/
+.tab_content {
+  display: none;
+  padding: 0px 40px 10px;
+  clear: both;
+  overflow: hidden;
+  
+}
+
+/*選択されているタブのコンテンツのみを表示*/
+#all:checked ~ #all_content,
+#programming:checked ~ #programming_content,
+#design:checked ~ #design_content {
+  display: block;
+}
+
+/*選択されているタブのスタイルを変える*/
+.tabs input:checked + .tab_item {
+  background-color: #5ab4bd;
+  color: #fff;
+}
+
+.font20 {
+    font-size:20px;
+}
+</style>
 <div>
     {% if ctx %}
         {% for hospital in ctx %}
-            <div class="post">
-                <div class="card-columns" style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 5px;">
-                    <div class="card">
-                        <div class="card-header" style="height: 150px; margin: 0; top: 50%; display: grid;">
-                            {% if hospital.hp %}<a href="{{hospital.hp}}">{% endif %}
-                            {{ hospital.name }}
-                            {% if hospital.hp %}<a>{% endif %}
-                        {% comment %} <div>
-                        <div class="card-body" > {% endcomment %}
-                            {% if hospital.hp %}
-                            <br>
-                            <a href="{{hospital.address}}">{{ hospital.hp }}<a>
-                            {% endif %}
-                        </div>
-                    </div>
-                    <div class="card" style="height: 150px;">{{hospital.address}}</div>
-                    <div class="card" style="height: 150px;">{{hospital.detail}}</div>
-                </div>
-            </div>                        
+        <a href="{% url 'contents:hospital_detail' hospital.pk %}"><label class="tab_item2" for="programming">{{ hospital.name }}</label></a>
+            <div style="text-align:center;vertical-align: middle;padding: 0 0 10px;">
+                <label>{{hospital.detail}}</label>
+                <br>
+                <label>{{hospital.address}}</label>
+                <br>
+                {% if hospital.hp%}
+                <a href="{{hospital.address}}">{{ hospital.hp }}<a>
+                {%endif%}
+            </div>
         {% endfor %}
     {% endif %}
     <br>         
 </div>
         <!-- 戻るボタン -->
-    <a href="history.back()" class="return-btn">戻る</a>
+    <a href="javascript:history.back()" class="return-btn">戻る</a>
 <div style="diaplay:flex;">
     <a href="{% url 'contents:hospital_contact' %}">掲載依頼はこちら</a>
 </div>
 {% endblock %}
+

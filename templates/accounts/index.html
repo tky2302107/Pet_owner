@@ -88,9 +88,10 @@ input[name="tab_item"] {
 /*タブ切り替えの中身のスタイル*/
 .tab_content {
   display: none;
-  padding: 40px 40px 0;
+  padding: 0px 40px 10px;
   clear: both;
   overflow: hidden;
+  
 }
 
 /*選択されているタブのコンテンツのみを表示*/
@@ -104,6 +105,10 @@ input[name="tab_item"] {
 .tabs input:checked + .tab_item {
   background-color: #5ab4bd;
   color: #fff;
+}
+
+.font20 {
+    font-size:20px;
 }
 </style>
 
@@ -137,13 +142,13 @@ input[name="tab_item"] {
                                     {% comment %} <div class="tab_content" id="all_content">
                                         デザインの内容がここに入ります
                                     </div> {% endcomment %}
-                                    <div class="tab_content" id="programming_content" style="margin-left: auto;margin-right: auto;width:100%;">
-                                        <div style=" display: flex;justify-content: center;">
+                                    <div class="tab_content" id="programming_content" style="margin-left: auto;margin-right: auto;width:100%;vertical-align: middle;height:100%;">
+                                        <div style="text-align:center;">
                                             <img src="/media/{{ post.image }}" style="object-fit: contain; width: 70%; height: 70%;">
                                         </div>
                                     </div>
                                     <div class="tab_content" id="design_content">
-                                        <div style=" display: flex;justify-content: center;">
+                                        <div style="text-align:center;">
                                             <video src="/media/{{ post.video }}" controls style="object-fit: contain; width: 50%; height: 50%;"></video>
                                         </div>
                                     </div>
@@ -173,7 +178,7 @@ input[name="tab_item"] {
                             </div>
                             <div>
                                 <label class="tab_item2" for="programming">画像</label>
-                                <div style="text-align:center;">
+                                <div style="text-align:center;vertical-align: middle;padding: 0 0 10px;">
                                     <img src="/media/{{ post.image }}" style="object-fit: contain; width: 70%; height: 70%;">
                                 </div>
                             </div>

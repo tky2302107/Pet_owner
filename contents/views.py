@@ -110,3 +110,8 @@ class HospitalListView(ListView):
 
 class HospitalContactView(TemplateView):
     template_name = "contents/hospital_contact.html"
+
+class HospitalDetailView(DetailView):
+    template_name = "contents/hospital_detail.html"
+    model = HospitalList
+    context_object_name = "hospital"

@@ -15,5 +15,5 @@ urlpatterns = [
     path("follow/",views.ClickFollowView.as_view(), name="test_follow"),
     path("hospital_list/",views.HospitalListView.as_view(), name='hospital_list'),
     path("hospital_contact/",views.HospitalContactView.as_view(), name='hospital_contact'),
-    
+    path("hospital_detail/<int:pk>/",views.HospitalDetailView.as_view(), name='hospital_detail'),
 ]
