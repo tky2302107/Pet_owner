@@ -87,7 +87,7 @@ input[name="tab_item"] {
         <!-- プロフィール情報とボタン -->
         <div class="profile-info">
             <div class="profile-name"style="font-size:25px;">{{user.screen_name}}</div>
-            <div class="profile-bio">こちらにプロフィール情報が表示されます。</div>
+            <div class="profile-bio">{{user.profile}}</div>
             
         </div>
         <br>
@@ -101,7 +101,7 @@ input[name="tab_item"] {
         <br>
         <label class="tab_item2" for="programming">各種設定</label>
         <div style="text-align:center;vertical-align: middle;padding: 0 0 10px;">
-            <a href="{%url 'accounts:edit_profile'%}" class="btn btnn follower-btn font20">アカウント名編集</a>
+            <a href="{%url 'accounts:edit_profile'%}" class="btn btnn follower-btn font20">アイコン・アカウント名・プロフィール編集</a>
             <a href="{%url 'accounts:pwchange'%}" class="btn btnn follower-btn font20">パスワード変更</a>
             <a href="{%url 'accounts:email_change'%}" class="btn btnn follower-btn font20">メールアドレス変更</a>
         </div>

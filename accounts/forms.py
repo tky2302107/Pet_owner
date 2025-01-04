@@ -16,9 +16,10 @@ class UserChangeForm(ModelForm):
         fields = (
             'icon',
             'screen_name',
+            "profile",
         )
 
-    def __init__(self,  screen_name=None, *args, **kwargs):# email=None,
+    def __init__(self, screen_name=None, profile=None, *args, **kwargs):# email=None,
         kwargs.setdefault('label_suffix', '')
         super().__init__(*args, **kwargs)
         # ユーザーの更新前情報をフォームに挿入
@@ -26,11 +27,13 @@ class UserChangeForm(ModelForm):
         #     self.fields['email'].widget.attrs['value'] = email
         if screen_name:
             self.fields['screen_name'].widget.attrs['value'] = screen_name
-        
+        if profile:
+            self.fields['profile'].widget.attrs['value'] = profile
 
     def update(self, user):
         user.icon = self.cleaned_data['icon']
         user.screen_name = self.cleaned_data['screen_name']
+        user.profile = self.cleaned_data['profile']
         user.save()
 
 class PasswordChangeForm(PasswordChangeForm):

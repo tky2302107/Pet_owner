@@ -179,7 +179,7 @@ class NameChange(LoginRequiredMixin,FormView):
     models = User
     template_name = "accounts/e_page.html"
     form_class = UserChangeForm
-    success_url = reverse_lazy('accounts:index')
+    success_url = reverse_lazy('accounts:mypage')
     
     def form_valid(self, form):
         #formのupdateメソッドにログインユーザーを渡して更新
@@ -192,6 +192,7 @@ class NameChange(LoginRequiredMixin,FormView):
         kwargs.update({
             # 'email' : self.request.user.email,
             'screen_name' : self.request.user.screen_name,
+            'profile' : self.request.user.profile,
         })
         return kwargs
     

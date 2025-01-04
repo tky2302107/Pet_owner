@@ -79,6 +79,15 @@ class User(AbstractBaseUser, PermissionsMixin):
         blank=True
     )
 
+    profile = models.TextField(
+        gettext_lazy('プロフィール'),
+        max_length=200,
+        null=True,
+        default='',
+        blank=True,
+        help_text=gettext_lazy('200文字以内で入力してください'),
+    )
+    
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
 
