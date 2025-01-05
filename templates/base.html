@@ -92,6 +92,10 @@
                         {% csrf_token %}
                         <button type="submit" class="btn btn-light text-dark me-2">病院評価機能(名称未定)</button>
                     </form>
+                    <form method="get" action="{% url 'accounts:points' %}" >
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-light text-dark me-2">ポイント</button>
+                    </form>
                     <form method="get" action="{% url 'accounts:mypage' %}" >
                         {% csrf_token %}
                         <button type="submit" class="btn btn-light text-dark me-2">マイページ</button>
@@ -99,10 +103,6 @@
                     <form method="get" action="{% url 'contents:notice_l' %}" >
                         {% csrf_token %}
                         <button type="submit" class="btn btn-light text-dark me-2">通知一覧</button>
-                    </form>
-                    <form method="get" action="{% url 'accounts:points' %}" >
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-light text-dark me-2">ポイント</button>
                     </form>
                     <form method="get" action="{% url 'accounts:logoutchk' %}">
                         {% csrf_token %}

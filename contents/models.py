@@ -88,6 +88,13 @@ class HospitalList(models.Model):
         default='',
         blank=True,
     )
+    comment = models.CharField(
+        gettext_lazy("コメント"),
+        null=False,
+        max_length=300,
+        default='',
+        blank=True,
+    )
     image = models.ImageField(
         null=True,#後でfalseにする
         upload_to=None, 

@@ -83,12 +83,14 @@ input[name="tab_item"] {
         <div style="text-align:center;vertical-align: middle;padding: 0 0 10px;">
             {% comment %} <label>{{hospital.detail}}</label> {% endcomment %}
             {% comment %} <br> {% endcomment %}
-            <label>{{hospital.detail}}</label>
+            <label>病院の詳細：{{hospital.detail}}</label>
             <br>
-            <label>{{hospital.address}}</label>
+            <label>コメント：{{hospital.comment}}</label>
+            <br>
+            <label>住所：{{hospital.address}}</label>
             <br>
             {% if hospital.hp%}
-                <a href="{{hospital.address}}">{{ hospital.hp }}<a>
+                <a href="{{hospital.address}}"><label style="color:black;">ホームページ：</label>{{ hospital.hp }}</a>
             {%endif%}
         </div>
 
