@@ -8,7 +8,7 @@
             <div class="row">&nbsp&nbsp&nbsp
                 {% comment %} {% if ctx.icon %} {% endcomment %}
                 
-                    <img src="/media/icon/post/ブランク.png" style="object-fit: contain; width: 30px; height: 30px;border-radius:50%;">
+                    {% comment %} <img src="/media/icon/post/ブランク.png" style="object-fit: contain; width: 30px; height: 30px;border-radius:50%;"> {% endcomment %}
                     {% comment %} <img src="/media/{{ ctx.icon }}" style="object-fit: contain; width: 30px; height: 30px;"> {% endcomment %}
                 {% comment %} {% endif %} {% endcomment %}
                 <h3 style="text-align:center;">&nbsp{{ user|stringformat:"s" }}さん, ようこそ! </h3>
@@ -314,15 +314,7 @@ input[name="tab_item"] {
                         </div>
                     </div>
                     <div class="card-columns">
-                        <div class="card">
-                            <div class="card-header">アカウント削除（無効化）</div>
-                            <div class="card-body">
-                                {% if user.is_authenticated %}
-                                    {% comment %} <li><a href="{% url 'user_auth:delete' user.username %}">退会</a></li> {% endcomment %}
-                                    <li><a href="{% url 'accounts:cleanup' %}">退会</a></li>
-                                {% endif %}
-                            </div>
-                        </div>
+                        
                         <div class="card">
                             <div class="card-header">-</div>
                             <div class="card-body">

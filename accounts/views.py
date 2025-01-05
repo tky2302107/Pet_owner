@@ -280,13 +280,16 @@ class SetUpView(CreateView):
         user = authenticate(email=email, password=password)
         login(self.request, user)
         return response
-    
+
+class UserDeletePreView(TemplateView):#ユーザー退会前
+    template_name = "accounts/deletechk.html"  
+      
 class UserDeleteView(TemplateView):#ユーザー退会
     model = User        
     def get(self, request, **kwargs):
         data = {"is_active":0}
         User.objects.filter(id=self.request.user.id).update(**data)
-        return redirect("accounts:logout")
+        return redirect("accounts:login")
 
 
 # class IconChangeView(UpdateView):

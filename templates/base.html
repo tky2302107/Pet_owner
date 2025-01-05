@@ -43,8 +43,13 @@
             <a class="navbar-brand" href="{% url 'accounts:login' %}">Animal Chat Demo</a>
         {% endif %}
         {% if user.is_authenticated %}
-            <img src="/media/icon/post/ブランク.png" style="object-fit: fill; width: 30px; height: 30px;border-radius:50%;">
-            <h4 style="color:#000000;vertical-align:-30%;margin: 0 20px;">{{ user|stringformat:"s" }}</h4>
+            <form method="get" action="{% url 'accounts:mypage' %}" >
+                {% csrf_token %}
+                <button type="submit" class="btn btn-light text-dark me-2" style="font-size:20px;">
+                    {% comment %} <img src="/media/icon/post/ブランク.png" style="object-fit: fill; width: 30px; height: 30px;border-radius:50%;"> {% endcomment %}
+                    &nbsp{{ user|stringformat:"s" }}
+                </button>
+            </form>
         {% else %}
 
         {% endif %}

@@ -106,10 +106,13 @@ input[name="tab_item"] {
             <a href="{%url 'accounts:email_change'%}" class="btn btnn follower-btn font20">メールアドレス変更</a>
         </div>
         <br>
-        {% comment %} <label class="tab_item2" for="programming">その他</label>
+        <label class="tab_item2" for="programming">その他</label>
         <div style="text-align:center;vertical-align: middle;padding: 0 0 10px;">
-            
-        </div> {% endcomment %}
+          {% if user.is_authenticated %}
+            {% comment %} <a href="{% url 'user_auth:delete' user.username %}">退会</a> {% endcomment %}
+            <a href="{% url 'accounts:cleanup' %}" class="btn btnn follower-btn font20 " style="color:red;">退会</a>
+          {% endif %}    
+        </div>
         <!-- アイコンと編集ボタン -->
         <div class="icon-edit-container">
             <div class="profile-icon"></div>
