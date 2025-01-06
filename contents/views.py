@@ -3,10 +3,12 @@ from django import forms
 from django.db.models.base import Model as Model
 from django.urls import reverse, reverse_lazy
 from django.shortcuts import redirect, render
-from .forms import ClickFollowForm
+from .forms import ClickFollowForm ,HospitalSearchForm
 from .models import NoticeList ,FollowList,HospitalList
 from accounts.models import User
 from django.views.generic import ListView,DetailView,TemplateView,FormView,CreateView
+from django.db.models import Q
+from django.shortcuts import redirect
 
 class Index(TemplateView):
     template_name = 'contents/my_account.html'
@@ -104,9 +106,56 @@ class HospitalListView(ListView):
     paginate_by = 10
     context_object_name = "ctx"
 
+    # def get_queryset(self):
+    #     queryset = HospitalList.objects.filter()
+    #     return queryset    
+
     def get_queryset(self):
         queryset = HospitalList.objects.filter()
-        return queryset    
+        form = HospitalSearchForm(self.request.GET or None)
+        keywords = form.get_keywords().split()
+
+        if len(keywords) == 0:
+            keywords.append("")
+            keywords.append("")
+            keywords.append("")
+            keywords.append("")
+            keywords.append("")
+        elif len(keywords) == 1:
+            keywords.append("")
+            keywords.append("")
+            keywords.append("")
+            keywords.append("")
+        elif len(keywords) == 2:
+            keywords.append("")
+            keywords.append("")
+            keywords.append("")
+        elif len(keywords) == 3:
+            keywords.append("")
+            keywords.append("")
+        elif len(keywords) == 4:
+            keywords.append("")
+        elif len(keywords) == 5:
+            pass
+        else:
+            
+            return redirect(reverse('contents:hospital_list'))
+            # pass
+        print(keywords[0])
+
+        queryset = queryset.filter(Q(detail__icontains = keywords[0]) |Q(name__icontains=keywords[0]) |Q(address__icontains=keywords[0]) |Q(comment__icontains=keywords[0]))
+        queryset = queryset.filter(Q(detail__icontains = keywords[1]) |Q(name__icontains=keywords[1]) |Q(address__icontains=keywords[1]) |Q(comment__icontains=keywords[1]))
+        queryset = queryset.filter(Q(detail__icontains = keywords[2]) |Q(name__icontains=keywords[2]) |Q(address__icontains=keywords[2]) |Q(comment__icontains=keywords[2]))
+        queryset = queryset.filter(Q(detail__icontains = keywords[3]) |Q(name__icontains=keywords[3]) |Q(address__icontains=keywords[3]) |Q(comment__icontains=keywords[3]))
+        queryset = queryset.filter(Q(detail__icontains = keywords[4]) |Q(name__icontains=keywords[4]) |Q(address__icontains=keywords[4]) |Q(comment__icontains=keywords[4]))
+        return queryset
+        
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # チャットルーム検索用のフォームを追加
+        context['hospital_search_form'] = HospitalSearchForm(self.request.GET or None)
+
+        return context
 
 class HospitalContactView(TemplateView):
     template_name = "contents/hospital_contact.html"
