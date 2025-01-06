@@ -94,15 +94,18 @@ class LoginPage(LoginView):
     template_name = 'accounts/login.html'
 
 class LogoutChk(TemplateView):
+    login_url = '/login/'
     template_name = 'accounts/logout.html'
 
 class LogoutPage(LogoutView):
+    login_url = '/login/'
     template_name = 'accounts/logouted.html'
     
 class MainPage(TemplateView):
     template_name = 'main.html'
     
 class ExchangePoint(UpdateView):
+    login_url = '/login/'
     # template_name = 'accounts/p1.html'
     template_name = "contents/exchange_point.html"
     model = User,fund
@@ -127,6 +130,7 @@ class ExchangePoint(UpdateView):
     
 class ExchangePointComplete(UpdateView):
     # template_name = 'accounts/p2.html'
+    login_url = '/login/'
     template_name = "contents/exchange_point_complete.html"
     model = fund
     def get_queryset(self):
@@ -167,6 +171,7 @@ class ExchangePointComplete(UpdateView):
 
 class MyPage(TemplateView):
     model = User
+    login_url = '/login/'
     # template_name = "accounts/m_page.html"
     template_name = "contents/my_account.html"
     def get(self, request, **kwargs):
@@ -176,6 +181,7 @@ class MyPage(TemplateView):
         return self.render_to_response(ctx)
 
 class NameChange(LoginRequiredMixin,FormView):
+    login_url = '/login/'
     models = User
     template_name = "accounts/e_page.html"
     form_class = UserChangeForm
@@ -197,6 +203,7 @@ class NameChange(LoginRequiredMixin,FormView):
         return kwargs
     
 class PasswordChange(PasswordChangeView):
+    login_url = '/login/'
     """パスワード変更ビュー"""
     form_class = PasswordChangeForm
     success_url = reverse_lazy('accounts:pwdone')
@@ -206,10 +213,12 @@ class PasswordChange(PasswordChangeView):
 class PasswordChangeDone(PasswordChangeDoneView):
     """パスワード変更しました"""
     template_name = 'accounts/pwd.html'
+    login_url = '/login/'
 
 
 class EmailChange(LoginRequiredMixin, FormView):
     """メールアドレスの変更"""
+    login_url = '/login/'
     template_name = 'accounts/email_change_form.html'
     form_class = EmailChangeForm
 
@@ -236,11 +245,13 @@ class EmailChange(LoginRequiredMixin, FormView):
 
 class EmailChangeDone(LoginRequiredMixin, TemplateView):
     """メールアドレスの変更メールを送ったよ"""
+    login_url = '/login/'
     template_name = 'accounts/email_change_done.html'
 
 
 class EmailChangeComplete(LoginRequiredMixin, TemplateView):
     """リンクを踏んだ後に呼ばれるメアド変更ビュー"""
+    login_url = '/login/'
     template_name = 'accounts/email_change_complete.html'
     timeout_seconds = getattr(settings, 'ACTIVATION_TIMEOUT_SECONDS', 60*60*24)  # デフォルトでは1日以内
 
@@ -282,9 +293,11 @@ class SetUpView(CreateView):
         return response
 
 class UserDeletePreView(TemplateView):#ユーザー退会前
+    login_url = '/login/'
     template_name = "accounts/deletechk.html"  
       
 class UserDeleteView(TemplateView):#ユーザー退会
+    login_url = '/login/'
     model = User        
     def get(self, request, **kwargs):
         data = {"is_active":0}
@@ -309,5 +322,6 @@ class UserDeleteView(TemplateView):#ユーザー退会
 #         else:
 #             pass
 class AdoptView(TemplateView):
+    login_url = '/login/'
     template_name = "accounts/adopt.html"
     

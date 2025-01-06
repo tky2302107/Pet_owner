@@ -37,11 +37,11 @@
         }
     </style>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        {% if user.is_authenticated %}
+        {% comment %} {% if user.is_authenticated %} {% endcomment %}
             <a class="navbar-brand" href="{% url 'accounts:index' %}">Animal Chat Demo</a>
-        {% else %}
+        {% comment %} {% else %}
             <a class="navbar-brand" href="{% url 'accounts:login' %}">Animal Chat Demo</a>
-        {% endif %}
+        {% endif %} {% endcomment %}
         {% if user.is_authenticated %}
             <form method="get" action="{% url 'accounts:mypage' %}" >
                 {% csrf_token %}

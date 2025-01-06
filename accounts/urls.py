@@ -16,7 +16,7 @@ urlpatterns = [
     path('mypage/point/done/', views.ExchangePointComplete.as_view(), name='points_fin'),
     
     # メインメニュー仮リンク
-    path('menu/', views.MainPage.as_view(), name='menu'),
+    path('menu/', views.MainPage.as_view(), name='menu'),#旧ホーム
     path('mypage/', views.MyPage.as_view(), name='mypage'),
     path('mypage/edit/', views.NameChange.as_view(), name='edit_profile'),
     path("mypage/pwchange/",views.PasswordChange.as_view(),name="pwchange"),

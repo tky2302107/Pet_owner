@@ -3,15 +3,10 @@
 {% block content %}
 
 <div class="row justify-content-center">
-    {% if user.is_authenticated  %}
+    {% comment %} {% if user.is_authenticated  %} {% endcomment %}
         <div class="col-12">
             <div class="row">&nbsp&nbsp&nbsp
-                {% comment %} {% if ctx.icon %} {% endcomment %}
-                
-                    {% comment %} <img src="/media/icon/post/ブランク.png" style="object-fit: contain; width: 30px; height: 30px;border-radius:50%;"> {% endcomment %}
-                    {% comment %} <img src="/media/{{ ctx.icon }}" style="object-fit: contain; width: 30px; height: 30px;"> {% endcomment %}
-                {% comment %} {% endif %} {% endcomment %}
-                <h3 style="text-align:center;">&nbsp{{ user|stringformat:"s" }}さん　ようこそ! </h3>
+                {% comment %} <h3 style="text-align:center;">&nbsp{{ user|stringformat:"s" }}さん　ようこそ! </h3> {% endcomment %}
             </div>
             <br>
             <div class="row">
@@ -341,7 +336,7 @@ input[name="tab_item"] {
                 </div>
             </div>
         </div>
-    {% else %}
+    {% comment %} {% else %}
         <div class="col-12">
             <div class="row">
                 <div class="col-12">
@@ -350,7 +345,7 @@ input[name="tab_item"] {
                 </div>
             </div>
         </div>
-    {% endif %}
+    {% endif %} {% endcomment %}
 </div>
 {% endblock %}
 
