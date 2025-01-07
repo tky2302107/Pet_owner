@@ -6,6 +6,7 @@ from django.contrib.auth.forms import (
 )
 from django.contrib.auth import get_user_model 
 from django.forms import ModelForm
+from django.utils.translation import gettext_lazy
 # from django.contrib.auth.models import User
 User = get_user_model() 
 
@@ -74,3 +75,21 @@ class SetUpForm(UserCreationForm):
             "email",#パスワードの項目は自動的に作られるため記述しない
         )
 
+class AdoptSearchForm(forms.Form):
+    keywords = forms.CharField(
+        label=gettext_lazy('keywords (split space)'),
+        required=False,
+        widget=forms.TextInput(attrs={
+            'placeholder': gettext_lazy('キーワードを入力してください'),
+            'class': 'form-control',
+        }),
+    )
+
+    def get_keywords(self):
+        init_keywords = ''
+        keywords = init_keywords
+
+        if self.is_valid():
+            keywords = self.cleaned_data.get('keywords', init_keywords)
+
+        return keywords

@@ -6,16 +6,16 @@ from django.core.signing import BadSignature,SignatureExpired
 from typing import Generic
 from django.http import HttpResponse, HttpResponseBadRequest
 from django.urls import reverse_lazy
-from django.views.generic import TemplateView,ListView,FormView,UpdateView,CreateView,DeleteView
-from django.contrib.auth.views import LoginView, LogoutView
+from django.views.generic import TemplateView,ListView,FormView,UpdateView,CreateView,DeleteView,DetailView
+from django.contrib.auth.views import LoginView, LogoutView 
 from django.contrib.sites.shortcuts import get_current_site
 from config import settings
-from .models import fund, User
+from .models import fund, User ,AdoptList
 from post.models import PostInfo
 from django.db.models.query import QuerySet
 from django.shortcuts import redirect, render
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .forms import  EmailChangeForm, SetUpForm, UserChangeForm 
+from .forms import  EmailChangeForm, SetUpForm, UserChangeForm ,AdoptSearchForm
 from django.contrib.auth.views import (
     LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView
 )
@@ -25,6 +25,8 @@ from .forms import (
 from django.core.mail import send_mail
 from django.contrib.auth import login, authenticate
 import datetime
+from django.db.models import Q
+from django.shortcuts import redirect
 
 class Index(ListView):
     template_name = 'accounts/index.html'
@@ -321,7 +323,42 @@ class UserDeleteView(TemplateView):#ユーザー退会
 #             pass
 #         else:
 #             pass
-class AdoptView(TemplateView):
+class AdoptListView(ListView):
     login_url = '/login/'
-    template_name = "accounts/adopt.html"
-    
+    template_name = "accounts/adopt_list.html"
+    model = AdoptList
+    paginate_by = 10
+    context_object_name = "ctx"
+
+    # def get_queryset(self):
+    #     queryset = AdoptList.objects.filter()
+    #     return queryset    
+
+    def get_queryset(self):
+        queryset = AdoptList.objects.filter()
+        form = AdoptSearchForm(self.request.GET or None)
+        keywords = form.get_keywords().split()
+        print(list(queryset.values()))
+        try:
+            print(keywords)
+            print(1)
+            for i in range(len(keywords)):
+                queryset = queryset.filter(Q(detail__icontains = keywords[i]) |Q(title__icontains=keywords[i]) |Q(address__icontains=keywords[i]) |Q(place__icontains=keywords[i])|Q(species__icontains=keywords[i]))
+            return queryset
+        except:
+            print(2)
+            return queryset
+
+        
+        
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # チャットルーム検索用のフォームを追加
+        context['adopt_search_form'] = AdoptSearchForm(self.request.GET or None)
+
+        return context
+
+class AdoptDetailView(DetailView):
+    template_name = "accounts/adopt_detail.html"
+    model = AdoptList
+    context_object_name = "adopt"

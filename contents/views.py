@@ -115,39 +115,13 @@ class HospitalListView(ListView):
         form = HospitalSearchForm(self.request.GET or None)
         keywords = form.get_keywords().split()
 
-        if len(keywords) == 0:
-            keywords.append("")
-            keywords.append("")
-            keywords.append("")
-            keywords.append("")
-            keywords.append("")
-        elif len(keywords) == 1:
-            keywords.append("")
-            keywords.append("")
-            keywords.append("")
-            keywords.append("")
-        elif len(keywords) == 2:
-            keywords.append("")
-            keywords.append("")
-            keywords.append("")
-        elif len(keywords) == 3:
-            keywords.append("")
-            keywords.append("")
-        elif len(keywords) == 4:
-            keywords.append("")
-        elif len(keywords) == 5:
-            pass
-        else:
-            
-            return redirect(reverse('contents:hospital_list'))
-            # pass
-        print(keywords[0])
+        try:
+            print(keywords)
+            for i in range(len(keywords)):
+                queryset = queryset.filter(Q(detail__icontains = keywords[i]) |Q(name__icontains=keywords[i]) |Q(address__icontains=keywords[i]) |Q(comment__icontains=keywords[i]))
 
-        queryset = queryset.filter(Q(detail__icontains = keywords[0]) |Q(name__icontains=keywords[0]) |Q(address__icontains=keywords[0]) |Q(comment__icontains=keywords[0]))
-        queryset = queryset.filter(Q(detail__icontains = keywords[1]) |Q(name__icontains=keywords[1]) |Q(address__icontains=keywords[1]) |Q(comment__icontains=keywords[1]))
-        queryset = queryset.filter(Q(detail__icontains = keywords[2]) |Q(name__icontains=keywords[2]) |Q(address__icontains=keywords[2]) |Q(comment__icontains=keywords[2]))
-        queryset = queryset.filter(Q(detail__icontains = keywords[3]) |Q(name__icontains=keywords[3]) |Q(address__icontains=keywords[3]) |Q(comment__icontains=keywords[3]))
-        queryset = queryset.filter(Q(detail__icontains = keywords[4]) |Q(name__icontains=keywords[4]) |Q(address__icontains=keywords[4]) |Q(comment__icontains=keywords[4]))
+        except:
+            pass
         return queryset
         
     def get_context_data(self, **kwargs):

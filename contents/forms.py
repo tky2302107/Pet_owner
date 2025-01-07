@@ -19,7 +19,7 @@ class HospitalSearchForm(forms.Form):
         label=gettext_lazy('keywords (split space)'),
         required=False,
         widget=forms.TextInput(attrs={
-            'placeholder': gettext_lazy('キーワードを5つまで入力してください'),
+            'placeholder': gettext_lazy('キーワードを入力してください'),
             'class': 'form-control',
         }),
     )

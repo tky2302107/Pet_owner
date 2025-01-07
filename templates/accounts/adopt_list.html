@@ -1,4 +1,3 @@
-<!--　フォローアカウント一覧　-->
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
@@ -79,39 +78,36 @@ input[name="tab_item"] {
     font-size:20px;
 }
 </style>
-<div>
-  <form action="", method="GET">
-    <div class="form-group row">
-        <div class="col-12">
-            {{ hospital_search_form.keywords }}
-        </div>
-    </div>
-    <div class="form-group row">
-        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
-            <button type="submit" class="btn btn-primary btn-block">病院検索</button>
-        </div>
-        <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
-            <a href="{% url 'chat:index' %}" class="btn btn-secondary btn-block">クリア</a>
-        </div>
-    </div>
-  </form>
-  {% if ctx %}
-      {% for hospital in ctx %}
-      <a href="{% url 'contents:hospital_detail' hospital.pk %}"><label class="tab_item2" for="programming">{{ hospital.name }}</label></a>
-          <div style="text-align:center;vertical-align: middle;padding: 0 0 10px;">
-              <label>{{hospital.detail}}</label>
-              <br>
-              <label>{{hospital.address}}</label>
-              <br>
-          </div>
-      {% endfor %}
-  {% endif %}
-  <br>         
-</div>
-        <!-- 戻るボタン -->
-    <a href="javascript:history.back()" class="return-btn">戻る</a>
-<div style="diaplay:flex;">
-    <a href="{% url 'contents:hospital_contact' %}">掲載依頼はこちら</a>
-</div>
-{% endblock %}
 
+<div>
+    <form action="", method="GET">
+      <div class="form-group row">
+          <div class="col-12">
+              {{ adopt_search_form.keywords }}
+          </div>
+      </div>
+      <div class="form-group row">
+          <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+              <button type="submit" class="btn btn-primary btn-block">検索</button>
+          </div>
+          <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
+              <a href="{% url 'chat:index' %}" class="btn btn-secondary btn-block">クリア</a>
+          </div>
+      </div>
+    </form>
+    {% if ctx %}
+        {% for adopt in ctx %}
+        <a href="{% url 'accounts:adopt_detail' adopt.pk %}"><label class="tab_item2" for="programming">{{ adopt.place }}</label></a>
+        <div style="text-align:center;vertical-align: middle;padding: 0 0 10px;">
+            <label>{{adopt.species}}</label>
+            <br>
+            <label>{{adopt.detail}}</label>
+            <br>
+        </div>
+    {% endfor %}
+{% endif %}
+<br>         
+  </div>
+        <!-- 戻るボタン -->
+        <a href="javascript:history.back()" class="return-btn">戻る</a>
+{% endblock %}

@@ -10,6 +10,9 @@ apscheduler = "*"
 django = "*"
 channels = "*"
 daphne = "*"
+phonenumbers = "*"
+django-phonenumber-field = "*"
+django-phonenumbers = "*"
 
 [dev-packages]
 

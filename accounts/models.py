@@ -108,3 +108,56 @@ class fund(models.Model):
 
     def __str__(self):
         return self.__unicode__()
+
+class AdoptList(models.Model):
+    id = models.AutoField(primary_key=True)
+    species = models.CharField(
+        gettext_lazy("種族"),
+        null=False,
+        max_length=30,
+        default='',
+        blank=False,
+    )
+    detail = models.CharField(
+        gettext_lazy("どんな子？"),
+        null=False,
+        max_length=128,
+        default='',
+        blank=False,
+    )
+    place = models.CharField(
+        gettext_lazy("会える場所"),
+        null=False,
+        max_length=30,
+        default='',
+        blank=False,
+    )
+    address = models.CharField(
+        gettext_lazy("住所"),
+        null=False,
+        max_length=50,
+        default='',
+        blank=False,
+    )
+    
+
+    tel = models.IntegerField(
+        gettext_lazy("電話(ハイフン無し)"),
+        default=0,
+    )
+
+    email = models.CharField(
+        gettext_lazy("メール"),
+        null=True,
+        max_length=50,
+        default='',
+        blank=True,
+    )
+
+    title = models.CharField(
+        gettext_lazy("一言紹介(20文字)"),
+        null=True,
+        max_length=20,
+        default='',
+        blank=True,
+    )
