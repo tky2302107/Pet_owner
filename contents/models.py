@@ -25,6 +25,13 @@ class NoticeList(models.Model):
     text = models.TextField(
         verbose_name="本文"
     )
+    room_id = models.IntegerField(
+        null=True,
+    )
+    talker_id = models.IntegerField(
+        null=True,
+    )
+
     # def __str__(self):
     #     return self.title
     
@@ -85,7 +92,6 @@ class HospitalList(models.Model):
         gettext_lazy("ホームページ"),
         null=True,
         max_length=300,
-        default='',
         blank=True,
     )
     comment = models.CharField(
@@ -101,4 +107,13 @@ class HospitalList(models.Model):
         height_field=None, 
         width_field=None, 
         max_length=None
+    )
+
+
+class DifferentialNum(models.Model):
+    num = models.CharField(
+        null=True,
+        max_length=50,
+        default='',
+        blank=True,
     )

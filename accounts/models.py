@@ -109,6 +109,8 @@ class fund(models.Model):
     def __str__(self):
         return self.__unicode__()
 
+
+
 class AdoptList(models.Model):
     id = models.AutoField(primary_key=True)
     species = models.CharField(
