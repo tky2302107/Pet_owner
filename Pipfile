@@ -6,13 +6,13 @@ name = "pypi"
 [packages]
 pillow = "*"
 django-cleanup = "*"
-apscheduler = "*"
 django = "*"
 channels = "*"
 daphne = "*"
 phonenumbers = "*"
 django-phonenumber-field = "*"
 django-phonenumbers = "*"
+apscheduler = "*"
 
 [dev-packages]
 
