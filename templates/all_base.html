@@ -7,7 +7,6 @@
         <meta charset="utf-8">
         <title>{% block title %}アニマルチャット{% endblock %}</title>
 
-        {% comment %} <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet"> {% endcomment %}
         <link href="{% static "assets/dist/css/bootstrap.min.css" %}" rel="stylesheet">
         
         <!-- Custom styles for this template -->
@@ -109,12 +108,17 @@
             <div class="px-3 py-2 text-bg-dark border-bottom">
                 <div class="container">
                     <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                        <a href="#" class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+                        <a href="{% url "contents:index" %}" class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                             <!-- ユーザーアイコン -->
                             <!-- <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg> -->
                             <img src="https://assets.st-note.com/img/1676155437876-5NNUYKTjTE.png" alt="mdo" width="80" height="64" class="rounded-circle">
                         </a>
-                    <h3 class="fs-4 text-white" style="width: 85%; text-align: center;">アニマルチャット</h3>
+                        
+                        <h3 class="fs-4 text-white" style="width: 85%; text-align: center;">
+                            <a style="text-decoration:none; color:white;" href="{% url 'accounts:menu' %}"target="_self">
+                                アニマルチャット
+                            </a>
+                        </h3>
                     </div>
                 </div>
             </div>
@@ -142,12 +146,12 @@
         <!--　フッター　-->
         <footer>
         
-            <h3>アニマルチャット</h3>
+            <a style="text-decoration:none;" href="{% url 'accounts:menu' %}" class="btn btn-link btn-block" target="_self"><h3>アニマルチャット</h3></a>
 
             <!-- メニューリスト -->
             <div class="footer-menu">
                 <ul class="footer-menu-list">
-                    <li><a href="/">ホーム画面へ</a></li>
+                    <li><a href="{% url 'accounts:menu' %}">ホーム画面へ</a></li>
                     <li><a href="#">利用規約</a></li>
                     <li><a href="#">プライバシーポリシー</a></li>
                 </ul>
@@ -161,6 +165,9 @@
             <!-- 著作権表示 -->
             <div class="copyright">
                 <p>© 2024 システム名 Inc. All Rights Reserved.</p>
+            </div>
+            <div>
+                <a style="text-decoration:none;" href="{% url 'accounts:index' %}" class="btn btn-link btn-block" target="_self"><p style="font-size:10px">仮ホーム</p></a>
             </div>
         </footer>
     </body>

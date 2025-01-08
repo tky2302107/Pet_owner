@@ -1,3 +1,6 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
 <form action="" method="POST">
     {{ form.non_field_errors }}
     {% for field in form %}
@@ -12,3 +15,4 @@
     <a href="{% url 'accounts:mypage' %}">マイページに戻る</a>
     <a href="{% url 'accounts:index' %}">メインページに戻る</a>
 </form>
+{%endblock%}

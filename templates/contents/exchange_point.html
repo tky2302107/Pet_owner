@@ -1,15 +1,17 @@
 <!--　ポイント交換画面　-->
-{% extends "all_base.html" %}
+{% extends "base.html" %}
 {% load static %}
 
 {% block style %}<link rel="stylesheet" href="{% static 'admin/css/exchange_point.css' %}">{% endblock %}
 
-{% block contents %}
+{% block content %}
     <div class="exchange-container">
         <a href="main_menu.html" class="return-btn">戻る</a>
         <h2>ポイント交換</h2>
         <p class="number-points">保有ポイント:  <span>{{ points }}</span>pt</p>
+        {% if points != 0 %}
         <div><button class="exchange-btn" onclick="location.href='{% url "accounts:points_fin" %}'" >交換する</a></div>
+        {% endif %}
         <!-- フォーム部分 -->
         {% comment %} <form action="/exchange" method="post">
             <label for="pointsToExchange">交換するポイント数:</label>

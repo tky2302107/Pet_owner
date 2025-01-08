@@ -15,3 +15,6 @@ post/__pycache__/
 chat/__pycache__/
 config/__pycache__/
 *.sqlite3
+custom_templatetags/__pycache__/
+.vscode/
+*/__pycache__/

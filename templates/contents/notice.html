@@ -1,33 +1,21 @@
 <!--　通知画面　-->
-{% extends "all_base.html" %}
+{% extends "base.html" %}
 {% load static %}
 
 {% block style %}<link rel="stylesheet" href="{% static 'admin/css/notice.css' %}">{% endblock %}   
 
-{% block contents %}
+{% block content %}
     <div class="notice-container">
-        <h2 class="notice-title">通知</h2>
+        <h2 class="notice-title">通知詳細</h2>
 
         <div class="grid-container">
-            <div class="box box1">通知タイトル</div>
-            <div class="box box3">通知内容</div>
-        </div>
-        <div class="grid-container">
-            <div class="box box1">通知タイトル</div>
-            <div class="box box3">通知内容</div>
-        </div>
-        <div class="grid-container">
-            <div class="box box1">通知タイトル</div>
-            <div class="box box3">通知内容</div>
-        </div>
-        <div class="grid-container">
-            <div class="box box1">通知タイトル</div>
-            <div class="box box3">通知内容</div>
+            <div class="box box1">通知タイトル:&nbsp{{obj_data.title}}</div>
+            <div class="box box3">通知内容:&nbsp{{obj_data.text}}</div>
         </div>
 
     </div>
     
 
         <!-- 戻るボタン -->
-        <a href="" onclick="history.back()" class="return-btn">戻る</a>
+        <a href="javascript:history.back()" class="return-btn">戻る</a>
 {% endblock %}

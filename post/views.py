@@ -8,6 +8,7 @@ from post.models import PostInfo
 # 投稿画面表示、投稿情報保存
 class PostPageView(LoginRequiredMixin, CreateView):
     template_name = '../templates/post/post.html'
+    login_url = '/login/'
     model = PostInfo
     form_class = PostForm
     success_url = reverse_lazy('post:posts_completed')
@@ -19,6 +20,7 @@ class PostPageView(LoginRequiredMixin, CreateView):
 # 投稿完了画面表示
 class PostCompletePageView(TemplateView):
     template_name = '../templates/post/post_completed.html'
+    login_url = '/login/'
 
 # 投稿検索画面表示
 class PostSearchPageView(ListView):
@@ -47,16 +49,19 @@ class PostDetailPageView(DetailView):
 class PostDeletePageView(LoginRequiredMixin, DeleteView):
     model = PostInfo
     template_name = '../templates/post/post_delete.html'
+    login_url = '/login/'
     context_object_name = 'post'
     success_url = reverse_lazy('post:posts_delete_completed')
 
 # 投稿削除完了画面表示
 class PostDeleteCompletePageView(TemplateView):
     template_name = '../templates/post/post_delete_complete.html'
+    login_url = '/login/'
 
 # 投稿履歴画面表示
 class PostHistoryPageView(LoginRequiredMixin, ListView):
     template_name = '../templates/post/post_history.html'
+    login_url = '/login/'
     model = PostInfo # 投稿情報モデル
     context_object_name = 'posts' # コンテキスト名
     
@@ -73,6 +78,7 @@ class PostHistoryPageView(LoginRequiredMixin, ListView):
 class PostUpdatePageView(LoginRequiredMixin, UpdateView):
     model = PostInfo
     form_class = PostForm
+    login_url = '/login/'
     template_name = '../templates/post/post_update.html'
     
     def get_success_url(self):

@@ -10,70 +10,191 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
           integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css">
-    <title>Chat Demo</title>
+    <title>Animal Chat Demo</title>
     {% block header %}
     {% endblock %}
 </head>
 {% comment %} <!-- {% extends "header/画面/base.html" %} --> {% endcomment %}
 
-<body>
+<header>
+    <style>
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            {% comment %} padding: 10px 20px; {% endcomment %}
+            z-index:1;
+            {% comment %} background-color: #333; {% endcomment %}
+            background-color: #333;
+            color: #fff;
+            {% comment %} display: flex; {% endcomment %}
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: nowrap;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2);
+            font-size: 0.9em;
+        }
+    </style>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="{% url 'accounts:index' %}">Chat Demo</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse"
-                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+        {% comment %} {% if user.is_authenticated %} {% endcomment %}
+            <a class="navbar-brand" href="{% url 'accounts:index' %}">Animal Chat Demo</a>
+        {% comment %} {% else %}
+            <a class="navbar-brand" href="{% url 'accounts:login' %}">Animal Chat Demo</a>
+        {% endif %} {% endcomment %}
+        {% if user.is_authenticated %}
+            <form method="get" action="{% url 'accounts:mypage' %}" >
+                {% csrf_token %}
+                <button type="submit" class="btn btn-light text-dark me-2" style="font-size:20px;">
+                    {% comment %} <img src="/media/icon/post/ブランク.png" style="object-fit: fill; width: 30px; height: 30px;border-radius:50%;"> {% endcomment %}
+                    &nbsp{{ user|stringformat:"s" }}
+                </button>
+            </form>
+        {% else %}
+
+        {% endif %}
+        <div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-            {% comment %} {% if user.is_authenticated %}
-                <li>
-                    <a class="nav-item nav-link" href="{% url 'accounts:logout' %}">
-                        Logout
-                    </a>
-                </li>
-            {% else %}
-                <li class="nav-item">
-                    <a class="nav-item nav-link" href="{% url 'accounts:login' %}">
-                        Login
-                    </a>
-                </li>
-            {% endif %} {% endcomment %}
-            {% if user.is_authenticated %}
-                {% comment %} こんにちは {{user.username}} さん {% endcomment %}
-                {% comment %} <form method="post" action="{% url 'accounts:logout' %}">
-                    <a class="nav-item nav-link" type="submit">
+                <br>
+                <form method="get" action="{% url "post:posts_search" %}" class="col-12 col-lg-auto mb-2 mb-lg-0" role="search" style="display: flex;">
+                    <input type="search" class="form-control" placeholder="投稿検索..." aria-label="Search" name="keyword" style="width:100%;">
+                    <input type="submit" value="検索" class="btn btn-primary ">
+                </form>
+
+                {% if user.is_authenticated %}
+
+                    <form method="post" action="{% url 'post:posts' %}" >
                         {% csrf_token %}
-                        <label>Logout</label>
-                    </a>
-                </form> {% endcomment %}
-                <form method="post" action="{% url 'accounts:logout' %}">
-                    {% csrf_token %}
-                    <button type="submit">ログアウト</button>
-                </form>
-            {% else %}
-                <form method="post" action="{% url 'accounts:login' %}">
-                    {% csrf_token %}
-                    <button type="submit">ログイン</button>
-                </form>
-                {% comment %} <a href="{% url 'accounts:login' %}">ログイン</a> {% endcomment %}
-            {% endif %}
+                        <button type="submit" class="btn btn-light text-dark me-2">投稿する</button>
+                    </form>
+                    <form method="get" action="{% url 'post:posts_search' %}" >
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-light text-dark me-2">投稿を見る</button>
+                    </form>
+                    <form method="get" action="{% url 'chat:index' %}" >
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-light text-dark me-2">チャットをする</button>
+                    </form>
+                    <form method="get" action="{% url 'accounts:adopt' %}" >
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-light text-dark me-2">里親探し</button>
+                    </form>
+                    <form method="get" action="{% url 'contents:hospital_list' %}" >
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-light text-dark me-2">病院評価機能(名称未定)</button>
+                    </form>
+                    <form method="get" action="{% url 'accounts:points' %}" >
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-light text-dark me-2">ポイント</button>
+                    </form>
+                    <form method="get" action="{% url 'accounts:mypage' %}" >
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-light text-dark me-2">マイページ</button>
+                    </form>
+                    <form method="get" action="{% url 'contents:notice_l' %}" >
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-light text-dark me-2">通知一覧</button>
+                    </form>
+                    <form method="get" action="{% url 'accounts:logoutchk' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-light text-dark me-2">ログアウト</button>
+                    </form>
+                {% else %}
+                    <form method="post" action="{% url 'accounts:login' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-light text-dark me-2">ログイン</button>
+                    </form>
+                {% endif %}
             </ul>
         </div>
     </nav>
+</header>
+    <body>
     {# main contents #}
     <div class="container mt-3">
+        <style>
+            margin: 20px; /* bodyの外側の余白を指定する */
+            padding: 50px 10px 50px 10px; /* bodyの内側余白を指定する(上:右:下:左) */
+        </style>
+        <br>
+        <br>
+        {% comment %} <p style="height:50px;"></p> {% endcomment %}
         {% block content %}{% endblock %}
+        {% comment %} <p style="height:150px;"></p> {% endcomment %}
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
     </div>
-    {# Optional JavaScript #}
-    {# jQuery first, then Bootstrap JS (Bundle version) #}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
-            integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
-    {% block bodyjs %}
-    {% endblock %}
+        {# Optional JavaScript #}
+        {# jQuery first, then Bootstrap JS (Bundle version) #}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+                integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+        {% block bodyjs %}
+        {% endblock %}
+    </body>
 </body>
+
+
+    <!--　フッター　-->
+    <footer>
+        <style>
+            /* フッター */
+            footer {
+                position: fixed;
+                bottom: 0;
+                left:0;
+                width: 100%;
+                {% comment %} height:115px; {% endcomment %}
+                z-index:1;
+                {% comment %} background-color: #333; {% endcomment %}
+                color: #808080;
+                {% comment %} padding: 10px 20px; {% endcomment %}
+                {% comment %} display: flex; {% endcomment %}
+                justify-content: space-between;
+                align-items: center;
+                flex-wrap: nowrap;
+                box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2);
+                font-size: 0.9em;
+            }
+        </style>
+
+        <!-- メニューリスト -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class=" navbar-collapse" id="navbarSupportedContent" style="text-align:center;">
+
+                <ul class="navbar-nav mr-auto" style="margin: auto;">
+                    <li><a href="#">利用規約</a></li>
+                    <li><a href="#">プライバシーポリシー</a></li>
+                    <li>
+                        <!-- お問い合わせ情報 -->
+                        <div class="contact">
+                            <p>お問い合せ先<b>〒000-0000</b> 電話📳<b>000-0000-0000</b></p>
+                        </div>
+                    </li>
+                    <li>
+                        <!-- 著作権表示 -->
+                        <div class="copyright" >
+                            <p>© 2024 システム名 Inc. All Rights Reserved.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </footer>
+
+
 </html>

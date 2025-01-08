@@ -57,3 +57,48 @@ class FollowList(models.Model):
         default='',
         blank=True,
     )
+
+class HospitalList(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(
+        gettext_lazy("病院名"),
+        null=False,
+        max_length=30,
+        default='',
+        blank=False,
+    )
+    address = models.CharField(
+        gettext_lazy("住所"),
+        null=False,
+        max_length=50,
+        default='',
+        blank=False,
+    )
+    detail = models.CharField(
+        gettext_lazy("詳細"),
+        null=False,
+        max_length=128,
+        default='',
+        blank=False,
+    )
+    hp = models.URLField(
+        gettext_lazy("ホームページ"),
+        null=True,
+        max_length=300,
+        default='',
+        blank=True,
+    )
+    comment = models.CharField(
+        gettext_lazy("コメント"),
+        null=False,
+        max_length=300,
+        default='',
+        blank=True,
+    )
+    image = models.ImageField(
+        null=True,#後でfalseにする
+        upload_to=None, 
+        height_field=None, 
+        width_field=None, 
+        max_length=None
+    )

@@ -1,74 +1,113 @@
 <!--　通知画面　-->
-{% extends "all_base.html" %}
-{% load static %}
+{% extends "base.html" %}
+{% load static %} 
 
 {% block style %}<link rel="stylesheet" href="{% static 'admin/css/notice_list.css' %}">{% endblock %}   
 
-{% block contents %}
+{% block content %}
+<style>
+    /*タブ切り替え全体のスタイル*/
+.tabs {
+  margin-top: 50px;
+  {% comment %} padding-bottom: 40px; {% endcomment %}
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  margin: 0 auto;
+}
+
+/*タブのスタイル*/
+.tab_item {
+  width: calc(100%/2);
+  height: 50px;
+  border-bottom: 3px solid #5ab4bd;
+  background-color: #f9f9f9;
+  line-height: 50px;
+  font-size: 16px;
+  text-align: center;
+  color: #565656;
+  display: block;
+  float: left;
+  text-align: center;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+.tab_item2 {
+    width: calc(100%);
+    height: 50px;
+    border-bottom: 3px solid #5ab4bd;
+    background-color: #f9f9f9;
+    line-height: 50px;
+    font-size: 20px;
+    text-align: center;
+    color: #565656;
+    display: block;
+    float: left;
+    text-align: center;
+    font-weight: bold;
+    transition: all 0.2s ease;
+  }
+.tab_item:hover {
+  opacity: 0.75;
+}
+
+/*ラジオボタンを全て消す*/
+input[name="tab_item"] {
+  display: none;
+}
+
+/*タブ切り替えの中身のスタイル*/
+.tab_content {
+  display: none;
+  padding: 0px 40px 10px;
+  clear: both;
+  overflow: hidden;
+  
+}
+
+/*選択されているタブのコンテンツのみを表示*/
+#all:checked ~ #all_content,
+#programming:checked ~ #programming_content,
+#design:checked ~ #design_content {
+  display: block;
+}
+
+/*選択されているタブのスタイルを変える*/
+.tabs input:checked + .tab_item {
+  background-color: #5ab4bd;
+  color: #fff;
+}
+
+.font20 {
+    font-size:20px;
+}
+</style>
     <div class="notice-container">
         <h2 class="notice-title">通知一覧</h2>
 
-        <!-- 通知1 -->
-        <div class="notice">
-            <div class="notice-content">
-                <div class="notice-icon"></div>
-                <div class="notice-details">
-                    <div class="notice-sender">返信した相手の名前</div>
-                    <div class="notice-message">「メッセージ内容」</div>
+        <div class="post-section">
+        {% for data in obj_data %}
+        <!-- 通知n -->
+        <div class="card-columns" style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 5px;">
+            {% comment %} <div class="notice"style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 5px;"> {% endcomment %}
+                <div class="notice-content">
+                    <div class="notice-icon"></div>
+                    <div class="notice-details">
+                        <div><a style="text-decoration: none;font-style: #0000;" href= "{% url 'contents:notice_d' data.pk %}">{{data.title}}</a></div>
+                        {% comment %} <div class="notice-sender">返信した相手の名前</div>
+                        <div class="notice-message">「メッセージ内容」</div> {% endcomment %}
+                    </div>
                 </div>
-            </div>
-            <div class="notice-time">2024/10/31 14:00</div>
+                <div class="notice-time">{{ data.posted_at }}</div>
+            {% comment %} </div> {% endcomment %}
         </div>
-
-        <!-- 通知2 -->
-        <div class="notice">
-            <div class="notice-content">
-                <div class="notice-icon"></div>
-                <div class="notice-details">
-                    <div class="notice-sender">返信した相手の名前</div>
-                    <div class="notice-message">「メッセージ内容」</div>
-                </div>
-            </div>
-            <div class="notice-time">2024/10/30 10:45</div>
+        {% endfor %}
         </div>
-
-        <!-- 通知3 -->
-        <div class="notice">
-            <div class="notice-content">
-                <div class="notice-icon"></div>
-                <div class="notice-details">
-                    <div class="notice-sender">返信した相手の名前</div>
-                    <div class="notice-message">「メッセージ内容」</div>
-                </div>
-            </div>
-            <div class="notice-time">2024/10/29 18:30</div>
-        </div>
-
-        <!-- 通知4 -->
-        <div class="notice">
-            <div class="notice-content">
-                <div class="notice-icon"></div>
-                <div class="notice-details">
-                    <div class="notice-sender">返信した相手の名前</div>
-                    <div class="notice-message">「メッセージ内容」</div>
-                </div>
-            </div>
-            <div class="notice-time">2024/10/28 09:15</div>
-        </div>
-        
-        <!-- 通知5 -->
-        <div class="notice">
-            <div class="notice-content">
-                <div class="notice-icon"></div>
-                <div class="notice-details">
-                    <div class="notice-sender">返信した相手の名前</div>
-                    <div class="notice-message">「メッセージ内容」</div>
-                </div>
-            </div>
-            <div class="notice-time">2024/10/27 13:00</div>
-        </div>
-    </div>
 
             <!-- 戻るボタン -->
-            <a href="" onclick="history.back()" class="return-btn">戻る</a>
+            <a href="javascript:history.back()" class="return-btn">戻る</a>
+
+
+
+           
 {% endblock %}

@@ -1,0 +1,101 @@
+<!--　フォローアカウント一覧　-->
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<style>
+    /*タブ切り替え全体のスタイル*/
+.tabs {
+  margin-top: 50px;
+  {% comment %} padding-bottom: 40px; {% endcomment %}
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  margin: 0 auto;
+}
+
+/*タブのスタイル*/
+.tab_item {
+  width: calc(100%/2);
+  height: 50px;
+  border-bottom: 3px solid #5ab4bd;
+  background-color: #f9f9f9;
+  line-height: 50px;
+  font-size: 16px;
+  text-align: center;
+  color: #565656;
+  display: block;
+  float: left;
+  text-align: center;
+  font-weight: bold;
+  transition: all 0.2s ease;
+}
+.tab_item2 {
+    width: calc(100%);
+    height: 50px;
+    border-bottom: 3px solid #5ab4bd;
+    background-color: #f9f9f9;
+    line-height: 50px;
+    font-size: 20px;
+    text-align: center;
+    color: #565656;
+    display: block;
+    float: left;
+    text-align: center;
+    font-weight: bold;
+    transition: all 0.2s ease;
+  }
+.tab_item:hover {
+  opacity: 0.75;
+}
+
+/*ラジオボタンを全て消す*/
+input[name="tab_item"] {
+  display: none;
+}
+
+/*タブ切り替えの中身のスタイル*/
+.tab_content {
+  display: none;
+  padding: 0px 40px 10px;
+  clear: both;
+  overflow: hidden;
+  
+}
+
+/*選択されているタブのコンテンツのみを表示*/
+#all:checked ~ #all_content,
+#programming:checked ~ #programming_content,
+#design:checked ~ #design_content {
+  display: block;
+}
+
+/*選択されているタブのスタイルを変える*/
+.tabs input:checked + .tab_item {
+  background-color: #5ab4bd;
+  color: #fff;
+}
+
+.font20 {
+    font-size:20px;
+}
+</style>
+<label class="tab_item2" for="programming">{{hospital.name}}</label>
+        <div style="text-align:center;vertical-align: middle;padding: 0 0 10px;">
+            {% comment %} <label>{{hospital.detail}}</label> {% endcomment %}
+            {% comment %} <br> {% endcomment %}
+            <label>病院の詳細：{{hospital.detail}}</label>
+            <br>
+            <label>コメント：{{hospital.comment}}</label>
+            <br>
+            <label>住所：{{hospital.address}}</label>
+            <br>
+            {% if hospital.hp%}
+                <a href="{{hospital.address}}"><label style="color:black;">ホームページ：</label>{{ hospital.hp }}</a>
+            {%endif%}
+        </div>
+
+<!-- 戻るボタン -->
+<div style="diaplay:flex;">
+    <a href="javascript:history.back()" class="return-btn">戻る</a>
+</div>
+{% endblock %}
