@@ -1,14 +1,11 @@
 <!--　投稿画面　-->
-{% extends "all_base.html" %}
+{% extends "base.html" %}
 {% load static %}
 
-{% block style %}
-<link href="{% static "post/css/post.css" %}" rel="stylesheet">
-{% endblock %}
-
-{% block contents %}
+{% block content %}
 <form method="post" enctype="multipart/form-data">
-  <div class="post-container">
+  <div style="margin-top: 2%; display: flex; justify-content: center; align-items: center;">
+    <div>
     <!-- 動画・画像アップロード -->
       {% csrf_token %}
       <div class="upload-section">
@@ -21,14 +18,15 @@
 
       <!-- 文字入力フォームとボタン -->
       <div class="form-section">
-        <label for="post-text">文字入力</label>
+        <label for="post-text">文字入力（300文字以内）</label>
         {{ form.post }}
 
         <div class="post-button-group">
-          <button class="post2-btn post2-back-btn" type="button" onclick="window.history.back()">戻る</button>
-          <button class="post2-btn post2-post-btn" type="submit">投稿する</button>    
+          <button class="btn btn-primary" type="button" style="background-color:red;" onclick="window.history.back()">戻る</button>
+          <button class="btn btn-primary" style="width:93%" type="submit">投稿する</button>    
         </div>
       </div>
+    </div>
   </div>
 </form>
 {% endblock %}
