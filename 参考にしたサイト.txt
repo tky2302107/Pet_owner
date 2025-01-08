@@ -1,0 +1,14 @@
+css
+https://qiita.com/chisaki0606/items/8e46f7c0052d6d3c6040
+
+アカウント編集
+https://blog.narito.ninja/detail/136
+
+チャット
+https://yururi-do.com/django-channels-memberonly-chat-room/
+
+全般
+https://docs.djangoproject.com/ja/5.1/topics/
+
+アカウント作成
+https://qiita.com/ryo-keima/items/e6ce42bb4c11432ea829

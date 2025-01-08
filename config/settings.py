@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY') # 追記した
-
+SECRET_KEY="^%*l0n_#_5h4!%rffy$+!y=2nfg#&#^8^6_n8#gmd=&k7ik(nf"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -34,6 +34,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    "daphne",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -42,10 +43,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     'django.contrib.humanize',
+    # 画像自動削除
+    'django_cleanup.apps.CleanupConfig',
     'channels',
     'accounts',
     'chat',
     'post',
+    'contents',
 ]
 
 MIDDLEWARE = [
@@ -128,7 +132,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-# STATIC_URL = 'static/' # cssの一括まとめここをコメント解除すると　loadstatic　が使えるようになるがtemplates以下のcssは無効化される
+STATIC_URL = '/static/' # cssの一括まとめここをコメント解除すると　loadstatic　が使えるようになるがtemplates以下のcssは無効化される
+STATICFILES_DIRS = (
+    [
+        os.path.join(BASE_DIR, "static"), 
+    ]
+)
+
+
+# 画像アップロード先フォルダの設定
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

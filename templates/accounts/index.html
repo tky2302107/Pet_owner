@@ -5,7 +5,7 @@
     {% if user.is_authenticated  %}
     <div class="col-12">
         <div class="row">
-            <h2 class="h2">{{ user|stringformat:"s" }}さん, ようこそ! (仮ページ・今後、このページはmain_menu.htmlに置き換えられます。)</h2>
+            <h2 class="h2">{{ user|stringformat:"s" }}さん, ようこそ! (仮ページ・今後、このページはmain_menu.htmlに置き換え予定。)</h2>
         </div>
         <br>
         <div class="row">
@@ -22,7 +22,7 @@
                     <div class="card">
                         <div class="card-header">NoticeList</div>
                         <div class="card-body">
-                            <a href="{% url 'contents:notice' %}" class="btn btn-link btn-block" target="_self">
+                            <a href="{% url 'contents:notice_l' %}" class="btn btn-link btn-block" target="_self">
                                 通知一覧
                             </a>
                         </div>
@@ -30,7 +30,7 @@
                     <div class="card">
                         <div class="card-header">Points</div>
                         <div class="card-body">
-                            <a href="{% url 'contents:points' %}" class="btn btn-link btn-block" target="_self">
+                            <a href="{% url 'accounts:points' %}" class="btn btn-link btn-block" target="_self">
                                 ポイント交換
                             </a>
                         </div>
@@ -69,6 +69,49 @@
                             <a href="{% url 'accounts:menu' %}" class="btn btn-link btn-block" target="_self">
                                 メインページへ(今後置き換えします。)
                             </a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">Post</div>
+                        <div class="card-body">
+                            <a href="{% url 'post:posts' %}" class="btn btn-link btn-block" target="_self">
+                                投稿する
+                            </a>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">Mypage</div>
+                        <div class="card-body">
+                            <a href="{% url 'accounts:mypage' %}" class="btn btn-link btn-block" target="_self">
+                                マイページテスト用
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-columns">
+                    <div class="card">
+                        <div class="card-header">アカウント削除（無効化）</div>
+                        <div class="card-body">
+                            {% if user.is_authenticated %}
+                                {% comment %} <li><a href="{% url 'user_auth:delete' user.username %}">退会</a></li> {% endcomment %}
+                                <li><a href="{% url 'accounts:cleanup' %}">退会</a></li>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">-</div>
+                        <div class="card-body">
+                            {% comment %} <a href="{% url 'post:posts' %}" class="btn btn-link btn-block" target="_self">
+                                投稿する
+                            </a> {% endcomment %}
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">-</div>
+                        <div class="card-body">
+                            {% comment %} <a href="{% url 'accounts:mypage' %}" class="btn btn-link btn-block" target="_self">
+                                マイページテスト用
+                            </a> {% endcomment %}
                         </div>
                     </div>
                 </div>

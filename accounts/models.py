@@ -37,13 +37,13 @@ class CustomUserManager(UserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
     screen_name = models.CharField(
-        gettext_lazy('screen name'),
+        gettext_lazy('アカウント名'),
         max_length=128,
         default='',
         blank=True,
-        help_text=gettext_lazy('Option. 128 characters or fewer.'),
+        help_text=gettext_lazy('128文字以内で入力してください'),
     )
-    email = models.EmailField(gettext_lazy('E-mail address'), unique=True)
+    email = models.EmailField(gettext_lazy('メールアドレス'), unique=True)
     is_staff = models.BooleanField(
         gettext_lazy('staff status'),
         default=False,
@@ -60,6 +60,13 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     objects = CustomUserManager()
 
+    points = models.IntegerField(
+        default=0,
+        blank=True,
+        null=True,
+            
+    )
+
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
 
@@ -72,3 +79,11 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __unicode__(self):
         return self.screen_name or self.email
+    
+class fund(models.Model):
+    points_sum = models.IntegerField(
+        default=0,
+    )
+
+    def __str__(self):
+        return self.__unicode__()

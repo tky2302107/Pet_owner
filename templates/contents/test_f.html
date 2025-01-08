@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ja">
+<ul>
+    ↓
+    {% for data in flist %}
+    <p>{{data.id}}</p>
+    <h3>アカウントID:{{ data.follow_er }}
+        ユーザー名:<a style="text-decoration: none;font-style: #0000;"> 
+           {% comment %} href= "{% url 'contents:notice_d' data.follow %}"> {% endcomment %}
+           {{data.follow_er_name}}</a>
+           <label>フォロー解除：</label>
+        <form  method="post">
+           {% csrf_token %}
+           <input id="uid" name="uid" value={{ data.follow_er }} type="hidden"></input>
+           <input type="submit" value="↑解除する">
+        </form>
+        {% comment %} <form method="post" action="">
+            {%csrf_token%}
+            {{ form.title }}
+            <input class="btn btn-primary" type="submit" value="Submit">
+        </form> {% endcomment %}
+    </h3>
+    {% endfor %}
+    <br>
+    <a href="{% url 'accounts:index' %}" class="btn btn-link btn-block" target="_self">メインページへ戻る</a>
+    ↑
+</ul>
+
+
+
+
+    {% comment %} {% if post.edit_url %}
+            {{ data.text }}
+            <a href="{{ id.edit_url }}">編集</a>
+        {% endif %}
+     {% endcomment %}

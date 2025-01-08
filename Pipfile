@@ -4,9 +4,11 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django = "*"
 channels = "*"
 daphne = "*"
+django = "*"
+pillow = "*"
+django-cleanup = "*"
 
 [dev-packages]
 

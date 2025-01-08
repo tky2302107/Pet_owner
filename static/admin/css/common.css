@@ -1,0 +1,295 @@
+
+        /* Reset CSS */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Base styling */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background-color: #c6f4bc;
+            color: #333;
+            min-height: 100vh;
+        }
+
+/*ヘッダー*/
+        .headers{
+            z-index: 9999;
+            position: fixed;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+        }
+
+ 
+/* フッター */
+                .main-footer {
+                    width: 103%;
+                    background-color: #333;
+                    color: #fff;
+                    padding: 10px 20px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2);
+                    font-size: 0.9em;
+                    position: relative;
+                    top: 350px;
+                }
+
+                .post_history-footer{
+                    width: 103%;
+                    background-color: #333;
+                    color: #fff;
+                    padding: 10px 20px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2);
+                    font-size: 0.9em;
+                    position: relative;
+                    top: 150px;
+                }
+
+                .notice_list-footer{
+                    width: 103%;
+                    background-color: #333;
+                    color: #fff;
+                    padding: 10px 20px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2);
+                    font-size: 0.9em;
+                    position: relative;
+                    top: 180px;
+                }
+
+                .post-footer{
+                    width: 103%;
+                    background-color: #333;
+                    color: #fff;
+                    padding: 10px 20px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2);
+                    font-size: 0.9em;
+                    position: relative;
+                    top: 180px;
+                }
+
+
+                .follow_list-footer{
+                    width: 103%;
+                    background-color: #333;
+                    color: #fff;
+                    padding: 10px 20px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2);
+                    font-size: 0.9em;
+                    position: relative;
+                    top: 180px;
+                }
+
+                .exchange_point-footer{
+                    width: 103%;
+                    background-color: #333;
+                    color: #fff;
+                    padding: 10px 20px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2);
+                    font-size: 0.9em;
+                    position: relative;
+                    top: 170px;
+                }
+
+                .edit_profile-footer{
+                    width: 103%;
+                    background-color: #333;
+                    color: #fff;
+                    padding: 10px 20px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2);
+                    font-size: 0.9em;
+                    position: relative;
+                    top: 200px;
+                }
+
+                .my_account-footer{
+                    width: 103%;
+                    background-color: #333;
+                    color: #fff;
+                    padding: 10px 20px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2);
+                    font-size: 0.9em;
+                    position: relative;
+                    top: 330px;
+                }
+
+                .notice-footer{
+                    width: 103%;
+                    background-color: #333;
+                    color: #fff;
+                    padding: 10px 20px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2);
+                    font-size: 0.9em;
+                    position: relative;
+                    top: 200px;
+                }
+
+                .post_delete-footer{
+                    width: 103%;
+                    background-color: #333;
+                    color: #fff;
+                    padding: 10px 20px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2);
+                    font-size: 0.9em;
+                    position: relative;
+                    top: 40px;
+                }
+
+
+                .post_detail-footer{
+                    width: 103%;
+                    background-color: #333;
+                    color: #fff;
+                    padding: 10px 20px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2);
+                    font-size: 0.9em;
+                    position: relative;
+                    top: 230px;
+                }
+
+                .error-footer{
+                    width: 103%;
+                    background-color: #333;
+                    color: #fff;
+                    padding: 10px 20px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.2);
+                    font-size: 0.9em;
+                    position: relative;
+                    top: 230px;
+                }
+
+
+        
+ /* システム名 */
+                footer h3 {
+                    color: #ffcc00;
+                    margin: 0;
+                    font-size: 1.2em;
+                    flex-shrink: 0;
+                }
+        
+/* メニュー */
+                .footer-menu {
+                    flex: 1;
+                    text-align: center;
+                }
+        
+                .footer-menu-list {
+                    list-style: none;
+                    padding: 0;
+                    margin: 0;
+                    display: flex;
+                    justify-content: center;
+                    gap: 20px;
+                }
+        
+                .footer-menu-list li a {
+                    color: #ccc;
+                    text-decoration: none;
+                    font-size: 0.9em;
+                }
+        
+                .footer-menu-list li a:hover {
+                    color: #ffcc00;
+                }
+        
+/* お問い合わせ情報 */
+                .contact {
+                    font-size: 0.9em;
+                    color: #bbb;
+                    text-align: center;
+                    white-space: nowrap;
+                    margin: 0 10px;
+                    flex-shrink: 0;
+                }
+        
+                .contact b {
+                    color: #ffcc00;
+                }
+        
+/* 著作権表示 */
+                .copyright {
+                    font-size: 0.8em;
+                    color: #888;
+                    text-align: right;
+                    white-space: nowrap;
+                    flex-shrink: 0;
+                }
+
+
+
+/* 戻るボタン */
+        .return-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: #056119;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 0.9em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .return-btn:hover {
+            background-color: #3d5a99;
+        }
+
+
+
+/* 保存ボタン */
+.save-btn {
+    background-color: #4e7bcc;
+    color: #fff;
+    font-size: 1em;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 102%;
+    margin-top: 15px;
+}

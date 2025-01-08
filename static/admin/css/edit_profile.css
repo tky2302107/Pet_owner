@@ -1,0 +1,93 @@
+
+
+/*edit profiel*/
+/* メインコンテナ */
+.edit-container {
+    width: 720px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    position: relative;
+    top: 150px;
+}
+
+/* プロフィール画像とアップロードボタン */
+.profile-section {
+    text-align: center;
+    width: 30%;
+}
+
+/* プロフィール画像 */
+.profile-pic {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: #ddd;
+    margin-bottom: 15px;
+}
+
+/* 画像アップロードボタン */
+.upload-btn-wrapper {
+    position: relative;
+    right: 8px;
+    overflow: hidden;
+    display: block;
+    cursor: pointer;
+    color: #007bff;
+}
+
+.upload-btn-wrapper input[type="file"] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+}
+
+
+
+/* フォーム全体 */
+.edit_profiel_form-section {
+    width: 70%;
+}
+
+/* タイトル */
+.edit-title {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: left;
+}
+
+/* 入力フィールドとラベル */
+.edit_profiel-form-group {
+    text-align: left;
+    margin-bottom: 15px;
+    width: 450px;
+    padding-right: 10px;
+}
+
+.edit_profiel-label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 0.9em;
+    color: #333;
+}
+
+input[type="text"], input[type="email"], textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 0.9em;
+}
+
+.edit_profiel-textarea {
+    resize: vertical;
+    height: 80px;
+}

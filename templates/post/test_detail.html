@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ja" data-bs-theme="auto">
+    <h2>投稿詳細</h2>
+    <!-- 投稿詳細 -->
+    <!-- 投稿文 -->
+    {{ post.post }}
+    <!-- 画像 -->
+    {% if post.image %}
+        <img src="/media/{{ post.image }}">
+    {% endif %}
+    <!-- 動画 -->
+    {% if post.video %}
+        <video src="/media/{{ post.video }}" controls></video>
+    {% endif %}
+    <!-- 投稿者ID -->
+    {{ post.account_id }}
+    <!-- 投稿日 -->
+    {{ post.post_date }}
+    <!-- 編集ボタン -->
+    {% if request.user.id == post.account_id.id %}
+        <button onclick="location.href='{% url 'post:posts_update' post.id %}'">編集</button>
+    {% endif %}
+    <!-- 削除ボタン -->
+    {% if request.user.id == post.account_id.id %}
+        <button onclick="location.href='{% url 'post:posts_delete' post.id %}'">削除</button>
+    {% endif %}
+    <button onclick="location.href='{% url 'post:posts_history' %}'">戻る</button>

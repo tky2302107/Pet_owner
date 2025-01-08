@@ -1,203 +1,112 @@
+<!--　メインメニュー画面　-->
 <!DOCTYPE html>
 <html lang="ja">
-<head>
+    
+<link rel="stylesheet" href="../static/admin/css/common.css"> 
+<link rel="stylesheet" href="../static/admin/css/404.css"> 
+
+<link href="./header/画面/css/headers.css" rel="stylesheet">
+<link href="./header/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+    
+<head>  
+
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="author" content="Koki Yoshida">
+    <title>アニマルチャット</title>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>system error</title>
-
-    <style>
-        /* Reset CSS */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-            min-height: 100vh;
-        }
+    <title>Layout Design</title>
 
 
-         /* Sidebar */
-         .sidebar {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-        }
-
-
-        .account-section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-        }
-
-
-
-        .circle, .points {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100px;
-            height: 100px;
-            border: 2px solid black;
-            border-radius: 50%;
-            font-size: 14px;
-            text-align: center;
-            cursor: pointer;
-            text-decoration: none;
-            color: black;
-        }
-
-        .points {
-            width: auto;
-            padding: 5px 10px;
-        }
-
-
-
-
-        /* Header */
-        header {
-            width: 100%;
-            max-width: 800px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        .title {
-            border: 2px solid black;
-            padding: 10px;
-            text-align: center;
-            font-size: 18px;
-            cursor: pointer;
-            text-decoration: none;
-            color: black;
-            width: 100%;
-        }
-
-
-
-        
-
-        .search-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            width: 100%;
-        }
-
-        .search-bar {
-            flex: 3; /* 検索バーを他のボタンの2倍の幅に */
-            border: 2px solid black;
-            padding: 10px;
-            text-align: center;
-            font-size: 16px;
-            cursor: pointer;
-            color: black;
-            text-decoration: none;
-        }
-
-        .navigation {
-            display: flex;
-            gap: 5px;
-            
-        }
-
-        .nav-btn {
-            padding: 10px;
-            font-size: 14px;
-            border: 2px solid black;
-            cursor: pointer;
-            text-decoration: none;
-            color: black;
-            
-            
-        }
-
-
-        main {
-            margin-top: 20px;
-            width: 200%;
-            max-width: 600px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            flex-grow: 1;
-            justify-content: flex-end;
-            margin-bottom: 200px; /* 数値を調整 */
-        }
-
-        .message-box {
-            border: 2px solid black;
-            padding: 20px;
-            width: 100%;
-            text-align: center;
-        }
-
-        .message, .back-btn {
-            font-size: 18px;
-            cursor: pointer;
-            text-decoration: none;
-            color: black;
-            display: inline-block;
-        }
-
-        .back-btn {
-            padding: 10px 20px;
-            font-size: 16px;
-            border: 2px solid black;
-            margin-top: 10px;
-        }
-
-
-
-
-    </style>
 </head>
 <body>
 
+    
+    <!-- Custom styles for this template -->
+    
 
-    <div class="sidebar">
-        <div class="account-section">
-            <a href="account.html" class="circle">マイアカウント</a>
-            <a href="points.html" class="points">ポイント</a>
+  <header class="headers">
+    <div class="px-3 py-2 text-bg-dark border-bottom">
+      <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+          <a href="./contents/my_account.html" class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <!-- <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg> -->
+            <img src="C:\Users\yoshida\Pictures\画像\medium_20221121_isobo_94783d724b_3ac2c5597d.jpg" alt="mdo" width="80" height="64" class="rounded-circle">
+          </a>
+          <h3 class="fs-4 text-white" style="width: 85%; text-align: center;">アニマルチャット</h3>
         </div>
+      </div>
     </div>
+    <div class="px-3 py-2 border-bottom mb-3">
+      <div class="container d-flex flex-wrap justify-content-center">
+        <input type="button" value="ポイント"  style="margin-right: 30%;" class="btn btn-light text-dark">
+        <form action={% url 'post:posts_search' %} method='get' class="col-12 col-lg-auto mb-2 mb-lg-0" role="search" style="display: flex;">
+          <input type="search" class="form-control" placeholder="検索..." aria-label="Search" name='keyword'>
+          <input type="submit" value="検索" class="btn btn-light text-dark me-2">
+        </form>
 
-
-    <!-- Header Section -->
-    <header>
-        <a href="title.html" class="title">タイトル</a>
-        
-        <div class="search-container">
-            <a href="search.html" class="search-bar">検索バー</a>
-            <div class="navigation">
-                <a href="category.html" class="nav-btn">カテゴリ</a>
-                <a href="search.html" class="nav-btn">検索</a>
-                <a href="login.html" class="nav-btn">ログイン</a>
-                <a href="register.html" class="nav-btn">新規</a>
-            </div>
+        <div class="text-end" style="margin-left: auto;">
+            
+          <button  onclick="location.href='./accounts/login.html'" type="button" class="btn btn-light text-dark me-2" >ログイン</button>
+          <button onclick="location.href='./accounts/signup.html'" type="button" class="btn btn-primary">新規作成</button>
         </div>
-    </header>
+      </div>
+    </div>
+  </header>
+
+</body>
 
 
+
+<head>
+
+    <title>メインメニュー</title>
+  
+
+
+
+</head>
+ <!-- ヘッダー -->
+ <header>
+    <h1>投稿画面完了</h1>
+</header>
+
+    <!-- メインエリア -->
     <main>
         <div class="message-box">
-            <a href="error.html" class="message">問題が発生しました</a>
-            <a href="chat-list.html" class="back-btn">メインページに戻る</a>
+            <a  class="message">問題が発生しました</a>
+            <a href="main.html" class="back-btn">メインメニューに戻る</a>
         </div>
     </main>
 
+
+
+<!-- フッター -->
+<footer class="main-footer">
+    <h3>システム名</h3>  
+
+    <!-- メニューリスト -->
+    <div class="footer-menu">
+        <ul class="footer-menu-list">
+            <li><a href="../">ホーム画面へ</a></li>
+            <li><a href="#">利用規約</a></li>
+            <li><a href="#">プライバシーポリシー</a></li>
+        </ul>
+    </div>
+
+    <!-- お問い合わせ情報 -->
+    <div class="contact">
+        <p>お問い合せ先<b>〒000-0000</b> 電話📳<b>000-0000-0000</b></p>
+    </div>
+    
+    <!-- 著作権表示 -->
+    <div class="copyright">
+        <p>© 2024 システム名 Inc. All Rights Reserved.</p>
+    </div>
+</footer>
 </body>
 </html>

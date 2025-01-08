@@ -1,149 +1,71 @@
 <!--　プロフィール画面　-->
 
-<head>
+<!DOCTYPE html>
+<html lang="ja">
+    
+<link rel="stylesheet" href="../../static/admin/css/common.css"> 
+<link rel="stylesheet" href="../../static/admin/css/edit_profile.css"> 
 
-    <title>プロフィール編集</title>
-    <style>
-        /* 全体レイアウト */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #ffffff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-        }
-        
-        /* メインコンテナ */
-        .edit-container {
-            width: 720px;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            display: flex;
-            gap: 20px;
-            align-items: flex-start;
-        }
+<link href="../header/画面/css/headers.css" rel="stylesheet">
+<link href="../header/assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
-        /* プロフィール画像とアップロードボタン */
-        .profile-section {
-            text-align: center;
-            width: 30%;
-        }
 
-        /* プロフィール画像 */
-        .profile-pic {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background-color: #ddd;
-            margin-bottom: 15px;
-        }
+    
+<head>  
 
-        /* 画像アップロードボタン */
-        .upload-btn-wrapper {
-            position: relative;
-            right: 8px;
-            overflow: hidden;
-            display: block;
-            cursor: pointer;
-            color: #007bff;
-        }
-        
-        .upload-btn-wrapper input[type="file"] {
-            font-size: 100px;
-            position: absolute;
-            left: 0;
-            top: 0;
-            opacity: 0;
-        }
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="author" content="Koki Yoshida">
+    <title>xxxxxxxxxxx</title>
 
-        
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layout Design</title>
 
-        /* フォーム全体 */
-        .form-section {
-            width: 70%;
-        }
 
-        /* タイトル */
-        .edit-title {
-            font-size: 1.5em;
-            margin-bottom: 20px;
-            color: #333;
-            text-align: left;
-        }
-
-        /* 入力フィールドとラベル */
-        .form-group {
-            text-align: left;
-            margin-bottom: 15px;
-            width: 450px;
-            padding-right: 10px;
-        }
-
-        label {
-            display: block;
-            font-weight: bold;
-            margin-bottom: 5px;
-            font-size: 0.9em;
-            color: #333;
-        }
-
-        input[type="text"], input[type="email"], textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 0.9em;
-        }
-
-        textarea {
-            resize: vertical;
-            height: 80px;
-        }
-
-        /* 保存ボタン */
-        .save-btn {
-            background-color: #4e7bcc;
-            color: #fff;
-            font-size: 1em;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            width: 102%;
-            margin-top: 15px;
-        }
-
-        .save-btn:hover {
-            background-color: #3d5a99;
-        }
-        /* 戻るボタン */
-        .return-btn {
-            background-color: #056119;
-            color: #fff;
-            font-size: 15px;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            width: 13%;
-            height: 43px;
-
-            position:relative ;
-            top: 290px;
-            right: 140px
-            
-           
-        }
-
-        .return-btn:hover {
-            background-color: #bec9c6;
-        }
-    </style>
 </head>
+<body>
+
+    
+    <!-- Custom styles for this template -->
+    
+
+  <header class="headers">
+    <div class="px-3 py-2 text-bg-dark border-bottom">
+      <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+          <a href="my_account.html" class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <!-- <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg> -->
+            <img src="C:\Users\yoshida\Pictures\画像\medium_20221121_isobo_94783d724b_3ac2c5597d.jpg" alt="mdo" width="80" height="64" class="rounded-circle">
+          </a>
+          <h3 class="fs-4 text-white" style="width: 85%; text-align: center;">xxxxxxxxxxx</h3>
+        </div>
+      </div>
+    </div>
+    <div class="px-3 py-2 border-bottom mb-3">
+      <div class="container d-flex flex-wrap justify-content-center">
+        <input type="button" value="ポイント"  style="margin-right: 30%;" class="btn btn-light text-dark">
+        <form class="col-12 col-lg-auto mb-2 mb-lg-0" role="search" style="display: flex;">
+          <input type="search" class="form-control" placeholder="検索..." aria-label="Search">
+          <select class="btn btn-light">
+            <option value="カテゴリ">カテゴリ</option>
+            <option value="犬">犬</option>
+            <option value="猫">猫</option>
+            <option value="鳥">鳥</option>
+          </select>
+          <input type="submit" value="検索" class="btn btn-light text-dark me-2">
+        </form>
+
+        <div class="text-end" style="margin-left: auto;">
+          <button onclick="location.href='../accounts/login.html'" type="button" class="btn btn-light text-dark me-2">ログイン</button>
+          <button onclick="location.href='../accounts/signup.html'" type="button" class="btn btn-primary">新規作成</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+</body>
+
 <body>
 
     <div class="edit-container">
@@ -166,15 +88,15 @@
 
         
         <!-- 編集フォーム -->
-        <div class="form-section">
+        <div class="edit_profiel_form-section">
             <h2 class="edit-title">プロフィール編集</h2>
             <form>
-                <div class="form-group">
+                <div class="edit_profiel-form-group">
                     <label for="name">名前</label>
                     <input type="text" id="name" name="name" placeholder="名前を入力">
                 </div>
 
-                <div class="form-group">
+                <div class="edit_profiel_form-group">
                     <label for="bio">自己紹介</label>
                     <textarea id="bio" name="bio" placeholder="自己紹介を入力"></textarea>
                 </div>
@@ -183,6 +105,34 @@
             </form>
         </div>
     </div>
+
+
+
+
+
+<!-- フッター -->
+<footer class="edit_profile-footer">
+    <h3>システム名</h3>  
+
+    <!-- メニューリスト -->
+    <div class="footer-menu">
+        <ul class="footer-menu-list">
+            <li><a href="#">ホーム画面へ</a></li>
+            <li><a href="#">利用規約</a></li>
+            <li><a href="#">プライバシーポリシー</a></li>
+        </ul>
+    </div>
+
+    <!-- お問い合わせ情報 -->
+    <div class="contact">
+        <p>お問い合せ先<b>〒000-0000</b> 電話📳<b>000-0000-0000</b></p>
+    </div>
+    
+    <!-- 著作権表示 -->
+    <div class="copyright">
+        <p>© 2024 システム名 Inc. All Rights Reserved.</p>
+    </div>
+</footer>
 </body>
 </html>
 

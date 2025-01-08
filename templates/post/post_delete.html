@@ -1,285 +1,120 @@
-
-
 <!-- 投稿削除画面 -->
-
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>投稿削除画面</title>
+
+    <link rel="stylesheet" href="../../static/admin/css/common.css">
+    <link rel="stylesheet" href="../../static/admin/css/post_delete.css">
+    <link href="../header/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+
+
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="author" content="Koki Yoshida">
+    <title>xxxxxxxxxxx</title>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Layout Design</title>
-    <style>
-        /* Reset CSS */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
 
-        /* Base styling */
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-            background-color: #f0f4f8;
-            color: #333;
-            min-height: 100vh;
-            position: relative;
-        }
 
-        /* Sidebar styling */
-        .sidebar {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background-color: #ffffff;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .account-section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .circle, .points {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            font-size: 14px;
-            cursor: pointer;
-            text-decoration: none;
-            color: #fff;
-            transition: 0.3s;
-        }
-
-        .circle {
-            background-color: #3498db;
-        }
-
-        .points {
-            background-color: #f39c12;
-            width: auto;
-            padding: 10px 20px;
-            border-radius: 30px;
-        }
-
-        .circle:hover, .points:hover {
-            opacity: 0.8;
-        }
-
-        /* Header styling */
-        header {
-            width: 100%;
-            max-width: 800px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        .title {
-            border: 2px solid #3498db;
-            padding: 10px;
-            text-align: center;
-            font-size: 18px;
-            cursor: pointer;
-            text-decoration: none;
-            color: #3498db;
-            width: 100%;
-            background-color: #ffffff;
-            border-radius: 5px;
-            transition: 0.3s;
-        }
-
-        .title:hover {
-            background-color: #3498db;
-            color: #ffffff;
-        }
-
-        .search-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            width: 100%;
-        }
-
-        .search-bar {
-            flex: 3;
-            border: 2px solid #3498db;
-            padding: 10px;
-            font-size: 16px;
-            color: #333;
-            border-radius: 5px;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        .search-submit {
-            padding: 10px;
-            font-size: 14px;
-            border: 2px solid #3498db;
-            cursor: pointer;
-            color: #3498db;
-            background-color: #ffffff;
-            border-radius: 5px;
-            transition: 0.3s;
-        }
-
-        .search-submit:hover {
-            background-color: #3498db;
-            color: #ffffff;
-        }
-
-        .navigation {
-            display: flex;
-            gap: 5px;
-        }
-
-        .nav-btn {
-            padding: 10px;
-            font-size: 14px;
-            border: 2px solid #3498db;
-            cursor: pointer;
-            text-decoration: none;
-            color: #3498db;
-            background-color: #ffffff;
-            border-radius: 5px;
-            transition: 0.3s;
-        }
-
-        .nav-btn:hover {
-            background-color: #3498db;
-            color: #ffffff;
-        }
-
-        /* Main section styling */
-        main {
-            margin-top: 20px;
-            width: 100%;
-            max-width: 600px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            flex-grow: 1;
-            justify-content: flex-end;
-            padding-bottom: 80px; /* bottomにスペースを確保 */
-        }
-
-        .grid-container {
-            display: grid;
-            gap: 10px;
-        }
-
-        .box {
-            padding: 20px;
-            background-color: #ffffff;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-        }
-
-        /* 削除確認のボックスを画面の下部に固定 */
-        .confirmation-box {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            width: 90%;
-            max-width: 600px;
-            border: 2px solid black;
-            padding: 10px;
-            background-color: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-    </style>
 </head>
 <body>
 
-    <div class="sidebar">
-        <div class="account-section">
-            <a href="my_account.html" class="circle">マイアカウント</a>
-            <a href="exchange_point.html" class="points">ポイント</a>
-        </div>
-    </div>
+    
+    <!-- Custom styles for this template -->
+    
 
-    <!-- Header Section -->
-    <header>
-        <a href="title.html" class="title">タイトル</a>
-        
-        <div class="search-container">
-            <!-- Search form with input field -->
-            <form action="Post Search Results.html" method="get" style="display: flex; gap: 10px; width: 100%;">
-                <input type="text" name="query" class="search-bar" placeholder="検索キーワードを入力" />
-                <button type="submit" class="search-submit">検索</button>
-            </form>
-            <div class="navigation">
-                <a href="category.html" class="nav-btn">カテゴリ</a>
-                <a href="login.html" class="nav-btn">ログイン</a>
-                <a href="post.html" class="nav-btn">新規</a>
-            </div>
+  <header class="headers">
+    <div class="px-3 py-2 text-bg-dark border-bottom">
+      <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+          <a href="../contents/my_account.html" class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <!-- <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg> -->
+            <img src="C:\Users\yoshida\Pictures\画像\medium_20221121_isobo_94783d724b_3ac2c5597d.jpg" alt="mdo" width="80" height="64" class="rounded-circle">
+          </a>
+          <h3 class="fs-4 text-white" style="width: 85%; text-align: center;">xxxxxxxxxxx</h3>
         </div>
+      </div>
+    </div>
+    <div class="px-3 py-2 border-bottom mb-3">
+      <div class="container d-flex flex-wrap justify-content-center">
+        <input type="button" value="ポイント"  style="margin-right: 30%;" class="btn btn-light text-dark">
+        <form class="col-12 col-lg-auto mb-2 mb-lg-0" role="search" style="display: flex;">
+          <input type="search" class="form-control" placeholder="検索..." aria-label="Search">
+          <select class="btn btn-light">
+            <option value="カテゴリ">カテゴリ</option>
+            <option value="犬">犬</option>
+            <option value="猫">猫</option>
+            <option value="鳥">鳥</option>
+          </select>
+          <input type="submit" value="検索" class="btn btn-light text-dark me-2">
+        </form>
+
+        <div class="text-end" style="margin-left: auto;">
+          <button onclick="location.href='../accounts/login.html'" type="button" class="btn btn-light text-dark me-2">ログイン</button>
+          <button onclick="location.href='../accounts/signup.html'" type="button" class="btn btn-primary">新規作成</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+</body>
+
+
+<body>
+    <!-- ヘッダー -->
+    <header>
+        <h1>投稿削除画面</h1>
     </header>
 
-    <main>
-        <div class="grid-container">
-            <!-- 投稿内容のボックス -->
-            <div class="box">
-                投稿内容
+        <!-- メインエリア -->
+        <main>
+            <!-- 投稿内容と画像を横並び -->
+            <div class="content-wrapper">
+                <div class="box">投稿内容</div>
+                <div class="box">動画・画像1</div>
+                <div class="box">動画・画像2</div>
             </div>
-            
-            <!-- 動画・画像のボックス -->
-            <div class="box">
-                動画・画像など
+    
+            <!-- 削除確認ボックス -->
+            <div class="confirmation-box">
+                <p>この投稿を削除しますか？</p>
+                <button onclick="confirmDelete()">はい</button>
+                <button onclick="cancelDelete()">いいえ</button>
             </div>
-            
-            <!-- 動画・画像のボックス（同じNo.10） -->
-            <div class="box">
-                動画・画像など
-            </div>
-        </div>
-    </main>
+        </main>
 
-    <!-- 削除確認のボックス -->
-    <div class="confirmation-box">
-        <div>
-            この投稿を削除しますか？
-        </div>
-        <div style="display: flex; gap: 10px;">
-            <button style="padding: 10px; border: 2px solid black; background-color: white;" onclick="confirmDelete()">はい</button>
-            <button style="padding: 10px; border: 2px solid black; background-color: white;" onclick="cancelDelete()">いいえ</button>
-        </div>
-        
-        <script>
-            function confirmDelete() {
-                alert("削除が確認されました。");
-                window.location.href = "main-menu.html"; // メインメニューにリダイレクト
-            }
-        
-            function cancelDelete() {
-                alert("削除がキャンセルされました。");
-                window.location.href = "main-menu.html"; // メインメニューにリダイレクト
-            }
-        </script>
-        
+<!-- フッター -->
+<footer class="post_delete-footer">
+    <h3>システム名</h3>  
+
+    <!-- メニューリスト -->
+    <div class="footer-menu">
+        <ul class="footer-menu-list">
+            <li><a href="#">ホーム画面へ</a></li>
+            <li><a href="#">利用規約</a></li>
+            <li><a href="#">プライバシーポリシー</a></li>
+        </ul>
     </div>
 
+    <!-- お問い合わせ情報 -->
+    <div class="contact">
+        <p>お問い合せ先<b>〒000-0000</b> 電話📳<b>000-0000-0000</b></p>
+    </div>
+    
+    <!-- 著作権表示 -->
+    <div class="copyright">
+        <p>© 2024 システム名 Inc. All Rights Reserved.</p>
+    </div>
+</footer>
 </body>
 </html>
 
 
-
+</html>
