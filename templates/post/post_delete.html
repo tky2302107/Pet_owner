@@ -1,4 +1,5 @@
 <!-- 投稿削除画面 -->
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -118,3 +119,38 @@
 
 
 </html>
+=======
+{% extends "all_base.html" %}
+{% load static %}
+
+{% block style %}<link href="post/css/post_delete.css" rel="stylesheet">{% endblock %}
+
+{% block contents %}
+  <form method="post">
+    {% csrf_token %}
+    <!-- 投稿内容と画像を横並び -->
+    <div class="content-wrapper">
+      <div class="box">{{ post.post }}</div>
+      <div class="box">
+        <!-- 画像 -->
+        {% if post.image %}
+            <img src="/media/{{ post.image }}">
+        {% endif %}
+      </div>
+      <div class="box">
+        <!-- 動画 -->
+        {% if post.video %}
+            <video src="/media/{{ post.video }}" controls></video>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- 削除確認ボックス -->
+    <div class="confirmation-box">
+      <p>この投稿を削除しますか？</p>
+      <button>はい</button>
+      <button type="button" onclick="location.href='{{ request.META.HTTP_REFERER }}'">いいえ</button>
+    </div>
+  </form>
+{% endblock %}
+>>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb

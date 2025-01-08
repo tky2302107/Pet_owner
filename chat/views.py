@@ -5,6 +5,7 @@ from . import models, forms
 
 # チャットルームの一覧作成
 class Index(LoginRequiredMixin, ListView):
+    login_url = '/login/'
     model = models.Room
     template_name = 'chat/index.html'
     context_object_name = 'rooms'
@@ -26,6 +27,7 @@ class Index(LoginRequiredMixin, ListView):
 
 # チャットルームの作成
 class CreateRoom(LoginRequiredMixin, CreateView):
+    login_url = '/login/'
     model = models.Room
     template_name = 'chat/room_form.html'
     form_class = forms.RoomForm
@@ -48,6 +50,7 @@ class OnlyRoomHostMixin(UserPassesTestMixin):
 class UpdateRoom(LoginRequiredMixin, OnlyRoomHostMixin, UpdateView):
     model = models.Room
     template_name = 'chat/room_form.html'
+    login_url = '/login/'
     form_class = forms.RoomForm
     success_url = reverse_lazy('chat:index')
 
@@ -73,5 +76,6 @@ class OnlyAssignedUserMixin(UserPassesTestMixin):
 class EnterRoom(LoginRequiredMixin, OnlyAssignedUserMixin, DetailView):
     model = models.Room
     template_name = 'chat/chat_room.html'
+    login_url = '/login/'
     context_object_name = 'room'
 

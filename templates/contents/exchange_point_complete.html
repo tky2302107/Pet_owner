@@ -1,4 +1,5 @@
 <!--　ポイント交換完了画面　-->
+<<<<<<< HEAD
 <html lang="ja">
     <link rel="stylesheet" href="../../static/admin/css/completed.css">
 
@@ -10,12 +11,37 @@
 
 <body>
     <div class="box">
+=======
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block style %}<link rel="stylesheet" href="{% static 'admin/css/completed.css' %}">{% endblock %}
+
+{% block content %}
+
+    {% comment %} <div class="box">
+>>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb
         <p>ポイントの交換が完了しました</p>
     </div>
 
     <button onclick="location.href='exchange_point.html'" class="box2" type="button" >
         ポイント交換画面へ戻る
+<<<<<<< HEAD
     </button>
 
 </body>
 </html>
+=======
+    </button> {% endcomment %}
+
+    <div class="box"><h3>Thank you!</h3></div>
+    <div>{{ your_points }}&nbsp;ポイント募金しました。
+    サイト全体の募金総額は&nbsp;{{ fund_sum }}&nbsp;ポイントです。</div>
+    <div>月末に保護団体〇〇に送金され、動物保護活動に活用されます。</div>
+    <p style="font-size: 12px;">※ポイントは&nbsp;◯ポイント&nbsp;=&nbsp;◯円&nbsp;換算です。</p>
+    <button onclick="location.href='{% url 'accounts:index' %}'" class="box2" type="button" >
+        ホーム画面へ戻る
+    </button>
+{% endblock %}
+>>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb

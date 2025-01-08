@@ -1,5 +1,8 @@
 <!--　ポイント交換画面　-->
+{% extends "base.html" %}
+{% load static %}
 
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="ja">
     
@@ -74,15 +77,28 @@
         <h2>ポイント交換</h2>
         <p class="number-points">保有ポイント: <span>0</span>pt</p>
         
+=======
+{% block style %}<link rel="stylesheet" href="{% static 'admin/css/exchange_point.css' %}">{% endblock %}
+
+{% block content %}
+    <div class="exchange-container">
+        <a href="main_menu.html" class="return-btn">戻る</a>
+        <h2>ポイント交換</h2>
+        <p class="number-points">保有ポイント:  <span>{{ points }}</span>pt</p>
+        {% if points != 0 %}
+        <div><button class="exchange-btn" onclick="location.href='{% url "accounts:points_fin" %}'" >交換する</a></div>
+        {% endif %}
+>>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb
         <!-- フォーム部分 -->
-        <form action="/exchange" method="post">
+        {% comment %} <form action="/exchange" method="post">
             <label for="pointsToExchange">交換するポイント数:</label>
             <input type="number" id="pointsToExchange" name="pointsToExchange" min="1" required>
             <p class="AfterPoints">交換後ポイント: <span>0</span>pt</p>
             <label>◯ポイント = ◯円寄付</label>
             <button type="submit" class="exchange-btn">ポイントを交換</button>
-        </form>
+        </form> {% endcomment %}
     </div>
+<<<<<<< HEAD
 </body>
 </html>
 
@@ -113,3 +129,6 @@
 </footer>
 </body>
 </html>
+=======
+{% endblock %}
+>>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb

@@ -1,5 +1,8 @@
 <!--　プロフィール画面　-->
+{% extends "all_base.html" %}
+{% load static %}
 
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="ja">
     
@@ -25,6 +28,11 @@
 
 </head>
 <body>
+=======
+{% block style %}<link rel="stylesheet" href="{% static 'admin/css/edit_profile.css' %}">{% endblock %}   
+
+{% block contents %}
+>>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb
 
     
     <!-- Custom styles for this template -->
@@ -105,6 +113,7 @@
             </form>
         </div>
     </div>
+<<<<<<< HEAD
 
 
 
@@ -137,3 +146,6 @@
 </html>
 
 
+=======
+{% endblock %}
+>>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb

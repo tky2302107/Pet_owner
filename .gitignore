@@ -14,4 +14,11 @@ accounts/__pycache__/
 post/__pycache__/
 chat/__pycache__/
 config/__pycache__/
+<<<<<<< HEAD
 *.sqlite3
+=======
+*.sqlite3
+custom_templatetags/__pycache__/
+.vscode/
+*/__pycache__/
+>>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb

@@ -1,4 +1,5 @@
 <!--　通知画面　-->
+<<<<<<< HEAD
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -69,6 +70,22 @@
     <div class="notice-container">
         <h2 class="notice-title">通知</h2>
 
+=======
+{% extends "base.html" %}
+{% load static %}
+
+{% block style %}<link rel="stylesheet" href="{% static 'admin/css/notice.css' %}">{% endblock %}   
+
+{% block content %}
+    <div class="notice-container">
+        <h2 class="notice-title">通知詳細</h2>
+
+>>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb
+        <div class="grid-container">
+            <div class="box box1">通知タイトル:&nbsp{{obj_data.title}}</div>
+            <div class="box box3">通知内容:&nbsp{{obj_data.text}}</div>
+        </div>
+<<<<<<< HEAD
         <div class="grid-container">
             <div class="box box1">通知タイトル</div>
             <div class="box box3">通知内容</div>
@@ -81,15 +98,14 @@
             <div class="box box1">通知タイトル</div>
             <div class="box box3">通知内容</div>
         </div>
-        <div class="grid-container">
-            <div class="box box1">通知タイトル</div>
-            <div class="box box3">通知内容</div>
-        </div>
+=======
+>>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb
 
     </div>
     
 
         <!-- 戻るボタン -->
+<<<<<<< HEAD
         <a href="" onclick="history.back()" class="return-btn">戻る</a>
 
 
@@ -119,3 +135,7 @@
 </body>
 </html>
 
+=======
+        <a href="javascript:history.back()" class="return-btn">戻る</a>
+{% endblock %}
+>>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb

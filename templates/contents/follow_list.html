@@ -1,5 +1,8 @@
 <!--　フォローアカウント一覧　-->
+{% extends "all_base.html" %}
+{% load static %}
 
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="ja">
     
@@ -25,6 +28,11 @@
 
 </head>
 <body>
+=======
+{% block style %}<link rel="stylesheet" href="{% static 'admin/css/follow_list.css' %}">{% endblock %}   
+
+{% block contents %}
+>>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb
 
     
     <!-- Custom styles for this template -->
@@ -121,6 +129,7 @@
     </div>
         <!-- 戻るボタン -->
         <a href="javascript:history.back()" class="return-btn">戻る</a>
+<<<<<<< HEAD
 
 
 <!-- フッター -->
@@ -148,3 +157,6 @@
 </footer>
 </body>
 </html>
+=======
+{% endblock %}
+>>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb

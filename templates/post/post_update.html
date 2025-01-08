@@ -1,0 +1,35 @@
+<!--　投稿画面　-->
+{% extends "all_base.html" %}
+{% load static %}
+
+{% block style %}
+<link href="{% static "post/css/post.css" %}" rel="stylesheet">
+{% endblock %}
+
+{% block contents %}
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  <div class="post-container">
+    <!-- 動画・画像アップロード -->
+      {% csrf_token %}
+      <div class="upload-section">
+        <label for="image-upload">画像📷</label>
+        {{ form.image }}
+
+        <label for="video-upload">動画🎞️</label>
+        {{ form.video }}
+      </div>
+
+      <!-- 文字入力フォームとボタン -->
+      <div class="form-section">
+        <label for="post-text">文字入力</label>
+        {{ form.post }}
+
+        <div class="post-button-group">
+          <button class="post2-btn post2-back-btn" type="button" onclick="window.history.back()">戻る</button>
+          <button class="post2-btn post2-post-btn" type="submit">更新する</button>    
+        </div>
+      </div>
+  </div>
+</form>
+{% endblock %}

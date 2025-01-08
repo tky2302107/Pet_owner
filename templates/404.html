@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!--　メインメニュー画面　-->
 <!DOCTYPE html>
 <html lang="ja">
@@ -110,3 +111,17 @@
 </footer>
 </body>
 </html>
+=======
+<!--　エラー画面　-->
+{% extends "all_base.html" %}
+{% load static %}
+
+{% block style %}<link href="{% static "admin/css/404.css" %}" rel="stylesheet">{% endblock %}
+
+{% block contents %}
+       <div class="message-box">
+            <a  class="message">問題が発生しました</a>
+            <a href="main.html" class="back-btn">メインメニューに戻る</a>
+        </div>
+{% endblock %}
+>>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb

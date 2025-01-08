@@ -65,11 +65,19 @@
     gap: 10px;
 }
 
+<<<<<<< HEAD
 .btn {
     flex: 1;
     padding: 10px;
     font-size: 0.9em;
     
+=======
+.btnn {
+    flex: 1;
+    padding: 10px;
+    font-size: 0.9em;
+    color: black;
+>>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb
     text-align: center;
     text-decoration: none;
     border-radius: 5px;

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!--　メインメニュー画面　-->
 <!DOCTYPE html>
 <html lang="ja">
@@ -66,48 +67,57 @@
 
 <body>
 
+=======
+<!--　投稿履歴画面　-->
+{% extends "all_base.html" %}
+{% load static %}
+
+{% block sytle %}<link href="{% static "post/css/post_history.css" %}" rel="stylesheet">{% endblock %}
+
+{% block contents %}
+>>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb
     <!-- 投稿履歴コンテナ -->
     <div class="history-container">
         <h2 class="history-title">投稿履歴</h2>
 
-        <!-- 投稿1 -->
-        <div class="post">
-            <img src="https://via.placeholder.com/100" alt="投稿画像">
-            <div class="post-content">
-                <p class="post-title">過去の投稿タイトル1</p>
-                <p class="post-text">投稿内容</p>
+        <!-- 投稿履歴がある場合 -->
+        {% if posts %}
+          <!-- 投稿表示 -->
+          {% for post in posts %}
+            <!-- 投稿 -->
+            <div class="post">
+                <div class="post-content">
+                  <!-- 投稿文 -->
+                  <a class="post-text" href="{% url 'post:posts_detail' post.pk %}">{{ post.post }}</a>
+                  <!-- 投稿日 -->
+                  <p class="post-title">{{ post.post_date }}</p>
+                </div>
+                <!-- 画像 -->
+                {% if post.image %}
+                    <img src="/media/{{ post.image }}">
+                {% endif %}
+                <!-- 動画 -->
+                {% if post.video %}
+                    <video src="/media/{{ post.video }}" controls></video>
+                {% endif %}
+                <!-- フッターで見えなかったので今だけ移動しました -->
+                {% comment %} <div class="post-content">
+                    <!-- 投稿日 -->
+                    <p class="post-title">{{ post.post_date }}</p>
+                    <!-- 投稿文 -->
+                    <a class="post-text" href="{% url 'post:posts_detail' post.pk %}">{{ post.post }}</a>
+                </div> {% endcomment %}
             </div>
-        </div>
-
-        <!-- 投稿2 -->
-        <div class="post">
-            <img src="https://via.placeholder.com/100" alt="投稿画像">
-            <div class="post-content">
-                <p class="post-title">過去の投稿タイトル2</p>
-                <p class="post-text">投稿内容2</p>
-            </div>
-        </div>
-
-        <!-- 投稿3 -->
-        <div class="post">
-            <img src="https://via.placeholder.com/100" alt="投稿画像">
-            <div class="post-content">
-                <p class="post-title">過去の投稿タイトル3</p>
-                <p class="post-text">投稿内容3</p>
-            </div>
-        </div>
-
-        <!-- 投稿4 -->
-        <div class="post">
-            <img src="https://via.placeholder.com/100" alt="投稿画像">
-            <div class="post-content">
-                <p class="post-title">過去の投稿タイトル4</p>
-                <p class="post-text">投稿内容4</p>
-            </div>
-        </div>
+          {% endfor %}
+        <!-- 投稿履歴がない場合 -->
+        {% else %}
+          <!-- メッセージ -->
+          投稿はありません。
+        {% endif %}
     </div>
 
     <!-- 戻るボタン -->
+<<<<<<< HEAD
     <a href="javascript:history.back()" class="return-btn">戻る</a>
 
 <!-- フッター -->
@@ -135,3 +145,7 @@
 </footer>
 </body>
 </html>
+=======
+    <button onclick="location.href='{% url 'accounts:index' %}'">戻る</button>
+{% endblock %}
+>>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb

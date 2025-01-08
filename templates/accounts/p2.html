@@ -2,12 +2,25 @@
 <html lang="ja">
 <ul>
     ↓
+<<<<<<< HEAD
     {{ your_points }}ポイント募金しました。
     サイト全体の募金総額は{{ fund_sum }}ポイントです。月末にまとめて募金されます。
     <p style="font-size: 10px;">※ポイントは1ポイント=1円換算です。</p>
     <br>
     ↑
     <a href="{% url 'accounts:index' %}" class="btn btn-link btn-block" target="_self">メインページへ戻る</a>
+=======
+    <div><h3>Thank you!</h3></div>
+    <div>{{ your_points }}&nbsp;ポイント募金しました。
+    サイト全体の募金総額は&nbsp;{{ fund_sum }}&nbsp;ポイントです。</div>
+    <div>月末に保護団体〇〇に送金され、動物保護活動に活用されます。</div>
+    <p style="font-size: 12px;">※ポイントは&nbsp;1ポイント&nbsp;=&nbsp;1円&nbsp;換算です。</p>
+    <br>
+    ↑
+    <div><a href="{% url 'accounts:index' %}" class="btn btn-link btn-block" target="_self">メインページへ戻る</a></div>
+    <a href="{% url 'accounts:index' %}" class="btn btn-link btn-block" target="_self">保護団体〇〇について(外部リンク)</a>
+    
+>>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb
     <br>
 </ul>
 

@@ -1,4 +1,5 @@
 <!--　削除完了画面　-->
+<<<<<<< HEAD
 <html lang="ja">
     <link rel="stylesheet" href="../../static/admin/css/completed.css">
 <head>
@@ -11,13 +12,20 @@
 
 <body>
 
+=======
+{% extends "all_base.html" %}
+
+{% block contents %}
+>>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb
     <div class="box">
         <p>削除が完了しました</p>
     </div>
 
+<<<<<<< HEAD
     <button onclick="location.href='post_history.html'" class="box2" type="button" >
+=======
+    <button onclick="location.href='{% url 'post:posts_history' %}'" class="box2">
+>>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb
         投稿履歴へ戻る
     </button>
-
-</body>
-</html>
+{% endblock %}

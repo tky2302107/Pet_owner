@@ -1,4 +1,5 @@
 <!--　マイアカウント画面　-->
+<<<<<<< HEAD
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -67,6 +68,14 @@
 </body>
 <body>
 
+=======
+{% extends "all_base.html" %}
+{% load static %}
+
+{% block style %}<link href="{% static "post/css/poster_info.css" %}" rel="stylesheet">{% endblock %}
+
+{% block contents %}
+>>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb
     <div class="profile-container">
 
 
@@ -90,6 +99,7 @@
         </div>
     </div>
 
+<<<<<<< HEAD
 <!-- 戻るボタン -->
 <a href="javascript:history.back()" class="return-btn">戻る</a>
 
@@ -119,3 +129,8 @@
 </footer>
 </body>
 </html>
+=======
+  <!-- 戻るボタン -->
+  <a href="javascript:history.back()" class="return-btn">戻る</a>
+{% endblock %}
+>>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb

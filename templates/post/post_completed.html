@@ -1,4 +1,5 @@
 <!--　削除完了画面　-->
+<<<<<<< HEAD
 <html lang="ja">
     <link rel="stylesheet" href="../../static/admin/css/completed.css">
 <head>
@@ -21,3 +22,20 @@
 
 </body>
 </html>
+=======
+{% extends "all_base.html" %}
+
+{% block style %}{% load static %}<link href="{% static 'post/css/completed.css' %}" rel="stylesheet">{% endblock %}
+
+{% block contents %}
+    <div class="complete">
+        <div class="box">
+            <p>投稿が完了しました</p>
+        </div>
+
+        <button onclick="location.href='{% url 'accounts:index'%}'" class="box2" type="button" >
+            メイン画面へ戻る
+        </button>
+    </div>
+{% endblock %}
+>>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb

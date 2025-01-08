@@ -1,5 +1,16 @@
+<<<<<<< HEAD
 
 <p>
     パスワードを変更しました。<br>
     <a class="btn btn-primary btn-lg" href="{% url 'accounts:login' %}">再ログイン</a>
 </p>
+=======
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<p>
+    パスワードを変更しました。<br>
+    <a class="btn btn-primary btn-lg" href="{% url 'accounts:login' %}">再ログイン</a>
+</p>
+{% endblock %}
+>>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb

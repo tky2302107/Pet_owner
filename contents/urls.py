@@ -13,4 +13,10 @@ urlpatterns = [
     path('mypage/follow/',views.FollowView.as_view(), name='follow'),
     path('mypage/follower/',views.Follow_erView.as_view(), name='follow_er'),
     path("follow/",views.ClickFollowView.as_view(), name="test_follow"),
+<<<<<<< HEAD
+=======
+    path("hospital_list/",views.HospitalListView.as_view(), name='hospital_list'),
+    path("hospital_contact/",views.HospitalContactView.as_view(), name='hospital_contact'),
+    path("hospital_detail/<int:pk>/",views.HospitalDetailView.as_view(), name='hospital_detail'),
+>>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb
 ]

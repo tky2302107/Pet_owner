@@ -1,0 +1,255 @@
+{% extends "all_base.html" %}
+{%load static%}
+{% block style %}<link rel="stylesheet" href="{% static '../../static/admin/css/require_parents.css' %}">{% endblock %}   
+
+{%block contents%}
+
+<head>
+    <title>里親募集検索フォーム</title>
+    <link rel="stylesheet" href="../../static/admin/css/require_parents.css">
+</head>
+<html>
+<body>
+    <div class="search-form">
+        <h2>里親募集一覧</h2>
+        <form>
+            <div class="form-group">
+                <label for="species">種類</label>
+                <div class="species-button">
+                    <input type="radio" checked id="1" name="radio"><label for="1">猫</label>
+                    <input type="radio" id="2" name="radio"><label for="2">犬</label>
+                    <input type="radio" id="3" name="radio"><label for="3">小動物</label>
+                    <input type="radio" id="4" name="radio"><label for="4">その他</label>
+
+                </div>
+            </div>
+
+            <div class="line-separator"></div> <!-- 点線 -->
+
+            <div class="horizontal-group">
+                <label for="gender">性&nbsp;別</label>
+                <select id="gender" name="gender">
+                    <option value="すべて">すべて</option>
+                    <option value="オス">オス</option>
+                    <option value="メス">メス</option>
+                </select>
+
+                <label for="age">年&nbsp;齢</label>
+                <select id="age" name="age">
+                    <option value="すべて">すべて</option>
+                    <option value="子">子</option>
+                    <option value="成">成</option>
+                    <option value="老">老</option>
+                </select>
+            </div>
+
+
+            <div class="line-separator"></div> <!-- 点線 -->
+
+
+            <div class="form-group">
+                <label for="region">地域</label>
+                <select id="region" name="region">
+                    <option value="すべて">すべて</option>
+                    <optgroup label="北海道・東北">
+                        <option value="北海道">北海道</option>
+                        <option value="青森県">青森県</option>
+                        <option value="秋田県">秋田県</option>
+                        <option value="岩手県">岩手県</option>
+                        <option value="山形県">山形県</option>
+                        <option value="宮城県">宮城県</option>
+                        <option value="福島県">福島県</option>
+                    </optgroup>
+                    <optgroup label="甲信越・北陸">
+                        <option value="山梨県">山梨県</option>
+                        <option value="長野県">長野県</option>
+                        <option value="新潟県">新潟県</option>
+                        <option value="富山県">富山県</option>
+                        <option value="石川県">石川県</option>
+                        <option value="福井県">福井県</option>
+                    </optgroup>
+                    <optgroup label="関東">
+                        <option value="茨城県">茨城県</option>
+                        <option value="栃木県">栃木県</option>
+                        <option value="群馬県">群馬県</option>
+                        <option value="埼玉県">埼玉県</option>
+                        <option value="千葉県">千葉県</option>
+                        <option value="東京都">東京都</option>
+                        <option value="神奈川県">神奈川県</option>
+                    </optgroup>
+                    <optgroup label="東海">
+                        <option value="愛知県">愛知県</option>
+                        <option value="静岡県">静岡県</option>
+                        <option value="岐阜県">岐阜県</option>
+                        <option value="三重県">三重県</option>
+                    </optgroup>
+                    <optgroup label="関西">
+                        <option value="大阪府">大阪府</option>
+                        <option value="兵庫県">兵庫県</option>
+                        <option value="京都府">京都府</option>
+                        <option value="滋賀県">滋賀県</option>
+                        <option value="奈良県">奈良県</option>
+                        <option value="和歌山県">和歌山県</option>
+                    </optgroup>
+                    <optgroup label="中国">
+                        <option value="岡山県">岡山県</option>
+                        <option value="広島県">広島県</option>
+                        <option value="鳥取県">鳥取県</option>
+                        <option value="島根県">島根県</option>
+                        <option value="山口県">山口県</option>
+                    </optgroup>
+                    <optgroup label="四国">
+                        <option value="徳島県">徳島県</option>
+                        <option value="香川県">香川県</option>
+                        <option value="愛媛県">愛媛県</option>
+                        <option value="高知県">高知県</option>
+                    </optgroup>
+                    <optgroup label="九州・沖縄">
+                        <option value="福岡県">福岡県</option>
+                        <option value="佐賀県">佐賀県</option>
+                        <option value="長崎県">長崎県</option>
+                        <option value="熊本県">熊本県</option>
+                        <option value="大分県">大分県</option>
+                        <option value="宮崎県">宮崎県</option>
+                        <option value="鹿児島県">鹿児島県</option>
+                        <option value="沖縄県">沖縄県</option>
+                    </optgroup>
+                </select>
+            </div>
+
+            <div class="line-separator"></div> <!-- 点線 -->
+
+            <input type="radio" checked id="11" name="radio2"><label for="11" class="radio2" checked="checked">新しい順</label>
+            <input type="radio" checked id="12" name="radio2"><label for="12" class="radio3">古い順</label>
+
+
+
+            <div class="line-separator"></div> <!-- 点線 -->
+
+            <button type="submit" class="search-button">検索する</button>
+        </form>
+    </div>
+</body>
+
+
+
+<head>
+    <title>里親募集一覧</title>
+</head>
+<body>
+    <h2>最新の募集</h2>
+    <div class="adoption-list">
+        <div class="adoption-card">
+            <img src="cat1.jpg" alt="名前" class="adoption-image">
+            <div class="adoption-info">
+                <h3>紹介文</h3>
+                <p>種類</p>
+                <div class="details">
+                    <p><span>年齢:</span> 〇歳</p>
+                    <p><span>性別:</span> 性別</p>
+                    <p><span>所在地:</span> 都道府県</p>
+                </div>
+ 
+            </div>
+        </div>
+
+        <div class="adoption-card">
+            <img src="cat2.jpg" alt="名前" class="adoption-image">
+            <div class="adoption-info">
+                <h3>紹介文</h3>
+                <p>種類</p>
+                <div class="details">
+                    <p><span>年齢:</span> 年齢</p>
+                    <p><span>性別:</span> 性別</p>
+                    <p><span>所在地:</span> 都道府県</p>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="adoption-card">
+            <img src="cat3.jpg" alt="名前" class="adoption-image">
+            <div class="adoption-info">
+                <h3>紹介文</h3>
+                <p>種類</p>
+                <div class="details">
+                    <p><span>年齢:</span> 年齢</p>
+                    <p><span>性別:</span> 性別</p>
+                    <p><span>所在地:</span> 都道府県</p>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="adoption-card">
+            <img src="cat4.jpg" alt="名前" class="adoption-image">
+            <div class="adoption-info">
+                <h3>紹介文</h3>
+                <p>種類</p>
+                <div class="details">
+                    <p><span>年齢:</span> 年齢</p>
+                    <p><span>性別:</span> 性別</p>
+                    <p><span>所在地:</span> 都道府県</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="adoption-card">
+            <img src="cat4.jpg" alt="名前" class="adoption-image">
+            <div class="adoption-info">
+                <h3>紹介文</h3>
+                <p>種類</p>
+                <div class="details">
+                    <p><span>年齢:</span> 年齢</p>
+                    <p><span>性別:</span> 性別</p>
+                    <p><span>所在地:</span> 都道府県</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="adoption-card">
+            <img src="cat4.jpg" alt="名前" class="adoption-image">
+            <div class="adoption-info">
+                <h3>紹介文</h3>
+                <p>種類</p>
+                <div class="details">
+                    <p><span>年齢:</span> 年齢</p>
+                    <p><span>性別:</span> 性別</p>
+                    <p><span>所在地:</span> 都道府県</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="adoption-card">
+            <img src="cat4.jpg" alt="名前" class="adoption-image">
+            <div class="adoption-info">
+                <h3>紹介文</h3>
+                <p>種類</p>
+                <div class="details">
+                    <p><span>年齢:</span> 年齢</p>
+                    <p><span>性別:</span> 性別</p>
+                    <p><span>所在地:</span> 都道府県</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="adoption-card">
+            <img src="cat4.jpg" alt="名前" class="adoption-image">
+            <div class="adoption-info">
+                <h3>紹介文</h3>
+                <p>種類</p>
+                <div class="details">
+                    <p><span>年齢:</span> 年齢</p>
+                    <p><span>性別:</span> 性別</p>
+                    <p><span>所在地:</span> 都道府県</p>
+                </div>
+            </div>
+        </div>
+
+    <p>ページネーション作る</p>
+
+    </div>
+</body>
+</html>
+
+{%block contents%}
