@@ -1,0 +1,86 @@
+
+
+/*投稿画面*/
+
+    /* メインコンテナ */
+    .post-container {
+        width: 800px;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        display: flex;
+        gap: 20px;
+        position: relative;
+        top: 150px;
+    }
+
+    /* アップロード */
+    .upload-section {
+        width: 40%;
+    }
+
+    label {
+        font-weight: bold;
+        font-size: 0.9em;
+        color: #333;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    input[type="file"] {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 0.9em;
+        margin-bottom: 15px;
+    }
+
+
+    /* テキスト入力フォームとボタン */
+    .form-section {
+        width: 60%;
+    }
+
+    textarea {
+        width: 95%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 0.9em;
+        resize: vertical;
+        height: 150px;
+        margin-bottom: 15px;
+    }
+
+    /* ボタン配置 */
+    .post-button-group {
+        display: flex;
+        gap: 200px;
+    }
+
+    .post2-btn {
+        flex: 1;
+        padding: 10px;
+        font-size: 1em;
+        border-radius: 5px;
+        cursor: pointer;
+        color: #fff;
+        border: none;
+        width: 80px;
+    }
+
+    .post2-post-btn {
+        
+        background-color: #4e7bcc;
+    }
+
+    .post2-back-btn {
+        
+        background-color: #056119;
+    }
+
+    .post2-btn:hover {
+        opacity: 0.9;
+    }

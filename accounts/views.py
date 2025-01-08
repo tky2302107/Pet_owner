@@ -6,6 +6,17 @@ from django.core.signing import BadSignature,SignatureExpired
 from typing import Generic
 from django.http import HttpResponse, HttpResponseBadRequest
 from django.urls import reverse_lazy
+<<<<<<< HEAD
+from django.views.generic import TemplateView,ListView,FormView,UpdateView,CreateView,DeleteView
+from django.contrib.auth.views import LoginView, LogoutView
+from django.contrib.sites.shortcuts import get_current_site
+from config import settings
+from .models import fund, User
+from django.db.models.query import QuerySet
+from django.shortcuts import redirect, render
+from django.contrib.auth.mixins import LoginRequiredMixin
+from .forms import  EmailChangeForm, SetUpForm, UserChangeForm
+=======
 from django.views.generic import TemplateView,ListView,FormView,UpdateView,CreateView,DeleteView,DetailView
 from django.contrib.auth.views import LoginView, LogoutView 
 from django.contrib.sites.shortcuts import get_current_site
@@ -16,6 +27,7 @@ from django.db.models.query import QuerySet
 from django.shortcuts import redirect, render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import  EmailChangeForm, SetUpForm, UserChangeForm ,AdoptSearchForm
+>>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb
 from django.contrib.auth.views import (
     LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView
 )
@@ -24,9 +36,15 @@ from .forms import (
 )
 from django.core.mail import send_mail
 from django.contrib.auth import login, authenticate
+<<<<<<< HEAD
+# from django.contrib.auth import get_user_model
+# User = get_user_model() 
+
+=======
 import datetime
 from django.db.models import Q
 from django.shortcuts import redirect
+>>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb
 
 class Index(ListView):
     template_name = 'accounts/index.html'
@@ -107,9 +125,13 @@ class MainPage(TemplateView):
     template_name = 'main.html'
     
 class ExchangePoint(UpdateView):
+<<<<<<< HEAD
+    template_name = 'accounts/p1.html'
+=======
     login_url = '/login/'
     # template_name = 'accounts/p1.html'
     template_name = "contents/exchange_point.html"
+>>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb
     model = User,fund
 
     def get(self, request, **kwargs):
@@ -131,9 +153,13 @@ class ExchangePoint(UpdateView):
     
     
 class ExchangePointComplete(UpdateView):
+<<<<<<< HEAD
+    template_name = 'accounts/p2.html'
+=======
     # template_name = 'accounts/p2.html'
     login_url = '/login/'
     template_name = "contents/exchange_point_complete.html"
+>>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb
     model = fund
     def get_queryset(self):
         return super().get_queryset()
@@ -146,10 +172,14 @@ class ExchangePointComplete(UpdateView):
         cursor = sqlite3.connect("db.sqlite3").cursor()
         cursor.execute('''SELECT points_sum from accounts_fund where id=1''')
         row = list(cursor.fetchall())
+<<<<<<< HEAD
+        # 取得したタプルから数値だけ抽出し、intに変換する
+=======
         cursor.close()
         # 取得したタプルから数値だけ抽出し、intに変換する
         print("\n!!!!!!!!!!!!!!!!!!!!!\nDB内が一部のデータがNullの場合、\nエラーが発生する場合があります。\nその場合は、DB「accounts_fund」テーブルに \nid=1, points_sum=0 \nを登録してページのリロードを行ってください。\n!!!!!!!!!!!!!!!!!!!!!\n")
         print(row[0])
+>>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb
         old_num = int(row[0][0])
         # 合計ポイントに新たなポイントを加算する
         new_num = int(old_num)+int(ctx_points)
@@ -166,16 +196,25 @@ class ExchangePointComplete(UpdateView):
         data = {"points_sum":new_num}
         fund.objects.filter(pk=1).update(**data)
         uid = self.request.user.id
+<<<<<<< HEAD
+        data2 = {"points":0}
+        User.objects.filter(pk=uid).update(**data2)
+=======
         points = {"points":0}
         User.objects.filter(pk=uid).update(**points)
+>>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb
         return self.render_to_response(ctx)
     
 
 class MyPage(TemplateView):
     model = User
+<<<<<<< HEAD
+    template_name = "accounts/m_page.html"
+=======
     login_url = '/login/'
     # template_name = "accounts/m_page.html"
     template_name = "contents/my_account.html"
+>>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb
     def get(self, request, **kwargs):
         ctx = {
             'user': self.request.user
@@ -183,11 +222,18 @@ class MyPage(TemplateView):
         return self.render_to_response(ctx)
 
 class NameChange(LoginRequiredMixin,FormView):
+<<<<<<< HEAD
+    models = User
+    template_name = "accounts/e_page.html"
+    form_class = UserChangeForm
+    success_url = reverse_lazy('accounts:index')
+=======
     login_url = '/login/'
     models = User
     template_name = "accounts/e_page.html"
     form_class = UserChangeForm
     success_url = reverse_lazy('accounts:mypage')
+>>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb
     
     def form_valid(self, form):
         #formのupdateメソッドにログインユーザーを渡して更新
@@ -200,12 +246,18 @@ class NameChange(LoginRequiredMixin,FormView):
         kwargs.update({
             # 'email' : self.request.user.email,
             'screen_name' : self.request.user.screen_name,
+<<<<<<< HEAD
+=======
             'profile' : self.request.user.profile,
+>>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb
         })
         return kwargs
     
 class PasswordChange(PasswordChangeView):
+<<<<<<< HEAD
+=======
     login_url = '/login/'
+>>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb
     """パスワード変更ビュー"""
     form_class = PasswordChangeForm
     success_url = reverse_lazy('accounts:pwdone')
@@ -215,12 +267,18 @@ class PasswordChange(PasswordChangeView):
 class PasswordChangeDone(PasswordChangeDoneView):
     """パスワード変更しました"""
     template_name = 'accounts/pwd.html'
+<<<<<<< HEAD
+=======
     login_url = '/login/'
+>>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb
 
 
 class EmailChange(LoginRequiredMixin, FormView):
     """メールアドレスの変更"""
+<<<<<<< HEAD
+=======
     login_url = '/login/'
+>>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb
     template_name = 'accounts/email_change_form.html'
     form_class = EmailChangeForm
 
@@ -247,13 +305,19 @@ class EmailChange(LoginRequiredMixin, FormView):
 
 class EmailChangeDone(LoginRequiredMixin, TemplateView):
     """メールアドレスの変更メールを送ったよ"""
+<<<<<<< HEAD
+=======
     login_url = '/login/'
+>>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb
     template_name = 'accounts/email_change_done.html'
 
 
 class EmailChangeComplete(LoginRequiredMixin, TemplateView):
     """リンクを踏んだ後に呼ばれるメアド変更ビュー"""
+<<<<<<< HEAD
+=======
     login_url = '/login/'
+>>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb
     template_name = 'accounts/email_change_complete.html'
     timeout_seconds = getattr(settings, 'ACTIVATION_TIMEOUT_SECONDS', 60*60*24)  # デフォルトでは1日以内
 
@@ -278,6 +342,11 @@ class EmailChangeComplete(LoginRequiredMixin, TemplateView):
             return super().get(request, **kwargs)
     
 
+<<<<<<< HEAD
+
+
+=======
+>>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb
 class SetUpView(CreateView):
     """ ユーザー登録用ビュー """
     form_class = SetUpForm # 作成した登録用フォームを設定
@@ -293,6 +362,36 @@ class SetUpView(CreateView):
         user = authenticate(email=email, password=password)
         login(self.request, user)
         return response
+<<<<<<< HEAD
+    
+
+# from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+
+# class OnlyYouMixin(UserPassesTestMixin):
+#     raise_exception = True
+
+#     def test_func(self):
+#         user = self.request.user
+#         return user.screen_name == self.kwargs['screen_name'] or user.is_superuser
+
+# class UserDeleteView(OnlyYouMixin, DeleteView):
+    # template_name = "accounts/u_delete.html"
+    # success_url = reverse_lazy("accounts:login")
+    # model = User
+    # slug_field = 'screen_name'
+    # slug_url_kwarg = 'screen_name'
+
+class CleanUpView(DeleteView):
+   template_name = "accounts/login.html"
+   def get(self, request, *args, **kwargs):
+       if not request.user.is_authenticated:
+           return redirect('accounts:login')
+       user = request.user
+       user.delete()
+       return redirect('accounts:login')
+
+
+=======
 
 class UserDeletePreView(TemplateView):#ユーザー退会前
     login_url = '/login/'
@@ -362,3 +461,4 @@ class AdoptDetailView(DetailView):
     template_name = "accounts/adopt_detail.html"
     model = AdoptList
     context_object_name = "adopt"
+>>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb

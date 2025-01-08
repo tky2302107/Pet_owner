@@ -56,6 +56,8 @@ class FollowList(models.Model):
         max_length=128,
         default='',
         blank=True,
+<<<<<<< HEAD
+=======
     )
 
 class HospitalList(models.Model):
@@ -101,4 +103,5 @@ class HospitalList(models.Model):
         height_field=None, 
         width_field=None, 
         max_length=None
+>>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb
     )
