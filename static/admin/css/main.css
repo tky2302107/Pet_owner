@@ -44,14 +44,22 @@
 }
 
 /* 全体レイアウト */
+<<<<<<< HEAD
+ body {
+=======
  /* body {
+>>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb
     font-family: Arial, sans-serif;
     background-color: #ffffff;
     display: flex;
     justify-content: center;
     padding: 20px;
     margin: 0;
+<<<<<<< HEAD
+}
+=======
 } */
+>>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb
 
 /* メインコンテナ */
 .main-container {

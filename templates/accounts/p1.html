@@ -2,15 +2,26 @@
 <html lang="ja">
 <ul>
     ↓
+<<<<<<< HEAD
+    
+    <div><h3>{{ points }} Pt{{gobi}}</h3></div>
+    
+        <a href="{% url 'accounts:index' %}">メインページへ戻る</a>
+        <a href="{% url 'accounts:points_fin' %}">交換する</a>
+=======
     <div><h3>{{ points }} Pt{{gobi}}</h3></div>
     
     <div><button id="container" onclick="location.href='{% url "accounts:points_fin" %}'" id="js">交換する</a></div>
     <a href="{% url 'accounts:index' %}">メインページへ戻る</a>    
+>>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb
     
     <br>
     ↑
 </ul>
 
+<<<<<<< HEAD
+
+=======
 <script >
 {% comment %} function dasable_a(){ {% endcomment %}
 var data_of_django = "{{ points }}";
@@ -22,5 +33,6 @@ if（num == 0 or num == "0"）{
 }
 {% comment %} } {% endcomment %}
 </script>
+>>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb
 
 

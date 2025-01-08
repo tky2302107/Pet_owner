@@ -4,6 +4,13 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+<<<<<<< HEAD
+channels = "*"
+daphne = "*"
+django = "*"
+pillow = "*"
+django-cleanup = "*"
+=======
 pillow = "*"
 django-cleanup = "*"
 django = "*"
@@ -13,6 +20,7 @@ phonenumbers = "*"
 django-phonenumber-field = "*"
 django-phonenumbers = "*"
 apscheduler = "*"
+>>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb
 
 [dev-packages]
 

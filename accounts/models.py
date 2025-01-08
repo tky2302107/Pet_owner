@@ -64,7 +64,12 @@ class User(AbstractBaseUser, PermissionsMixin):
         default=0,
         blank=True,
         null=True,
+<<<<<<< HEAD
+            
     )
+
+=======
+    
 
     pt_give = models.IntegerField(
         default=0,
@@ -88,6 +93,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         help_text=gettext_lazy('200文字以内で入力してください'),
     )
     
+>>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
 
