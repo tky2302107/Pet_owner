@@ -1,4 +1,76 @@
 <!--　通知画面　-->
+<<<<<<< HEAD
+
+<!DOCTYPE html>
+<html lang="ja">
+    
+<link rel="stylesheet" href="../../static/admin/css/common.css"> 
+<link rel="stylesheet" href="../../static/admin/css/notice.css"> 
+
+<link href="../header/画面/css/headers.css" rel="stylesheet">
+<link href="../header/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+    
+<head>  
+
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="author" content="Koki Yoshida">
+    <title>xxxxxxxxxxx</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layout Design</title>
+
+
+</head>
+<body>
+
+    
+    <!-- Custom styles for this template -->
+    
+
+  <header class="headers">
+    <div class="px-3 py-2 text-bg-dark border-bottom">
+      <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+          <a href="my_account.html" class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <!-- <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg> -->
+            <img src="C:\Users\yoshida\Pictures\画像\medium_20221121_isobo_94783d724b_3ac2c5597d.jpg" alt="mdo" width="80" height="64" class="rounded-circle">
+          </a>
+          <h3 class="fs-4 text-white" style="width: 85%; text-align: center;">xxxxxxxxxxx</h3>
+        </div>
+      </div>
+    </div>
+    <div class="px-3 py-2 border-bottom mb-3">
+      <div class="container d-flex flex-wrap justify-content-center">
+        <input type="button" value="ポイント"  style="margin-right: 30%;" class="btn btn-light text-dark">
+        <form class="col-12 col-lg-auto mb-2 mb-lg-0" role="search" style="display: flex;">
+          <input type="search" class="form-control" placeholder="検索..." aria-label="Search">
+          <select class="btn btn-light">
+            <option value="カテゴリ">カテゴリ</option>
+            <option value="犬">犬</option>
+            <option value="猫">猫</option>
+            <option value="鳥">鳥</option>
+          </select>
+          <input type="submit" value="検索" class="btn btn-light text-dark me-2">
+        </form>
+
+        <div class="text-end" style="margin-left: auto;">
+          <button onclick="location.href='../accounts/login.html'" type="button" class="btn btn-light text-dark me-2">ログイン</button>
+          <button onclick="location.href='../accounts/signup.html'" type="button" class="btn btn-primary">新規作成</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+</body>
+<body>
+    <div class="notice-container">
+        <h2 class="notice-title">通知</h2>
+
+=======
 {% extends "base.html" %}
 {% load static %}
 
@@ -8,14 +80,61 @@
     <div class="notice-container">
         <h2 class="notice-title">通知詳細</h2>
 
+>>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb
         <div class="grid-container">
             <div class="box box1">通知タイトル:&nbsp{{obj_data.title}}</div>
             <div class="box box3">通知内容:&nbsp{{obj_data.text}}</div>
         </div>
+<<<<<<< HEAD
+        <div class="grid-container">
+            <div class="box box1">通知タイトル</div>
+            <div class="box box3">通知内容</div>
+        </div>
+        <div class="grid-container">
+            <div class="box box1">通知タイトル</div>
+            <div class="box box3">通知内容</div>
+        </div>
+        <div class="grid-container">
+            <div class="box box1">通知タイトル</div>
+            <div class="box box3">通知内容</div>
+        </div>
+=======
+>>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb
 
     </div>
     
 
         <!-- 戻るボタン -->
+<<<<<<< HEAD
+        <a href="" onclick="history.back()" class="return-btn">戻る</a>
+
+
+<!-- フッター -->
+<footer class="notice-footer">
+<h3>システム名</h3>  
+
+<!-- メニューリスト -->
+<div class="footer-menu">
+    <ul class="footer-menu-list">
+        <li><a href="#">ホーム画面へ</a></li>
+        <li><a href="#">利用規約</a></li>
+        <li><a href="#">プライバシーポリシー</a></li>
+    </ul>
+</div>
+
+<!-- お問い合わせ情報 -->
+<div class="contact">
+    <p>お問い合せ先<b>〒000-0000</b> 電話📳<b>000-0000-0000</b></p>
+</div>
+
+<!-- 著作権表示 -->
+<div class="copyright">
+    <p>© 2024 システム名 Inc. All Rights Reserved.</p>
+</div>
+</footer>
+</body>
+</html>
+
+=======
         <a href="javascript:history.back()" class="return-btn">戻る</a>
 {% endblock %}

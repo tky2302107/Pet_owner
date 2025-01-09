@@ -11,6 +11,9 @@ https://yururi-do.com/django-channels-memberonly-chat-room/
 https://docs.djangoproject.com/ja/5.1/topics/
 
 アカウント作成
+<<<<<<< HEAD
+https://qiita.com/ryo-keima/items/e6ce42bb4c11432ea829
+=======
 https://qiita.com/ryo-keima/items/e6ce42bb4c11432ea829
 
 中央揃え
@@ -25,3 +28,4 @@ https://bagelee.com/design/css/create_tabs_using_only_css/
 html条件分岐
 https://arakan-pgm-ai.hatenablog.com/entry/2020/01/22/000000
 
+>>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb

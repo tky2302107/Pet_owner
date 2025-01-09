@@ -1,6 +1,9 @@
+<<<<<<< HEAD
+=======
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
+>>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb
 <form action="" method="POST">
     {{ form.non_field_errors }}
     {% for field in form %}
@@ -14,5 +17,8 @@
     <button type="submit" class="btn btn-primary btn-lg">送信</button>
     <a href="{% url 'accounts:mypage' %}">マイページに戻る</a>
     <a href="{% url 'accounts:index' %}">メインページに戻る</a>
+<<<<<<< HEAD
+</form>
+=======
 </form>
 {%endblock%}
