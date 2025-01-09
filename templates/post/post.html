@@ -1,13 +1,9 @@
 <!--　投稿画面　-->
 {% extends "base.html" %}
-{% extends "base.html" %}
 {% load static %}
 
 {% block content %}
-{% block content %}
 <form method="post" enctype="multipart/form-data">
-  <div style="margin-top: 2%; display: flex; justify-content: center; align-items: center;">
-    <div>
   <div style="margin-top: 2%; display: flex; justify-content: center; align-items: center;">
     <div>
     <!-- 動画・画像アップロード -->
@@ -23,7 +19,6 @@
       <!-- 文字入力フォームとボタン -->
       <div class="form-section">
         <label for="post-text">文字入力（300文字以内）</label>
-        <label for="post-text">文字入力（300文字以内）</label>
         {{ form.post }}
 
         <div class="post-button-group">
@@ -32,12 +27,6 @@
         </div>
       </div>
     </div>
-          <button class="btn btn-primary" type="button" style="background-color:red;" onclick="window.history.back()">戻る</button>
-          <button class="btn btn-primary" style="width:93%" type="submit">投稿する</button>    
-        </div>
-      </div>
-    </div>
   </div>
 </form>
 {% endblock %}
->>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb
