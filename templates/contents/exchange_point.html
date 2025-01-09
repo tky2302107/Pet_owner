@@ -6,7 +6,7 @@
 
 {% block content %}
     <div class="exchange-container">
-        <a href="main_menu.html" class="return-btn">戻る</a>
+        <a href="javascript:history.back()" class="return-btn">戻る</a>
         <h2>ポイント交換</h2>
         <p class="number-points">保有ポイント:  <span>{{ points }}</span>pt</p>
         {% if points != 0 %}
