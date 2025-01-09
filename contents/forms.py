@@ -14,7 +14,6 @@ class ClickFollowForm(ModelForm):
         )
     # follow_name = forms.CharField()
 
-
 class HospitalSearchForm(forms.Form):
     keywords = forms.CharField(
         label=gettext_lazy('keywords (split space)'),

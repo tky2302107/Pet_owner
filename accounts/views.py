@@ -293,34 +293,6 @@ class SetUpView(CreateView):
         user = authenticate(email=email, password=password)
         login(self.request, user)
         return response
-    
-
-# from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-
-# class OnlyYouMixin(UserPassesTestMixin):
-#     raise_exception = True
-
-#     def test_func(self):
-#         user = self.request.user
-#         return user.screen_name == self.kwargs['screen_name'] or user.is_superuser
-
-# class UserDeleteView(OnlyYouMixin, DeleteView):
-    # template_name = "accounts/u_delete.html"
-    # success_url = reverse_lazy("accounts:login")
-    # model = User
-    # slug_field = 'screen_name'
-    # slug_url_kwarg = 'screen_name'
-
-class CleanUpView(DeleteView):
-   template_name = "accounts/login.html"
-   def get(self, request, *args, **kwargs):
-       if not request.user.is_authenticated:
-           return redirect('accounts:login')
-       user = request.user
-       user.delete()
-       return redirect('accounts:login')
-
-
 
 class UserDeletePreView(TemplateView):#ユーザー退会前
     login_url = '/login/'
