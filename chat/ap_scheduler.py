@@ -8,19 +8,25 @@ import datetime
 
 
 def notice():#https://techis.jp/guide/django/django_insert_data
-    pass
-""" 
+    # pass
+# """ 
     # queryset = super().get_queryset()
     
     cursor = sqlite3.connect("db.sqlite3").cursor()
     cursor.execute('SELECT * FROM chat_message')
-    XX = cursor.fetchall()
-    print(XX)
+    Chatdata = cursor.fetchall()
+    cursor.execute('SELECT * FROM accounts_user')
+    Userdata = cursor.fetchall()
+    print("")
+    print(Chatdata)
+    print("")
+    print(Userdata)
+    print("")
     lst = []
     sabun = []
-    for i in range(len(XX)):
-        lst.append(XX[i][0])
-    print("qawsedrf"+str(lst))
+    for i in range(len(Chatdata)):
+        lst.append(Chatdata[i][0])
+    print("sabun_num"+str(lst))
     try:
         zenkai = list(DifferentialNum.objects.all().values())[0]
     except:
@@ -29,10 +35,11 @@ def notice():#https://techis.jp/guide/django/django_insert_data
     
     saishin = lst[-1]    #最新
     zenkai = zenkai[0]+1 #前回の更新以降
-    for i in range(len(XX)):
-        if XX[i][0] >= zenkai :
-            sabun.append(XX[i])
+    for i in range(len(Chatdata)):
+        if Chatdata[i][0] >= zenkai :
+            sabun.append(Chatdata[i])
 
+    print("")
     print("sabun")
     print(sabun)
 
