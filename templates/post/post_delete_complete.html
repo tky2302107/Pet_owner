@@ -1,12 +1,13 @@
 <!--　削除完了画面　-->
-{% extends "all_base.html" %}
+{% extends "base.html" %}
 
-{% block contents %}
-    <div class="box">
-        <p>削除が完了しました</p>
+{% block content %}
+    <div style="height:365px; display:flex; align-items:center; justify-content: center;">
+        <div style="width:10em; text-align:center;">
+            <p>削除が完了しました</p>
+            <button onclick="location.href='{% url 'post:posts_history'%}'" class="btn btn-secondary" type="button" >
+                投稿履歴へ戻る
+            </button>
+        </div>
     </div>
-
-    <button onclick="location.href='{% url 'post:posts_history' %}'" class="box2">
-        投稿履歴へ戻る
-    </button>
 {% endblock %}
