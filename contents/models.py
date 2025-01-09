@@ -62,7 +62,7 @@ class FollowList(models.Model):
         null=False,
         max_length=128,
         default='',
-        blank=True
+        blank=True,
     )
 
 class HospitalList(models.Model):

@@ -95,11 +95,6 @@ class ClickFollowView(TemplateView):
             follow=int(self.request.user.id),
             follow_name=str(self.request.user.screen_name)
             )
-            
-        print("db:"+str(a))
-        a.save()
-        return redirect(reverse('contents:test_follow'))
-    
         print("db:"+str(fl))
         fl.save()
         return redirect(reverse('contents:test_follow'))
