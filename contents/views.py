@@ -3,19 +3,12 @@ from django import forms
 from django.db.models.base import Model as Model
 from django.urls import reverse, reverse_lazy
 from django.shortcuts import redirect, render
-<<<<<<< HEAD
-from .forms import ClickFollowForm
-from .models import NoticeList ,FollowList 
-from accounts.models import User
-from django.views.generic import ListView,DetailView,TemplateView,FormView,CreateView
-=======
 from .forms import ClickFollowForm ,HospitalSearchForm
 from .models import NoticeList ,FollowList,HospitalList
 from accounts.models import User
 from django.views.generic import ListView,DetailView,TemplateView,FormView,CreateView
 from django.db.models import Q
 from django.shortcuts import redirect
->>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb
 
 class Index(TemplateView):
     template_name = 'contents/my_account.html'
@@ -27,23 +20,15 @@ class ServerError(TemplateView):
     template_name = '404.html'
 
 class NoticeListView(ListView):
-<<<<<<< HEAD
-    template_name = "contents/nlist_test.html"# template_name = 'contents/notice_list.html'
-=======
     # template_name = "contents/nlist_test.html" 
     template_name = 'contents/notice_list.html'
->>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb
     model = NoticeList
     paginate_by = 10
     context_object_name = "obj_data"
 
 class NoticeDetailView(DetailView):
-<<<<<<< HEAD
-    template_name = "contents/n_test.html"# template_name = 'contents/notice.html'
-=======
     # template_name = "contents/n_test.html"# template_name = 'contents/notice.html'
     template_name = 'contents/notice.html'
->>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb
     model = NoticeList
     context_object_name = "obj_data"
     
@@ -66,11 +51,7 @@ class FollowView(ListView):
         a = FollowList.objects.filter(
             follow_er=int(id),
             follow=int(self.request.user.id)
-<<<<<<< HEAD
-            ).delete()  
-=======
             ).delete()
->>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb
         print("db:"+str(a))
         return redirect(reverse('contents:follow'))
 
@@ -86,14 +67,8 @@ class Follow_erView(ListView):
         queryset = FollowList.objects.filter(follow_er=user.id)#.values_list("follow_er_name").order_by("follow_er_name").distinct()
         return queryset    
     
-<<<<<<< HEAD
-class ClickFollowView(TemplateView):#CreateView):
-    template_name = "contents/test_cf.html"
-    # form_class = ClickFollowForm
-=======
 class ClickFollowView(TemplateView):
     template_name = "contents/test_cf.html"
->>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb
     success_url = reverse_lazy("accounts:index")
     model = FollowList,User
 
@@ -101,37 +76,12 @@ class ClickFollowView(TemplateView):
         return super().form_valid(form)
     
     def get_context_data(self, **kwargs):
-<<<<<<< HEAD
-        # Call the base implementation first to get a context
-        context = super().get_context_data(**kwargs)
-        # Add in a QuerySet of all the books
-=======
         
         context = super().get_context_data(**kwargs)
->>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb
         user = self.request.user
         context["follow_list"] = FollowList.objects.filter(follow_er=user.id).values("follow_er")
         return context
 
-<<<<<<< HEAD
-    # def index(request):
-    #     a = []
-    #     user = self.request.user
-    #     dataset = FollowList.objects.get(follow_er=user.id)
-    #     print(type(dataset))
-    #     dataset = list(dataset)
-    #     print(type(dataset))
-    #     print(dataset)
-    #     for i in range(len(dataset)):
-    #         a.append()
-    #     data = {
-    #         "idlist":a
-    #     }
-    #     return render(request, 'app/index.html', {'data_json': json.dumps(data)})
-    
-    
-=======
->>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb
     def post(self, request, *args, **kwargs):
         id= request.POST["uid"]
         uuser=User.objects.get(id=id)#get(id=id)
@@ -139,22 +89,17 @@ class ClickFollowView(TemplateView):
         print("u:name"+str(uuser.screen_name))
         print("m:id"+str(self.request.user.id))
         print("m:name"+str(self.request.user.screen_name))
-<<<<<<< HEAD
-        a = FollowList(
-=======
         fl = FollowList(
->>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb
             follow_er=int(id),
             follow_er_name=str(uuser.screen_name),
             follow=int(self.request.user.id),
             follow_name=str(self.request.user.screen_name)
             )
-<<<<<<< HEAD
+            
         print("db:"+str(a))
         a.save()
         return redirect(reverse('contents:test_follow'))
     
-=======
         print("db:"+str(fl))
         fl.save()
         return redirect(reverse('contents:test_follow'))

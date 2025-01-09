@@ -64,36 +64,9 @@ class User(AbstractBaseUser, PermissionsMixin):
         default=0,
         blank=True,
         null=True,
-<<<<<<< HEAD
             
     )
 
-=======
-    
-
-    pt_give = models.IntegerField(
-        default=0,
-        blank=True,
-        null=True,        
-    )
-
-    icon = models.ImageField(
-        upload_to='icon/post',
-        verbose_name='画像',
-        null=True,
-        blank=True
-    )
-
-    profile = models.TextField(
-        gettext_lazy('プロフィール'),
-        max_length=200,
-        null=True,
-        default='',
-        blank=True,
-        help_text=gettext_lazy('200文字以内で入力してください'),
-    )
-    
->>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
 

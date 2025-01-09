@@ -52,10 +52,6 @@ class RoomForm(forms.ModelForm):
         }
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-<<<<<<< HEAD
-        self.fields['participants'].queryset = User.objects.filter(is_staff=False)
-=======
         # idlist = FollowList.objects.get()
         self.fields['participants'].queryset = User.objects.filter(is_staff=False)#,created_by__username__contains=idlist)
->>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb
 

@@ -2,10 +2,7 @@ from django import forms
 from django.forms import ModelForm
 from .models import FollowList
 from django.contrib.auth import get_user_model
-<<<<<<< HEAD
-=======
 from django.utils.translation import gettext_lazy
->>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb
 User = get_user_model()
 
 class ClickFollowForm(ModelForm):
@@ -16,8 +13,7 @@ class ClickFollowForm(ModelForm):
             "follow_name",
         )
     # follow_name = forms.CharField()
-<<<<<<< HEAD
-=======
+
 
 class HospitalSearchForm(forms.Form):
     keywords = forms.CharField(

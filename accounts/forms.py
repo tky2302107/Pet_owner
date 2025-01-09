@@ -6,7 +6,9 @@ from django.contrib.auth.forms import (
 )
 from django.contrib.auth import get_user_model 
 from django.forms import ModelForm
+from django.utils.translation import gettext_lazy
 # from django.contrib.auth.models import User
+
 User = get_user_model() 
 
 
