@@ -117,3 +117,12 @@ class DifferentialNum(models.Model):
         default='',
         blank=True,
     )
+
+class PersonalNoticeList(models.Model):
+    id = models.AutoField(primary_key=True)
+    old_id = models.IntegerField()
+    text = models.TextField()
+    date = models.DateTimeField()
+    user = models.IntegerField()
+    chargroup = models.IntegerField()
+    

@@ -8,29 +8,44 @@ import datetime
 
 
 def notice():#https://techis.jp/guide/django/django_insert_data
-    pass
-""" 
+    # pass
+# """ 
     # queryset = super().get_queryset()
     
     cursor = sqlite3.connect("db.sqlite3").cursor()
     cursor.execute('SELECT * FROM chat_message')
-    XX = cursor.fetchall()
-    print(XX)
+    Chatdata = cursor.fetchall()
+    cursor.execute('SELECT * FROM accounts_user')
+    Userdata = cursor.fetchall()
+    print("")
+    print(Chatdata)
+    print("")
+    print(Userdata)
+    print("")
     lst = []
-    for i in range(len(XX)):
-        lst.append(XX[i][0])
-    print("qawsedrf"+str(lst))
-    zenkai = list(DifferentialNum.objects.all().values())[0]
+    sabun = []
+    for i in range(len(Chatdata)):
+        lst.append(Chatdata[i][0])
+    print("sabun_num"+str(lst))
+    try:
+        zenkai = list(DifferentialNum.objects.all().values())[0]
+    except:
+        zenkai = []
+        zenkai.append(36)
     
-    if zenkai[0] is null:
-        zenkai = 0
-    if zenkai != sum(lst):
-        print("更新あり")
+    saishin = lst[-1]    #最新
+    zenkai = zenkai[0]+1 #前回の更新以降
+    for i in range(len(Chatdata)):
+        if Chatdata[i][0] >= zenkai :
+            sabun.append(Chatdata[i])
+
+    print("")
+    print("sabun")
+    print(sabun)
+
+
         
-    else:
-        print("更新なし")
-        
-    print(zenkai)
+    
     #チャットの投稿を通知に反映する部分
     last_count = 0
     model = User,NoticeList,Room
@@ -62,5 +77,5 @@ def notice():#https://techis.jp/guide/django/django_insert_data
 
 def start():
     scheduler = BackgroundScheduler()
-    scheduler.add_job(notice, 'interval', seconds=30)
+    scheduler.add_job(notice, 'interval', seconds=10)
     scheduler.start()
