@@ -1,25 +1,17 @@
-<<<<<<< HEAD
-<body>
-    <h3>ユーザーフォーム</h3>
-=======
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
 
 <body>
     <h3>ユーザー詳細、投稿詳細等に機能として追加</h3>
->>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb
     
         <form  method="post">
             {% csrf_token %}
             <input id="uid" name="uid" type="hidden" value=1 ></input>
             <input type="submit" value="↑フォローする">
         </form>
-<<<<<<< HEAD
-=======
         <a href="{% url 'contents:follow' %}" class="btn btn-link btn-block" target="_self">フォローリストへ</a>
         <a href="{% url 'accounts:index' %}" class="btn btn-link btn-block" target="_self">メインページへ戻る</a>
->>>>>>> dec7ef4fe50c4a1034a9de3bdfcf3978531943eb
 </body>
 <script type="text/javascript">
     function f0(){
