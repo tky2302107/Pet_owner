@@ -80,3 +80,4 @@ class Message(models.Model):
         text = self.content[:32]
 
         return f'{name}:{text}'
+
