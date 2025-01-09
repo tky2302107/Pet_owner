@@ -8,8 +8,8 @@ import datetime
 
 
 def notice():#https://techis.jp/guide/django/django_insert_data
-    # pass
-# """ 
+     pass
+ """ 
     # queryset = super().get_queryset()
     
     cursor = sqlite3.connect("db.sqlite3").cursor()
