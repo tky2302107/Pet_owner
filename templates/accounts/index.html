@@ -220,6 +220,27 @@ input[name="tab_item"] {
                     <br>
                     {% endif %}
                     {% endif %}
+                    {% if not post.video and not post.image %}
+                      <div class="tabs">
+                        <div>
+                          <a href='{% url 'post:posts_detail' post.pk %}' style="color:black;">
+                            <div class="card">
+                              <div class="card-header" style="height:50px;width:auto;">
+                                <h4>{{ post.account_id }}</h4>
+                              </div>
+                              <div class="card-body" style="height:195px;">    
+                                <div class="post-content">
+                                  <p>{{post.post}}</p>
+                                </div>
+                              </div>
+                            </div>
+                          </a>
+                        </div>
+                      </div>
+                    <br>
+                    <br>
+                    <br>
+                    {% endif %}
                 </div>                        
                 {% endfor %}
                 {% endif %}

@@ -239,6 +239,7 @@ input[name="tab_item"] {
                     {% if request.user.id == post.account_id.id %}
                       <button class="btn btn-danger" onclick="location.href='{% url 'post:posts_delete' post.id %}'">削除</button>
                     {% endif %}
+                    <!-- 戻るボタン、前のページに戻る -->
                     <button class="btn btn-secondary" onclick="location.href='{{ request.META.HTTP_REFERER }}'">戻る</button>
                 </div>
                 <br>

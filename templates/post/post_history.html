@@ -246,7 +246,8 @@ input[name="tab_item"] {
                  投稿はありません。
                 {% endif %}
                 <div style="margin-bottom:10%;">
-                    <button class="btn btn-secondary" onclick="location.href='{% url 'accounts:index' %}'">戻る</button>
+                    <!-- 戻るボタン、マイページ画面に戻る -->
+                    <button class="btn btn-secondary" onclick="location.href='{% url 'accounts:mypage' %}'">戻る</button>
                 </div>
                 <br>
                     </div>
