@@ -66,7 +66,7 @@
             <ul class="navbar-nav mr-auto">
                 <br>
                 <form method="get" action="{% url "post:posts_search" %}" class="col-12 col-lg-auto mb-2 mb-lg-0" role="search" style="display: flex;">
-                    <input type="search" class="form-control" placeholder="投稿検索..." aria-label="Search" name="keyword" value="{{ request.GET.keyword }}" style="width:100%;">
+                    <input type="search" class="form-control" placeholder="投稿検索..." aria-label="Search" name="keyword" value="{{ request.GET.keyword }}" style="width:auto; height:auto;">
                     <input type="submit" value="検索" class="btn btn-primary ">
                 </form>
 
