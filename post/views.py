@@ -1,6 +1,6 @@
 from django.urls import reverse, reverse_lazy
 from django.views.generic import TemplateView, CreateView, ListView, DetailView, DeleteView, UpdateView
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 from post.forms import PostForm
 from post.models import PostInfo
@@ -46,12 +46,17 @@ class PostDetailPageView(DetailView):
     context_object_name = 'post'
 
 # 投稿削除画面表示
-class PostDeletePageView(LoginRequiredMixin, DeleteView):
+class PostDeletePageView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = PostInfo
     template_name = '../templates/post/post_delete.html'
     login_url = '/login/'
     context_object_name = 'post'
     success_url = reverse_lazy('post:posts_delete_completed')
+
+    def test_func(self, **kwargs):
+        pk = self.kwargs["pk"]
+        post = PostInfo.objects.get(pk=pk)
+        return (post.account_id == self.request.user)
 
 # 投稿削除完了画面表示
 class PostDeleteCompletePageView(TemplateView):
@@ -75,7 +80,7 @@ class PostHistoryPageView(LoginRequiredMixin, ListView):
     
     
 # 投稿編集画面表示
-class PostUpdatePageView(LoginRequiredMixin, UpdateView):
+class PostUpdatePageView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = PostInfo
     form_class = PostForm
     login_url = '/login/'
@@ -87,3 +92,8 @@ class PostUpdatePageView(LoginRequiredMixin, UpdateView):
     def form_valid(self, form):
         form.instance.account_id = self.request.user
         return super().form_valid(form)
+    
+    def test_func(self, **kwargs):
+        pk = self.kwargs["pk"]
+        post = PostInfo.objects.get(pk=pk)
+        return (post.account_id == self.request.user)
