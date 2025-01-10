@@ -2,16 +2,13 @@ from datetime import datetime, date
 from apscheduler.schedulers.background import BackgroundScheduler
 from .models import Message,Room
 from accounts.models import User
-from contents.models import NoticeList,DifferentialNum
+from contents.models import NoticeList,DifferentialNum,PersonalNoticeList
 import sqlite3
 import datetime
 
-
 def notice():#https://techis.jp/guide/django/django_insert_data
      pass
- """ 
-    # queryset = super().get_queryset()
-    
+""" 
     cursor = sqlite3.connect("db.sqlite3").cursor()
     cursor.execute('SELECT * FROM chat_message')
     Chatdata = cursor.fetchall()
@@ -20,31 +17,37 @@ def notice():#https://techis.jp/guide/django/django_insert_data
     print("")
     print(Chatdata)
     print("")
-    print(Userdata)
-    print("")
     lst = []
-    sabun = []
+    new = []
     for i in range(len(Chatdata)):
         lst.append(Chatdata[i][0])
-    print("sabun_num"+str(lst))
-    try:
-        zenkai = list(DifferentialNum.objects.all().values())[0]
-    except:
-        zenkai = []
-        zenkai.append(36)
+    print("chat_id_list"+str(lst))
     
-    saishin = lst[-1]    #最新
-    zenkai = zenkai[0]+1 #前回の更新以降
+    cursor.execute("SELECT num FROM contents_differentialnum WHERE id=1")
+    start = int(list(cursor.fetchall())[0][0])
+    
+    print("\nraw start "+str(start))
+    
+    end = int(lst[-1])    #最新
     for i in range(len(Chatdata)):
-        if Chatdata[i][0] >= zenkai :
-            sabun.append(Chatdata[i])
+        if int(Chatdata[i][0]) >= start :
+            print(i)
+            new.append(Chatdata[i])
 
     print("")
-    print("sabun")
-    print(sabun)
+    print("new")
+    print(new)
 
+    if new is None :
+        pass
+    else:
+        savedata = []
+        for i in range(len(new)):
+            savedata.append(PersonalNoticeList(old_id=new[i][0],text=new[i][1],date=new[i][2],user=new[i][3],chargroup=new[i][4]))
+        PersonalNoticeList.objects.bulk_create(savedata)
+        d = DifferentialNum.objects.filter(id=1)
+        d.update(num=end+1)
 
-        
     
     #チャットの投稿を通知に反映する部分
     last_count = 0
@@ -52,30 +55,17 @@ def notice():#https://techis.jp/guide/django/django_insert_data
     
     queryset = Room.objects.all()
     
-    # print("roomqs")
-    # print(list(queryset.values()))
-    
-    # print(Message)
     dt_now = datetime.datetime.now()
     #自分が所属するチャットルームのルームIDを取得
 
     #ルームIDが自分のものと一致するメッセージを取得
     message_count = int(Message.objects.filter().values("id").count())
     differential = message_count- last_count 
-
-
-
-
     NoticeList.objects.all()
-    # for i in range(0):#"前回更新時以降に増えた投稿の数"
-    #     nl = NoticeList(posted_at=dt_now,title="チャットメッセージ",text="chatroom"+"に新規メッセージが届きました。")
-    #     nl_list.append(nl)
-    # for j in nl_list:
-    #     j.save()
     cursor.close()
-# """ 
+""" 
 
 def start():
     scheduler = BackgroundScheduler()
-    scheduler.add_job(notice, 'interval', seconds=10)
+    scheduler.add_job(notice, 'interval', seconds=60)
     scheduler.start()
