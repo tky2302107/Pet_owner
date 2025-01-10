@@ -3,6 +3,7 @@ from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 from django.utils.translation import gettext_lazy
 from .models import User
+from accounts.models import AdoptList
 
 class CustomUserChangeForm(UserChangeForm):
     class Meta:
@@ -34,3 +35,6 @@ class CustomUserAdmin(UserAdmin):
     list_filter = ('is_staff', 'is_superuser', 'is_active', 'groups')
     search_fields = ('email', 'screen_name')
     ordering = ('id',)
+
+
+admin.site.register(AdoptList)

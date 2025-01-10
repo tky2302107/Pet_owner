@@ -31,9 +31,22 @@ class NoticeDetailView(DetailView):
     template_name = 'contents/notice.html'
     model = NoticeList
     context_object_name = "obj_data"
+
+# class PersonalNoticeListView(ListView):
+#     # template_name = "contents/nlist_test.html" 
+#     template_name = 'contents/personal_notice_list.html'
+#     model = NoticeList
+#     paginate_by = 10
+    # context_object_name = "obj_data"
+
+# class PersonalNoticeDetailView(DetailView):
+#     # template_name = "contents/n_test.html"# template_name = 'contents/notice.html'
+#     template_name = 'contents/notice.html'
+#     model = NoticeList
+#     context_object_name = "obj_data"
     
 class FollowView(ListView):
-    template_name = "contents/test_f.html"
+    template_name = "contents/follow_list.html"
     model = FollowList
     paginate_by = 10
     # form_class = FollowDisableForm
@@ -57,7 +70,7 @@ class FollowView(ListView):
 
 
 class Follow_erView(ListView):
-    template_name = "contents/test_er.html"
+    template_name = "contents/follower_list.html"
     model = FollowList
     paginate_by = 10
     context_object_name = "erlist"

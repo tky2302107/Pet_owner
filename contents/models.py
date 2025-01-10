@@ -3,6 +3,8 @@ from django.contrib.auth.models import PermissionsMixin, UserManager
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.utils import timezone
 from django.utils.translation import gettext_lazy
+from django.contrib import admin
+
 
 # Create your models here.
 # 編集　フォロー　フォロワー　ポイント　投稿履歴
@@ -25,18 +27,9 @@ class NoticeList(models.Model):
     text = models.TextField(
         verbose_name="本文"
     )
-    room_id = models.IntegerField(
-        null=True,
-    )
-    talker_id = models.IntegerField(
-        null=True,
-    )
 
-    # def __str__(self):
-    #     return self.title
-    
-    def __str__(self) -> str:
-        return f"{self.title}"
+    def __str__(self):
+        return self.title
     
 class FollowList(models.Model):
     id = models.AutoField(primary_key=True)
@@ -108,6 +101,8 @@ class HospitalList(models.Model):
         width_field=None, 
         max_length=None
     )
+    def __str__(self):
+        return self.name
 
 
 class DifferentialNum(models.Model):

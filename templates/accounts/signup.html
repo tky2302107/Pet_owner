@@ -1,49 +1,21 @@
-<!-- アカウント新規作成画面 -->
-
-<!DOCTYPE html>
-<html lang="ja">
-    
-    
-
-<link rel="stylesheet" href="../../static/admin/css/signup.css"> 
-<link href="../header/assets/dist/css/bootstrap.min.css" rel="stylesheet">
-
-
-
-
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>フォーム作成</title>
- 
-</head>
-<body>
-    <div class="form-container">
-        <h2>アニマルチャット<span class="number"></span></h2>
-        <form action="#" method="post">
-            <div class="form-group">
-                <label for="username">ユーザー名</label>
-                <input type="text" id="username" name="username">
-            </div>
-            <div class="form-group">
-                <label for="login-id">ログインID</label>
-                <input type="text" id="login-id" name="login-id">
-            </div>
-            <div class="form-group">
-                <label for="password">パスワード</label>
-                <input type="password" id="password" name="password">
-            </div>
-            <div class="form-group">
-                <label for="confirm-password">パスワード（確認用）</label>
-                <input type="password" id="confirm-password" name="confirm-password">
-            </div>
-            <button type="button" class="submit-btn" onclick="window.location.href='main_menu.html'">
-                新規作成
-            </button>
-        </form>
-    </div>
-</body>
-</html>
-
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div>
+    <br>
+    <form method="POST">
+      {% csrf_token %}
+      {{ form.non_field_errors }}
+      {% for field in form %}
+      {{ field.label }}
+      {{ field }}
+      {{ field.errors }}
+      <br>
+      {% endfor %}
+      <div class="mt-3">
+        <button type="submit" class="btn btn-primary">Create</button>
+        <a href="{% url 'accounts:index' %}" class="btn btn-secondary">Back</a>
+      </div>
+    </form>
+</div>
+{% endblock %}
