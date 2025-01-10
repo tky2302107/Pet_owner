@@ -362,3 +362,6 @@ class AdoptDetailView(DetailView):
     template_name = "accounts/adopt_detail.html"
     model = AdoptList
     context_object_name = "adopt"
+
+class AdoptAboutView(TemplateView):
+    template_name = "accounts/adopt_about.html"

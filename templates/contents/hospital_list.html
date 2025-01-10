@@ -109,9 +109,10 @@ input[name="tab_item"] {
   <br>         
 </div>
         <!-- 戻るボタン -->
-    <a href="javascript:history.back()" class="return-btn">戻る</a>
+    {% comment %} <a href="javascript:history.back()" class="return-btn">戻る</a> {% endcomment %}
 <div style="diaplay:flex;">
     <a href="{% url 'contents:hospital_contact' %}">掲載依頼はこちら</a>
 </div>
+<br>
 {% endblock %}
 
