@@ -1,63 +1,46 @@
-<!--　フォローアカウント一覧　-->
-{% extends "all_base.html" %}
+{% extends "base.html" %}
 {% load static %}
+{% block content %}
+<style>
+.tab_item2 {
+    width: calc(100%);
+    height: 50px;
+    border-bottom: 3px solid #5ab4bd;
+    background-color: #f9f9f9;
+    line-height: 50px;
+    font-size: 20px;
+    text-align: center;
+    color: #565656;
+    display: block;
+    float: left;
+    text-align: center;
+    font-weight: bold;
+    transition: all 0.2s ease;
+  }
+</style>
+<ul>
+    <h3 style="text-align:center;">フォロワー一覧</h3>
+    <br>
+    {% for data in erlist %}
+    <label class="tab_item2" for="programming">アカウント名:{{ data.follow_name }}</label>
+    {% comment %} <div style="text-align:center;vertical-align: middle;padding: 0 0 10px;">
+        <h3>アカウントID:{{ data.follow }}
+            ユーザー名:<a style="text-decoration: none;font-style: #0000;"> 
+        </h3>
+    </div> {% endcomment %}
+    <br>
+    
+    {% endfor %}
+    <br>
+    <a href="{% url 'contents:follow' %}" class="btn btn-link btn-block" target="_self">フォロー中一覧</a>
+    <a href="{% url 'accounts:index' %}" class="btn btn-link btn-block" target="_self">メインページへ戻る</a>
+    
+    <a href="javascript:history.back()" class="return-btn">前のページに戻る</a>
+    <a href="{% url 'accounts:mypage' %}" class="btn btn-link btn-block" target="_self">マイページへ戻る</a>
+    
+</ul>
 
-{% block style %}<link rel="stylesheet" href="{% static 'admin/css/follower_list.css' %}">{% endblock %}   
 
-{% block contents %}
 
-    <div class="follower-list-container">
-        <h2 class="follower-title">フォロワー一覧</h2>
 
-        <!-- アカウント1 -->
-        <div class="account">
-            <div class="account-info">
-                <img src="https://via.placeholder.com/50" alt="アイコン" class="account-icon">
-                <div class="account-details">
-                    <p class="account-name">name</p>
-                    <p class="account-bio">プロフィール文</p>
-                </div>
-            </div>
-            <button class="follow-btn">フォロー</button>
-        </div>
-
-        <!-- アカウント2 -->
-        <div class="account">
-            <div class="account-info">
-                <img src="https://via.placeholder.com/50" alt="アイコン" class="account-icon">
-                <div class="account-details">
-                    <p class="account-name">name</p>
-                    <p class="account-bio">プロフィール文</p>
-                </div>
-            </div>
-            <button class="follow-btn">フォロー</button>
-        </div>
-
-        <!-- アカウント3 -->
-        <div class="account">
-            <div class="account-info">
-                <img src="https://via.placeholder.com/50" alt="アイコン" class="account-icon">
-                <div class="account-details">
-                    <p class="account-name">name</p>
-                    <p class="account-bio">プロフィール文</p>
-                </div>
-            </div>
-            <button class="follow-btn">フォロー</button>
-        </div>
-
-        <!-- アカウント4 -->
-        <div class="account">
-            <div class="account-info">
-                <img src="https://via.placeholder.com/50" alt="アイコン" class="account-icon">
-                <div class="account-details">
-                    <p class="account-name">name</p>
-                    <p class="account-bio">プロフィール文</p>
-                </div>
-            </div>
-            <button class="follow-btn">フォロー</button>
-        </div>
-    </div>
-        <!-- 戻るボタン -->
-
-        <a href="javascript:history.back()" class="return-btn">戻る</a>
 {% endblock %}

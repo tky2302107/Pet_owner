@@ -185,7 +185,7 @@ class MyPage(TemplateView):
 class NameChange(LoginRequiredMixin,FormView):
     login_url = '/login/'
     models = User
-    template_name = "accounts/e_page.html"
+    template_name = "accounts/user_edit.html"
     form_class = UserChangeForm
     success_url = reverse_lazy('accounts:mypage')
     
@@ -209,12 +209,12 @@ class PasswordChange(PasswordChangeView):
     """パスワード変更ビュー"""
     form_class = PasswordChangeForm
     success_url = reverse_lazy('accounts:pwdone')
-    template_name = 'accounts/pw.html'
+    template_name = 'accounts/password_change.html'
 
 
 class PasswordChangeDone(PasswordChangeDoneView):
     """パスワード変更しました"""
-    template_name = 'accounts/pwd.html'
+    template_name = 'accounts/password_change_done.html'
     login_url = '/login/'
 
 
@@ -281,7 +281,7 @@ class EmailChangeComplete(LoginRequiredMixin, TemplateView):
 class SetUpView(CreateView):
     """ ユーザー登録用ビュー """
     form_class = SetUpForm # 作成した登録用フォームを設定
-    template_name = "accounts/test_sig.html" 
+    template_name = "accounts/signup.html" 
     success_url = reverse_lazy("accounts:index") # ユーザー作成後のリダイレクト先ページ
 
     def form_valid(self, form):
@@ -296,7 +296,7 @@ class SetUpView(CreateView):
 
 class UserDeletePreView(TemplateView):#ユーザー退会前
     login_url = '/login/'
-    template_name = "accounts/deletechk.html"  
+    template_name = "accounts/user_delete.html"  
       
 class UserDeleteView(TemplateView):#ユーザー退会
     login_url = '/login/'

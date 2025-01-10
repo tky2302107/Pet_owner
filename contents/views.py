@@ -46,7 +46,7 @@ class NoticeDetailView(DetailView):
 #     context_object_name = "obj_data"
     
 class FollowView(ListView):
-    template_name = "contents/test_f.html"
+    template_name = "contents/follow_list.html"
     model = FollowList
     paginate_by = 10
     # form_class = FollowDisableForm
@@ -70,7 +70,7 @@ class FollowView(ListView):
 
 
 class Follow_erView(ListView):
-    template_name = "contents/test_er.html"
+    template_name = "contents/follower_list.html"
     model = FollowList
     paginate_by = 10
     context_object_name = "erlist"
