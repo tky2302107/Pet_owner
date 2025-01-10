@@ -108,6 +108,8 @@ input[name="tab_item"] {
 {% endif %}
 <br>         
   </div>
-        <!-- 戻るボタン -->
-        <a href="javascript:history.back()" class="return-btn">戻る</a>
+  <a href="{% url 'accounts:adopt_about' %}">提携先について</a>
+  <!-- 戻るボタン -->
+   <br>
+  {% comment %} <a href="javascript:history.back()" class="return-btn">戻る</a> {% endcomment %}
 {% endblock %}
