@@ -112,18 +112,21 @@ input[name="tab_item"] {
                     {% if post.image and post.video %}
                         <div class="tabs">
                             <div>  
-                                    <div class="card">
-                                        <div class="card-header" style="height:50px;width:auto;">
-                                                <h4>{{ post.account_id }}</h4>
-                                        </div>
-                                        <div class="card-body" style="height:195px;">
-                                            
-                                            <div class="post-content">
-                                                <p>{{post.post}}</p>
-                                            </div>
-                                        </div>
-                                    </div>
+                              <div class="card">
+                                <a href='{% url 'accounts:user_detail' post.account_id %}' style="color:black;">
+                                <div class="card-header" style="height:50px;width:auto;">
+                                        <h4>{{ post.account_id }}</h4>
+                                </div>
                                 </a>
+                                
+                                <div class="card-body" style="height:195px;">
+                                    
+                                    <div class="post-content">
+                                        <p>{{post.post}}</p>
+                                    </div>
+                                </div>
+                                
+                              </div>
                             </div>
                             <div>
                                 {% comment %} <input id="all" type="radio" name="tab_item" checked>
@@ -155,18 +158,21 @@ input[name="tab_item"] {
                     {% if not post.video %}
                     <div class="tabs">
                         <div>
-                                <div class="card">
-                                    <div class="card-header" style="height:50px;width:auto;">
-                                            <h4>{{ post.account_id }}</h4>
-                                    </div>
-                                    <div class="card-body" style="height:195px;">
-                                        
-                                        <div class="post-content">
-                                            <p>{{post.post}}</p>
-                                        </div>
-                                    </div>
-                                </div>
+                          <div class="card">
+                            <a href='{% url 'accounts:user_detail' post.account_id_id %}' style="color:black;">
+                            <div class="card-header" style="height:50px;width:auto;">
+                                    <h4>{{ post.account_id }}</h4>
+                            </div>
                             </a>
+                            
+                            <div class="card-body" style="height:195px;">
+                                
+                                <div class="post-content">
+                                    <p>{{post.post}}</p>
+                                </div>
+                            </div>
+                            
+                          </div>
                         </div>
                         <div>
                             <label class="tab_item2" for="programming">画像</label>
@@ -184,18 +190,21 @@ input[name="tab_item"] {
                     {% if not post.image %}
                     <div class="tabs">
                         <div>
-                                <div class="card">
-                                    <div class="card-header" style="height:50px;width:auto;">
-                                            <h4>{{ post.account_id }}</h4>
-                                    </div>
-                                    <div class="card-body" style="height:195px;">
-                                        
-                                        <div class="post-content">
-                                            <p>{{post.post}}</p>
-                                        </div>
-                                    </div>
-                                </div>
+                          <div class="card">
+                            <a href='{% url 'accounts:user_detail' post.account_id_id %}' style="color:black;">
+                            <div class="card-header" style="height:50px;width:auto;">
+                                    <h4>{{ post.account_id }}</h4>
+                            </div>
                             </a>
+                            
+                            <div class="card-body" style="height:195px;">
+                                
+                                <div class="post-content">
+                                    <p>{{post.post}}</p>
+                                </div>
+                            </div>
+                            
+                          </div>
                         </div>
                         <div>
                             <label class="tab_item2" for="programming">動画</label>
@@ -212,17 +221,21 @@ input[name="tab_item"] {
                     {% if not post.video and not post.image %}
                       <div class="tabs">
                         <div>
-                            <div class="card">
-                              <div class="card-header" style="height:50px;width:auto;">
-                                <h4>{{ post.account_id }}</h4>
-                              </div>
-                              <div class="card-body" style="height:195px;">    
-                                <div class="post-content">
-                                  <p>{{post.post}}</p>
-                                </div>
-                              </div>
+                          <div class="card">
+                            <a href='{% url 'accounts:user_detail' post.account_id_id %}' style="color:black;">
+                            <div class="card-header" style="height:50px;width:auto;">
+                                    <h4>{{ post.account_id }}</h4>
                             </div>
-                          </a>
+                            </a>
+                            
+                            <div class="card-body" style="height:195px;">
+                                
+                                <div class="post-content">
+                                    <p>{{post.post}}</p>
+                                </div>
+                            </div>
+                            
+                          </div>
                         </div>
                       </div>
                     <br>

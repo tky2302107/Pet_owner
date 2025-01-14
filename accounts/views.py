@@ -12,6 +12,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from config import settings
 from .models import fund, User ,AdoptList
 from post.models import PostInfo
+from contents.models import FollowList
 from django.db.models.query import QuerySet
 from django.shortcuts import redirect, render
 from django.contrib.auth.mixins import LoginRequiredMixin
@@ -365,3 +366,53 @@ class AdoptDetailView(DetailView):
 
 class AdoptAboutView(TemplateView):
     template_name = "accounts/adopt_about.html"
+
+
+class UserDetailView(DetailView):
+    template_name = "accounts/user_detail.html"
+    model = User,FollowList
+    context_object_name = "user"
+    # fl = list(FollowList.objects.filter(id=2))[0]
+    def get(self,request, **kwargs):
+        try:
+            fl = list(FollowList.objects.filter(follow_er=int(self.kwargs["pk"]),follow=self.request.user.id).values())[0]
+        except:
+            fl = None
+        u = list(User.objects.filter(id=int(self.kwargs["pk"])).values())[0]
+        print("fl: "+str(fl))
+        print("u: "+str(u))
+        self.kwargs["name"] = u["screen_name"]
+        self.kwargs["profile"] = u["profile"]
+        self.kwargs["email"] = u["email"]
+        if fl is None:# 0は未フォロー1はフォロー済
+            self.kwargs["follow_tf"] = 0
+        else:
+            self.kwargs["follow_tf"] = 1
+        return render(request,'accounts/user_detail.html',self.kwargs)
+
+
+
+
+    # print(fl)
+    # def get_context_data(self, **kwargs):
+        
+    #     # int(self.kwargs["pk"])
+
+    #     context = super().get_context_data(**kwargs)
+    #     # context["user"] = 
+        
+    #     return object
+    
+        
+        
+        
+    # def get_object(self,**kwargs):
+    #     object = User.objects.get(id=self.kwargs["pk"])
+    #     # object_a = FollowList.objects.filter(follow=self.kwargs["pk"],follow_er=self.request.user.id)
+    #     # print("\"\"\""+str(object_a[0][0]))
+    #     # object.FollowList_set.
+    #     id=self.kwargs["pk"]
+    #     print(id)
+    #     print("type:"+str(type(object)))
+    #     print(str(object))
+    #     return object

@@ -27,5 +27,6 @@ urlpatterns = [
     path('adopt/', views.AdoptListView.as_view(), name='adopt'),
     path('adopt/<int:pk>/', views.AdoptDetailView.as_view(), name='adopt_detail'),
     path('adopt/about/', views.AdoptAboutView.as_view(), name='adopt_about'),
+    path('user/<int:pk>', views.UserDetailView.as_view(), name='user_detail'),
     
 ]
