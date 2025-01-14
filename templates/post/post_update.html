@@ -9,8 +9,10 @@
     <!-- 動画・画像アップロード -->
       {% csrf_token %}
       <div class="upload-section">
+        <div>
         <label for="image-upload">画像📷</label>
         {{ form.image }}
+        </div><!-- 調整中 -->
 
         <label for="video-upload">動画🎞️</label>
         {{ form.video }}
