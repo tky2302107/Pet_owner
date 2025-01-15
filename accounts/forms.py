@@ -93,6 +93,6 @@ class AdoptSearchForm(forms.Form):
             keywords = self.cleaned_data.get('keywords', init_keywords)
 
         return keywords
-
-# class FollowForm(forms.Form):
-    
+"""
+class FollowForm(forms.Form):
+""" 

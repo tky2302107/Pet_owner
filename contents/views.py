@@ -151,3 +151,4 @@ class HospitalDetailView(DetailView):
     template_name = "contents/hospital_detail.html"
     model = HospitalList
     context_object_name = "hospital"
+    

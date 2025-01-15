@@ -25,3 +25,5 @@ https://bagelee.com/design/css/create_tabs_using_only_css/
 html条件分岐
 https://arakan-pgm-ai.hatenablog.com/entry/2020/01/22/000000
 
+qsから辞書型配列への変換方法
+https://qiita.com/thim/items/367599a00bcd709de512
