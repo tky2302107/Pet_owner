@@ -236,7 +236,7 @@ input[name="tab_item"] {
                     <!-- 削除確認ボックス -->
                     <strong>この投稿を削除しますか？</strong>
                     <button class="btn btn-danger">はい</button>
-                    <button class="btn btn-secondary" type="button" onclick="location.href='{{ request.META.HTTP_REFERER }}'">いいえ</button>
+                    <button class="btn btn-secondary" type="button" onclick="window.history.back()">いいえ</button>
                 </div>
                 <br>
                     </div>

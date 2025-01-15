@@ -8,23 +8,26 @@
     <div>
     <!-- 動画・画像アップロード -->
       {% csrf_token %}
-      <div class="upload-section">
-        <div>
-        <label for="image-upload">画像📷</label>
-        {{ form.image }}
+      <div style="display:flex; justify-content:center;">
+        <div style="margin-right:10px;">
+          <label for="image-upload">画像📷</label>
+          {{ form.image }}
         </div><!-- 調整中 -->
 
-        <label for="video-upload">動画🎞️</label>
-        {{ form.video }}
+        <div>
+          <label for="video-upload">動画🎞️</label>
+          {{ form.video }}
+        </div>
       </div>
 
       <!-- 文字入力フォームとボタン -->
       <div class="form-section">
-        <label for="post-text">文字入力（300文字以内）</label>
+        <div style="display:flex; justify-content:center; margin:15px">
         {{ form.post }}
+        </div>
 
-        <div class="post-button-group">
-          <button class="btn btn-secondary" type="button" onclick="window.history.back()">戻る</button>
+        <div style="display:flex; justify-content:center;">
+          <button class="btn btn-secondary" style="margin-right:5px;" type="button" onclick="window.history.back()">戻る</button>
           <button class="btn btn-primary" style="width:91%" type="submit">更新する</button>    
         </div>
       </div>
