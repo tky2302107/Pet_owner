@@ -11,7 +11,8 @@ class PostPageView(LoginRequiredMixin, CreateView):
     login_url = '/login/'
     model = PostInfo
     form_class = PostForm
-    success_url = reverse_lazy('post:posts_completed')
+    # success_url = reverse_lazy('post:posts_completed')
+    success_url = reverse_lazy('accounts:index')
       
     def form_valid(self, form):
         form.instance.account_id = self.request.user
