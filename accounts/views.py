@@ -5,7 +5,7 @@ from django.template.loader import render_to_string
 from django.core.signing import BadSignature,SignatureExpired
 from typing import Generic
 from django.http import HttpResponse, HttpResponseBadRequest
-from django.urls import reverse_lazy
+from django.urls import reverse, reverse_lazy
 from django.views.generic import TemplateView,ListView,FormView,UpdateView,CreateView,DeleteView,DetailView
 from django.contrib.auth.views import LoginView, LogoutView 
 from django.contrib.sites.shortcuts import get_current_site
@@ -32,7 +32,8 @@ from django.shortcuts import redirect
 class Index(ListView):
     template_name = 'accounts/index.html'
     model = User
-    def get_queryset(self):
+    def get_queryset(self,**kwargs):
+        
         return super().get_queryset()
 
     # def get(self, request, **kwargs):
@@ -52,6 +53,7 @@ class Index(ListView):
 
     model = PostInfo # 投稿情報モデル
     context_object_name = 'ctx' # コンテキスト名
+    
     def get_queryset(self, **kwargs): # モデルから情報を取得
         queryset = super().get_queryset(**kwargs) # 全取得
         
@@ -84,13 +86,11 @@ class Index(ListView):
         # queryset = queryset.union(context,all=True)
         return queryset
 
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     context = {
-    #         "icon":str(self.request.user.icon)
-    #     }
-    #     return context
-    
+    def get_context_data(self):
+        context = super().get_context_data()
+        context["myid"] = self.request.user.id
+        print(context)
+        return context
     
     
 class LoginPage(LoginView):
@@ -379,17 +379,40 @@ class UserDetailView(DetailView):
         except:
             fl = None
         u = list(User.objects.filter(id=int(self.kwargs["pk"])).values())[0]
-        print("fl: "+str(fl))
-        print("u: "+str(u))
+        self.kwargs["id"] = u["id"]
         self.kwargs["name"] = u["screen_name"]
         self.kwargs["profile"] = u["profile"]
         self.kwargs["email"] = u["email"]
+        self.kwargs["myid"] = self.request.user.id
         if fl is None:# 0は未フォロー1はフォロー済
             self.kwargs["follow_tf"] = 0
         else:
             self.kwargs["follow_tf"] = 1
         return render(request,'accounts/user_detail.html',self.kwargs)
 
+    def post(self, request, *args, **kwargs):
+        uid= request.POST["uid"]
+        uuser=User.objects.get(id=uid)
+        u = list(User.objects.filter(id=int(self.kwargs["pk"])).values())[0]
+        self.kwargs["id"] = u["id"]
+        self.kwargs["name"] = u["screen_name"]
+        self.kwargs["profile"] = u["profile"]
+        self.kwargs["email"] = u["email"]
+        self.kwargs["myid"] = self.request.user.id
+        fl = FollowList(
+            follow_er=int(uid),
+            follow_er_name=str(uuser.screen_name),
+            follow=int(self.request.user.id),
+            follow_name=str(self.request.user.screen_name)
+            )
+        fl.save()
+        return render(request,'accounts/user_detail.html',self.kwargs)
+
+    def get_context_data(self,**kwargs):
+            context = super().get_context_data(**kwargs)
+            context["myid"] = self.request.user.id
+            print(context)
+            return context
 
 
 
