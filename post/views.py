@@ -39,11 +39,23 @@ class PostSearchPageView(ListView):
         
         return queryset
 
+    def get_context_data(self,**kwargs):
+        context = super().get_context_data(**kwargs)
+        context["myid"] = self.request.user.id
+        print(context)
+        return context
+
 # 投稿詳細画面表示
 class PostDetailPageView(DetailView):
     model = PostInfo # 投稿情報モデル
     template_name = '../templates/post/post_detail.html' # テンプレート
     context_object_name = 'post'
+
+    def get_context_data(self,**kwargs):
+        context = super().get_context_data(**kwargs)
+        context["myid"] = self.request.user.id
+        print(context)
+        return context
 
 # 投稿削除画面表示
 class PostDeletePageView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):

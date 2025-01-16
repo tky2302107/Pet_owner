@@ -77,6 +77,20 @@ input[name="tab_item"] {
     font-size:20px;
 }
 </style>
+{%if id == myid%}
+  <form method="get" action="{% url 'accounts:mypage' %}" >
+    {% csrf_token %}
+    <button type="submit" class="btn btn-light text-dark me-2" id="click" style=font-size:15px;></button>
+  </form>
+  <script>
+    window.onload = function() {
+      const button = document.getElementById('click');
+      button.click();
+    }
+  </script>
+{% else %}
+
+
 <label class="tab_item2" for="programming">{{name}}</label>
         <div style="text-align:center;vertical-align: middle;padding: 0 0 10px;">
             <image href={{icon}}>
@@ -86,13 +100,19 @@ input[name="tab_item"] {
             <br>
         </div>
         {% if follow_tf == 0%}
-            <form method="post" action="{% url 'accounts:index' %}" >
-                {% csrf_token %}
-            {% comment %} <input onclick="click()" value="このユーザーをフォローする" class="btn btn-primary btn-block"> {% endcomment %}
-            <button onclick="button()" class="btn btn-primary btn-block">このユーザーをフォローする</button>
+            <form method="post">
+              {% csrf_token %}
+              <input id="uid" name="uid" type="hidden" value={{id}}></input>
+              <input type="submit" class="btn btn-primary btn-block" value="このユーザーをフォローする">
+            
+            {% comment %} <button onclick="button()"  type="submit">このユーザーをフォローする</button> {% endcomment %}
             </form>
         {% else %}
-            <label class="btn btn-primary btn-block">フォロー済みです</label>
+            {%if id == myid%}
+              
+            {%else%}
+              <label class="btn btn-primary btn-block">フォロー済みです</label>
+            {% endif %}    
         {% endif %}
 <script>
     import defaultExport from "sqlite3"
@@ -125,6 +145,7 @@ input[name="tab_item"] {
         db.close();
     }
 </script>
+{% endif %}
 <!-- 戻るボタン -->
 <div style="diaplay:flex;">
     <a href="javascript:history.back()" class="return-btn">戻る</a>
