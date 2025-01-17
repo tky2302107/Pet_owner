@@ -110,123 +110,69 @@ input[name="tab_item"] {
     });
 </script>
 
-                <div class="post">
-                    {% if post.image and post.video %}
-                        <div class="tabs">
-                            <div>  
-                                    <div class="card">
-                                        <div class="card-body" style="height:195px;">
-                                            
-                                            <div class="post-content">
-                                                <p>{{post.post}}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div>
-                                {% comment %} <input id="all" type="radio" name="tab_item" checked>
-                                <label class="tab_item" for="all">詳細</label> {% endcomment %}
-                                <input id="programming" type="radio" name="tab_item" checked>
-                                <label class="tab_item" for="programming">画像</label>
-                                <input id="design" type="radio" name="tab_item">
-                                <label class="tab_item" for="design">動画</label>
-                                {% comment %} <div class="tab_content" id="all_content">
-                                    デザインの内容がここに入ります
-                                </div> {% endcomment %}
-                                <div class="tab_content" id="programming_content" style="margin-left: auto;margin-right: auto;width:100%;vertical-align: middle;height:100%;">
-                                    <div style="text-align:center;">
-                                        <img src="/media/{{ post.image }}" style="object-fit: contain; width: 70%; height: 70%;">
-                                    </div>
-                                </div>
-                                <div class="tab_content" id="design_content">
-                                    <div style="text-align:center;">
-                                        <video id="video" src="/media/{{ post.video }}" controls style="object-fit: contain; width: 70%; height: 70%;" controlsList="nodownload" oncontextmenu="return false;"></video>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <br>
-                        <br>
-                        <br>  
-                    {% endif %}
-                    {% if post.image %}
-                    {% if not post.video %}
-                    <div class="tabs">
-                        <div>
-                                <div class="card">
-                                    <div class="card-body" style="height:195px;">
-                                        
-                                        <div class="post-content">
-                                            <p>{{post.post}}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div>
-                            <label class="tab_item2" for="programming">画像</label>
-                            <div style="text-align:center;vertical-align: middle;padding: 0 0 10px;">
-                                <img src="/media/{{ post.image }}" style="object-fit: contain; width: 70%; height: 70%;">
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-                    <br>
-                    <br>
-                    {% endif %}
-                    {% endif %}
-                    {% if post.video %}
-                    {% if not post.image %}
-                    <div class="tabs">
-                        <div>
-                                <div class="card">
-                                    <div class="card-body" style="height:195px;">
-                                        
-                                        <div class="post-content">
-                                            <p>{{post.post}}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <div>
-                            <label class="tab_item2" for="programming">動画</label>
-                            <div style="text-align:center;">
-                                <video id="video" src="/media/{{ post.video }}" controls style="object-fit: contain; width: 70%; height: 70%;" controlsList="nodownload" oncontextmenu="return false;"></video>
-                            </div>
-                        </div>
-                    </div>
-                    <br>
-                    <br>
-                    <br>
-                    {% endif %}
-                    {% endif %}
-                    {% if not post.video and not post.image %}
-                      <div class="tabs">
-                        <div>
-                            <div class="card">
-                              <div class="card-body" style="height:195px;">    
-                                <div class="post-content">
-                                  <p>{{post.post}}</p>
-                                </div>
-                              </div>
-                            </div>
-                          </a>
-                        </div>
-                      </div>
-                    <br>
-                    <br>
-                    <br>
-                    {% endif %}
-                </div>                        
                 <div style="margin-bottom:10%;">
-                    <!-- 削除確認ボックス -->
-                    <strong>この投稿を削除しますか？</strong>
-                    <button class="btn btn-danger">はい</button>
-                    <button class="btn btn-secondary" type="button" onclick="window.history.back()">いいえ</button>
+                  <!-- 削除確認ボックス -->
+                  <strong>この投稿を削除しますか？</strong>
+                  <button class="btn btn-danger">はい</button>
+                  <button class="btn btn-secondary" type="button" onclick="window.history.back()">いいえ</button>
                 </div>
-                <br>
+
+                <div class="post">
+                  <div class="tabs">
+                      <div>
+                          <div class="card">
+                              <div class="card-body" style="height:195px;">
+                                  <div class="post-content">
+                                      <p>{{post.post}}</p>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <!-- 画像と動画がある場合 -->
+                      {% if post.image and post.video %}
+                          <div>
+                              {% comment %} <input id="all" type="radio" name="tab_item" checked>
+                              <label class="tab_item" for="all">詳細</label> {% endcomment %}
+                              <input id="programming" type="radio" name="tab_item" checked>
+                              <label class="tab_item" for="programming">画像</label>
+                              <input id="design" type="radio" name="tab_item">
+                              <label class="tab_item" for="design">動画</label>
+                              {% comment %} <div class="tab_content" id="all_content">
+                                  デザインの内容がここに入ります
+                              </div> {% endcomment %}
+                              <div class="tab_content" id="programming_content" style="margin-left: auto;margin-right: auto;width:100%;vertical-align: middle;height:100%;">
+                                  <div style="text-align:center;">
+                                      <img src="/media/{{ post.image }}" style="object-fit: contain; width: 70%; height: 70%;">
+                                  </div>
+                              </div>
+                              <div class="tab_content" id="design_content">
+                                  <div style="text-align:center;">
+                                      <video id="video" src="/media/{{ post.video }}" controls style="object-fit: contain; width: 70%; height: 70%;" controlsList="nodownload" oncontextmenu="return false;"></video>
+                                  </div>
+                              </div>
+                          </div>  
+                      <!-- 画像のみの場合 -->
+                      {% elif post.image and not post.video %}
+                          <div>
+                              <label class="tab_item2" for="programming">画像</label>
+                              <div style="text-align:center;vertical-align: middle;padding: 0 0 10px;">
+                                  <img src="/media/{{ post.image }}" style="object-fit: contain; width: 70%; height: 70%;">
+                              </div>
+                          </div>
+                      <!-- 動画のみの場合 -->
+                      {% elif post.video and not post.image %}
+                          <div>
+                              <label class="tab_item2" for="programming">動画</label>
+                              <div style="text-align:center;">
+                                  <video id="video" src="/media/{{ post.video }}" controls style="object-fit: contain; width: 70%; height: 70%;" controlsList="nodownload" oncontextmenu="return false;"></video>
+                              </div>
+                          </div>
+                      {% endif %}
+                  </div>
+                  <br>
+                  <br>
+                  <br>
+                </div>
                     </div>
                 </div>
             </div>
@@ -266,3 +212,5 @@ input[name="tab_item"] {
     </div>
   </form>
 {% endblock %} {% endcomment %}
+
+                
