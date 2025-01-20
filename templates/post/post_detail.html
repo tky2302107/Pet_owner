@@ -113,9 +113,9 @@ input[name="tab_item"] {
                       <div>
                           <div class="card">
                               {%if post.account_id_id == myid%}
-                              <a href='{% url 'accounts:mypage' %}' style="color:black;">
+                              <a href='{% url 'accounts:mypage' %}' style="color:black;text-decoration-color: gray;">
                               {% else %}
-                              <a href='{% url 'accounts:user_detail' post.account_id_id %}' style="color:black;">
+                              <a href='{% url 'accounts:user_detail' post.account_id_id %}' style="color:black;text-decoration-color: gray;">
                               {% endif %}
                                   <div class="card-header" style="height:50px;width:auto;">
                                       <h4>{{ post.account_id }}</h4>

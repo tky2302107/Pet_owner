@@ -5,7 +5,8 @@
 {% block style %}<link rel="stylesheet" href="{% static 'admin/css/notice.css' %}">{% endblock %}   
 
 {% block content %}
-    <div class="notice-container">
+<br>
+<div class="notice-container">
         <h2 class="notice-title">お知らせ詳細</h2>
 
         <div class="grid-container">
@@ -15,37 +16,5 @@
 
     </div>
     
-
-        <!-- 戻るボタン -->
-        <a href="javascript:history.back()" class="return-btn">戻る</a>
-
-
-{% comment %} <!-- フッター -->
-<footer class="notice-footer">
-<h3>システム名</h3>  
-
-<!-- メニューリスト -->
-<div class="footer-menu">
-    <ul class="footer-menu-list">
-        <li><a href="#">ホーム画面へ</a></li>
-        <li><a href="#">利用規約</a></li>
-        <li><a href="#">プライバシーポリシー</a></li>
-    </ul>
-</div>
-
-<!-- お問い合わせ情報 -->
-<div class="contact">
-    <p>お問い合せ先<b>〒000-0000</b> 電話📳<b>000-0000-0000</b></p>
-</div>
-
-<!-- 著作権表示 -->
-<div class="copyright">
-    <p>© 2024 システム名 Inc. All Rights Reserved.</p>
-</div>
-</footer>
-</body>
-</html>
- 
-        <a href="javascript:history.back()" class="return-btn">戻る</a>
-        {% endcomment %}
+        
 {% endblock %}

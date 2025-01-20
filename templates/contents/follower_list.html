@@ -18,25 +18,17 @@
     transition: all 0.2s ease;
   }
 </style>
+<br>
 <ul>
     <h3 style="text-align:center;">フォロワー一覧</h3>
     <br>
     {% for data in erlist %}
     <label class="tab_item2" for="programming">アカウント名:{{ data.follow_name }}</label>
-    {% comment %} <div style="text-align:center;vertical-align: middle;padding: 0 0 10px;">
-        <h3>アカウントID:{{ data.follow }}
-            ユーザー名:<a style="text-decoration: none;font-style: #0000;"> 
-        </h3>
-    </div> {% endcomment %}
     <br>
     
     {% endfor %}
     <br>
     <a href="{% url 'contents:follow' %}" class="btn btn-link btn-block" target="_self">フォロー中一覧</a>
-    <a href="{% url 'accounts:index' %}" class="btn btn-link btn-block" target="_self">メインページへ戻る</a>
-    
-    <a href="javascript:history.back()" class="return-btn">前のページに戻る</a>
-    <a href="{% url 'accounts:mypage' %}" class="btn btn-link btn-block" target="_self">マイページへ戻る</a>
     
 </ul>
 

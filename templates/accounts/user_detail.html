@@ -111,10 +111,16 @@ input[name="tab_item"] {
             {%if id == myid%}
               
             {%else%}
-              <label class="btn btn-primary btn-block">フォロー済みです</label>
+            <form method="post">
+              {% csrf_token %}
+              <input id="uid" name="uid" type="hidden" value="_{{id}}"></input>
+              <input type="submit" class="btn btn-primary btn-block" value="フォロー済みです">
+            
+            {% comment %} <button onclick="button()"  type="submit">このユーザーをフォローする</button> {% endcomment %}
+            </form>
             {% endif %}    
         {% endif %}
-<script>
+{% comment %} <script>
     import defaultExport from "sqlite3"
     function button() {
         alert("押されました")
@@ -144,11 +150,11 @@ input[name="tab_item"] {
         // データベース接続のクローズ
         db.close();
     }
-</script>
+</script> {% endcomment %}
 {% endif %}
 <!-- 戻るボタン -->
 <div style="diaplay:flex;">
-    <a href="javascript:history.back()" class="return-btn">戻る</a>
+    {% comment %} <a href="javascript:history.back()" class="return-btn">戻る</a> {% endcomment %}
 </div>
 
 {% endblock %}

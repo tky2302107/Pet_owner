@@ -36,29 +36,12 @@ class Index(ListView):
         
         return super().get_queryset()
 
-    # def get(self, request, **kwargs):
-    #     id = self.request.user.id
-    #     if User.objects.get(id=id).pt_give == 1:
-    #         pt = {
-    #             "points":(3+int(self.request.user.points)),
-    #             "pt_give":0
-    #             }
-    #         User.objects.filter(id=self.request.user.id).update(**pt)
-    #         print("point_plus")
-    #     else:
-    #         print("point_pass")
-    
-    #     ctx={"id":id}
-    #     return self.render_to_response(ctx)    
-
     model = PostInfo # 投稿情報モデル
     context_object_name = 'ctx' # コンテキスト名
     
     def get_queryset(self, **kwargs): # モデルから情報を取得
         queryset = super().get_queryset(**kwargs) # 全取得
         
-        # keyword = self.request.GET.get('') # 検索ワード取得
-        # if keyword is not None:
         queryset = queryset.all() # 部分一致で検索
         print(queryset)
         queryset = queryset.order_by('-post_date')[0:5] # 投稿降順で並び替え&5件まで表示
@@ -78,12 +61,6 @@ class Index(ListView):
         except:
             print("not_login")
             
-    
-        # 元コンテキスト
-        # context = User.objects.filter(id=self.request.user.id).values("icon")
-            
-        # print(context)
-        # queryset = queryset.union(context,all=True)
         return queryset
 
     def get_context_data(self):
@@ -109,7 +86,6 @@ class MainPage(TemplateView):
     
 class ExchangePoint(UpdateView):
     login_url = '/login/'
-    # template_name = 'accounts/p1.html'
     template_name = "contents/exchange_point.html"
     model = User,fund
 
@@ -132,7 +108,6 @@ class ExchangePoint(UpdateView):
     
     
 class ExchangePointComplete(UpdateView):
-    # template_name = 'accounts/p2.html'
     login_url = '/login/'
     template_name = "contents/exchange_point_complete.html"
     model = fund
@@ -154,7 +129,6 @@ class ExchangePointComplete(UpdateView):
         old_num = int(row[0][0])
         # 合計ポイントに新たなポイントを加算する
         new_num = int(old_num)+int(ctx_points)
-        # if box is None:
         box = ctx_points # ctx_pointが上書きされた場合の予備データ
         print("old_num,new_num,ctx_points")
         print(old_num,new_num,ctx_points)
@@ -175,7 +149,6 @@ class ExchangePointComplete(UpdateView):
 class MyPage(TemplateView):
     model = User
     login_url = '/login/'
-    # template_name = "accounts/m_page.html"
     template_name = "contents/my_account.html"
     def get(self, request, **kwargs):
         ctx = {
@@ -199,7 +172,6 @@ class NameChange(LoginRequiredMixin,FormView):
         kwargs = super().get_form_kwargs()
         # 更新前のユーザー情報をkwargsとして渡す
         kwargs.update({
-            # 'email' : self.request.user.email,
             'screen_name' : self.request.user.screen_name,
             'profile' : self.request.user.profile,
         })
@@ -308,32 +280,12 @@ class UserDeleteView(TemplateView):#ユーザー退会
         return redirect("accounts:login")
 
 
-# class IconChangeView(UpdateView):
-#     template_name=""
-#     model = User
-#     form_class = IconForm
-#     success_url = reverse_lazy('accounts:index')
-      
-#     def form_valid(self, form):
-#         form.instance.account_id = self.request.user
-#         return super().form_valid(form)
-
-#     def get(self, request, **kwargs):
-#         icon = User.objects.filter(id=self.request.user.id).icon
-#         if icon is null:
-#             pass
-#         else:
-#             pass
 class AdoptListView(ListView):
     login_url = '/login/'
     template_name = "accounts/adopt_list.html"
     model = AdoptList
     paginate_by = 10
     context_object_name = "ctx"
-
-    # def get_queryset(self):
-    #     queryset = AdoptList.objects.filter()
-    #     return queryset    
 
     def get_queryset(self):
         queryset = AdoptList.objects.filter()
@@ -372,7 +324,6 @@ class UserDetailView(DetailView):
     template_name = "accounts/user_detail.html"
     model = User,FollowList
     context_object_name = "user"
-    # fl = list(FollowList.objects.filter(id=2))[0]
     def get(self,request, **kwargs):
         try:
             fl = list(FollowList.objects.filter(follow_er=int(self.kwargs["pk"]),follow=self.request.user.id).values())[0]
@@ -392,21 +343,42 @@ class UserDetailView(DetailView):
 
     def post(self, request, *args, **kwargs):
         uid= request.POST["uid"]
-        uuser=User.objects.get(id=uid)
-        u = list(User.objects.filter(id=int(self.kwargs["pk"])).values())[0]
-        self.kwargs["id"] = u["id"]
-        self.kwargs["name"] = u["screen_name"]
-        self.kwargs["profile"] = u["profile"]
-        self.kwargs["email"] = u["email"]
-        self.kwargs["myid"] = self.request.user.id
-        fl = FollowList(
-            follow_er=int(uid),
-            follow_er_name=str(uuser.screen_name),
-            follow=int(self.request.user.id),
-            follow_name=str(self.request.user.screen_name)
-            )
-        fl.save()
-        return render(request,'accounts/user_detail.html',self.kwargs)
+        if uid[0] != "_":
+            uuser=User.objects.get(id=uid)
+            u = list(User.objects.filter(id=int(self.kwargs["pk"])).values())[0]
+            self.kwargs["id"] = u["id"]
+            self.kwargs["name"] = u["screen_name"]
+            self.kwargs["profile"] = u["profile"]
+            self.kwargs["email"] = u["email"]
+            self.kwargs["myid"] = self.request.user.id
+            self.kwargs["follow_tf"] = 1
+            fl = FollowList(
+                follow_er=int(uid),
+                follow_er_name=str(uuser.screen_name),
+                follow=int(self.request.user.id),
+                follow_name=str(self.request.user.screen_name)
+                )
+            fl.save()
+            return render(request,'accounts/user_detail.html',self.kwargs)
+        else:
+            print(uid)
+            uid = uid[1:]
+            print(uid)
+            uuser=User.objects.get(id=uid)
+            u = list(User.objects.filter(id=int(self.kwargs["pk"])).values())[0]
+            self.kwargs["id"] = u["id"]
+            self.kwargs["name"] = u["screen_name"]
+            self.kwargs["profile"] = u["profile"]
+            self.kwargs["email"] = u["email"]
+            self.kwargs["myid"] = self.request.user.id
+            self.kwargs["follow_tf"] = 0
+            fl = FollowList.objects.filter(
+                follow_er=int(uid),
+                follow=int(self.request.user.id)
+                ).delete()
+            print(fl)
+            return render(request,'accounts/user_detail.html',self.kwargs)
+
 
     def get_context_data(self,**kwargs):
             context = super().get_context_data(**kwargs)
@@ -415,27 +387,3 @@ class UserDetailView(DetailView):
             return context
 
 
-
-    # print(fl)
-    # def get_context_data(self, **kwargs):
-        
-    #     # int(self.kwargs["pk"])
-
-    #     context = super().get_context_data(**kwargs)
-    #     # context["user"] = 
-        
-    #     return object
-    
-        
-        
-        
-    # def get_object(self,**kwargs):
-    #     object = User.objects.get(id=self.kwargs["pk"])
-    #     # object_a = FollowList.objects.filter(follow=self.kwargs["pk"],follow_er=self.request.user.id)
-    #     # print("\"\"\""+str(object_a[0][0]))
-    #     # object.FollowList_set.
-    #     id=self.kwargs["pk"]
-    #     print(id)
-    #     print("type:"+str(type(object)))
-    #     print(str(object))
-    #     return object

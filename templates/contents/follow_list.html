@@ -18,36 +18,30 @@
     transition: all 0.2s ease;
   }
 </style>
+<br>
 <ul>
     <h3 style="text-align:center;">フォロー中 一覧</h3>
     <br>
     {% for data in flist %}
-    <label class="tab_item2" for="programming">アカウント名:{{ data.follow_er_name }}
-        <form  method="post">
-            {% csrf_token %}
-            <input id="uid" name="uid" value={{ data.follow_er }} type="hidden"></input>
-            <input type="submit" value="↑解除する" style="display:flex">
-         </form>
-    </label>
+    <form  method="post">
+        <div class="tab_item2" >
+            <div style="display:flex;">
+                <div style="width:70%;text-align:left;">
+                    {% csrf_token %}
+                    <input id="uid" name="uid" value={{ data.follow_er }} type="hidden"></input>
+                    <div>
+                        <label for="programming" style="">アカウント名:{{ data.follow_er_name }}</label>
+                    </div>
+                </div>
+                <div style="width:30%;text-align:right;">
+                    <input type="submit" value="解除する"class="btn btn-primary btn-block">
+                </div>
+            </div>
+        </div>
+    </form>
     {% endfor %}
-    <br>
-    <a href="{% url 'contents:test_follow' %}" class="btn btn-link btn-block" target="_self">フォローボタン機能確認</a>
+    <br style="height:10px;">
     <a href="{% url 'contents:follow_er' %}" class="btn btn-link btn-block" target="_self">フォロワー 一覧</a>
-    <a href="{% url 'accounts:index' %}" class="btn btn-link btn-block" target="_self">メインページへ戻る</a>
-    <a href="javascript:history.back()" class="return-btn">前のページに戻る</a>
-    <a href="{% url 'accounts:mypage' %}" class="btn btn-link btn-block" target="_self">マイページへ戻る</a>
     
 </ul>
-
-
-
-
-    {% comment %} {% if post.edit_url %}
-            {{ data.text }}
-            <a href="{{ id.edit_url }}">編集</a>
-        {% endif %}
-     {% endcomment %}
-
-
-
 {% endblock %}

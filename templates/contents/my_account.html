@@ -5,11 +5,11 @@
 {% block style %}<link rel="stylesheet" href="{% static 'admin/css/my_account.css' %}">{% endblock %}   
 
 {% block content %}
+<br>
 <style>
     /*タブ切り替え全体のスタイル*/
 .tabs {
   margin-top: 50px;
-  {% comment %} padding-bottom: 40px; {% endcomment %}
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   width: 100%;
@@ -109,7 +109,6 @@ input[name="tab_item"] {
         <label class="tab_item2" for="programming">その他</label>
         <div style="text-align:center;vertical-align: middle;padding: 0 0 10px;">
           {% if user.is_authenticated %}
-            {% comment %} <a href="{% url 'user_auth:delete' user.username %}">退会</a> {% endcomment %}
             <a href="{% url 'accounts:cleanup' %}" class="btn btnn follower-btn font20 " style="color:red;">退会</a>
           {% endif %}    
         </div>
@@ -123,5 +122,5 @@ input[name="tab_item"] {
     </div>
 
 <!-- 戻るボタン -->
-<a href="javascript:history.back()" class="return-btn">戻る</a>
+{% comment %} <a href="javascript:history.back()" class="return-btn">戻る</a> {% endcomment %}
 {% endblock %}

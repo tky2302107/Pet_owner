@@ -11,7 +11,6 @@ urlpatterns = [
     path('setup/', views.SetUpView.as_view(), name='setup'),
     path('exit/', views.UserDeletePreView.as_view(), name='cleanup'),
     path('deleted/', views.UserDeleteView.as_view(), name='delete'),
-    # path("cleanup/", views.CleanUpView.as_view(),name="cleanup"),
     path('mypage/point/', views.ExchangePoint.as_view(), name='points'),
     path('mypage/point/done/', views.ExchangePointComplete.as_view(), name='points_fin'),
     

@@ -9,12 +9,10 @@
         <h1>ログアウトしますか？</h1>
         <p>ログアウトすると、再度ログインが必要になります。</p>
         
-        {% comment %} <a class="logout-button" href="{% url 'accounts:logout'%}">ログアウト</a> {% endcomment %}
         <form method="post" action="{% url 'accounts:logout' %}">
           {% csrf_token %}
           <button type="submit" class="btn btn-light text-dark me-2">ログアウト</button>
         </form>
-        {% comment %} <button class="logout-button" onclick="logout()">ログアウト</button> {% endcomment %}
         <button class="cancel-button" onclick="cancel()">キャンセル</button>
     </div>
     <script>

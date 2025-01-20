@@ -1,8 +1,7 @@
 <!--　フォローアカウント一覧　-->
 {% extends "base.html" %}
 {% load static %}
-
-{% comment %} {% block style %}<link rel="stylesheet" href="{% static 'admin/css/follower_list.css' %}">{% endblock %}    {% endcomment %}
+<br>
 
 {% block content %}
 <div class="card-columns" style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 5px;">
@@ -12,6 +11,6 @@
 </div>
 <!-- 戻るボタン -->
 <div style="diaplay:flex;">
-    <a href="javascript:history.back()" class="return-btn">戻る</a>
+    {% comment %} <a href="javascript:history.back()" class="return-btn">戻る</a> {% endcomment %}
 </div>
 {% endblock %}

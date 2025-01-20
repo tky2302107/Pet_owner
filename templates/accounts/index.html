@@ -3,15 +3,12 @@
 {% block content %}
 
 <div class="row justify-content-center">
-    {% comment %} {% if user.is_authenticated  %} {% endcomment %}
         <div class="col-12">
             <div class="row">&nbsp&nbsp&nbsp
-                {% comment %} <h3 style="text-align:center;">&nbsp{{ user|stringformat:"s" }}さん　ようこそ! </h3> {% endcomment %}
             </div>
             <br>
             <div class="row">
                 <div class="col-12">
-                    {% comment %} <button type="submit" class="btn btn-primary btn-block" action="">投稿する</button> {% endcomment %}
                     <a href="{% url 'post:posts' %}" class="btn btn-primary btn-block">投稿する</a>
                     <a href="{% url 'post:posts_search' %}" class="btn btn-primary btn-block">投稿を見る</a>
 
@@ -33,7 +30,6 @@
     /*タブ切り替え全体のスタイル*/
 .tabs {
   margin-top: 50px;
-  {% comment %} padding-bottom: 40px; {% endcomment %}
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   width: 100%;
@@ -121,15 +117,15 @@ input[name="tab_item"] {
                         <div>
                             <div class="card">
                                 {%if post.account_id_id == myid%}
-                                <a href='{% url 'accounts:mypage' %}' style="color:black;">
+                                <a href='{% url 'accounts:mypage' %}' style="color:black;text-decoration-color: gray;" >
                                 {% else %}
-                                <a href='{% url 'accounts:user_detail' post.account_id_id %}' style="color:black;">
+                                <a href='{% url 'accounts:user_detail' post.account_id_id %}' style="color:black;text-decoration-color: gray;">
                                 {% endif %}
                                     <div class="card-header" style="height:50px;width:auto;">
                                         <h4>{{ post.account_id }}</h4>
                                     </div>
                                 </a>
-                                <a href='{% url 'post:posts_detail' post.pk %}' style="color:black; text-decoration:none;" onMouseOut="this.style.background='none';" onMouseOver="this.style.background='#EEEEEE';">
+                                <a href='{% url 'post:posts_detail' post.pk %}' style="color:black;text-decoration-color: gray; text-decoration:none;" onMouseOut="this.style.background='none';" onMouseOver="this.style.background='#EEEEEE';">
                                     <div class="card-body" style="height:195px;">
                                         
                                         <div class="post-content">
@@ -142,15 +138,11 @@ input[name="tab_item"] {
                         <!-- 画像と動画がある場合 -->
                         {% if post.image and post.video %}
                             <div>
-                                {% comment %} <input id="all" type="radio" name="tab_item" checked>
-                                <label class="tab_item" for="all">詳細</label> {% endcomment %}
                                 <input id="programming" type="radio" name="tab_item" checked>
                                 <label class="tab_item" for="programming">画像</label>
                                 <input id="design" type="radio" name="tab_item">
                                 <label class="tab_item" for="design">動画</label>
-                                {% comment %} <div class="tab_content" id="all_content">
-                                    デザインの内容がここに入ります
-                                </div> {% endcomment %}
+                                
                                 <div class="tab_content" id="programming_content" style="margin-left: auto;margin-right: auto;width:100%;vertical-align: middle;height:100%;">
                                     <div style="text-align:center;">
                                         <img src="/media/{{ post.image }}" style="object-fit: contain; width: 70%; height: 70%;">
@@ -188,24 +180,7 @@ input[name="tab_item"] {
                 {% endif %}
                 <br>
             </div>
-                {% comment %} <div class="card-columns">
-                    <div class="card">
-                        <div class="card-header">Error1 404</div>
-                        <div class="card-body">
-                            <a href="{% url 'contents:accesserror' %}" class="btn btn-link btn-block" target="_self">
-                                アクセス不可
-                            </a>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-header">Error2 500</div>
-                        <div class="card-body">
-                            <a href="{% url 'contents:servererror' %}" class="btn btn-link btn-block" target="_self">
-                                サーバーエラー
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                {% comment %}
                 <div class="card-columns">
                     <div class="card">
                         <div class="card-header">MainPage</div>
@@ -216,14 +191,6 @@ input[name="tab_item"] {
                         </div>
                     </div>
                     
-                    <div class="card">
-                        <div class="card-header">Mypage</div>
-                        <div class="card-body">
-                            <a href="{% url 'accounts:mypage' %}" class="btn btn-link btn-block" target="_self">
-                                マイページテスト用
-                            </a>
-                        </div>
-                    </div>
                 </div> {% endcomment %}
             </div>
         </div>
