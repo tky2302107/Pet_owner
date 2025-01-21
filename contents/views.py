@@ -113,3 +113,8 @@ class HospitalDetailView(DetailView):
     model = HospitalList
     context_object_name = "hospital"
     
+class PrivacyPolicyView(TemplateView):
+    template_name = "contents/privacy_policy.html"
+
+class TermsView(TemplateView):
+    template_name = "contents/terms.html"

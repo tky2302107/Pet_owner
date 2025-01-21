@@ -15,4 +15,6 @@ urlpatterns = [
     path("hospital_list/",views.HospitalListView.as_view(), name='hospital_list'),
     path("hospital_contact/",views.HospitalContactView.as_view(), name='hospital_contact'),
     path("hospital_detail/<int:pk>/",views.HospitalDetailView.as_view(), name='hospital_detail'),
+    path('terms/', views.TermsView.as_view(), name='terms'),
+    path('privacy_policy/', views.PrivacyPolicyView.as_view(), name='privacy_policy'),
 ]
