@@ -14,5 +14,9 @@ urlpatterns = [
     path('delete/room/<int:pk>', views.DeleteRoom.as_view(), name='delete_room'),
     # チャットルームへの入室
     path('enter/room/<int:pk>', views.EnterRoom.as_view(), name='enter_room'),
-
+    
+    # チャットルームの作成
+    # path('create/room2', views.CreateRoom2.as_view(), name='create_room2'),
+    # # チャットルームの更新
+    # path('update/room2/<int:pk>', views.UpdateRoom2.as_view(), name='update_room2'),
 ]

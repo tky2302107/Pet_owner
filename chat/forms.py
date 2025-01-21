@@ -1,3 +1,4 @@
+from urllib import request
 from django import forms
 from django.utils.translation import gettext_lazy
 from . import models
@@ -8,7 +9,7 @@ User = models.User
 # チャットルーム検索用のフォーム
 class SearchForm(forms.Form):
     keywords = forms.CharField(
-        label=gettext_lazy('keywords (split space)'),
+        label=gettext_lazy('キーワード'),
         required=False,
         widget=forms.TextInput(attrs={
             'placeholder': gettext_lazy('ルーム名を入力してください'),
@@ -52,6 +53,16 @@ class RoomForm(forms.ModelForm):
         }
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        # idlist = FollowList.objects.get()
-        self.fields['participants'].queryset = User.objects.filter(is_staff=False)#,created_by__username__contains=idlist)
+        
+        # uid = self.request.user.id
+        idlist = list(FollowList.objects.filter().values())
+        print("idlist")
+        print(idlist)
+        lst = []
+        for i in range(len(idlist)):
+            lst.append(idlist(i)["follow"])
+            
+        print("lst")
+        print(lst)
+        self.fields['participants'].queryset = User.objects.filter(is_staff=False,id__in=idlist)#,created_by__username__contains=idlist)
 
