@@ -73,7 +73,7 @@
 }
 
 /*ラジオボタンを全て消す*/
-input[name="tab_item"] {
+input[type="radio"] {
   display: none;
 }
 
@@ -88,8 +88,8 @@ input[name="tab_item"] {
 
 /*選択されているタブのコンテンツのみを表示*/
 #all:checked ~ #all_content,
-#programming:checked ~ #programming_content,
-#design:checked ~ #design_content {
+[id*="programming"]:checked ~ #programming_content,
+[id*="design"]:checked ~ #design_content {
   display: block;
 }
 
@@ -141,10 +141,10 @@ input[name="tab_item"] {
                             <div>
                                 {% comment %} <input id="all" type="radio" name="tab_item" checked>
                                 <label class="tab_item" for="all">詳細</label> {% endcomment %}
-                                <input id="programming" type="radio" name="tab_item" checked>
-                                <label class="tab_item" for="programming">画像</label>
-                                <input id="design" type="radio" name="tab_item">
-                                <label class="tab_item" for="design">動画</label>
+                                <input id="programming{{ forloop.counter }}" type="radio" name="tab_item{{ forloop.counter }}" checked>
+                                <label class="tab_item" for="programming{{ forloop.counter }}">画像</label>
+                                <input id="design{{ forloop.counter }}" type="radio" name="tab_item{{ forloop.counter }}">
+                                <label class="tab_item" for="design{{ forloop.counter }}">動画</label>
                                 {% comment %} <div class="tab_content" id="all_content">
                                     デザインの内容がここに入ります
                                 </div> {% endcomment %}
