@@ -142,11 +142,15 @@ class AdoptList(models.Model):
         blank=False,
     )
     
-
-    tel = models.IntegerField(
+    tel = models.CharField(
         gettext_lazy("電話(ハイフン無し)"),
         default=0,
+        max_length=13
     )
+    # tel = models.IntegerField(
+    #     gettext_lazy("電話(ハイフン無し)"),
+    #     default=0,
+    # )
 
     email = models.CharField(
         gettext_lazy("メール"),
