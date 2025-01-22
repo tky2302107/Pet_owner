@@ -44,7 +44,7 @@
     object-fit: cover;
 }
 
-/* ユーザー名・自己紹介 */
+/* アカウント名・自己紹介 */
 .account-details {
     display: flex;
     flex-direction: column;

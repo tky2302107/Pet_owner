@@ -19,6 +19,19 @@ class UserChangeForm(ModelForm):
             'screen_name',
             "profile",
         )
+        widgets = {
+            'icon': forms.FileInput(
+            ),
+            'screen_name': forms.TextInput(attrs={
+                'placeholder': gettext_lazy('アカウント名を入力してください'),
+                'class': 'form-control',
+            }),
+            'profile': forms.Textarea(attrs={
+                'placeholder': gettext_lazy('プロフィールを入力してください'),
+                'class': 'form-control',
+            }),
+            
+        }
 
     def __init__(self, screen_name=None, profile=None, *args, **kwargs):# email=None,
         kwargs.setdefault('label_suffix', '')
@@ -30,7 +43,8 @@ class UserChangeForm(ModelForm):
             self.fields['screen_name'].widget.attrs['value'] = screen_name
         if profile:
             self.fields['profile'].widget.attrs['value'] = profile
-
+            print(profile)
+            print(self.fields['profile'].widget.attrs['value'])
     def update(self, user):
         user.icon = self.cleaned_data['icon']
         user.screen_name = self.cleaned_data['screen_name']
@@ -74,6 +88,23 @@ class SetUpForm(UserCreationForm):
             "screen_name",
             "email",#パスワードの項目は自動的に作られるため記述しない
         )
+        widgets = {
+            'screen_name': forms.TextInput(attrs={
+                'placeholder': gettext_lazy('アカウント名を入力してください'),
+                'class': 'form-control',
+            }),
+            'email': forms.TextInput(attrs={
+                'placeholder': gettext_lazy('メールアドレスを入力してください'),
+                'class': 'form-control',
+            }),
+            
+        }
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['class'] = 'form-control'
+        self.fields['password1'].widget.attrs.update({'placeholder':'パスワードを入力してください'})        
+        self.fields['password2'].widget.attrs.update({'placeholder':'パスワードを再度入力してください'})
 
 class AdoptSearchForm(forms.Form):
     keywords = forms.CharField(

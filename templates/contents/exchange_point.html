@@ -10,7 +10,7 @@
         <h2>ポイント交換</h2>
         <p class="number-points">保有ポイント:  <span>{{ points }}</span>pt</p>
         {% if points != 0 %}
-        <div><button class="exchange-btn" onclick="location.href='{% url "accounts:points_fin" %}'" >交換する</a></div>
+        <div><button class="btn btn-primary btn-lg" onclick="location.href='{% url "accounts:points_fin" %}'" >交換する</a></div>
         {% endif %}
     </div>
 {% endblock %}
