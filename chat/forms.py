@@ -48,10 +48,6 @@ class RoomForm(forms.ModelForm):
             
         }
     def __init__(self, *args, **kwargs):
-        
-        # super().__init__(*args, **kwargs)
-        
-        
         if kwargs.get("user_id"):
             self.user_id = kwargs.pop('user_id')    
         else:
