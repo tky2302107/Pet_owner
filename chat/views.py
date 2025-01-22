@@ -37,6 +37,11 @@ class CreateRoom(LoginRequiredMixin, CreateView):
         form.instance.set_host(self.request.user)
         
         return super().form_valid(form)
+    
+    def get_form_kwargs(self):
+        kwargs = super(CreateRoom, self).get_form_kwargs()
+        kwargs['user_id'] = self.request.user.id
+        return kwargs
 
 class OnlyRoomHostMixin(UserPassesTestMixin):
     raise_exception = True
@@ -52,7 +57,13 @@ class UpdateRoom(LoginRequiredMixin, OnlyRoomHostMixin, UpdateView):
     template_name = 'chat/room_form.html'
     login_url = '/login/'
     form_class = forms.RoomForm
-    success_url = reverse_lazy('chat:index')
+    success_url = reverse_lazy('chat:index') 
+
+    def get_form_kwargs(self):
+        kwargs = super(UpdateView, self).get_form_kwargs()
+        kwargs['user_id'] = self.request.user.id
+        return kwargs
+
 
 # チャットルームの削除
 class DeleteRoom(LoginRequiredMixin, OnlyRoomHostMixin, DeleteView):
