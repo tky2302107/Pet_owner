@@ -89,14 +89,3 @@ class EnterRoom(LoginRequiredMixin, OnlyAssignedUserMixin, DetailView):
     template_name = 'chat/chat_room.html'
     login_url = '/login/'
     context_object_name = 'room'
-
-# チャットルームの更新
-# class UpdateRoom(CreateView):
-#     model = models.Room
-#     template_name = 'chat/room_form.html'
-#     login_url = '/login/'
-#     success_url = reverse_lazy('chat:index')
-
-#     def get(self,request, **kwargs):
-
-#     def post(self,request,*args, **kwargs):
