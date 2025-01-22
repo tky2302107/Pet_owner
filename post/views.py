@@ -98,9 +98,10 @@ class PostUpdatePageView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     form_class = PostForm
     login_url = '/login/'
     template_name = '../templates/post/post_update.html'
+    success_url = reverse_lazy('post:posts_search')
     
-    def get_success_url(self):
-        return reverse('post:posts_detail', kwargs={'pk': self.object.id})
+    # def get_success_url(self):
+    #     return reverse('post:posts_detail', kwargs={'pk': self.object.id})
 
     def form_valid(self, form):
         form.instance.account_id = self.request.user
