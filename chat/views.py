@@ -2,6 +2,8 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView, D
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
 from . import models, forms
+from django.shortcuts import redirect, render
+from contents.models import NoticeList
 
 # チャットルームの一覧作成
 class Index(LoginRequiredMixin, ListView):
@@ -42,6 +44,32 @@ class CreateRoom(LoginRequiredMixin, CreateView):
         kwargs = super(CreateRoom, self).get_form_kwargs()
         kwargs['user_id'] = self.request.user.id
         return kwargs
+    
+    """
+    def post(self, request, *args, **kwargs):
+        
+        model1 = models.Room.objects.order_by("-created_at").first()
+
+        print(model1)
+        model2 = list(model1.participants.filter().values())
+        
+        print(model2)
+        # userlist = list(models.Room.objects.filter(room_id=int(self.kwargs['pk'])).values())
+        newul = []
+        print(userlist)
+        for i in range(len(userlist)):
+            newul.append(userlist[i]["id"])
+
+        cr = str(list(models.Room.objects.filter(id=int(self.kwargs["pk"])).values())[0]["name"])
+        for j in range(len(newul)):
+            nl = NoticeList(
+                target=newul[j],
+                title="チャットルーム更新のお知らせ.",
+                text="チャットルーム"+str(cr)+"が更新されました。",
+                )
+            nl.save()
+        return redirect('chat:index')
+    """
 
 class OnlyRoomHostMixin(UserPassesTestMixin):
     raise_exception = True
@@ -65,6 +93,27 @@ class UpdateRoom(LoginRequiredMixin, OnlyRoomHostMixin, UpdateView):
         return kwargs
 
 
+    def post(self, request, *args, **kwargs):
+
+        print("更新")
+        model1 = models.Room.objects.get(id=int(self.kwargs["pk"]))
+        print(model1)
+        userlist = list(model1.participants.filter().values())
+        newul = []
+        print(userlist)
+        for i in range(len(userlist)):
+            newul.append(userlist[i]["id"])
+
+        cr = str(list(models.Room.objects.filter(id=int(self.kwargs["pk"])).values())[0]["name"])
+        for j in range(len(newul)):
+            nl = NoticeList(
+                target=newul[j],
+                title="チャットルーム更新のお知らせ",
+                text="チャットルーム「"+str(cr)+"」が更新されました。",
+                )
+            nl.save()
+        return redirect('chat:index')
+
 # チャットルームの削除
 class DeleteRoom(LoginRequiredMixin, OnlyRoomHostMixin, DeleteView):
     model = models.Room
@@ -83,7 +132,7 @@ class OnlyAssignedUserMixin(UserPassesTestMixin):
 
         return room.is_assigned(self.request.user)
 
-# チャットルームへの入室
+# チャットルームへの入室\
 class EnterRoom(LoginRequiredMixin, OnlyAssignedUserMixin, DetailView):
     model = models.Room
     template_name = 'chat/chat_room.html'

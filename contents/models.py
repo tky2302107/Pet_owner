@@ -28,6 +28,12 @@ class NoticeList(models.Model):
         verbose_name="本文"
     )
 
+    target = models.IntegerField(
+        # default=""
+        null=True,
+        blank=True,
+    )
+
     def __str__(self):
         return self.title
     
