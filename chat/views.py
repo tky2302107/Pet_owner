@@ -124,10 +124,11 @@ class DeleteRoom(LoginRequiredMixin, OnlyRoomHostMixin, DeleteView):
             newul.append(userlist[i]["id"])
         print('削除処理中')
         
-        try:
-            for i in range(len(cr)):
-                Noticelist.objects.filter(target=cr[i])
-        except:
+        
+        for i in range(len(newul)):
+            chknl=list(Noticelist.objects.filter(target=newul[i],text="チャットルーム「"+str(cr)+"」が解散しました。").values())
+
+        if chknl != [] :
             for j in range(len(newul)):
                 nl = NoticeList(
                     target=newul[j],
@@ -136,6 +137,8 @@ class DeleteRoom(LoginRequiredMixin, OnlyRoomHostMixin, DeleteView):
                     )
                 nl.save()
             print("削除終了")
+        else:
+            print("削除中断")
         return super().get_queryset()
         
     
