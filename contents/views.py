@@ -21,7 +21,7 @@ class ServerError(TemplateView):
 
 class NoticeListView(ListView):
     template_name = 'contents/notice_list.html'
-    paginate_by = 10
+    # paginate_by = 10
     context_object_name = "obj_data"
     def get_queryset(self):
         qs = NoticeList.objects.filter(Q(target=None)|Q(target=self.request.user.id))

@@ -1,10 +1,10 @@
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView, TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse_lazy
 from . import models, forms
 from django.shortcuts import redirect, render
 from contents.models import NoticeList
-
+from django.http import HttpResponseRedirect
 # チャットルームの一覧作成
 class Index(LoginRequiredMixin, ListView):
     login_url = '/login/'
@@ -33,43 +33,30 @@ class CreateRoom(LoginRequiredMixin, CreateView):
     model = models.Room
     template_name = 'chat/room_form.html'
     form_class = forms.RoomForm
-    success_url = reverse_lazy('chat:index')
+    # success_url = reverse_lazy('chat:buffer')
+    # fields = (
+    #     "field",
+    # )
+    def get_success_url(self):
+        return reverse_lazy("chat:create_buffer",kwargs={"pk":self.request.user.id})
 
     def form_valid(self, form):
         form.instance.set_host(self.request.user)
-        
         return super().form_valid(form)
     
     def get_form_kwargs(self):
         kwargs = super(CreateRoom, self).get_form_kwargs()
         kwargs['user_id'] = self.request.user.id
         return kwargs
+
+    # def post(self):
+    #     # kwargs = super(CreateRoom, self).get_form_kwargs()
+    #     # kwargs['create_room_url'] = self.kwargs['pk']
+    #     return redirect("chat:buffer", pk=self.kwargs['pk'])
     
-    """
-    def post(self, request, *args, **kwargs):
-        
-        model1 = models.Room.objects.order_by("-created_at").first()
 
-        print(model1)
-        model2 = list(model1.participants.filter().values())
-        
-        print(model2)
-        # userlist = list(models.Room.objects.filter(room_id=int(self.kwargs['pk'])).values())
-        newul = []
-        print(userlist)
-        for i in range(len(userlist)):
-            newul.append(userlist[i]["id"])
-
-        cr = str(list(models.Room.objects.filter(id=int(self.kwargs["pk"])).values())[0]["name"])
-        for j in range(len(newul)):
-            nl = NoticeList(
-                target=newul[j],
-                title="チャットルーム更新のお知らせ.",
-                text="チャットルーム"+str(cr)+"が更新されました。",
-                )
-            nl.save()
-        return redirect('chat:index')
-    """
+ 
+    
 
 class OnlyRoomHostMixin(UserPassesTestMixin):
     raise_exception = True
@@ -97,10 +84,10 @@ class UpdateRoom(LoginRequiredMixin, OnlyRoomHostMixin, UpdateView):
 
         print("更新")
         model1 = models.Room.objects.get(id=int(self.kwargs["pk"]))
-        print(model1)
+        # print(model1)
         userlist = list(model1.participants.filter().values())
         newul = []
-        print(userlist)
+        # print(userlist)
         for i in range(len(userlist)):
             newul.append(userlist[i]["id"])
 
@@ -117,11 +104,44 @@ class UpdateRoom(LoginRequiredMixin, OnlyRoomHostMixin, UpdateView):
 # チャットルームの削除
 class DeleteRoom(LoginRequiredMixin, OnlyRoomHostMixin, DeleteView):
     model = models.Room
-    success_url = reverse_lazy('chat:index')
+    # success_url = reverse_lazy('chat:index')
+    def get_success_url(self):
+        return reverse_lazy("chat:delete_buffer",kwargs={"pk":self.request.user.id})
 
     def get(self, request, *args, **kwargs):
-        # ignore direct access
+        # ignore direct access    
         return self.handle_no_permission()
+    
+    def get_queryset(self):
+        # url= request.POST["url"]
+        # print(self.kwargs["pk"])
+        m1 = int(models.Room.objects.order_by("-created_at").filter(host_id=self.request.user.id).values()[0]["id"])
+        print("削除")
+        userlist = list(models.Room.objects.get(id=m1).participants.filter().values())
+        newul = []
+        cr = str(list(models.Room.objects.filter(id=m1).values())[0]["name"])
+        for i in range(len(userlist)):
+            newul.append(userlist[i]["id"])
+        print('削除処理中')
+        
+        try:
+            for i in range(len(cr)):
+                Noticelist.objects.filter(target=cr[i])
+        except:
+            for j in range(len(newul)):
+                nl = NoticeList(
+                    target=newul[j],
+                    title="チャットルーム解散のお知らせ",
+                    text="チャットルーム「"+str(cr)+"」が解散しました。",
+                    )
+                nl.save()
+            print("削除終了")
+        return super().get_queryset()
+        
+    
+
+    # def post(self, request, *args, **kwargs):
+
 
 # 修正部分：チャットルームへの参加可否を判断するMixinを追加
 class OnlyAssignedUserMixin(UserPassesTestMixin):
@@ -138,3 +158,59 @@ class EnterRoom(LoginRequiredMixin, OnlyAssignedUserMixin, DetailView):
     template_name = 'chat/chat_room.html'
     login_url = '/login/'
     context_object_name = 'room'
+
+class CreateBufferView(TemplateView):
+    template_name = "chat/buffer.html"
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["url"] = self.kwargs["pk"]
+        return context
+    
+
+    def post(self, request, *args, **kwargs):
+        url= request.POST["url"]
+        print(self.kwargs["pk"])
+        m1 = int(models.Room.objects.order_by("-created_at").filter(host_id=url).values()[0]["id"])
+        print("作成")
+        userlist = list(models.Room.objects.get(id=m1).participants.filter().values())
+        newul = []
+        for i in range(len(userlist)):
+            newul.append(userlist[i]["id"])
+
+        cr = str(list(models.Room.objects.filter(id=m1).values())[0]["name"])
+        for j in range(len(newul)):
+            nl = NoticeList(
+                target=newul[j],
+                title="チャットルーム招待のお知らせ",
+                text="チャットルーム「"+str(cr)+"」に招待されました。",
+                )
+            nl.save()
+        return redirect('chat:index')
+
+class DeleteBufferView(TemplateView):
+    template_name = "chat/buffer.html"
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["url"] = self.kwargs["pk"]
+        return context
+    
+
+    def post(self, request, *args, **kwargs):
+        # url= request.POST["url"]
+        # print(self.kwargs["pk"])
+        # m1 = int(models.Room.objects.order_by("-created_at").filter(host_id=url).values()[0]["id"])
+        # print("削除")
+        # userlist = list(models.Room.objects.get(id=m1).participants.filter().values())
+        # newul = []
+        # for i in range(len(userlist)):
+        #     newul.append(userlist[i]["id"])
+
+        # cr = str(list(models.Room.objects.filter(id=m1).values())[0]["name"])
+        # for j in range(len(newul)):
+        #     nl = NoticeList(
+        #         target=newul[j],
+        #         title="チャットルーム解散のお知らせ",
+        #         text="チャットルーム「"+str(cr)+"」が解散しました。",
+        #         )
+        #     nl.save()
+        return redirect('chat:index')

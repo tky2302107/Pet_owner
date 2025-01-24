@@ -1,0 +1,52 @@
+<form method="post" action="" >
+    {% csrf_token %}
+    <input hidden value="{{url}}" name="url" id="url" >
+    <button type="submit" id="submit" name="submit" class="btn btn-light text-dark me-2" style="font-size:15px; display:none;" ></button>
+</form>
+<script>
+
+    window.onload = function() {//javascript/sample
+        //const spinner = document.getElementById('loading');
+        timer()
+        // Add .loaded to .loading
+        //spinner.classList.add('loaded');
+      }
+    {% comment %} document.getElementById("start").onclick = function() {
+        document.getElementById("start").style.display = "none";
+        timer()
+    }; {% endcomment %}
+    var total = 0;
+    function timer(){
+        new Promise((resolve, reject) => {
+            setTimeout(() => {
+            console.log("start")                
+            resolve();
+            }, 10);
+        }).then(() => {
+            const d1 = new Date();
+            while (true) {
+                const d2 = new Date();
+                if (d2 - d1 > 100*1) {
+                    var a = "finish"
+                    total =(d2-d1)*0.001
+                    console.log("終了！")
+                    
+                    break;
+                }
+            }
+            
+            
+            if (a == "finish") {
+                new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        // 処理内容
+                    resolve();
+                    }, 1000);
+                }).then(() => {
+                    document.getElementById("submit").click();
+                });
+        
+            };
+        });
+    }
+</script>
