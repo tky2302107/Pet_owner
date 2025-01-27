@@ -16,7 +16,8 @@ urlpatterns = [
     path('enter/room/<int:pk>', views.EnterRoom.as_view(), name='enter_room'),
     # データベース更新待機ページ
     path("create_redirect/<int:pk>",views.CreateBufferView.as_view(),name="create_buffer"),
-    path("delete_redirect/<int:pk>",views.DeleteBufferView.as_view(),name="delete_buffer")
+    path("delete_redirect/<int:pk>",views.DeleteBufferView.as_view(),name="delete_buffer"),
+    path("update_redirect/<int:pk>",views.UpdateBufferView.as_view(),name="update_buffer")
 
     # チャットルームの作成
     # path('create/room2', views.CreateRoom2.as_view(), name='create_room2'),

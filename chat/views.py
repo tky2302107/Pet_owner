@@ -72,34 +72,16 @@ class UpdateRoom(LoginRequiredMixin, OnlyRoomHostMixin, UpdateView):
     template_name = 'chat/room_form.html'
     login_url = '/login/'
     form_class = forms.RoomForm
-    success_url = reverse_lazy('chat:index') 
+    # success_url = reverse_lazy('chat:index') 
 
     def get_form_kwargs(self):
         kwargs = super(UpdateView, self).get_form_kwargs()
         kwargs['user_id'] = self.request.user.id
         return kwargs
 
+    def get_success_url(self, **kwargs):
+        return reverse_lazy("chat:update_buffer",kwargs={"pk":self.kwargs["pk"]})
 
-    def post(self, request, *args, **kwargs):
-
-        print("更新")
-        model1 = models.Room.objects.get(id=int(self.kwargs["pk"]))
-        # print(model1)
-        userlist = list(model1.participants.filter().values())
-        newul = []
-        # print(userlist)
-        for i in range(len(userlist)):
-            newul.append(userlist[i]["id"])
-
-        cr = str(list(models.Room.objects.filter(id=int(self.kwargs["pk"])).values())[0]["name"])
-        for j in range(len(newul)):
-            nl = NoticeList(
-                target=newul[j],
-                title="チャットルーム更新のお知らせ",
-                text="チャットルーム「"+str(cr)+"」が更新されました。",
-                )
-            nl.save()
-        return redirect('chat:index')
 
 # チャットルームの削除
 class DeleteRoom(LoginRequiredMixin, OnlyRoomHostMixin, DeleteView):
@@ -126,7 +108,7 @@ class DeleteRoom(LoginRequiredMixin, OnlyRoomHostMixin, DeleteView):
         
         
         for i in range(len(newul)):
-            chknl=list(Noticelist.objects.filter(target=newul[i],text="チャットルーム「"+str(cr)+"」が解散しました。").values())
+            chknl=list(NoticeList.objects.filter(target=newul[i],text="チャットルーム「"+str(cr)+"」が解散しました。").values())
 
         if chknl != [] :
             for j in range(len(newul)):
@@ -217,3 +199,29 @@ class DeleteBufferView(TemplateView):
         #         )
         #     nl.save()
         return redirect('chat:index')
+
+class UpdateBufferView(TemplateView):
+    template_name = "chat/buffer.html"
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        print("更新")
+        model1 = models.Room.objects.get(id=int(self.kwargs["pk"]))
+        # print(model1)
+        userlist = list(model1.participants.filter().values())
+        newul = []
+        # print(userlist)
+        for i in range(len(userlist)):
+            newul.append(userlist[i]["id"])
+
+        cr = str(list(models.Room.objects.filter(id=int(self.kwargs["pk"])).values())[0]["name"])
+        for j in range(len(newul)):
+            nl = NoticeList(
+                target=newul[j],
+                title="チャットルーム更新のお知らせ",
+                text="チャットルーム「"+str(cr)+"」が更新されました。",
+                )
+            nl.save()
+        return redirect('chat:index')
+        return context
+    

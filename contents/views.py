@@ -24,7 +24,7 @@ class NoticeListView(ListView):
     # paginate_by = 10
     context_object_name = "obj_data"
     def get_queryset(self):
-        qs = NoticeList.objects.filter(Q(target=None)|Q(target=self.request.user.id))
+        qs = NoticeList.objects.order_by("-posted_at").filter(Q(target=None)|Q(target=self.request.user.id))
         return qs
     
 
@@ -32,6 +32,8 @@ class NoticeDetailView(DetailView):
     template_name = 'contents/notice.html'
     model = NoticeList
     context_object_name = "obj_data"
+
+
 
 # class PersonalNoticeListView(ListView):
 #     # template_name = "contents/nlist_test.html" 
