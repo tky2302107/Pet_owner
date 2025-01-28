@@ -66,10 +66,21 @@
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink{{ forloop.counter }}">
                                 <a href="{% url 'chat:update_room' room.pk %}" class="dropdown-item">更新</a>
                                 <div class="dropdown-divider"></div>
-                                <button type="button" class="dropdown-item delete-room-modal-button" 
-                                        data-deleteurl="{% url 'chat:delete_room' room.pk %}">
+
+                                <a href="{% url 'chat:delete_buffer' room.pk %}" class="dropdown-item" style="color:red;">削除(元に戻せません)</a>
+
+                                {% comment %} <button type="button"
+                                        class="dropdown-item"
+                                         delete-room-modal-button"
+                                {{roon.pk}}
+                                        href="{% url 'chat:delete_buffer' room.pk %}" style="color: red">削除
+                                </button> {% endcomment %}
+
+                                {% comment %} <button type="button" class="dropdown-item delete-room-modal-button" 
+                                        action="{% url 'chat:delete_buffer' room.pk %}">
+                                        <p>{{room.pk}}</p>
                                     <span style="color: red">削除</span>
-                                </button>
+                                </button> {% endcomment %}
                             </div>
                         </div>
                     {% endif %}
