@@ -1,14 +1,37 @@
-<!--　フォローアカウント一覧　-->
 {% extends "base.html" %}
 {% load static %}
-<br>
 
 {% block content %}
-<div class="card-columns" style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 5px;">
-    <div style="margin-left: auto; margin-right: auto;width:100%%;">
-        <p></p>
-    </div>
-</div>
+<style>
+
+.tab_item2 {
+    width: calc(100%);
+    height: 50px;
+    border-bottom: 3px solid #5ab4bd;
+    background-color: #f9f9f9;
+    line-height: 50px;
+    font-size: 20px;
+    text-align: center;
+    color: #565656;
+    display: block;
+    float: left;
+    text-align: center;
+    font-weight: bold;
+    transition: all 0.2s ease;
+    }
+.tab_item:hover {
+    opacity: 0.75;
+}
+
+
+</style>
+
+<label class="tab_item2" for="programming">里親探しサービスについて</label>
+        <div style="text-align:center;vertical-align: middle;padding: 0 0 10px;">
+            {% comment %} 本文 {% endcomment %}
+            <label>・このサービスは</label>
+            
+        </div>
 <!-- 戻るボタン -->
 <div style="diaplay:flex;">
     {% comment %} <a href="javascript:history.back()" class="return-btn">戻る</a> {% endcomment %}
