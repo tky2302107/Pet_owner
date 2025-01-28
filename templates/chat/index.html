@@ -67,7 +67,7 @@
                                 <a href="{% url 'chat:update_room' room.pk %}" class="dropdown-item">更新</a>
                                 <div class="dropdown-divider"></div>
 
-                                <a href="{% url 'chat:delete_buffer' room.pk %}" class="dropdown-item">削除</a>
+                                <a href="{% url 'chat:delete_buffer' room.pk %}" class="dropdown-item" style="color:red;">削除(元に戻せません)</a>
 
                                 {% comment %} <button type="button"
                                         class="dropdown-item"
