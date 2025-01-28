@@ -84,44 +84,49 @@ class UpdateRoom(LoginRequiredMixin, OnlyRoomHostMixin, UpdateView):
 
 
 # チャットルームの削除
+"""
 class DeleteRoom(LoginRequiredMixin, OnlyRoomHostMixin, DeleteView):
     model = models.Room
-    # success_url = reverse_lazy('chat:index')
-    def get_success_url(self):
-        return reverse_lazy("chat:delete_buffer",kwargs={"pk":self.request.user.id})
+    success_url = reverse_lazy('chat:index')
+    # def get_success_url(self):
+    #     return reverse_lazy("chat:delete_buffer",kwargs={"pk":self.request.user.id})
 
     def get(self, request, *args, **kwargs):
         # ignore direct access    
+        # print("rpk:"+str(self.kwargs["room.pk"]))
         return self.handle_no_permission()
-    
-    def get_queryset(self):
-        # url= request.POST["url"]
-        # print(self.kwargs["pk"])
-        m1 = int(models.Room.objects.order_by("-created_at").filter(host_id=self.request.user.id).values()[0]["id"])
-        print("削除")
-        userlist = list(models.Room.objects.get(id=m1).participants.filter().values())
-        newul = []
-        cr = str(list(models.Room.objects.filter(id=m1).values())[0]["name"])
-        for i in range(len(userlist)):
-            newul.append(userlist[i]["id"])
-        print('削除処理中')
+""" 
+    # def get_queryset(self):
+    #     # url= request.POST["url"]
+    #     # print(self.kwargs["pk"])
+    #     m1 = int(models.Room.objects.order_by("-created_at").filter(host_id=self.request.user.id).values()[0]["id"])
+    #     print("削除")
+    #     userlist = list(models.Room.objects.get(id=m1).participants.filter().values())
+    #     newul = []
+    #     cr = str(list(models.Room.objects.filter(id=m1).values())[0]["name"])
+    #     for i in range(len(userlist)):
+    #         newul.append(userlist[i]["id"])
+    #     print('削除処理中')
         
         
-        for i in range(len(newul)):
-            chknl=list(NoticeList.objects.filter(target=newul[i],text="チャットルーム「"+str(cr)+"」が解散しました。").values())
+    #     for i in range(len(newul)):
+    #         chknl=list(NoticeList.objects.filter(target=newul[i],text="チャットルーム「"+str(cr)+"」が解散しました。").values())
+    #     print("chknl: "+str(chknl))
+    #     print("newnl: "+str(chknl))
 
-        if chknl != [] :
-            for j in range(len(newul)):
-                nl = NoticeList(
-                    target=newul[j],
-                    title="チャットルーム解散のお知らせ",
-                    text="チャットルーム「"+str(cr)+"」が解散しました。",
-                    )
-                nl.save()
-            print("削除終了")
-        else:
-            print("削除中断")
-        return super().get_queryset()
+    #     if chknl == [] :
+    #         print("削除中断")
+    #     else:
+    #         for j in range(len(newul)):
+    #             nl = NoticeList(
+    #                 target=newul[j],
+    #                 title="チャットルーム解散のお知らせ",
+    #                 text="チャットルーム「"+str(cr)+"」が解散しました。",
+    #                 )
+    #             nl.save()
+    #         print("削除終了")
+            
+    #     return super().get_queryset()
         
     
 
@@ -172,41 +177,19 @@ class CreateBufferView(TemplateView):
             nl.save()
         return redirect('chat:index')
 
-class DeleteBufferView(TemplateView):
+
+class UpdateBufferView(TemplateView):
     template_name = "chat/buffer.html"
+    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["url"] = self.kwargs["pk"]
         return context
     
-
     def post(self, request, *args, **kwargs):
-        # url= request.POST["url"]
-        # print(self.kwargs["pk"])
-        # m1 = int(models.Room.objects.order_by("-created_at").filter(host_id=url).values()[0]["id"])
-        # print("削除")
-        # userlist = list(models.Room.objects.get(id=m1).participants.filter().values())
-        # newul = []
-        # for i in range(len(userlist)):
-        #     newul.append(userlist[i]["id"])
-
-        # cr = str(list(models.Room.objects.filter(id=m1).values())[0]["name"])
-        # for j in range(len(newul)):
-        #     nl = NoticeList(
-        #         target=newul[j],
-        #         title="チャットルーム解散のお知らせ",
-        #         text="チャットルーム「"+str(cr)+"」が解散しました。",
-        #         )
-        #     nl.save()
-        return redirect('chat:index')
-
-class UpdateBufferView(TemplateView):
-    template_name = "chat/buffer.html"
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
+        url= request.POST["url"]
         print("更新")
-        model1 = models.Room.objects.get(id=int(self.kwargs["pk"]))
+        model1 = models.Room.objects.get(id=int(url))
         # print(model1)
         userlist = list(model1.participants.filter().values())
         newul = []
@@ -214,14 +197,55 @@ class UpdateBufferView(TemplateView):
         for i in range(len(userlist)):
             newul.append(userlist[i]["id"])
 
-        cr = str(list(models.Room.objects.filter(id=int(self.kwargs["pk"])).values())[0]["name"])
+        cr = str(list(models.Room.objects.filter(id=int(url)).values())[0]["name"])
         for j in range(len(newul)):
             nl = NoticeList(
                 target=newul[j],
                 title="チャットルーム更新のお知らせ",
-                text="チャットルーム「"+str(cr)+"」が更新されました。",
+                text="チャットルーム「"+str(cr)+"」で情報が更新されました。\n更新によって、ルーム名やユーザー人数が変更されている場合があります。",
                 )
             nl.save()
         return redirect('chat:index')
+    
+    
+    
+class DeleteView(TemplateView,LoginRequiredMixin, OnlyRoomHostMixin, ):
+    template_name = "chat/delete_buffer.html"
+    def get_context_data(self, **kwargs):
+        
+        m1=self.kwargs["pk"]
+        print("削除")
+        userlist = list(models.Room.objects.get(id=m1).participants.filter().values())
+        newul = []
+        cr = str(list(models.Room.objects.filter(id=m1).values())[0]["name"])
+        for i in range(len(userlist)):
+            newul.append(userlist[i]["id"])
+        print('削除処理中')
+        
+        
+        for i in range(len(newul)):
+            chknl=list(NoticeList.objects.filter(target=newul[i],text="チャットルーム「"+str(cr)+"」が解散しました。").values())
+        print("chknl: "+str(chknl))
+        print("newnl: "+str(chknl))
+
+        for j in range(len(newul)):
+            nl = NoticeList(
+                target=newul[j],
+                title="チャットルーム解散のお知らせ",
+                text="チャットルーム「"+str(cr)+"」が解散しました。",
+                )
+            nl.save()
+        print("削除終了")
+            
+    
+        
+        
+        print("削除")
+        context = super().get_context_data(**kwargs)
+        context["room"] = self.kwargs["pk"]
+        models.Room.objects.get(id=int(self.kwargs["pk"])).delete()
         return context
     
+
+    def post(self, request, *args, **kwargs):
+        return redirect('chat:index')
