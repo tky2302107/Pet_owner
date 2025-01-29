@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY') # 追記した
 SECRET_KEY="^%*l0n_#_5h4!%rffy$+!y=2nfg#&#^8^6_n8#gmd=&k7ik(nf"
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 

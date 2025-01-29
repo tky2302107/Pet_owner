@@ -58,8 +58,10 @@ class Index(ListView):
                 # print("point_plus")
             else:
                 # print("point_pass")
-        except:
-            # print("not_login")
+                pass
+        except:            
+            pass
+            
             
         return queryset
 
