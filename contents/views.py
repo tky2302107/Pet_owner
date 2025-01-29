@@ -123,3 +123,7 @@ class PrivacyPolicyView(TemplateView):
 
 class TermsView(TemplateView):
     template_name = "contents/terms.html"
+    
+    
+# class E_View(TemplateView):
+#     template_name = "403.html"
