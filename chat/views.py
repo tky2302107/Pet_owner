@@ -214,19 +214,19 @@ class DeleteView(TemplateView,LoginRequiredMixin, OnlyRoomHostMixin, ):
     def get_context_data(self, **kwargs):
         
         m1=self.kwargs["pk"]
-        print("削除")
+        # print("削除")
         userlist = list(models.Room.objects.get(id=m1).participants.filter().values())
         newul = []
         cr = str(list(models.Room.objects.filter(id=m1).values())[0]["name"])
         for i in range(len(userlist)):
             newul.append(userlist[i]["id"])
-        print('削除処理中')
+        # print('削除処理中')
         
         
         for i in range(len(newul)):
             chknl=list(NoticeList.objects.filter(target=newul[i],text="チャットルーム「"+str(cr)+"」が解散しました。").values())
-        print("chknl: "+str(chknl))
-        print("newnl: "+str(chknl))
+        # print("chknl: "+str(chknl))
+        # print("newnl: "+str(chknl))
 
         for j in range(len(newul)):
             nl = NoticeList(
@@ -235,12 +235,12 @@ class DeleteView(TemplateView,LoginRequiredMixin, OnlyRoomHostMixin, ):
                 text="チャットルーム「"+str(cr)+"」が解散しました。",
                 )
             nl.save()
-        print("削除終了")
+        # print("削除終了")
             
     
         
         
-        print("削除")
+        # print("削除")
         context = super().get_context_data(**kwargs)
         context["room"] = self.kwargs["pk"]
         models.Room.objects.get(id=int(self.kwargs["pk"])).delete()

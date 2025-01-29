@@ -61,13 +61,13 @@ class FollowView(ListView):
     
     def post(self, request, *args, **kwargs):
         id= request.POST["uid"]
-        print("uid"+str(id))
-        print("mid"+str(self.request.user.id))
+        # print("uid"+str(id))
+        # print("mid"+str(self.request.user.id))
         a = FollowList.objects.filter(
             follow_er=int(id),
             follow=int(self.request.user.id)
             ).delete()
-        print("db:"+str(a))
+        # print("db:"+str(a))
         return redirect(reverse('contents:follow'))
 
 
@@ -95,7 +95,7 @@ class HospitalListView(ListView):
         keywords = form.get_keywords().split()
 
         try:
-            print(keywords)
+            # print(keywords)
             for i in range(len(keywords)):
                 queryset = queryset.filter(Q(detail__icontains = keywords[i]) |Q(name__icontains=keywords[i]) |Q(address__icontains=keywords[i]) |Q(comment__icontains=keywords[i]))
 

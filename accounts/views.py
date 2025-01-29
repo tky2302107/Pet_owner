@@ -43,7 +43,7 @@ class Index(ListView):
         queryset = super().get_queryset(**kwargs) # 全取得
         
         queryset = queryset.all() # 部分一致で検索
-        print(queryset)
+        # print(queryset)
         queryset = queryset.order_by('-post_date')[0:5] # 投稿降順で並び替え&5件まで表示
         
         # login ボーナス
@@ -55,18 +55,18 @@ class Index(ListView):
                     "pt_give":0
                     }
                 User.objects.filter(id=self.request.user.id).update(**pt)
-                print("point_plus")
+                # print("point_plus")
             else:
-                print("point_pass")
+                # print("point_pass")
         except:
-            print("not_login")
+            # print("not_login")
             
         return queryset
 
     def get_context_data(self):
         context = super().get_context_data()
         context["myid"] = self.request.user.id
-        print(context)
+        # print(context)
         return context
     
     
@@ -100,7 +100,7 @@ class ExchangePoint(UpdateView):
             'points': self.request.user.points,
             "gobi":gobi,
         }
-        print("ctx"+str(ctx))
+        # print("ctx"+str(ctx))
         return self.render_to_response(ctx)
         
     success_url = reverse_lazy("accounts:points_fin")
@@ -124,19 +124,19 @@ class ExchangePointComplete(UpdateView):
         row = list(cursor.fetchall())
         cursor.close()
         # 取得したタプルから数値だけ抽出し、intに変換する
-        print("\n!!!!!!!!!!!!!!!!!!!!!\nDB内が一部のデータがNullの場合、\nエラーが発生する場合があります。\nその場合は、DB「accounts_fund」テーブルに \nid=1, points_sum=0 \nを登録してページのリロードを行ってください。\n!!!!!!!!!!!!!!!!!!!!!\n")
-        print(row[0])
+        # print("\n!!!!!!!!!!!!!!!!!!!!!\nDB内が一部のデータがNullの場合、\nエラーが発生する場合があります。\nその場合は、DB「accounts_fund」テーブルに \nid=1, points_sum=0 \nを登録してページのリロードを行ってください。\n!!!!!!!!!!!!!!!!!!!!!\n")
+        # print(row[0])
         old_num = int(row[0][0])
         # 合計ポイントに新たなポイントを加算する
         new_num = int(old_num)+int(ctx_points)
         box = ctx_points # ctx_pointが上書きされた場合の予備データ
-        print("old_num,new_num,ctx_points")
-        print(old_num,new_num,ctx_points)
+        # print("old_num,new_num,ctx_points")
+        # print(old_num,new_num,ctx_points)
         ctx = {
             'your_points': self.request.user.points,
             'fund_sum': new_num,
         }
-        print("ctx2"+str(ctx))
+        # print("ctx2"+str(ctx))
         # db更新
         data = {"points_sum":new_num}
         fund.objects.filter(pk=1).update(**data)
@@ -262,7 +262,7 @@ class SetUpView(CreateView):
         response = super().form_valid(form)
         email = form.cleaned_data.get("email")
         password = form.cleaned_data.get("password1")
-        print(email,password)
+        # print(email,password)
         user = authenticate(email=email, password=password)
         login(self.request, user)
         return response
@@ -291,15 +291,15 @@ class AdoptListView(ListView):
         queryset = AdoptList.objects.filter()
         form = AdoptSearchForm(self.request.GET or None)
         keywords = form.get_keywords().split()
-        print(list(queryset.values()))
+        # print(list(queryset.values()))
         try:
-            print(keywords)
-            print(1)
+            # print(keywords)
+            # print(1)
             for i in range(len(keywords)):
                 queryset = queryset.filter(Q(detail__icontains = keywords[i]) |Q(title__icontains=keywords[i]) |Q(address__icontains=keywords[i]) |Q(place__icontains=keywords[i])|Q(species__icontains=keywords[i]))
             return queryset
         except:
-            print(2)
+            # print(2)
             return queryset
 
         
@@ -361,9 +361,9 @@ class UserDetailView(DetailView):
             fl.save()
             return render(request,'accounts/user_detail.html',self.kwargs)
         else:
-            print(uid)
+            # print(uid)
             uid = uid[1:]
-            print(uid)
+            # print(uid)
             uuser=User.objects.get(id=uid)
             u = list(User.objects.filter(id=int(self.kwargs["pk"])).values())[0]
             self.kwargs["id"] = u["id"]
@@ -376,14 +376,14 @@ class UserDetailView(DetailView):
                 follow_er=int(uid),
                 follow=int(self.request.user.id)
                 ).delete()
-            print(fl)
+            # print(fl)
             return render(request,'accounts/user_detail.html',self.kwargs)
 
 
     def get_context_data(self,**kwargs):
             context = super().get_context_data(**kwargs)
             context["myid"] = self.request.user.id
-            print(context)
+            # print(context)
             return context
 
 
