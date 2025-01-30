@@ -12,6 +12,7 @@ from django.shortcuts import redirect
 
 class Index(TemplateView):
     template_name = 'contents/my_account.html'
+    
 
 class AccessError(TemplateView):
     template_name = '403.html'

@@ -91,9 +91,11 @@ input[name="tab_item"] {
 {% else %}
 
 
-<label class="tab_item2" for="programming">{{name}}</label>
+<label class="tab_item2" for="programming">
+  <img src="/media/{{ icon }}" style="width:35px;height:35px;border-radius:30px;">
+  {{name}}
+</label>
         <div style="text-align:center;vertical-align: middle;padding: 0 0 10px;">
-            <image href={{icon}}>
             <label>メール：{{email}}</label>
             <br>
             <label>プロフィール：{{profile}}</label>

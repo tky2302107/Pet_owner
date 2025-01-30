@@ -73,7 +73,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     )
 
     icon = models.ImageField(
-        upload_to='icon/post',
+        upload_to='icon',
         verbose_name='画像',
         null=True,
         blank=True

@@ -338,6 +338,8 @@ class UserDetailView(DetailView):
         self.kwargs["name"] = u["screen_name"]
         self.kwargs["profile"] = u["profile"]
         self.kwargs["email"] = u["email"]
+        self.kwargs["icon"] = u["icon"]
+        print(u["icon"])
         self.kwargs["myid"] = self.request.user.id
         if fl is None:# 0は未フォロー1はフォロー済
             self.kwargs["follow_tf"] = 0

@@ -20,8 +20,8 @@ class UserChangeForm(ModelForm):
             "profile",
         )
         widgets = {
-            'icon': forms.FileInput(
-            ),
+            # 'icon': forms.FileInput(
+            # ),
             'screen_name': forms.TextInput(attrs={
                 'placeholder': gettext_lazy('アカウント名を入力してください'),
                 'class': 'form-control',
@@ -33,12 +33,14 @@ class UserChangeForm(ModelForm):
             
         }
 
-    def __init__(self, screen_name=None, profile=None, *args, **kwargs):# email=None,
+    def __init__(self, icon=None, screen_name=None, profile=None, *args, **kwargs):# email=None,
         kwargs.setdefault('label_suffix', '')
         super().__init__(*args, **kwargs)
         # ユーザーの更新前情報をフォームに挿入
         # if email:
         #     self.fields['email'].widget.attrs['value'] = email
+        if icon:
+            self.fields['icon'].widget.attrs['value'] = icon
         if screen_name:
             self.fields['screen_name'].widget.attrs['value'] = screen_name
         if profile:
