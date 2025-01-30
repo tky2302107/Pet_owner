@@ -7,23 +7,14 @@
 {% block content %}
 <br>
 <style>
-    /*タブ切り替え全体のスタイル*/
-.tabs {
-  margin-top: 50px;
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  width: 100%;
-  margin: 0 auto;
-}
-
-/*タブのスタイル*/
-.tab_item {
-  width: calc(100%/2);
+  
+.tab_item2 {
+  width: calc(100%);
   height: 50px;
   border-bottom: 3px solid #5ab4bd;
   background-color: #f9f9f9;
   line-height: 50px;
-  font-size: 16px;
+  font-size: 20px;
   text-align: center;
   color: #565656;
   display: block;
@@ -31,81 +22,34 @@
   text-align: center;
   font-weight: bold;
   transition: all 0.2s ease;
-}
-.tab_item2 {
-    width: calc(100%);
-    height: 50px;
-    border-bottom: 3px solid #5ab4bd;
-    background-color: #f9f9f9;
-    line-height: 50px;
-    font-size: 20px;
-    text-align: center;
-    color: #565656;
-    display: block;
-    float: left;
-    text-align: center;
-    font-weight: bold;
-    transition: all 0.2s ease;
   }
 .tab_item:hover {
   opacity: 0.75;
 }
 
-/*ラジオボタンを全て消す*/
-input[name="tab_item"] {
-  display: none;
-}
-
-/*タブ切り替えの中身のスタイル*/
-.tab_content {
-  display: none;
-  padding: 0px 40px 10px;
-  clear: both;
-  overflow: hidden;
-  
-}
-
-/*選択されているタブのコンテンツのみを表示*/
-#all:checked ~ #all_content,
-#programming:checked ~ #programming_content,
-#design:checked ~ #design_content {
-  display: block;
-}
-
-/*選択されているタブのスタイルを変える*/
-.tabs input:checked + .tab_item {
-  background-color: #5ab4bd;
-  color: #fff;
-}
-
-.font20 {
-    font-size:20px;
-}
 </style>
-    <div class="notice-container">
-        <h2 class="notice-title">お知らせ一覧</h2>
-
-        <div class="post-section">
-        {% for data in obj_data %}
-        <a style="text-decoration: none;font-style: #0000;color:black;" href= "{% url 'contents:notice_d' data.pk %}">
-        <!-- 通知n -->
-        <div class="card-columns" style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333; border-radius: 5px; font-size:25px;">
-            <div class="notice-content">
-                <div class="notice-icon"></div>
-                <div class="notice-details">
-                    <div>{{data.title}}</div>
-                </div>
+<div class="notice-container">
+  <h3 style="text-align:center;">お知らせ一覧</h3>
+  <br>
+  {% for data in obj_data %}
+  
+    <div class="tab_item2" >
+      <div style="display:flex;">
+        <div style="width:70%;text-align:left;">
+          {% csrf_token %}
+            <a style="text-decoration: none;font-style: #0000;color:black;" href= "{% url 'contents:notice_d' data.pk %}">
+            <div>
+              {{data.title}}
             </div>
-            <div class="notice-time">{{ data.posted_at }}</div>
         </div>
-      </a>
-        {% endfor %}
+        <div style="width:auto;text-align:right;font-size:15px;">
+          <div class="notice-time">
+            {{ data.posted_at }}
+          </div>
         </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
 
-            <!-- 戻るボタン -->
-            {% comment %} <a href="javascript:history.back()" class="return-btn">戻る</a> {% endcomment %}
-
-
-
-           
 {% endblock %}

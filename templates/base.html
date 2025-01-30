@@ -45,7 +45,7 @@
 
         {% endif %}
         <div>
-            <button class="navbar-toggler" type="button" data-toggle="collapse"
+            <button class="navbar-toggler" type="button" data-toggle="collapse" id="hamburger"
                     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -153,8 +153,25 @@
             }
         </style>
 
+        <script>
+            // フッター消し
+            window.onload = function() {
+                
+                if (window.innerWidth <= 991){ 
+                    let footer_js = document.getElementById("footer_js");
+                    footer_js.style.display = "none";        
+                    
+                    let button = document.getElementById("hamburger");
+                    function btn (){
+                        let footer_js = document.getElementById("footer_js");
+                        footer_js.style.display = null;
+                    }
+                    button.onclick = btn;
+                }
+            }
+        </script>
         <!-- メニューリスト -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" id="footer_js">
             <div class=" navbar-collapse" id="navbarSupportedContent" style="text-align:center;">
 
                 <ul class="navbar-nav mr-auto" style="margin: auto;">
