@@ -252,6 +252,8 @@ class EmailChangeComplete(LoginRequiredMixin, TemplateView):
             request.user.save()
             return super().get(request, **kwargs)
     
+class SignUpView(TemplateView):
+    template_name = "accounts/explain.html"
 
 class SetUpView(CreateView):
     """ ユーザー登録用ビュー """
