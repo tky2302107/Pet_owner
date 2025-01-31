@@ -16,7 +16,7 @@ from contents.models import FollowList
 from django.db.models.query import QuerySet
 from django.shortcuts import redirect, render
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .forms import  EmailChangeForm, SetUpForm, UserChangeForm ,AdoptSearchForm ,UserImgForm
+from .forms import  EmailChangeForm, SetUpForm, UserChangeForm ,AdoptSearchForm 
 from django.contrib.auth.views import (
     LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView
 )
@@ -178,19 +178,13 @@ class NameChange(LoginRequiredMixin,FormView):
             'icon' : self.request.user.icon,
             'screen_name' : self.request.user.screen_name,
             'profile' : self.request.user.profile,
+            'id': self.request.user.id
         })
         return kwargs
     
     def post(self, request, *args, **kwargs):
         
         return super().post(request, *args, **kwargs)
-    
-# class IconChange(LoginRequiredMixin,UpdateView):
-#     login_url = '/login/'
-#     template_name = "accounts/user_img.html"
-#     model = User
-#     form_class = UserImgForm
-#     success_url = reverse_lazy("accounts:mypage")
     
 
 class PasswordChange(PasswordChangeView):

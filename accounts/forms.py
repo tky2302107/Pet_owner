@@ -7,7 +7,6 @@ from django.contrib.auth.forms import (
 from django.contrib.auth import get_user_model 
 from django.forms import ModelForm
 from django.utils.translation import gettext_lazy
-# from django.contrib.auth.models import User
 User = get_user_model() 
 
 
@@ -33,32 +32,30 @@ class UserChangeForm(forms.ModelForm):
 
     def __init__(self, icon=None, screen_name=None, profile=None, *args, **kwargs):# email=None,
         kwargs.setdefault('label_suffix', '')
+        id = kwargs.pop("id")
         super().__init__(*args, **kwargs)
-        # ユーザーの更新前情報をフォームに挿入
-        # if email:
-        #     self.fields['email'].widget.attrs['value'] = email
-        if icon:
-            self.fields['icon'].widget.attrs['value'] = icon
+        print("icon:"+str(icon))
+        
+        print("id:"+str(id))
+        
         if screen_name:
             self.fields['screen_name'].widget.attrs['value'] = screen_name
         if profile:
-            # self.fields['profile'].widget.attrs['value'] = profile
-            # print(profile)
-            # print(self.fields['profile'].widget.attrs['value'])
             self.fields['profile'].initial = profile
     def update(self, user):
-        user.icon = self.cleaned_data['icon']
-        print("b"+str(user.icon))
+        
+        if self.cleaned_data['icon'] == "icon/default.png":
+            print("pass")
+            pass
+        else:
+            user.icon = self.cleaned_data['icon']
+            print("b"+str(user.icon))
+            
         user.screen_name = self.cleaned_data['screen_name']
         
         user.profile = self.cleaned_data['profile']
         user.save()
 
-class UserImgForm(forms.ModelForm):
-    icon = forms.ImageField(label='アイコン', required=False) # 追加    
-    class Meta:
-        model = User
-        fields = ["icon"]
 
 
 
