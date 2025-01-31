@@ -76,7 +76,8 @@ class User(AbstractBaseUser, PermissionsMixin):
         upload_to='icon',
         verbose_name='画像',
         null=True,
-        blank=True
+        blank=True,
+        default="icon/default.png",
     )
 
     profile = models.TextField(

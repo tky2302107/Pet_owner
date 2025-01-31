@@ -11,17 +11,15 @@ from django.utils.translation import gettext_lazy
 User = get_user_model() 
 
 
-class UserChangeForm(ModelForm):
+class UserChangeForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = (
+        fields = [
             'icon',
             'screen_name',
             "profile",
-        )
+        ]
         widgets = {
-            # 'icon': forms.FileInput(
-            # ),
             'screen_name': forms.TextInput(attrs={
                 'placeholder': gettext_lazy('アカウント名を入力してください'),
                 'class': 'form-control',
@@ -44,14 +42,25 @@ class UserChangeForm(ModelForm):
         if screen_name:
             self.fields['screen_name'].widget.attrs['value'] = screen_name
         if profile:
-            self.fields['profile'].widget.attrs['value'] = profile
-            print(profile)
-            print(self.fields['profile'].widget.attrs['value'])
+            # self.fields['profile'].widget.attrs['value'] = profile
+            # print(profile)
+            # print(self.fields['profile'].widget.attrs['value'])
+            self.fields['profile'].initial = profile
     def update(self, user):
         user.icon = self.cleaned_data['icon']
+        print("b"+str(user.icon))
         user.screen_name = self.cleaned_data['screen_name']
+        
         user.profile = self.cleaned_data['profile']
         user.save()
+
+class UserImgForm(forms.ModelForm):
+    icon = forms.ImageField(label='アイコン', required=False) # 追加    
+    class Meta:
+        model = User
+        fields = ["icon"]
+
+
 
 class PasswordChangeForm(PasswordChangeForm):
     def __init__(self, *args, **kwargs):
