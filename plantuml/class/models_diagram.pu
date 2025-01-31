@@ -1,0 +1,213 @@
+@startuml 
+class "admin.LogEntry <Management>" as admin.LogEntry #f4d6f1 {
+    logentry
+    --
+    - id (AutoField)
+    + action_time (DateTimeField)
+    ~ user (ForeignKey)
+    ~ content_type (ForeignKey)
+    + object_id (TextField)
+    + object_repr (CharField)
+    + action_flag (PositiveSmallIntegerField)
+    + change_message (TextField)
+    --
+}
+admin.LogEntry -- accounts.User
+admin.LogEntry -- contenttypes.ContentType
+
+
+class "auth.Permission <Authentication and Authorization>" as auth.Permission #e8f4d6 {
+    permission
+    --
+    - id (AutoField)
+    + name (CharField)
+    ~ content_type (ForeignKey)
+    + codename (CharField)
+    --
+}
+auth.Permission -- contenttypes.ContentType
+
+
+class "auth.Group <Authentication and Authorization>" as auth.Group #e8f4d6 {
+    group
+    --
+    - id (AutoField)
+    + name (CharField)
+    # permissions (ManyToManyField)
+    --
+}
+auth.Group *--* auth.Permission
+
+
+class "contenttypes.ContentType <contenttype>" as contenttypes.ContentType #d6f4de {
+    contenttype
+    --
+    - id (AutoField)
+    + app_label (CharField)
+    + model (CharField)
+    --
+}
+
+
+class "sessions.Session <session>" as sessions.Session #f4e1d6 {
+    session
+    --
+    + session_key (CharField)
+    + session_data (TextField)
+    + expire_date (DateTimeField)
+    --
+}
+
+
+class "accounts.User <Accounts>" as accounts.User #d6f4d6 {
+    User
+    --
+    + id (BigAutoField)
+    + password (CharField)
+    + last_login (DateTimeField)
+    + is_superuser (BooleanField)
+    + screen_name (CharField)
+    + email (EmailField)
+    + is_staff (BooleanField)
+    + is_active (BooleanField)
+    + date_joined (DateTimeField)
+    + points (IntegerField)
+    + pt_give (IntegerField)
+    + icon (ImageField)
+    + profile (TextField)
+    # groups (ManyToManyField)
+    # user_permissions (ManyToManyField)
+    --
+}
+accounts.User *--* auth.Group
+accounts.User *--* auth.Permission
+
+
+class "accounts.fund <Accounts>" as accounts.fund #d6f4d6 {
+    fund
+    --
+    + id (BigAutoField)
+    + points_sum (IntegerField)
+    --
+}
+
+
+class "accounts.AdoptList <Accounts>" as accounts.AdoptList #d6f4d6 {
+    adopt list
+    --
+    - id (AutoField)
+    + species (CharField)
+    + detail (CharField)
+    + place (CharField)
+    + address (CharField)
+    + tel (CharField)
+    + email (CharField)
+    + title (CharField)
+    --
+}
+
+
+class "chat.Room <Chat>" as chat.Room #d6f4d8 {
+    room
+    --
+    + id (BigAutoField)
+    ~ host (ForeignKey)
+    + name (CharField)
+    + description (TextField)
+    + created_at (DateTimeField)
+    # participants (ManyToManyField)
+    --
+}
+chat.Room -- accounts.User
+chat.Room *--* accounts.User
+
+
+class "chat.Message <Chat>" as chat.Message #d6f4d8 {
+    message
+    --
+    + id (BigAutoField)
+    ~ room (ForeignKey)
+    ~ owner (ForeignKey)
+    + content (TextField)
+    + created_at (DateTimeField)
+    --
+}
+chat.Message -- chat.Room
+chat.Message -- accounts.User
+
+
+class "post.PostInfo <Post>" as post.PostInfo #f4d6ef {
+    post info
+    --
+    + id (BigAutoField)
+    ~ account_id (ForeignKey)
+    + post (CharField)
+    + post_date (DateTimeField)
+    + image (ImageField)
+    + video (FileField)
+    --
+}
+post.PostInfo -- accounts.User
+
+
+class "contents.NoticeList <Contents>" as contents.NoticeList #d6edf4 {
+    notice list
+    --
+    - id (AutoField)
+    + posted_at (DateTimeField)
+    + title (CharField)
+    + text (TextField)
+    + target (IntegerField)
+    --
+}
+
+
+class "contents.FollowList <Contents>" as contents.FollowList #d6edf4 {
+    follow list
+    --
+    - id (AutoField)
+    + follow (IntegerField)
+    + follow_name (CharField)
+    + follow_er (IntegerField)
+    + follow_er_name (CharField)
+    --
+}
+
+
+class "contents.HospitalList <Contents>" as contents.HospitalList #d6edf4 {
+    hospital list
+    --
+    - id (AutoField)
+    + name (CharField)
+    + address (CharField)
+    + detail (CharField)
+    + hp (URLField)
+    + comment (CharField)
+    + image (ImageField)
+    --
+}
+
+
+class "contents.DifferentialNum <Contents>" as contents.DifferentialNum #d6edf4 {
+    differential num
+    --
+    + id (BigAutoField)
+    + num (CharField)
+    --
+}
+
+
+class "contents.PersonalNoticeList <Contents>" as contents.PersonalNoticeList #d6edf4 {
+    personal notice list
+    --
+    - id (AutoField)
+    + old_id (IntegerField)
+    + text (TextField)
+    + date (DateTimeField)
+    + user (IntegerField)
+    + chargroup (IntegerField)
+    --
+}
+
+
+@enduml

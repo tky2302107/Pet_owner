@@ -1,0 +1,50 @@
+@startuml chatpageopen
+
+actor 利用者 as user
+' boundary "MenuPage\n(メニュー画面)" as MenuPage #d5e8d4
+boundary "ChatListPage\n(チャット一覧画面)" as ChatListPage #d5e8d4
+boundary "ChatPage\n(チャット画面)" as ChatPage #d5e8d4
+boundary "AccessErrorPage\n(アクセスエラー画面)" as AccessErrorPage #d5e8d4
+
+control "Chat.urls.urlpaterns[]\n(各機能の起動管理)" as urls #f8cecc
+
+control "Chat.view.AccessErrorView\n(アクセスエラー画面表示)" as AccessErrorView #f8cecc
+' control "Chat.view.ChatPageView\n(チャット画面表示)" as ChatPageView #f8cecc
+control "Chat.view.EnterRoom\n(チャット画面表示)" as EnterRoom #f8cecc
+' control "Chat.models.RoomQueryset\n(データ処理＆DBアクセス)" as RoomQueryset #f8cecc
+' control "Chat.forms.SearchForm\n(入力窓の読み取り・文配置)" as SearchForm #f8cecc
+' entity "アカウント\n(Sqlite3)" as AccountDB #dae8fc
+' entity "チャット\n(Sqlite3)" as ChatDB #dae8fc
+
+
+' activate Chat
+' activate Index
+user -> ChatListPage :チャットボタンを\n押下する
+activate ChatListPage
+ChatListPage -> urls:送信\nsubmit()
+deactivate ChatListPage
+activate urls
+urls -> EnterRoom :起動\nviews.EnterRoom.as_view\n(セッション・ルーム参加可否を渡す)
+' deactivate urls
+activate EnterRoom
+EnterRoom --> urls:
+deactivate EnterRoom
+urls --> ChatPage:
+
+
+activate ChatPage
+ChatPage --> user
+deactivate ChatPage
+deactivate ChatPage
+alt urlのページが存在しない場合、またはセッション・ルーム参加可否が存在しない場合
+    urls -> AccessErrorView
+    deactivate urls
+    activate AccessErrorView
+    AccessErrorView --> AccessErrorPage
+    deactivate AccessErrorView
+    activate AccessErrorPage
+    AccessErrorPage --> user
+    deactivate AccessErrorPage
+end
+@enduml
+

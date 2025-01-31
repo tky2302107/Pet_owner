@@ -50,6 +50,8 @@ INSTALLED_APPS = [
     'chat',
     'post',
     'contents',
+    # モデルからUML生成
+    'puml_generator',
 ]
 
 MIDDLEWARE = [

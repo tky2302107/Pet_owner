@@ -1,0 +1,157 @@
+@startuml rireki 
+
+actor 利用者 as user
+boundary "ChatListPage\n(チャット一覧画面)" as ChatListPage #d5e8d4
+boundary "ChatPage\n(チャット画面)" as ChatPage #d5e8d4
+boundary "RefreshChat\n(チャット更新画面)" as RefreshChatPage #d5e8d4
+boundary "RefreshChatSuccessPage\n(チャット更新完了画面)" as RefreshChatSuccessPage #d5e8d4
+
+control "RefreshChatView\n(チャット更新画面表示)" as RefreshChatView #f8cecc
+control "ChatView\n(チャット画面表示)" as ChatView #f8cecc
+control "RefreshChat\n(データ処理＆DBアクセス)" as RefreshChat #f8cecc
+entity "チャット\n(データベース)" as DB #dae8fc
+
+
+
+' activate View
+user -> ChatListPage :チャットを選択する
+activate ChatListPage
+ChatListPage -> RefreshChatView :ページ遷移を求める\nPageRequest()
+deactivate ChatListPage
+activate RefreshChatView
+RefreshChatView -> ChatPage:チャット画面を表示する\nViewChatPage()
+deactivate RefreshChatView
+activate ChatPage
+ChatPage --> user
+user -> ChatPage:チャット更新ボタンを押下する
+ChatPage -> RefreshChat :チャット名と説明文を送信する\nPostData()
+deactivate ChatPage
+activate RefreshChat
+' View -> RefreshChat :チャット名と説明を取得する\nGetInfo()
+RefreshChat -> DB :チャット名と説明文を保存する\nDbAccess()
+activate DB
+DB --> RefreshChat
+deactivate DB
+' RefreshChat -> View:データの返却\nSetInfo()
+RefreshChat -> ChatView:チャット画面を表示する\nViewStart()
+deactivate RefreshChat
+activate ChatView
+ChatView -> ChatPage:チャット画面を表示する\nViewRefreshChat()
+deactivate ChatView
+activate ChatPage
+ChatPage --> user
+deactivate ChatPage
+' user -> RefreshChat :ルーム名と説明を入力
+' RefreshChat -> View :ページ遷移を求める\nPageRequest()
+' deactivate RefreshChat
+' View -> RefreshChat :DBに情報を登録する\nRefRooms()
+' RefreshChat -> DB :DBアクセス\nDbAccess()
+' activate DB
+' DB -> RefreshChat
+' deactivate DB
+' RefreshChat -> View :DBアクセス可否を返却する\nReturnAccess()
+' View -> RefreshChatSuccessPage:チャット更新完了画面を表示する\nViewRefreshCompletePage()
+' activate RefreshChatSuccessPage
+' RefreshChatSuccessPage --> user
+
+' user -> RefreshChatSuccessPage:チャット一覧へ戻るボタンを押下する
+
+' RefreshChatSuccessPage -> View :ページ遷移を求める\nPageRequest()
+' deactivate RefreshChatSuccessPage
+
+' View -> RefreshChat :チャット一覧を取得する\nGetRooms()
+' RefreshChat -> DB :DBアクセス\nDbAccess()
+' activate DB
+' DB --> RefreshChat
+' deactivate DB
+' RefreshChat -> View :チャット一覧画面を返却\nSetRooms()
+
+
+' View -> ChatListPage :チャット一覧を表示する\nViewChatListPage()
+' activate ChatListPage
+' ChatListPage --> user
+' deactivate ChatListPage
+' deactivate View
+' deactivate RefreshChat
+
+
+@enduml
+
+
+
+' @startuml rireki 
+
+' actor 利用者 as user
+' boundary "ChatListPage\n(チャット一覧画面)" as ChatListPage #d5e8d4
+' boundary "ChatPage\n(チャット画面)" as ChatPage #d5e8d4
+' boundary "RefreshChat\n(チャット更新画面)" as RefreshChat #d5e8d4
+' boundary "RefreshChatSuccessPage\n(チャット更新完了画面)" as RefreshChatSuccessPage #d5e8d4
+
+' control "View\n(ページ遷移管理)" as View #f8cecc
+' control "Model\n(データ処理＆DBアクセス)" as Model #f8cecc
+' entity "Sqlite3\n(データベース)" as DB #dae8fc
+
+
+' activate Model
+' activate View
+' user -> ChatListPage :チャットを選択する
+' activate ChatListPage
+' ChatListPage -> View :ページ遷移を求める\nPageRequest()
+' deactivate ChatListPage
+' View -> Model :アクセス許可状態を取得する\nGetAccess()
+' Model -> DB :DBアクセス\nDbAccess()
+' activate DB
+' DB --> Model
+' deactivate DB
+' Model -> View:アクセス状態の返却\nSetAccess()
+' View -> ChatPage:チャット画面を表示する\nViewChatPage()
+' activate ChatPage
+' ChatPage --> user
+' user -> ChatPage:チャット更新ボタンを押下する
+' ChatPage -> View :ページ遷移を求める\nPageRequest()
+' deactivate ChatPage
+' View -> Model :チャット名と説明を取得する\nGetInfo()
+' Model -> DB :DBアクセス\nDbAccess()
+' activate DB
+' DB --> Model
+' deactivate DB
+' Model -> View:データの返却\nSetInfo()
+' View -> RefreshChat:チャット更新画面を表示する\nViewRefreshChat()
+' activate RefreshChat
+' RefreshChat --> user
+' user -> RefreshChat :ルーム名と説明を入力
+' RefreshChat -> View :ページ遷移を求める\nPageRequest()
+' deactivate RefreshChat
+' View -> Model :DBに情報を登録する\nRefRooms()
+' Model -> DB :DBアクセス\nDbAccess()
+' activate DB
+' DB -> Model
+' deactivate DB
+' Model -> View :DBアクセス可否を返却する\nReturnAccess()
+' View -> RefreshChatSuccessPage:チャット更新完了画面を表示する\nViewRefreshCompletePage()
+' activate RefreshChatSuccessPage
+' RefreshChatSuccessPage --> user
+
+' user -> RefreshChatSuccessPage:チャット一覧へ戻るボタンを押下する
+
+' RefreshChatSuccessPage -> View :ページ遷移を求める\nPageRequest()
+' deactivate RefreshChatSuccessPage
+
+' View -> Model :チャット一覧を取得する\nGetRooms()
+' Model -> DB :DBアクセス\nDbAccess()
+' activate DB
+' DB --> Model
+' deactivate DB
+' Model -> View :チャット一覧画面を返却\nSetRooms()
+
+
+' View -> ChatListPage :チャット一覧を表示する\nViewChatListPage()
+' activate ChatListPage
+' ChatListPage --> user
+' deactivate ChatListPage
+' deactivate View
+' deactivate Model
+' deactivate View
+' deactivate Model
+
+' @enduml

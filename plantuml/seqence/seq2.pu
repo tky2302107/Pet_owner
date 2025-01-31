@@ -1,0 +1,144 @@
+@startuml rireki 
+
+actor 利用者 as user
+' boundary "MenuPage\n(メニュー画面)" as MenuPage #d5e8d4
+boundary "ChatListPage\n(チャット一覧画面)" as ChatListPage #d5e8d4
+boundary "NewChat\n(チャットルーム新規作成画面)" as NewChat #d5e8d4
+boundary "NewChatSuccessPage\n(チャット作成完了画面)" as NewChatSuccessPage #d5e8d4
+
+control "ChatListPageView\n(チャット一覧画面表示)" as ChatListPageView #f8cecc
+control "NewChatSuccessPage\n(チャット作成完了画面表示)" as NewChatSuccessPage #f8cecc
+' control 3
+' control 4
+
+' control "View\n(ページ遷移管理)" as View #f8cecc
+control "ChatMake\n(チャット作成)" as make #f8cecc
+entity "チャットｒ\n(データベース)" as DB #dae8fc
+
+
+' activate Model
+' activate make
+' user -> MenuPage :チャットボタンを\n押下する
+' activate MenuPage
+' MenuPage -> View :ページ遷移を求める\nPageRequest()
+' deactivate MenuPage
+' View -> Model :チャット一覧を取得する\nGetRooms()
+' Model -> DB :DBアクセス\nDbAccess()
+' activate DB
+' DB --> Model
+' deactivate DB
+' Model -> View :チャット一覧画面を返却\nSetRooms()
+' View -> ChatListPage :チャット一覧を表示する\nViewChatListPage()
+' activate ChatListPage
+' ChatListPage --> user 
+user -> ChatListPage :チャット新規作成ボタンを\n押下する
+ChatListPage -> ChatListPageView :ページ遷移を求める\nPageRequest()
+deactivate ChatListPage
+activate ChatListPageView
+ChatListPageView -> NewChat :チャット新規作成画面を表示する\nViewNewChat()
+deactivate ChatListPageView
+activate NewChat
+NewChat --> user
+user -> NewChat :ルーム名と説明を入力
+NewChat -> make :ルーム名と説明を転送\nPageRequest()
+deactivate NewChat
+activate make
+make -> DB :DBにチャット名と\n説明文を登録する\nRegistRooms()
+' deactivate make
+' ChatMake -> DB :DBアクセス\nDbAccess()
+activate DB
+DB --> make
+deactivate DB
+' activate make
+' ChatMake -> make :DBアクセス可否を返却する\nReturnAccess()
+make -> NewChatSuccessPage:チャット新規作成完了画面を表示する\nViewNewChatCompletePage()
+deactivate make
+activate NewChatSuccessPage
+NewChatSuccessPage --> user
+user -> NewChatSuccessPage:チャット一覧へ戻るボタンを押下する
+NewChatSuccessPage -> make :ページ遷移を求める\nPageRequest()
+deactivate NewChatSuccessPage
+activate make
+make -> DB :チャット一覧を取得する\nGetRooms()
+' ChatMake -> DB :DBアクセス\nDbAccess()
+activate DB
+DB --> make
+deactivate DB
+make -> ChatListPageView :チャット一覧画面を返却\nSetRooms()
+deactivate make
+activate ChatListPageView
+ChatListPageView -> ChatListPage :チャット一覧を表示する\nViewChatListPage()
+deactivate ChatListPageView
+activate ChatListPage
+ChatListPage --> user
+deactivate ChatListPage
+' deactivate ChatMake
+
+@enduml
+
+' @startuml rireki 
+
+' actor 利用者 as user
+' ' boundary "MenuPage\n(メニュー画面)" as MenuPage #d5e8d4
+' boundary "ChatListPage\n(チャット一覧画面)" as ChatListPage #d5e8d4
+' boundary "NewChat\n(チャットルーム新規作成画面)" as NewChat #d5e8d4
+' boundary "NewChatSuccessPage\n(チャット作成完了画面)" as NewChatSuccessPage #d5e8d4
+
+' control "View\n(ページ遷移管理)" as View #f8cecc
+' control "Model\n(データ処理＆DBアクセス)" as Model #f8cecc
+' entity "Sqlite3\n(データベース)" as DB #dae8fc
+
+
+' activate Model
+' activate View
+' ' user -> MenuPage :チャットボタンを\n押下する
+' ' activate MenuPage
+' ' MenuPage -> View :ページ遷移を求める\nPageRequest()
+' ' deactivate MenuPage
+' ' View -> Model :チャット一覧を取得する\nGetRooms()
+' ' Model -> DB :DBアクセス\nDbAccess()
+' ' activate DB
+' ' DB --> Model
+' ' deactivate DB
+' ' Model -> View :チャット一覧画面を返却\nSetRooms()
+' ' View -> ChatListPage :チャット一覧を表示する\nViewChatListPage()
+' ' activate ChatListPage
+' ' ChatListPage --> user 
+' user -> ChatListPage :チャット新規作成ボタンを\n押下する
+' ChatListPage -> View :ページ遷移を求める\nPageRequest()
+' deactivate ChatListPage
+' View -> NewChat :チャット新規作成画面を表示する\nViewNewChat()
+' activate NewChat
+' NewChat --> user
+' user -> NewChat :ルーム名と説明を入力
+' NewChat -> View :ページ遷移を求める\nPageRequest()
+' deactivate NewChat
+' View -> Model :DBに情報を登録する\nRegistRooms()
+' Model -> DB :DBアクセス\nDbAccess()
+' activate DB
+' DB -> Model
+' deactivate DB
+' Model -> View :DBアクセス可否を返却する\nReturnAccess()
+' View -> NewChatSuccessPage:チャット新規作成完了画面を表示する\nViewNewChatCompletePage()
+' activate NewChatSuccessPage
+' NewChatSuccessPage --> user
+' user -> NewChatSuccessPage:チャット一覧へ戻るボタンを押下する
+' NewChatSuccessPage -> View :ページ遷移を求める\nPageRequest()
+' deactivate NewChatSuccessPage
+
+' View -> Model :チャット一覧を取得する\nGetRooms()
+' Model -> DB :DBアクセス\nDbAccess()
+' activate DB
+' DB --> Model
+' deactivate DB
+' Model -> View :チャット一覧画面を返却\nSetRooms()
+
+
+' View -> ChatListPage :チャット一覧を表示する\nViewChatListPage()
+' activate ChatListPage
+' ChatListPage --> user
+' deactivate ChatListPage
+' deactivate View
+' deactivate Model
+
+' @enduml

@@ -1,0 +1,46 @@
+@startuml chatdelete
+
+actor 利用者 as user
+
+boundary "ChatListPage\n(チャット一覧画面)" as ChatListPage #d5e8d4
+' boundary "ChatPage\n(チャット画面)" as ChatPage #d5e8d4
+
+
+control "Chat.urls.urlpaterns[]\n(各機能の起動管理)" as urls #f8cecc
+control "Chat.view.DeleteRoom\n(チャットルーム削除)" as DeleteRoom #f8cecc
+' control "Chat.forms.RoomForm\n(入力窓の読み取り・文配置)" as RoomForm #f8cecc
+control "Chat.models.Room\n(データ処理＆DBアクセス)" as Room #f8cecc
+' entity "アカウント\n(Sqlite3)" as AccountDB #dae8fc
+entity "チャット\n(Sqlite3)" as ChatDB #dae8fc
+
+user -> ChatListPage :削除ボタンを押下
+activate ChatListPage
+ChatListPage -> ChatListPage:確認ダイアログ\njavascript()
+ChatListPage -> urls:送信\nsubmit()
+deactivate ChatListPage
+activate urls
+urls -> DeleteRoom:起動\nviews.DeleteRoom.as_view()
+activate DeleteRoom
+DeleteRoom -> Room:削除実行\nget()
+activate Room
+Room -> ChatDB:データベースに削除登録\nis_assigned()
+activate ChatDB
+ChatDB --> Room
+deactivate ChatDB
+Room --> DeleteRoom
+DeleteRoom --> urls
+deactivate DeleteRoom
+urls --> ChatListPage
+deactivate urls
+activate ChatListPage
+ChatListPage --> user
+deactivate ChatListPage
+
+
+
+
+
+
+
+@enduml
+

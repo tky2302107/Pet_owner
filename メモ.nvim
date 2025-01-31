@@ -6,6 +6,9 @@
   アイコン
 
 
+uml 生成
+pip install django-model2puml==0.5.0
+python manage.py generate_puml
 
 2/13 教員向け　システム　実機中心にチェック　一人ずつ　10分程度
 

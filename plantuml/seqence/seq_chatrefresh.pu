@@ -1,0 +1,63 @@
+@startuml chatrefresh
+
+actor 利用者 as user
+
+boundary "ChatListPage\n(チャット一覧画面)" as ChatListPage #d5e8d4
+' boundary "ChatPage\n(チャット画面)" as ChatPage #d5e8d4
+boundary "NewChatPage\n(チャット更新画面)" as room_form #d5e8d4
+
+
+control "Chat.urls.urlpaterns[]\n(各機能の起動管理)" as urls #f8cecc
+control "Chat.view.UpdateRoom\n(チャットルーム更新)" as UpdateRoom #f8cecc
+control "Chat.forms.RoomForm\n(入力窓の読み取り・文配置)" as RoomForm #f8cecc
+control "Chat.models.Room\n(データ処理＆DBアクセス)" as Room #f8cecc
+' entity "アカウント\n(Sqlite3)" as AccountDB #dae8fc
+entity "チャット\n(Sqlite3)" as ChatDB #dae8fc
+
+user -> ChatListPage :更新ボタンを押下
+activate ChatListPage
+ChatListPage -> urls:送信\nsubmit()
+deactivate ChatListPage
+activate urls
+urls -> UpdateRoom:起動\nviews.UpdateRoom.as_view()
+activate UpdateRoom
+UpdateRoom -> RoomForm:フォームの読み取り機能有効化\nform_valid()
+activate RoomForm
+RoomForm -> UpdateRoom:htmlからの読み取り\nclass Meta:
+UpdateRoom --> room_form
+activate room_form
+room_form --> user
+user -> room_form:ルーム名と説明を入力する
+room_form -> RoomForm:送信する\nsubmit()
+deactivate room_form
+RoomForm -> Room:models.pyに送信\n__init__()
+activate Room
+' Room -> AccountDB
+' activate AccountDB
+' AccountDB --> Room
+' deactivate AccountDB
+Room -> ChatDB:データベースを書き換え\nis_assigned()
+activate ChatDB
+ChatDB --> Room
+deactivate ChatDB
+Room --> RoomForm
+deactivate Room
+
+RoomForm --> UpdateRoom
+deactivate RoomForm
+UpdateRoom --> urls
+deactivate UpdateRoom
+urls --> ChatListPage
+deactivate urls
+activate ChatListPage
+ChatListPage --> user
+deactivate ChatListPage
+
+
+
+
+
+
+
+@enduml
+

@@ -1,0 +1,48 @@
+@startuml chatlistpageopensearch
+
+actor 利用者 as user
+boundary "MenuPage\n(メニュー画面)" as MenuPage #d5e8d4
+boundary "ChatListPage\n(チャット一覧画面)" as ChatListPage #d5e8d4
+
+control "Chat.urls.urlpaterns[]\n(各機能の起動管理)" as urls #f8cecc
+
+control "Chat.view.Index\n(チャット一覧画面表示)" as Index #f8cecc
+control "Chat.models.RoomQueryset\n(データ処理＆DBアクセス)" as RoomQueryset #f8cecc
+control "Chat.forms.SearchForm\n(入力窓の読み取り・文配置)" as SearchForm #f8cecc
+entity "アカウント\n(Sqlite3)" as AccountDB #dae8fc
+entity "チャット\n(Sqlite3)" as ChatDB #dae8fc
+
+
+' activate Chat
+' activate Index
+user -> MenuPage :チャットボタンを\n押下する
+activate MenuPage
+MenuPage -> urls:送信\nsubmit()
+deactivate MenuPage
+activate urls
+urls -> Index :起動\nviews.Index.as_view()
+activate Index
+Index -> RoomQueryset:チャット一覧を取得する\nget_queryset()
+activate RoomQueryset
+RoomQueryset -> AccountDB :アクセス権限調査\n_related_user()
+activate AccountDB
+AccountDB --> RoomQueryset
+deactivate AccountDB
+RoomQueryset -> ChatDB :アクセス可能なチャットルームを検索\nfiltering()
+activate ChatDB
+ChatDB --> RoomQueryset
+deactivate ChatDB
+RoomQueryset --> Index
+deactivate RoomQueryset
+Index -> SearchForm:検索フォームのキーワードを読み取り\n(※ページの表示のみの場合は空白)\nget_keywords()
+activate SearchForm
+SearchForm --> Index
+deactivate SearchForm
+Index --> urls
+deactivate Index
+urls --> ChatListPage
+deactivate urls
+activate ChatListPage
+ChatListPage --> user
+deactivate ChatListPage
+@enduml

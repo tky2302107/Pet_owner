@@ -1,0 +1,46 @@
+@startuml usecase_reidai3
+
+left to right direction
+
+actor "利用者" as user
+
+
+rectangle {
+    usecase "ログインする" as login
+    usecase "ログアウトする" as logout
+    usecase "アカウントを作成する" as create
+    usecase "投稿する" as post
+    usecase "投稿を見る" as check
+    usecase "投稿を検索する" as search
+    usecase "投稿を削除する" as delete
+    usecase "投稿履歴を見る" as history
+    usecase "フォローする" as follow
+    usecase "フォロワー一覧を見る" as follower 
+    usecase "ポイント交換をする" as point
+    usecase "チャットをする" as chat
+    usecase "チャットルーム新規作成" as newchat
+    usecase "チャットルーム更新" as refchat
+    usecase "プロフィールを編集する" as profile
+    usecase "マイページを見る" as mypage
+    usecase "通知を見る" as alert
+}
+
+user --> login
+user --> logout
+user --> create
+user --> post
+user --> check
+user --> search
+user --> delete
+user --> history
+user --> follow
+user --> follower
+user --> point
+user --> profile
+user --> mypage
+user --> chat
+user --> newchat
+user --> refchat
+user --> alert
+
+@enduml
