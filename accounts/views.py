@@ -16,7 +16,7 @@ from contents.models import FollowList
 from django.db.models.query import QuerySet
 from django.shortcuts import redirect, render
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .forms import  EmailChangeForm, SetUpForm, UserChangeForm ,AdoptSearchForm
+from .forms import  EmailChangeForm, SetUpForm, UserChangeForm ,AdoptSearchForm 
 from django.contrib.auth.views import (
     LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView
 )
@@ -160,13 +160,14 @@ class MyPage(TemplateView):
 
 class NameChange(LoginRequiredMixin,FormView):
     login_url = '/login/'
-    models = User
+    model = User
     template_name = "accounts/user_edit.html"
     form_class = UserChangeForm
     success_url = reverse_lazy('accounts:mypage')
     
     def form_valid(self, form):
         #formのupdateメソッドにログインユーザーを渡して更新
+        
         form.update(user=self.request.user)
         return super().form_valid(form)
 
@@ -174,11 +175,18 @@ class NameChange(LoginRequiredMixin,FormView):
         kwargs = super().get_form_kwargs()
         # 更新前のユーザー情報をkwargsとして渡す
         kwargs.update({
+            'icon' : self.request.user.icon,
             'screen_name' : self.request.user.screen_name,
             'profile' : self.request.user.profile,
+            'id': self.request.user.id
         })
         return kwargs
     
+    def post(self, request, *args, **kwargs):
+        
+        return super().post(request, *args, **kwargs)
+    
+
 class PasswordChange(PasswordChangeView):
     login_url = '/login/'
     """パスワード変更ビュー"""

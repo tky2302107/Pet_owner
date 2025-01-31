@@ -91,7 +91,7 @@ input[name="tab_item"] {
             <button type="submit" class="btn btn-primary btn-block">病院検索</button>
         </div>
         <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">
-            <a href="{% url 'chat:index' %}" class="btn btn-secondary btn-block">クリア</a>
+            <a href="{% url 'contents:hospital_list' %}" class="btn btn-secondary btn-block">クリア</a>
         </div>
     </div>
   </form>
@@ -111,7 +111,7 @@ input[name="tab_item"] {
         <!-- 戻るボタン -->
     {% comment %} <a href="javascript:history.back()" class="return-btn">戻る</a> {% endcomment %}
 <div style="diaplay:flex;">
-    <a href="{% url 'contents:hospital_contact' %}">掲載依頼はこちら</a>
+    <a href="{% url 'contents:hospital_contact' %}">掲載依頼について</a>
 </div>
 <br>
 {% endblock %}
