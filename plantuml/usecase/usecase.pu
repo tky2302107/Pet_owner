@@ -23,6 +23,10 @@ rectangle {
     usecase "プロフィールを編集する" as profile
     usecase "マイページを見る" as mypage
     usecase "通知を見る" as alert
+    usecase "里親募集中を見る" as adopt
+    usecase "病院検索をする" as hospital
+    usecase "プライバシーポリシーを見る" as pp
+    usecase "利用規約を見る" as terms
 }
 
 user --> login
@@ -42,5 +46,9 @@ user --> chat
 user --> newchat
 user --> refchat
 user --> alert
+user --> adopt
+user --> hospital
+user --> pp
+user --> terms
 
 @enduml

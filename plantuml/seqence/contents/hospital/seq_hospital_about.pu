@@ -1,0 +1,20 @@
+@startuml HospitalAbout
+actor 利用者 as user
+boundary "hospital_list\n(病院検索リストページ)" as hl #d5e8d4
+boundary "hospital_contact\n(病院検索説明ページ)" as hc #d5e8d4
+
+control "contents.HospitalContactView\n(View)" as View #f8cecc
+
+user -> hl :病院検索ボタンを押下する
+activate user
+activate hl 
+hl -> View :送信\n{% url "contents:hospital_contact"%}
+deactivate hl
+activate View
+View -> hc :テンプレート取得\ntemplate_name = hospital_contact.html
+deactivate View
+activate hc
+hc --> user 
+deactivate hc
+deactivate user
+@enduml

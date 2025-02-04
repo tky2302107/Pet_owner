@@ -1,0 +1,20 @@
+@startuml PrivacyPolicy
+actor 利用者 as user
+boundary "index\n(メインページ)" as main #d5e8d4
+boundary "privacy_policy\n(プライバシーポリシーページ)" as pp #d5e8d4
+
+control "contents.PrivacyPolicyView\n(View)" as View #f8cecc
+
+user -> main :プライバシーポリシーリンクを押下
+activate user
+activate main 
+main -> View :送信\n{% url "contents:privacy_policy"%}
+deactivate main
+activate View
+View -> pp :テンプレート取得\ntemplate_name = privacy_policy.html
+deactivate View
+activate pp
+pp --> user
+deactivate pp
+deactivate user
+@enduml

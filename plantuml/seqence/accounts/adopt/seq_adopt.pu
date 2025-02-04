@@ -1,0 +1,68 @@
+@startuml Adopt
+
+actor 利用者 as user
+boundary "index\n(メインページ)" as main #d5e8d4
+boundary "adopt_list\n(里親探しリストページ)" as al #d5e8d4
+boundary "adopt_detail\n(里親探し詳細ページ)" as ad #d5e8d4
+
+control "accounts.AdoptListView\n(View)" as alView #f8cecc
+control "accounts.AdoptDetailView\n(View)" as adView #f8cecc
+control "accounts.AdoptSearchForm\n(Form)" as Form #f8cecc
+control "accounts.AdoptList\n(Model)" as Model #f8cecc
+
+entity "Sqlite3" as db #dae8fc
+
+
+user -> main :里親探しボタンを押下する
+activate user
+activate main 
+main -> alView :送信\n{% url "accounts:adopt"%}
+deactivate main
+activate alView
+alView -> Form :フォーム取得\nform = AdoptSearchForm
+activate Form
+Form --> alView
+deactivate Form
+alView -> Model :一覧取得\nmodel = AdoptList
+activate Model
+Model -> db :データベースにアクセス\nAdoptList()
+activate db
+db --> Model :
+deactivate db
+Model --> alView
+deactivate Model
+alView -> al :テンプレート取得\ntemplate_name = adopt_list.html
+deactivate alView
+activate al
+al --> user 
+deactivate al
+
+user -> al :一覧のウィジェットを押下する
+activate al 
+al -> adView :送信\n{% url "accounts:adopt_detail"%}
+deactivate al
+activate adView
+adView -> Model :詳細取得\nmodel = AdoptList
+activate Model
+Model -> db :データベースにアクセス\nAdoptList()
+activate db
+db --> Model :
+deactivate db
+Model --> adView
+deactivate Model
+adView -> ad :テンプレート取得\ntemplate_name = adopt_detail.html
+deactivate adView
+activate ad
+ad --> user 
+deactivate ad
+
+
+
+
+
+
+
+
+
+deactivate user
+@enduml

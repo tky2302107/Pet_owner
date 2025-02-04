@@ -1,0 +1,35 @@
+@startuml ChatRoomJoin
+
+actor 利用者 as user
+' boundary "index(accounts)\n(メインページ)" as main #d5e8d4
+boundary "index(chat)\n(チャットルームリストページ)" as cl #d5e8d4
+boundary "chat_room\n(チャットルーム)" as cr #d5e8d4
+
+' control "chat.Index\n(View)" as inView #f8cecc
+control "chat.EnterRoom\n(View)" as enView #f8cecc
+' control "chat.SearchForm\n(Form)" as Form #f8cecc
+control "chat.Room\n(Model)" as Model #f8cecc
+
+entity "Sqlite3" as db #dae8fc
+
+user -> cl:選択
+activate cl
+cl -> enView:ルームID送信\n{% url "chat:enter_room" %}
+deactivate cl
+activate enView
+enView -> Model:データ取得\nmodel = models.Room
+activate Model
+Model -> db:データベースにアクセス\nRoom()
+activate db
+db --> Model
+deactivate db
+Model --> enView
+deactivate Model
+enView -> cr:テンプレート取得\ntemplate_name = 'chat/chat_room.html'
+deactivate enView
+activate cr
+cr --> user
+deactivate cr
+
+deactivate user
+@enduml

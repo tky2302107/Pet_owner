@@ -1,0 +1,21 @@
+@startuml AdoptAbout
+actor 利用者 as user
+boundary "adopt_list\n(里親探しリストページ)" as al #d5e8d4
+boundary "adopt_about\n(里親探し説明ページ)" as aa #d5e8d4
+
+control "accounts.AdoptAboutView\n(View)" as View #f8cecc
+
+user -> al :里親探しボタンを押下する
+activate al
+activate user
+al -> View:送信\n{% url "accounts:adopt_about"%}
+deactivate al
+activate View
+View -> aa :テンプレート取得\ntemplate_name = adopt_about.html
+deactivate View
+activate aa
+aa --> user
+deactivate aa
+
+deactivate user
+@enduml

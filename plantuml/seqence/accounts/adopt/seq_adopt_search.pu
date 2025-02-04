@@ -1,0 +1,37 @@
+@startuml AdoptSearch
+' 検索
+actor 利用者 as user
+boundary "adopt_list\n(里親探しリストページ)" as al #d5e8d4
+
+control "accounts.AdoptListView\n(View)" as View #f8cecc
+control "accounts.AdoptSearchForm\n(Form)" as Form #f8cecc
+control "accounts.AdoptList\n(Model)" as Model #f8cecc
+entity "Sqlite3" as db #dae8fc
+
+
+user -> al :検索ボタンを押下する
+activate user
+activate al 
+al -> View :検索\nSubmit
+deactivate al
+activate View
+View -> Form :フォーム取得\nform = AdoptSearchForm
+activate Form
+Form --> View
+deactivate Form
+View -> Model :一覧取得\nmodel = AdoptList
+activate Model
+Model -> db :データベースにアクセス\nAdoptList()
+activate db
+db --> Model :
+deactivate db
+Model --> View
+deactivate Model
+View -> al :テンプレート取得\ntemplate_name = adopt_list.html
+deactivate View
+activate al
+al --> user
+deactivate al 
+
+deactivate user
+@enduml

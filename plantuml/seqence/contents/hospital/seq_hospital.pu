@@ -1,0 +1,72 @@
+@startuml Hospital
+
+actor 利用者 as user
+boundary "index\n(メインページ)" as main #d5e8d4
+boundary "hospital_list\n(病院検索リストページ)" as hl #d5e8d4
+boundary "hospital_detail\n(病院検索詳細ページ)" as hd #d5e8d4
+
+control "contents.HospitalListView\n(hdView)" as hlView #f8cecc
+control "contents.HospitalDetailView\n(hdView)" as hdView #f8cecc
+control "contents.HospitalSearchForm\n(Form)" as Form #f8cecc
+control "contents.HospitalList\n(Model)" as Model #f8cecc
+
+entity "Sqlite3" as db #dae8fc
+
+
+user -> main :病院検索ボタンを押下する
+activate user
+activate main 
+main -> hlView :送信\n{% url "contents:hospital"%}
+deactivate main
+
+activate hlView
+hlView -> Form :フォーム取得\nform = HospitalSearchForm
+activate Form
+Form --> hlView
+deactivate Form
+
+
+hlView -> Model :一覧取得\nmodel = HospitalList
+activate Model
+Model -> db :データベースにアクセス\nHospitalList()
+activate db
+db --> Model :
+deactivate db
+Model --> hlView
+deactivate Model
+hlView -> hl :テンプレート取得\ntemplate_name = hospital_list.html
+deactivate hlView
+activate hl
+hl -->  user 
+deactivate hl
+
+
+user -> hl :病院のウィジェットを押下する
+activate hl 
+hl -> hdView :送信\n{% url "contents:hospital_detail"%}
+deactivate hl
+activate hdView
+hdView -> Model :詳細取得\nmodel = HospitalList
+activate Model
+Model -> db :データベースにアクセス\nHospitalList()
+activate db
+db --> Model :
+deactivate db
+Model --> hdView
+deactivate Model
+hdView -> hd :テンプレート取得\ntemplate_name = hospital_detail.html
+deactivate hdView
+activate hd
+hd --> user
+deactivate hd
+
+
+
+
+
+
+
+
+
+deactivate user
+@enduml

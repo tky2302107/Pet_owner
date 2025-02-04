@@ -118,12 +118,12 @@ class DeleteRoom(LoginRequiredMixin, OnlyRoomHostMixin, DeleteView):
     #         print("削除中断")
     #     else:
     #         for j in range(len(newul)):
-    #             nl = NoticeList(
+    #             Notice = NoticeList(
     #                 target=newul[j],
     #                 title="チャットルーム解散のお知らせ",
     #                 text="チャットルーム「"+str(cr)+"」が解散しました。",
     #                 )
-    #             nl.save()
+    #             Notice.save()
     #         print("削除終了")
             
     #     return super().get_queryset()
@@ -169,12 +169,12 @@ class CreateBufferView(TemplateView):
 
         cr = str(list(models.Room.objects.filter(id=m1).values())[0]["name"])
         for j in range(len(newul)):
-            nl = NoticeList(
+            Notice = NoticeList(
                 target=newul[j],
                 title="チャットルーム招待のお知らせ",
                 text="チャットルーム「"+str(cr)+"」に招待されました。",
                 )
-            nl.save()
+            Notice.save()
         return redirect('chat:index')
 
 
@@ -199,12 +199,12 @@ class UpdateBufferView(TemplateView):
 
         cr = str(list(models.Room.objects.filter(id=int(url)).values())[0]["name"])
         for j in range(len(newul)):
-            nl = NoticeList(
+            Notice = NoticeList(
                 target=newul[j],
                 title="チャットルーム更新のお知らせ",
                 text="チャットルーム「"+str(cr)+"」で情報が更新されました。\n更新によって、ルーム名やユーザー人数が変更されている場合があります。",
                 )
-            nl.save()
+            Notice.save()
         return redirect('chat:index')
     
     
@@ -229,12 +229,12 @@ class DeleteView(TemplateView,LoginRequiredMixin, OnlyRoomHostMixin, ):
         # print("newnl: "+str(chknl))
 
         for j in range(len(newul)):
-            nl = NoticeList(
+            Notice = NoticeList(
                 target=newul[j],
                 title="チャットルーム解散のお知らせ",
                 text="チャットルーム「"+str(cr)+"」が解散しました。",
                 )
-            nl.save()
+            Notice.save()
         # print("削除終了")
             
     
@@ -249,3 +249,5 @@ class DeleteView(TemplateView,LoginRequiredMixin, OnlyRoomHostMixin, ):
 
     def post(self, request, *args, **kwargs):
         return redirect('chat:index')
+    
+# 動かないときはNoticeをnlに変える

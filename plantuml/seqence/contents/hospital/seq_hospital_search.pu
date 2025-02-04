@@ -1,0 +1,36 @@
+@startuml HospitalSearch
+' 検索
+actor 利用者 as user
+boundary "hospital_list\n(病院検索リストページ)" as hl #d5e8d4
+
+control "contents.HospitalListView\n(View)" as View #f8cecc
+control "contents.HospitalSearchForm\n(Form)" as Form #f8cecc
+control "contents.HospitalList\n(Model)" as Model #f8cecc
+entity "Sqlite3" as db #dae8fc
+
+
+user -> hl :検索ボタンを押下する
+activate user
+activate hl 
+hl -> View :検索\nSubmit
+deactivate hl
+activate View
+View -> Form :フォーム取得\nform = HospitalSearchForm
+activate Form
+Form --> View
+deactivate Form
+View -> Model :一覧取得\nmodel = HospitalList
+activate Model
+Model -> db :データベースにアクセス\nHospitalList()
+activate db
+db --> Model :
+deactivate db
+Model --> View
+deactivate Model
+View -> hl :テンプレート取得\ntemplate_name = hospital_list.html
+deactivate View
+activate hl
+hl --> user
+deactivate hl
+deactivate user
+@enduml

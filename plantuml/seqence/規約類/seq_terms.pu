@@ -1,0 +1,21 @@
+@startuml Terms
+actor 利用者 as user
+boundary "index\n(メインページ)" as main #d5e8d4
+boundary "terms\n(利用規約ページ)" as t #d5e8d4
+
+control "contents.TermsView\n(View)" as View #f8cecc
+
+user -> main :利用規約リンクを押下
+activate user
+activate main 
+main -> View :送信\n{% url "contents:terms"%}
+deactivate main
+activate View
+View -> t :テンプレート取得\ntemplate_name = terms.html
+deactivate View
+activate t
+t --> user
+deactivate t
+
+deactivate user
+@enduml

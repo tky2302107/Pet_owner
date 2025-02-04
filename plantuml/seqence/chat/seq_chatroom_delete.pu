@@ -1,0 +1,58 @@
+@startuml ChatRoomDelete
+
+actor 利用者 as user
+' boundary "index(accounts)\n(メインページ)" as main #d5e8d4
+boundary "index(chat)\n(チャットルームリストページ)" as cl #d5e8d4
+
+control "chat.Index\n(View)" as inView #f8cecc
+control "chat.DelateRoom\n(View)" as deView #f8cecc
+control "chat.SearchForm\n(Form)" as Form #f8cecc
+control "chat.Room\n(Model)" as Model #f8cecc
+control "contents.NoticeList\n(Model)" as nlModel #f8cecc
+
+entity "Sqlite3" as db #dae8fc
+
+user -> cl:選択
+activate cl
+activate user
+cl -> deView:ルームID送信\n{% url "chat:enter_room" %}
+deactivate cl
+activate deView
+deView -> Model:データ削除\nmodel = models.Room
+activate Model
+Model -> db:データベースにアクセス\nRoom()
+activate db
+db --> Model
+deactivate db
+Model --> deView
+deactivate Model
+deView -> nlModel:通知内容と宛先を登録 Notice.save()
+activate nlModel
+nlModel ->db:データベースにアクセス\nNoticeList()
+activate db
+db -->nlModel
+deactivate db
+nlModel -->deView
+deactivate nlModel
+deView -> inView:リダイレクト\nredirect('chat:index')
+deactivate deView
+activate inView
+inView -> Form:フォーム取得 form = SearchForm
+activate Form
+Form --> inView
+deactivate Form
+inView -> Model:データ取得 model = Room
+activate Model
+Model -> db:データベースにアクセス\nRoom()
+activate db
+db -> Model
+deactivate db
+Model --> inView
+deactivate Model
+inView -> cl:テンプレート取得\ntemplate_name = 'chat/index.html'
+deactivate inView
+activate cl
+cl --> user
+deactivate cl
+deactivate user
+@enduml
