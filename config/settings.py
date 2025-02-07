@@ -51,7 +51,7 @@ INSTALLED_APPS = [
     'post',
     'contents',
     # モデルからUML生成
-    'puml_generator',
+    # 'puml_generator',
 ]
 
 MIDDLEWARE = [
