@@ -17,7 +17,8 @@ Including another URLconf
 from config import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path,include
+from django.urls import path,include,re_path
+from django.views.static import serve
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,7 +29,8 @@ urlpatterns = [
     # contentsアプリを追加
     path('contents/', include('contents.urls', namespace='contents')),
     # postアプリを追加
-    path('post/', include('post.urls', namespace='post'))
+    path('post/', include('post.urls', namespace='post')),
+    re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT})
 ]
 
 # 画像アップロード
