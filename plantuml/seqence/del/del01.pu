@@ -1,0 +1,32 @@
+@startuml HospitalAbout
+actor 利用者 as user
+boundary "templates.contents.my_account\n(マイページ)" as mp #d5e8d4
+boundary "templates.contents.user_delete\n(退会確認画面)" as de #d5e8d4
+boundary "templates.accounts.login\n(ログイン)" as lg #d5e8d4
+
+control "accounts.views.UserDeleteView\n(View)" as View #f8cecc
+
+entity "Sqlite3" as db #dae8fc
+
+user -> mp :ボタンを押下
+activate user
+activate mp
+mp -> de:起動()
+deactivate mp
+activate de
+de --> user
+user -> de:はいボタンを押下
+de -> View:送信()
+deactivate de
+activate View
+View -> db:アカウント凍結()
+activate db
+db --> View
+deactivate db
+View -> lg:テンプレート取得()
+deactivate View
+activate lg
+lg --> user
+deactivate lg
+deactivate user
+@enduml
