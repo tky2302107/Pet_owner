@@ -1,3 +1,67 @@
+画面設計
+ログイン
+ログアウト・ログアウト確認
+
+ユーザー登録
+
+2/4 モデル更新中　ルーム情報まで完了　
+　　　シーケンスは競合の可能性があるため一時作業停止中
+
+
+病院検索"機能"　を消す
+病院検索　imageフィールド
+募金先　バリエーション
+有料プラン
+
+2-No.2 B班
+
+
+
+ログイン
+ログアウト
+アカウント作成
+フォロワー
+フォロー
+ポイント
+マイページ
+通知
+プロフィール
+
+新規
+ユーザー詳細
+
+プライバシーポリシー＆規約
+
+
+
+
+里親探し中情報								
+募金情報								
+ユーザー情報								
+ユーザーグループ情報								
+ユーザー権限情報								
+メッセージ情報								
+ルーム情報								
+参加者情報								
+フォロー・フォロワー情報								
+病院情報								
+通知								
+投稿情報								
+
+accounts_adoptlist								
+accounts_fund								
+accounts_user								
+accounts_user_groups								
+accounts_user_user_permissions								
+chat_message								
+chat_room								
+chat_room_participants								
+contents_followlist								
+contents_hospitallist								
+contents_noticelist								
+post_postinfo								
+
+
 いいね機能・・・
 説明・エラー機能　内容チェック
 

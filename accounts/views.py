@@ -51,7 +51,7 @@ class Index(ListView):
             id = self.request.user.id
             if User.objects.get(id=id).pt_give == 1:
                 pt = {
-                    "points":(3+int(self.request.user.points)),
+                    "points":(2+int(self.request.user.points)),
                     "pt_give":0
                     }
                 User.objects.filter(id=self.request.user.id).update(**pt)

@@ -1,5 +1,6 @@
 @startuml ChatListSearch
 actor 利用者 as user
+boundary "index(accounts)\n(メインページ)" as main #d5e8d4
 boundary "index(chat)\n(チャットルームリストページ)" as cl #d5e8d4
 
 control "chat.Index\n(View)" as inView #f8cecc
@@ -8,9 +9,32 @@ control "chat.Room\n(Model)" as Model #f8cecc
 
 entity "Sqlite3" as db #dae8fc
 
-user -> cl:検索
+user ->  main:ボタンを押下
 activate user
+activate main
+main -> inView :送信\n{% url "chat:index" %}
+deactivate main
+activate inView
+inView -> Form :フォーム取得\nform = SearchForm
+activate Form
+Form --> inView
+deactivate Form
+inView -> Model :データ取得\nmodel = Room
+activate Model
+Model -> db :データベースにアクセス\nSearchForm()
+activate db
+db --> Model
+deactivate db
+Model --> inView
+deactivate Model
+inView -> cl :テンプレート取得\ntemplate_name = 'chat/index.html'
+deactivate inView
 activate cl
+cl --> user
+
+
+user -> cl:検索
+
 cl -> inView :キーワード送信\nsubmit
 deactivate cl
 activate inView
@@ -31,6 +55,5 @@ deactivate inView
 activate cl
 cl --> user
 deactivate cl
-
-
 deactivate user
+@enduml
