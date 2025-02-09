@@ -22,11 +22,15 @@
 <ul>
     <h3 style="text-align:center;">フォロワー一覧</h3>
     <br>
+    {% if erlist %}
     {% for data in erlist %}
     <label class="tab_item2" for="programming">アカウント名:{{ data.follow_name }}</label>
     <br>
     
     {% endfor %}
+    {%else%}
+        <p>フォローしているアカウントはありません</p>
+    {% endif %}
     <br>
     <a href="{% url 'contents:follow' %}" class="btn btn-link btn-block" target="_self">フォロー中一覧</a>
     

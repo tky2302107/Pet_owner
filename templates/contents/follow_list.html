@@ -22,6 +22,7 @@
 <ul>
     <h3 style="text-align:center;">フォロー中 一覧</h3>
     <br>
+    {% if flist %}
     {% for data in flist %}
     <form  method="post">
         <div class="tab_item2" >
@@ -40,6 +41,9 @@
         </div>
     </form>
     {% endfor %}
+    {%else%}
+        <p>フォローしているアカウントはありません</p>
+    {% endif %}
     <br style="height:10px;">
     <a href="{% url 'contents:follow_er' %}" class="btn btn-link btn-block" target="_self">フォロワー 一覧</a>
     

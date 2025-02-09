@@ -101,6 +101,7 @@ class ExchangePoint(UpdateView):
         ctx = {
             'points': self.request.user.points,
             "gobi":gobi,
+            "name":str(list(fund.objects.filter().values())[0]["name"])
         }
         # print("ctx"+str(ctx))
         return self.render_to_response(ctx)

@@ -106,6 +106,11 @@ class fund(models.Model):
     points_sum = models.IntegerField(
         default=0,
     )
+    name = models.TextField(
+        default="",
+        null=True,
+        blank=True,
+    )
 
     def __str__(self):
         return self.__unicode__()

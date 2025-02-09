@@ -31,6 +31,7 @@
 <div class="notice-container">
   <h3 style="text-align:center;">お知らせ一覧</h3>
   <br>
+  {%if obj_data%}
   {% for data in obj_data %}
   
     <div class="tab_item2" >
@@ -50,6 +51,9 @@
       </div>
     </div>
   {% endfor %}
+  {%else%}
+    <p>通知はありません</p>
+  {%endif%}
   <div style="height:200px;font-size:100px;">&nbsp</div>
 </div>
 
