@@ -96,11 +96,11 @@ input[name="tab_item"] {
     console.log(icon)
     console.log({{ icon }})
   </script>
-  {% if icon is null %}
+  {% comment %} {% if icon is null %} {% endcomment %}
     <img src="/media/{{ icon }}" style="width:35px;height:35px;border-radius:30px;">
-  {% else %}
+  {% comment %} {% else %}
     <img src="/media/icon/default.png" style="width:35px;height:35px;border-radius:30px;">  
-  {% endif %}
+  {% endif %} {% endcomment %}
   
   {{name}}
 </label>
