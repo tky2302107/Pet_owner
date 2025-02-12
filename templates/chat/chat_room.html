@@ -24,7 +24,16 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-12">
-                            <span class="card-username"><a href="{% url 'accounts:user_detail' message.owner_id%}">{{ message.owner|stringformat:"s" }}</a></span>
+                            {% if message.owner == user %}
+                                <span class="card-username" style="color:#fd7e00;">
+
+                                    {% comment %} <a href="{% url 'accounts:user_detail' message.owner_id%}"> {% endcomment %}
+                                        {{ message.owner|stringformat:"s" }}
+                                    {% comment %} </a> {% endcomment %}
+                                </span>
+                            {% else %}
+                                <span class="card-username"><a href="{% url 'accounts:user_detail' message.owner_id%}">{{ message.owner|stringformat:"s" }}</a></span>
+                            {% endif %}
                             <time class="card-datetime" datetime="{{ message.created_at|date:'Y-m-d' }}">(created at {{ message.created_at|date:'Y-m-d H:i:s' }})</time>
                         </div>
                     </div>
@@ -100,7 +109,7 @@
         const message = chatMessageInput.value.trim();
         
         // 送信時スクロール機能
-        alert("submit")
+        // alert("submit")
         var container = document.getElementById('container');
         var scrollToBottom = () => {
             container.scrollTop = container.scrollHeight;
