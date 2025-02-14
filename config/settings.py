@@ -159,3 +159,6 @@ CHANNEL_LAYERS = {
         'BACKEND':'channels.layers.InMemoryChannelLayer',
     }
 }
+ALLOWED_HOSTS = ["*"]
+# ALLOWED_HOSTS = ["localhost"]
+# ALLOWED_HOSTS = ["54.173.216.123"]
