@@ -112,8 +112,8 @@ class ExchangePoint(ListView):
     def post(self, request, *args, **kwargs):
         pt = int(request.POST["pt"])
         give = request.POST["give"]
-        print(pt)
-        print(give)
+        # print(pt)
+        # print(give)
         if give == "犬":
             nowpt = {
                 "points":int(list(Animal.objects.filter(id=0).values())[0]["points"])+pt
