@@ -141,7 +141,6 @@ STATICFILES_DIRS = (
     ]
 )
 
-
 # 画像アップロード先フォルダの設定
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

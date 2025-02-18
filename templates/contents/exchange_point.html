@@ -8,10 +8,68 @@
 <br>
     <div class="exchange-container">
         <h2>ポイント募金</h2>
-        <p>今月は「{{name}}」に募金されます</p>
-        <p class="number-points">保有ポイント:  <span>{{ points }}</span>pt</p>
+        <p>動物の保護活動を行っている団体への募金を行うことができます。</p>
+        {% comment %} <p>今月は「{{name}}」に募金されます</p> {% endcomment %}
+        <p class="number-points">あなたの保有ポイント:  <span>{{ points }}</span>pt</p>
         {% if points != 0 %}
-        <div><button class="btn btn-primary btn-lg" onclick="location.href='{% url "accounts:points_fin" %}'" >募金する</a></div>
-        {% endif %}
+        <form action="" method="post">
+            {% csrf_token %}
+            <p>
+                活用先:
+                <select name="give">
+                    {% for a in object_list %}
+                    <option>
+                        {{a.name}}
+                    </optiom>
+                    {% endfor %}
+                </select>
+                の保護活動
+            </p>
+            <p>募金するポイント:
+                <input value="1" type="number" style="width:100px" name="pt" id="pt" min="1" max="{{ points }}">
+                pt
+            </p>
+                <div>
+                    <button class="btn btn-primary btn-lg" onclick="location.href='{% url "accounts:points_fin" %}'" >
+                        募金する
+                    </button>
+                </div>
+            {% endif %}
+        </form>
+        <br>
+        <label style="text-align:center;">なお、現時点での募金状態は以下のとおりです。</label>
+        <table  border="1">
+            <tr>
+                <th style="text-align: center;">対象</th>
+                <th style="text-align: center;">現時点での募金額</th>
+            </tr>
+            <tr>
+                <td>犬の保護活動への募金</td>
+                <td style="text-align: right;">{{ points_dog }}pt</td>
+            </tr>    
+            <tr>
+                <td>猫の保護活動への募金</td>
+                <td style="text-align: right;">{{ points_cat }}pt</td>
+            </tr>
+            <tr>
+                <td>その他哺乳類の保護活動への募金</td>
+                <td style="text-align: right;">{{ points_mammal }}pt</td>
+            </tr>
+            <tr>
+                <td>鳥類の保護活動への募金</td>
+                <td style="text-align: right;">{{ points_bird }}pt</td>
+            </tr>
+            <tr>
+                <td>魚類の保護活動への募金</td>
+                <td style="text-align: right;">{{ points_fish }}pt</td>
+            </tr>
+            <tr>
+                <td>爬虫類・両生類・その他の保護活動への募金</td>
+                <td style="text-align: right;">{{ points_other }}pt</td>
+            </tr>
+        </table>
+        <br>
+                <p class="number-points">現時点でのポイント募金総額&nbsp&nbsp&nbsp&nbsp<span>{{ points_all }}</span>pt</p>
+        <p>※ポイントは月末に集計されます</p>
     </div>
 {% endblock %}

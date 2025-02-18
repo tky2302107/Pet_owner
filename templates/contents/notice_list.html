@@ -33,23 +33,25 @@
   <br>
   {%if obj_data%}
   {% for data in obj_data %}
-  
-    <div class="tab_item2" >
-      <div style="display:flex;">
-        <div style="width:70%;text-align:left;">
-          {% csrf_token %}
-            <a style="text-decoration: none;font-style: #0000;color:black;" href= "{% url 'contents:notice_d' data.pk %}">
-            <div>
+  <a style="text-decoration: none;font-style: #0000;color:black;" href= "{% url 'contents:notice_d' data.pk %}">
+    <div class="tab_item2" style="height:100px;" >
+      {% comment %} <div style="width:100%;align-items:center;height:50%;"> {% endcomment %}
+        {% comment %} <div style="display:flex;height:50%;vertical-align:middle;"> {% endcomment %}
+          <div style="width:100%;text-align:left;">
+            {% csrf_token %}
+            {% comment %} <label style="font-size:25px;"> {% endcomment %}
               {{data.title}}
-            </div>
-        </div>
-        <div style="width:auto;text-align:right;font-size:15px;">
-          <div class="notice-time">
-            {{ data.posted_at }}
+            {% comment %} </label> {% endcomment %}
           </div>
-        </div>
-      </div>
+          <div style="width:100%;text-align:right;font-size:20px;">
+            <div class="notice-time">
+              {{ data.posted_at }}
+            </div>
+          </div>
+        {% comment %} </div> {% endcomment %}
+      {% comment %} </div> {% endcomment %}
     </div>
+  </a>
   {% endfor %}
   {%else%}
     <p>通知はありません</p>

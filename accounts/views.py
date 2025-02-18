@@ -1,16 +1,17 @@
 from pickle import dumps, loads
 import sqlite3
+from urllib import request
 from django.db import connection
 from django.template.loader import render_to_string
 from django.core.signing import BadSignature,SignatureExpired
 from typing import Generic
-from django.http import HttpResponse, HttpResponseBadRequest
+from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
 from django.views.generic import TemplateView,ListView,FormView,UpdateView,CreateView,DeleteView,DetailView
 from django.contrib.auth.views import LoginView, LogoutView 
 from django.contrib.sites.shortcuts import get_current_site
 from config import settings
-from .models import fund, User ,AdoptList
+from .models import fund, User ,AdoptList ,Animal
 from post.models import PostInfo
 from contents.models import FollowList
 from django.db.models.query import QuerySet
@@ -86,67 +87,134 @@ class LogoutPage(LogoutView):
 class MainPage(TemplateView):
     template_name = 'main.html'
     
-class ExchangePoint(UpdateView):
+class ExchangePoint(ListView):
     login_url = '/login/'
     template_name = "contents/exchange_point.html"
-    model = User,fund
-
-    def get(self, request, **kwargs):
-        if self.request.user.points == 0:
-            gobi = "です"
-        else:
-            gobi = "あります"
-
-
+    
+    model = Animal
+    # query_set = Animal.objects.filter() 
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
         ctx = {
             'points': self.request.user.points,
-            "gobi":gobi,
-            "name":str(list(fund.objects.filter().values())[0]["name"])
+            "name":str(list(fund.objects.filter().values())[0]["name"]),
+            "points_all": int(list(fund.objects.filter().values())[0]["points_sum"]),
+            "points_dog": int(list(Animal.objects.filter().values())[0]["points"]),
+            "points_cat": int(list(Animal.objects.filter().values())[1]["points"]),
+            "points_mammal": int(list(Animal.objects.filter().values())[2]["points"]),
+            "points_bird": int(list(Animal.objects.filter().values())[3]["points"]),
+            "points_fish": int(list(Animal.objects.filter().values())[4]["points"]),
+            "points_other": int(list(Animal.objects.filter().values())[5]["points"]),
         }
-        # print("ctx"+str(ctx))
-        return self.render_to_response(ctx)
+        context.update(ctx)
+        return context
+    def post(self, request, *args, **kwargs):
+        pt = int(request.POST["pt"])
+        give = request.POST["give"]
+        print(pt)
+        print(give)
+        if give == "犬":
+            nowpt = {
+                "points":int(list(Animal.objects.filter(id=0).values())[0]["points"])+pt
+            }
+            Animal.objects.filter(id=0).update(**nowpt)
+        elif give == "猫":
+            nowpt = {
+                "points":int(list(Animal.objects.filter(id=1).values())[0]["points"])+pt
+            }
+            Animal.objects.filter(id=1).update(**nowpt)
+        elif give == "その他哺乳類":
+            nowpt = {
+                "points":int(list(Animal.objects.filter(id=2).values())[0]["points"])+pt
+            }
+            Animal.objects.filter(id=2).update(**nowpt)
+        elif give == "鳥類":
+            nowpt = {
+                "points":int(list(Animal.objects.filter(id=3).values())[0]["points"])+pt
+            }
+            Animal.objects.filter(id=3).update(**nowpt)
+        elif give == "魚類":
+            nowpt = {
+                "points":int(list(Animal.objects.filter(id=4).values())[0]["points"])+pt
+            }
+            Animal.objects.filter(id=4).update(**nowpt)
+        else:
+            nowpt = {
+                "points":int(list(Animal.objects.filter(id=5).values())[0]["points"])+pt
+            }
+            Animal.objects.filter(id=5).update(**nowpt)
+            
+        oldpt = int(list(User.objects.filter(id=self.request.user.id).values())[0]["points"])
+        save = {
+                "points":(oldpt-pt),
+            }
+        User.objects.filter(id=self.request.user.id).update(**save)
+        oldpt2 = int(list(fund.objects.filter().values())[0]["points_sum"])
+        save2 = {
+                "points_sum":(oldpt2+pt),
+            }
+        fund.objects.filter().update(**save2)
         
-    success_url = reverse_lazy("accounts:points_fin")
+        save3 = {
+            "pt_temp":pt
+        }
+        User.objects.filter(id=self.request.user.id).update(**save3)
+        
+        return HttpResponseRedirect(reverse_lazy('accounts:points_fin'))
+        
+    # success_url = reverse_lazy("accounts:points_fin")
 
     
     
-class ExchangePointComplete(UpdateView):
+class ExchangePointComplete(TemplateView):
     login_url = '/login/'
     template_name = "contents/exchange_point_complete.html"
     model = fund
     def get_queryset(self):
         return super().get_queryset()
 
-    def get(self, request, **kwargs):
-        global new_num,ctx_points,box
-        box = 0
-        # sql直接操作で数値をタプルで取得
-        ctx_points = int(self.request.user.points)
-        cursor = sqlite3.connect("db.sqlite3").cursor()
-        cursor.execute('''SELECT points_sum from accounts_fund where id=1''')
-        row = list(cursor.fetchall())
-        cursor.close()
-        # 取得したタプルから数値だけ抽出し、intに変換する
-        # print("\n!!!!!!!!!!!!!!!!!!!!!\nDB内が一部のデータがNullの場合、\nエラーが発生する場合があります。\nその場合は、DB「accounts_fund」テーブルに \nid=1, points_sum=0 \nを登録してページのリロードを行ってください。\n!!!!!!!!!!!!!!!!!!!!!\n")
-        # print(row[0])
-        old_num = int(row[0][0])
-        # 合計ポイントに新たなポイントを加算する
-        new_num = int(old_num)+int(ctx_points)
-        box = ctx_points # ctx_pointが上書きされた場合の予備データ
-        # print("old_num,new_num,ctx_points")
-        # print(old_num,new_num,ctx_points)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
         ctx = {
-            'your_points': self.request.user.points,
-            'fund_sum': new_num,
+            'your_points':int(list(User.objects.filter(id=self.request.user.id).values())[0]["pt_temp"]),
+            "fund_sum":str(list(fund.objects.filter().values())[0]["points_sum"])
         }
-        # print("ctx2"+str(ctx))
-        # db更新
-        data = {"points_sum":new_num}
-        fund.objects.filter(pk=1).update(**data)
-        uid = self.request.user.id
-        points = {"points":0}
-        User.objects.filter(pk=uid).update(**points)
-        return self.render_to_response(ctx)
+        context.update(ctx)
+        return context
+        # return render(request, 'accounts:points_fin', context)
+    # def get(self, request, **kwargs):
+    #     global new_num,ctx_points,box
+    #     box = 0
+    #     # sql直接操作で数値をタプルで取得
+    #     ctx_points = int(self.request.user.points)
+    #     cursor = sqlite3.connect("db.sqlite3").cursor()
+    #     cursor.execute('''SELECT points_sum from accounts_fund where id=1''')
+    #     row = list(cursor.fetchall())
+    #     cursor.close()
+    #     # 取得したタプルから数値だけ抽出し、intに変換する
+    #     # print("\n!!!!!!!!!!!!!!!!!!!!!\nDB内が一部のデータがNullの場合、\nエラーが発生する場合があります。\nその場合は、DB「accounts_fund」テーブルに \nid=1, points_sum=0 \nを登録してページのリロードを行ってください。\n!!!!!!!!!!!!!!!!!!!!!\n")
+    #     # print(row[0])
+    #     old_num = int(row[0][0])
+    #     # 合計ポイントに新たなポイントを加算する
+    #     new_num = int(old_num)+int(ctx_points)
+    #     box = ctx_points # ctx_pointが上書きされた場合の予備データ
+    #     # print("old_num,new_num,ctx_points")
+    #     # print(old_num,new_num,ctx_points)
+        # ctx = {
+        #     'your_points': self.request.user.points,
+        #     'fund_sum': new_num,
+        # }
+    #     # print("ctx2"+str(ctx))
+    #     # db更新
+    #     data = {"points_sum":new_num}
+    #     fund.objects.filter(pk=1).update(**data)
+    #     uid = self.request.user.id
+    #     points = {"points":0}
+    #     User.objects.filter(pk=uid).update(**points)
+    #     return self.render_to_response(ctx)
+    
+    
     
 
 class MyPage(TemplateView):
@@ -184,7 +252,6 @@ class NameChange(LoginRequiredMixin,FormView):
         return kwargs
     
     def post(self, request, *args, **kwargs):
-        
         return super().post(request, *args, **kwargs)
     
 

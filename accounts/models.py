@@ -71,6 +71,12 @@ class User(AbstractBaseUser, PermissionsMixin):
         blank=True,
         null=True,        
     )
+    
+    pt_temp = models.IntegerField(
+        default=0,
+        blank=True,
+        null=True,        
+    )
 
     icon = models.ImageField(
         upload_to='icon',
@@ -111,6 +117,20 @@ class fund(models.Model):
         null=True,
         blank=True,
     )
+
+    def __str__(self):
+        return self.__unicode__()
+    
+class Animal(models.Model):
+    name = models.TextField(
+        default="",
+        null=True,
+        blank=True,
+    )
+    points = models.IntegerField(
+        default=0,
+    )
+    
 
     def __str__(self):
         return self.__unicode__()
